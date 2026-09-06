@@ -1114,7 +1114,7 @@ async function directScan(){
     $("#pmsg").innerHTML = okCount===0
       ? `<b style="color:#B91C1C">Không quét được nguồn nào từ trình duyệt.</b>
          Đây là hạn chế đã biết: trình duyệt không được phép đọc trang của tên miền khác, phải đi qua dịch vụ trung chuyển miễn phí và các dịch vụ này hay bị chặn.
-         <br><br><b>Cách chắc ăn:</b> dùng máy quét tự động chạy trên GitHub, không qua trình duyệt nên không bị chặn. Xem hướng dẫn cài trong tệp <b>HUONG-DAN.md</b>.`
+         <br><br><b>Cách chắc ăn:</b> dùng máy quét tự động chạy trên GitHub, không qua trình duyệt nên không bị chặn. Xem tệp <b>BAT-DAU-TU-DAY.txt</b> trong gói tải về.`
       : totalHits===0
         ? `<b style="color:#15803D">Xong. Không thấy văn bản mới nào liên quan.</b> Đọc được ${okCount}/${SOURCES.length} nguồn.`
         : `<b style="color:#B45309">Xong. Phát hiện ${totalHits} văn bản có thể liên quan.</b>`;

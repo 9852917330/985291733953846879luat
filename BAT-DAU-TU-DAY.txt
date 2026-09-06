@@ -1,0 +1,58 @@
+LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
+
+Thư mục này có 3 tệp:
+  index.html         trang web
+  quet-luat.yml      máy quét tự động (nội dung để dán, xem bước 2)
+  BAT-DAU-TU-DAY.txt tệp đang đọc
+
+────────────────────────────────────────────────────────────────
+CÀI ĐẶT — LÀM MỘT LẦN, KHOẢNG 4 PHÚT
+────────────────────────────────────────────────────────────────
+
+BƯỚC 1 — Đưa trang web lên
+  Vào repo GitHub → Add file → Upload files
+  → kéo thả tệp index.html → Commit changes
+
+  Nếu chưa bật trang web: Settings → Pages → Branch chọn main,
+  thư mục chọn / (root) → Save. Khoảng một phút sau có link.
+
+BƯỚC 2 — Cài máy quét tự động
+  Tab Actions → bấm "set up a workflow yourself"
+  → xoá sạch nội dung mẫu trong ô soạn thảo
+  → mở tệp quet-luat.yml, copy toàn bộ, dán vào
+  → Commit changes
+
+  GitHub tự tạo thư mục cần thiết. Không phải tự tạo thư mục nào.
+
+BƯỚC 3 — Cho máy quét quyền ghi kết quả
+  Settings → Actions → General → kéo xuống Workflow permissions
+  → chọn "Read and write permissions" → Save
+
+  Bỏ qua bước này thì máy quét chạy được nhưng không lưu được kết quả.
+
+BƯỚC 4 — Chạy thử ngay
+  Tab Actions → chọn "Quét văn bản pháp luật" ở cột trái
+  → Run workflow → Run workflow
+  Đợi khoảng một phút, chấm xanh là xong.
+
+XONG. Mở trang web, bấm "Cập nhật ngay" là ra kết quả.
+
+────────────────────────────────────────────────────────────────
+TỪ ĐÓ VỀ SAU
+────────────────────────────────────────────────────────────────
+
+Không phải làm gì nữa. Mỗi sáng 5 giờ máy quét tự chạy, đọc 8 cổng
+thông tin chính thống, lọc ra văn bản mới liên quan tới bệnh viện
+thẩm mỹ và ghi lại. Ai mở trang bấm "Cập nhật ngay" sẽ thấy kết quả
+mới nhất.
+
+Muốn đổi giờ chạy: sửa dòng cron trong quet-luat.yml.
+Giờ ghi theo giờ quốc tế, Việt Nam nhanh hơn 7 tiếng.
+"0 22 * * *" nghĩa là 5 giờ sáng giờ Việt Nam.
+
+Nếu một cổng thông tin báo lỗi: trang vẫn hiện nguồn đó kèm nút mở
+để xem tay. Các nguồn còn lại vẫn chạy bình thường. Xem lý do lỗi
+cụ thể trong nhật ký của lần chạy ở tab Actions.
+
+Thêm luật mới vào trang: sửa khối DOCS ở đầu thẻ script trong
+index.html. Máy quét tự đọc danh sách đó, không phải sửa hai chỗ.
