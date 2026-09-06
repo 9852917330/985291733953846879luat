@@ -50,6 +50,11 @@ header::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;hei
   border-radius:9px;padding:9px 14px;font-size:13.5px;font-weight:700;white-space:nowrap}
 .scanbtn:hover{background:#FFC722}
 .scanbtn:disabled{opacity:.65;cursor:wait}
+.scanbtn{position:relative}
+.scanbtn .cham{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;border-radius:20px;
+  background:#DC2626;color:#fff;font-size:11px;font-weight:800;display:none;align-items:center;
+  justify-content:center;padding:0 5px;border:2px solid #164A7E;line-height:1}
+.scanbtn .cham.on{display:flex}
 .hnav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
 .hbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
   background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
@@ -164,6 +169,18 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
 .doc .code{display:inline-block;font-size:11.5px;font-weight:700;color:var(--nc,#475569);background:#F5F8FA;
   border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-variant-numeric:tabular-nums}
 .doc .eff{font-size:12.5px;color:var(--ink3);margin-top:6px}
+.moi{background:#FFFBEB;border:1.5px dashed #F59E0B;border-radius:var(--r);padding:13px 14px;
+  text-align:left;width:100%;position:relative;margin-bottom:11px}
+.moi:hover{border-color:#D97706;background:#FEF7E0}
+.moi .h{display:flex;gap:9px;align-items:center;margin-bottom:7px}
+.moi .h .ic{width:26px;height:26px;border-radius:8px;background:#F59E0B;color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.moi .h .lb{font-size:11px;font-weight:800;color:#92400E;letter-spacing:.02em}
+.moi .cd{display:inline-block;font-size:12px;font-weight:800;color:#92400E;background:#FDE68A;
+  border-radius:5px;padding:2px 8px;margin-bottom:6px}
+.moi .tx{font-size:14px;line-height:1.5;color:#78350F}
+.moihead{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:13px;font-weight:750;color:#92400E}
+.cham2{width:8px;height:8px;border-radius:50%;background:#DC2626;flex:0 0 auto;margin-left:4px;display:none}
+.cham2.on{display:block}
 .empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:30px 18px;
   text-align:center;color:var(--ink3);font-size:14px}
 
@@ -267,7 +284,7 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
         </div>
         <button class="scanbtn" id="scanBtn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
-          Cập nhật ngay
+          Cập nhật ngay<span class="cham" id="cham"></span>
         </button>
       </div>
     </div>
@@ -638,6 +655,20 @@ const DOCS = [
  src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
  q:"Điều 315 Bộ luật Hình sự tội vi phạm quy định về khám bệnh chữa bệnh"},
 
+{id:"tt08gd",cat:"ktd",tier:2,flag:"new",
+ title:"Giám định tư pháp trong lĩnh vực y tế",
+ code:"08/2026/TT-BYT", eff:"Ban hành 24/4/2026 · hiệu lực 01/5/2026",
+ essence:"Khi một ca thẩm mỹ có tai biến và cơ quan điều tra vào cuộc, họ trưng cầu giám định tư pháp. Kết luận giám định là bằng chứng quyết định vụ việc dừng ở dân sự hay chuyển sang hình sự. Thông tư này quy định ai được làm giám định viên, quy trình và thời hạn giám định. Nó thay thế bốn thông tư cũ, trong đó có Thông tư 21/2025/TT-BYT và 03/2025/TT-BYT.",
+ duties:["Biết rằng ba trong mười hai lĩnh vực giám định của thông tư này chạm thẳng vào bệnh viện thẩm mỹ: khám chữa bệnh, dược và mỹ phẩm, thiết bị y tế.",
+   "Chuẩn bị trước bộ hồ sơ sẽ bị trưng cầu khi có sự cố: hồ sơ bệnh án đầy đủ, phiếu đồng ý của người bệnh, hồ sơ pháp lý thiết bị đã dùng, nguồn gốc thuốc và vật tư đã dùng.",
+   "Giữ nguyên vật chứng khi có sự cố: vỏ thuốc, ống tiêm, lô vật tư, nhật ký máy. Đây chính là thứ giám định viên sẽ hỏi.",
+   "Đưa nội dung này vào quy trình xử lý sự cố y khoa của bệnh viện, đừng để đến lúc bị trưng cầu mới đi tìm giấy tờ."],
+ risks:["Hồ sơ bệnh án thiếu hoặc ghi sau khiến kết luận giám định bất lợi, đây là con đường ngắn nhất dẫn tới trách nhiệm hình sự theo Điều 315.",
+   "Không chứng minh được nguồn gốc thuốc, chất làm đầy hoặc thiết bị đã dùng sẽ bị suy đoán bất lợi."],
+ notes:"Thông tư này căn cứ Luật Giám định tư pháp 2025. Đây là văn bản do máy quét tự phát hiện và đã được đối chiếu, đưa vào bảng ngày 06/09/2026.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/?docid=217946&pageid=27160"},
+ q:"Thông tư 08/2026/TT-BYT giám định tư pháp lĩnh vực y tế toàn văn"},
+
 {id:"bvntd",cat:"ktd",tier:2,
  title:"Luật Bảo vệ quyền lợi người tiêu dùng",
  code:"19/2023/QH15", eff:"Hiệu lực 01/7/2024",
@@ -872,6 +903,71 @@ $("#side").innerHTML =
     <span class="ic">${svg(I[c.k]||I.all,16)}</span><span class="lb">${c.n}</span><span class="cnt">${n}</span></button>`;
 }).join("");
 
+let MOI = [];   // văn bản máy quét phát hiện, chưa được phân tích tay
+
+const PHANLOAI = [
+  ["dl",  /dữ liệu cá nhân|bảo vệ dữ liệu/i],
+  ["qc",  /quảng cáo/i],
+  ["pccc",/phòng cháy|chữa cháy|cứu nạn|cứu hộ/i],
+  ["tb",  /thiết bị y tế|trang thiết bị|mỹ phẩm|số lưu hành|ghi nhãn/i],
+  ["mt",  /chất thải|nước thải|giấy phép môi trường|kiểm soát nhiễm khuẩn/i],
+  ["ld",  /lao động|bảo hiểm xã hội|an toàn vệ sinh|tiền lương/i],
+  ["ktd", /giám định tư pháp|người tiêu dùng|hình sự|bồi thường/i],
+  ["dn",  /doanh nghiệp|đăng ký kinh doanh|chủ sở hữu hưởng lợi|điều lệ/i],
+  ["kcb", /khám bệnh|chữa bệnh|người bệnh|bệnh viện|hành nghề|bệnh án|chuyên môn kỹ thuật|Bộ Y tế|Sở Y tế|dược/i]
+];
+function nhomCua(code, mota){
+  const t = code + " " + mota;
+  for(const [k,re] of PHANLOAI) if(re.test(t)) return k;
+  if(/TT-BYT/.test(code)) return "kcb";
+  return "kcb";
+}
+
+function cauHoiAI(v){
+  return "Tao là giám đốc điều hành một bệnh viện thẩm mỹ tư nhân ở Hà Nội. "
+    + "Phân tích giúp tao văn bản pháp luật sau:\n\n"
+    + v.code + " — " + v.mota + "\n\n"
+    + "Cho tao biết gọn và thực chiến:\n"
+    + "1. Văn bản này đã có hiệu lực chưa, thay thế văn bản nào\n"
+    + "2. Bản chất nó điều chỉnh cái gì\n"
+    + "3. Bệnh viện thẩm mỹ phải làm gì cụ thể, theo từng bước\n"
+    + "4. Làm sai thì phạt bao nhiêu, có bị đình chỉ hay tước giấy phép không\n"
+    + "5. Mức độ ưu tiên: phải làm ngay, hay chỉ cần biết";
+}
+
+async function chep(text, nut){
+  try{
+    await navigator.clipboard.writeText(text);
+  }catch(e){
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(x){}
+    document.body.removeChild(ta);
+  }
+  if(nut){ const cu = nut.textContent; nut.textContent = "Đã chép ✓";
+    setTimeout(()=>{ nut.textContent = cu; }, 2000); }
+}
+
+function moMoi(code){
+  const v = MOI.find(x=>x.code===code); if(!v) return;
+  const c = CAT(v.nhom);
+  openModal("#D97706", I[v.nhom]||I.all, v.code,
+    `<span class="tag warn">Máy quét phát hiện</span> <span style="font-size:12.5px;color:var(--ink3)">${esc(c.n)}</span>`,
+    `<div class="callout" data-t="2">Văn bản này do máy quét tự tìm thấy, chưa được đọc và phân tích. Bấm nút chép câu hỏi bên dưới rồi dán vào Claude hoặc bất kỳ trợ lý AI nào để có phân tích đầy đủ, miễn phí.</div>
+     <h4>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',15)} Tên văn bản</h4>
+     <p>${esc(v.mota)}</p>
+     <h4>${svg(I.src,15)} Nguồn phát hiện</h4>
+     <p>${esc(v.nguon)}</p>
+     <div class="links">
+       <button class="btn solid" id="hoiAI">Chép câu hỏi cho AI</button>
+       <a class="btn" href="${gsearch(v.code + " toàn văn")}" target="_blank" rel="noopener">Đọc toàn văn</a>
+       <a class="btn" href="${gsearch(v.code + " còn hiệu lực không")}" target="_blank" rel="noopener">Còn hiệu lực không?</a>
+     </div>`);
+  const b = $("#hoiAI");
+  if(b) b.addEventListener("click", ()=>chep(cauHoiAI(v), b));
+}
+
 function render(){
   const c = CAT(cur);
   $("#secTitle").style.setProperty("--nc", c.c);
@@ -886,7 +982,19 @@ function render(){
       .join(" ").toLowerCase().includes(q);
   }).sort((a,b)=>a.tier-b.tier);
 
-  $("#grid").innerHTML = list.length ? list.map(d=>{
+  const moiNhom = MOI.filter(v => cur==="all" || v.nhom===cur)
+    .filter(v => !q || (v.code+" "+v.mota).toLowerCase().includes(q));
+  const khoiMoi = moiNhom.length ? `<div style="grid-column:1/-1">
+      <div class="moihead">${svg(I.risk,15)} ${moiNhom.length} văn bản mới máy quét vừa tìm thấy, chưa phân tích</div>
+      ${moiNhom.map(v=>`<button class="moi" data-moi="${esc(v.code)}">
+        <div class="h"><span class="ic">${svg(I[v.nhom]||I.all,15)}</span>
+          <span class="lb">MÁY QUÉT PHÁT HIỆN · ${esc(CAT(v.nhom).n).toUpperCase()}</span></div>
+        <span class="cd">${esc(v.code)}</span>
+        <div class="tx">${esc(v.mota.slice(0,150))}</div>
+      </button>`).join("")}
+    </div>` : "";
+
+  $("#grid").innerHTML = khoiMoi + (list.length ? list.map(d=>{
     const cc = CAT(d.cat);
     return `<button class="doc" data-id="${d.id}" style="--nc:${cc.c}">
       <div class="badges">
@@ -901,7 +1009,7 @@ function render(){
       <span class="code">${esc(d.code)}</span>
       <div class="eff">${esc(d.eff)}</div>
     </button>`;
-  }).join("") : `<div class="empty" style="grid-column:1/-1">Không có văn bản nào khớp. Thử từ khoá ngắn hơn: quảng cáo, cháy, dữ liệu, thiết bị.</div>`;
+  }).join("") : (khoiMoi ? "" : `<div class="empty" style="grid-column:1/-1">Không có văn bản nào khớp. Thử từ khoá ngắn hơn: quảng cáo, cháy, dữ liệu, thiết bị.</div>`));
 }
 
 /* ---- modal ---- */
@@ -937,7 +1045,7 @@ function openDoc(id){
      <div class="links">
        <a class="btn solid" href="${d.src.url}" target="_blank" rel="noopener">${svg(I.src,15)} ${esc(d.src.label)}</a>
        <a class="btn" href="${tvpl(d.code.split(" ")[0])}" target="_blank" rel="noopener">Xem trên Thư viện pháp luật</a>
-       <a class="btn" href="${gsearch(d.q)}" target="_blank" rel="noopener">Kiểm tra hiệu lực hôm nay</a>
+       <a class="btn" href="${gsearch(d.code.split(" ")[0] + " còn hiệu lực không đã bị thay thế chưa " + d.title)}" target="_blank" rel="noopener">Còn hiệu lực không?</a>
      </div>`);
 }
 
@@ -1182,6 +1290,7 @@ document.addEventListener("click", e=>{
 });
 $("#q").addEventListener("input", e=>{ qtext = e.target.value; render(); });
 $("#grid").addEventListener("click", e=>{
+  const m = e.target.closest("[data-moi]"); if(m){ moMoi(m.dataset.moi); return; }
   const b = e.target.closest(".doc"); if(b) openDoc(b.dataset.id);
 });
 $("#mBody").addEventListener("click", e=>{
@@ -1221,6 +1330,32 @@ if("serviceWorker" in navigator){
     });
   });
 }
+
+(async function bao(){                       // chấm đỏ báo có văn bản mới chưa xem
+  try{
+    const r = await fetch("capnhat.json?t="+Date.now(), {cache:"no-store"});
+    if(!r.ok) return;
+    const d = await r.json();
+    if(d.chuaChay) return;
+    MOI = [];
+    (d.nguon||[]).forEach(s => (s.phatHien||[]).forEach(x => {
+      if(MOI.some(v=>v.code===x.code)) return;
+      MOI.push({ code:x.code, mota:x.mota, nguon:s.n, nhom: nhomCua(x.code, x.mota) });
+    }));
+    if(MOI.length) render();                       // vẽ lại để thẻ mới hiện đúng nhóm
+    const ma = MOI.map(v=>v.code);
+    if(!ma.length) return;
+    const daXem = (store.get("daXem")||"").split(",");
+    const moi = ma.filter(c=>!daXem.includes(c));
+    if(!moi.length) return;
+    const c = $("#cham"); c.textContent = moi.length; c.classList.add("on");
+    $("#scanBtn").addEventListener("click", ()=>{
+      store.set("daXem", ma.join(","));
+      c.classList.remove("on");
+    }, {once:true});
+    if(d.ngay){ LAST_UPDATE = d.ngay; $("#lastUpd").textContent = d.ngay; }
+  }catch(e){}
+})();
 
 (function moiCai(){
   const hop = $("#caidat");
