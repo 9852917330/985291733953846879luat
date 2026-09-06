@@ -1,58 +1,73 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
-Thư mục này có 3 tệp:
-  index.html         trang web
-  quet-luat.yml      máy quét tự động (nội dung để dán, xem bước 2)
-  BAT-DAU-TU-DAY.txt tệp đang đọc
+TỆP TRONG THƯ MỤC NÀY
+  index.html        trang web
+  manifest.json     thông tin app (tên, logo, màu)
+  sw.js             máy chạy nền, giúp app tự cập nhật và mở được khi mất mạng
+  icon-192.png      logo Android
+  icon-512.png      logo Android bản lớn
+  icon-180.png      logo iPhone
+  quet-luat.yml     máy quét tự động (nội dung để dán, xem BƯỚC 2)
 
-────────────────────────────────────────────────────────────────
-CÀI ĐẶT — LÀM MỘT LẦN, KHOẢNG 4 PHÚT
-────────────────────────────────────────────────────────────────
+────────────────────────────────────────────
+CÀI ĐẶT — LÀM TRÊN TRÌNH DUYỆT ĐIỆN THOẠI
+────────────────────────────────────────────
 
-BƯỚC 1 — Đưa trang web lên
-  Vào repo GitHub → Add file → Upload files
-  → kéo thả tệp index.html → Commit changes
-
-  Nếu chưa bật trang web: Settings → Pages → Branch chọn main,
-  thư mục chọn / (root) → Save. Khoảng một phút sau có link.
+BƯỚC 1 — Đưa 6 tệp lên GitHub
+  1. Vào repo, bấm Add file
+  2. Chọn Upload files
+  3. Bấm dòng chữ xanh "choose your files"
+  4. Chọn cùng lúc 6 tệp: index.html, manifest.json, sw.js,
+     icon-192.png, icon-512.png, icon-180.png
+  5. Cuộn xuống, bấm Commit changes
 
 BƯỚC 2 — Cài máy quét tự động
-  Tab Actions → bấm "set up a workflow yourself"
-  → xoá sạch nội dung mẫu trong ô soạn thảo
-  → mở tệp quet-luat.yml, copy toàn bộ, dán vào
-  → Commit changes
+  1. Bấm tab Actions
+  2. Bấm "set up a workflow yourself"
+  3. Xoá sạch nội dung mẫu trong ô soạn thảo
+  4. Mở tệp quet-luat.yml, copy toàn bộ, dán vào
+  5. Bấm Commit changes hai lần
 
-  GitHub tự tạo thư mục cần thiết. Không phải tự tạo thư mục nào.
+BƯỚC 3 — Cho máy quét quyền ghi
+  1. Bấm tab Settings
+  2. Cột trái bấm Actions
+  3. Bấm General
+  4. Cuộn xuống khối Workflow permissions
+  5. Chọn "Read and write permissions"
+  6. Bấm Save
 
-BƯỚC 3 — Cho máy quét quyền ghi kết quả
-  Settings → Actions → General → kéo xuống Workflow permissions
-  → chọn "Read and write permissions" → Save
+BƯỚC 4 — Chạy thử
+  1. Bấm tab Actions
+  2. Cột trái bấm "Quét văn bản pháp luật"
+  3. Bấm Run workflow
+  4. Bấm Run workflow màu xanh trong ô sổ xuống
+  5. Đợi một phút, làm mới trang, chấm xanh là xong
 
-  Bỏ qua bước này thì máy quét chạy được nhưng không lưu được kết quả.
+────────────────────────────────────────────
+CÀI THÀNH APP RA MÀN HÌNH
+────────────────────────────────────────────
 
-BƯỚC 4 — Chạy thử ngay
-  Tab Actions → chọn "Quét văn bản pháp luật" ở cột trái
-  → Run workflow → Run workflow
-  Đợi khoảng một phút, chấm xanh là xong.
+ANDROID (Chrome)
+  1. Mở link trang web
+  2. Thanh mời cài hiện lên ở đáy màn hình, bấm nút Cài
+  3. Nếu không thấy: bấm dấu ⋮ góc phải, chọn
+     "Thêm vào Màn hình chính" hoặc "Cài đặt ứng dụng"
 
-XONG. Mở trang web, bấm "Cập nhật ngay" là ra kết quả.
+IPHONE (bắt buộc dùng Safari, Chrome trên iPhone không cài được)
+  1. Mở link trang web bằng Safari
+  2. Bấm nút Chia sẻ ở thanh dưới, biểu tượng ô vuông có mũi tên đi lên
+  3. Kéo xuống chọn "Thêm vào MH chính"
+  4. Bấm Thêm
 
-────────────────────────────────────────────────────────────────
-TỪ ĐÓ VỀ SAU
-────────────────────────────────────────────────────────────────
+────────────────────────────────────────────
+CẬP NHẬT VỀ SAU
+────────────────────────────────────────────
 
-Không phải làm gì nữa. Mỗi sáng 5 giờ máy quét tự chạy, đọc 8 cổng
-thông tin chính thống, lọc ra văn bản mới liên quan tới bệnh viện
-thẩm mỹ và ghi lại. Ai mở trang bấm "Cập nhật ngay" sẽ thấy kết quả
-mới nhất.
+Đẩy tệp mới lên GitHub là app tự cập nhật, không cần gỡ ra cài lại,
+không cần xoá bộ nhớ đệm. App dò bản mới mỗi giờ một lần và tự nạp lại.
 
-Muốn đổi giờ chạy: sửa dòng cron trong quet-luat.yml.
-Giờ ghi theo giờ quốc tế, Việt Nam nhanh hơn 7 tiếng.
-"0 22 * * *" nghĩa là 5 giờ sáng giờ Việt Nam.
+Máy quét chạy mỗi sáng 5 giờ giờ Việt Nam. Muốn đổi giờ, sửa dòng cron
+trong quet-luat.yml. Giờ ghi theo giờ quốc tế, Việt Nam nhanh hơn 7 tiếng.
 
-Nếu một cổng thông tin báo lỗi: trang vẫn hiện nguồn đó kèm nút mở
-để xem tay. Các nguồn còn lại vẫn chạy bình thường. Xem lý do lỗi
-cụ thể trong nhật ký của lần chạy ở tab Actions.
-
-Thêm luật mới vào trang: sửa khối DOCS ở đầu thẻ script trong
-index.html. Máy quét tự đọc danh sách đó, không phải sửa hai chỗ.
+Thêm luật mới: sửa khối DOCS ở đầu thẻ script trong index.html.
+Máy quét tự đọc danh sách đó, không phải sửa hai chỗ.

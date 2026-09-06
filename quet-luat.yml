@@ -2,8 +2,8 @@ name: Quét văn bản pháp luật
 
 on:
   schedule:
-    - cron: "0 22 * * *"      # 05:00 giờ Việt Nam mỗi ngày
-  workflow_dispatch:           # cho phép bấm chạy tay
+    - cron: "0 22 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,23 +21,26 @@ jobs:
         run: |
           cat > /tmp/quet.mjs <<'SCRIPT'
           import { readFileSync, writeFileSync } from "node:fs";
+          import { execFileSync } from "node:child_process";
 
           const NGUON = [
-            { n: "Bộ Y tế — Văn bản pháp quy",         u: "https://moh.gov.vn/van-ban-phap-quy" },
             { n: "Cục Quản lý Khám, chữa bệnh",        u: "https://kcb.vn/van-ban/van-ban-phap-quy" },
             { n: "Cổng văn bản Chính phủ",             u: "https://vanban.chinhphu.vn/" },
             { n: "Công báo Chính phủ",                 u: "https://congbao.chinhphu.vn/" },
+            { n: "Bộ Y tế — Văn bản pháp quy",         u: "https://moh.gov.vn/van-ban-phap-quy" },
             { n: "Cục Hạ tầng và Thiết bị y tế",       u: "https://imda.moh.gov.vn/van-ban-phap-quy" },
+            { n: "Xây dựng chính sách — Chính phủ",    u: "https://xaydungchinhsach.chinhphu.vn/" },
+            { n: "Bộ Công an",                         u: "https://bocongan.gov.vn/" },
             { n: "Thư viện pháp luật — Y tế mới",      u: "https://thuvienphapluat.vn/van-ban-moi/The-thao-Y-te" },
-            { n: "Thư viện pháp luật — Văn bản mới",   u: "https://thuvienphapluat.vn/van-ban-moi/vb" },
             { n: "Cổng đăng ký doanh nghiệp quốc gia", u: "https://dangkykinhdoanh.gov.vn/" }
           ];
 
-          const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8})/g;
-          const TOPIC  = /(y tế|khám bệnh|chữa bệnh|thẩm mỹ|mỹ phẩm|thiết bị y tế|trang thiết bị|dược|quảng cáo|phòng cháy|chữa cháy|dữ liệu cá nhân|chất thải|môi trường|doanh nghiệp|lao động|bảo hiểm|hành nghề|giấy phép)/i;
-          const LOAI   = /(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)[^]{0,45}$/;
+          const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
+          const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|khám, chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
+          const CAM  = /(viễn thông|trồng trọt|bảo vệ thực vật|thủy sản|chăn nuôi|lâm nghiệp|đường sắt|đường bộ|đường thủy|hàng không|hàng hải|giáo dục|đại học|ngân hàng|chứng khoán|hải quan|đất đai|khoáng sản|dầu khí|điện lực|thủy lợi|du lịch|thể thao|quốc phòng|biên phòng|tôn giáo|quy hoạch đô thị|công nghệ lạc hậu|ươm tạo công nghệ|đăng ký hộ kinh doanh|biểu mẫu|giấy phép viễn thông|Sở Nông nghiệp)/i;
+          const LOAI = /(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)[^]{0,45}$/;
+          const laYTe = c => /TT-BYT/.test(c);
 
-          // Danh sách đang theo dõi đọc thẳng từ index.html -> chỉ một nguồn sự thật
           const DA_CO = (() => {
             try { return new Set(readFileSync("index.html","utf8").match(new RegExp(CODERE.source,"g")) || []); }
             catch { return new Set(); }
@@ -57,7 +60,8 @@ jobs:
               let sau = sach.slice(m.index+code.length, m.index+code.length+170);
               const kt = sau.search(/(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)\s+(số\s+)?\d/);
               if(kt > 0) sau = sau.slice(0,kt);
-              if(!TOPIC.test(sau)) continue;
+              if(CAM.test(sau)) continue;
+              if(!laYTe(code) && !LOI.test(sau)) continue;
               const truoc = sach.slice(Math.max(0,m.index-50), m.index);
               const loai = (truoc.match(LOAI) || [""])[0];
               ra.set(code, (loai+code+sau).trim().slice(0,175));
@@ -66,27 +70,50 @@ jobs:
             return [...ra.entries()].map(([code,mota]) => ({code,mota}));
           }
 
+          const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+
+          function curl(url, them){
+            const goc = new URL(url).origin + "/";
+            const args = [
+              "-sSL","--compressed","--max-time","45","--retry","2","--retry-delay","4",
+              "-A", UA,
+              "-H","Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+              "-H","Accept-Language: vi-VN,vi;q=0.9,en-US;q=0.8",
+              "-H","Upgrade-Insecure-Requests: 1",
+              "-H","Sec-Fetch-Dest: document",
+              "-H","Sec-Fetch-Mode: navigate",
+              "-H","Sec-Fetch-Site: none",
+              "-H","Referer: " + goc,
+              ...(them || []),
+              url
+            ];
+            return execFileSync("curl", args, { encoding:"utf8", maxBuffer: 60*1024*1024, stdio:["ignore","pipe","pipe"] });
+          }
+
           async function doc(url){
-            for(let lan=1; lan<=2; lan++){
+            const cach = [
+              { ten:"thường",        them:[] },
+              { ten:"bỏ kiểm chứng chỉ", them:["-k"] },
+              { ten:"ép IPv4",       them:["-4","-k"] }
+            ];
+            let loiCuoi = "";
+            for(const c of cach){
               try{
-                const r = await fetch(url,{
-                  redirect:"follow", signal: AbortSignal.timeout(30000),
-                  headers:{
-                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36",
-                    "Accept":"text/html,application/xhtml+xml",
-                    "Accept-Language":"vi,en;q=0.8"
-                  }
-                });
-                if(!r.ok){ if(lan===2) return {loi:"HTTP "+r.status}; continue; }
-                const t = await r.text();
-                if(!t || t.length < 400){ if(lan===2) return {loi:"trang rỗng"}; continue; }
-                return {text:t};
+                const t = curl(url, c.them);
+                if(t && t.length > 400) return { text:t };
+                loiCuoi = "trang rỗng (" + c.ten + ")";
               }catch(e){
-                if(lan===2) return {loi: e.name==="TimeoutError" ? "quá 30 giây" : (e.message||"không kết nối được")};
-                await new Promise(s=>setTimeout(s,3000));
+                const err = (e.stderr || "").toString().trim().split("\n").pop() || ("mã lỗi " + e.status);
+                loiCuoi = err.slice(0,120);
+                if(/403/.test(err)) break;
               }
             }
-            return {loi:"không đọc được"};
+            try{
+              const r = await fetch(url, { redirect:"follow", signal: AbortSignal.timeout(30000), headers:{ "User-Agent": UA } });
+              if(r.ok){ const t = await r.text(); if(t && t.length > 400) return { text:t }; }
+              else loiCuoi = "HTTP " + r.status;
+            }catch(e){ /* giữ lỗi curl */ }
+            return { loi: loiCuoi || "không đọc được" };
           }
 
           const vn = new Date(Date.now() + 7*3600*1000);
@@ -99,7 +126,7 @@ jobs:
             process.stdout.write("Đang đọc " + s.n + " … ");
             const r = await doc(s.u);
             if(r.loi){
-              console.log("lỗi: " + r.loi);
+              console.log("LỖI: " + r.loi);
               ketQua.push({n:s.n, u:s.u, trangThai:"loi", loi:r.loi, phatHien:[]});
             }else{
               const hits = locVanBan(r.text);

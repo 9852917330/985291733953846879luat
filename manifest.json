@@ -1,0 +1,20 @@
+{
+  "name": "Luật Việt Nam — Bệnh viện thẩm mỹ",
+  "short_name": "Luật VN",
+  "description": "Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ: văn bản hiện hành, việc cần làm, rủi ro và máy quét văn bản mới.",
+  "lang": "vi",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4F6F8",
+  "theme_color": "#0F2C4D",
+  "categories": ["business", "medical", "productivity"],
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

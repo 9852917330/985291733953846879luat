@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Luật Việt Nam — Dành cho giám đốc điều hành bệnh viện thẩm mỹ</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0F2C4D">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Luật VN">
+<meta name="mobile-web-app-capable" content="yes">
 <style>
 :root{
   --ink:#111C28; --ink2:#3D4C5A; --ink3:#71828F;
@@ -49,6 +57,18 @@ header::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;hei
 .hbtn .bi{width:28px;height:28px;border-radius:9px;display:grid;place-items:center}
 .hbtn:hover{background:rgba(255,255,255,.24)}
 @media(min-width:520px){.hbtn{font-size:13.5px}}
+
+/* ---- mời cài app ---- */
+.caidat{position:fixed;left:12px;right:12px;bottom:14px;z-index:70;display:none;gap:12px;align-items:center;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 13px;
+  box-shadow:0 10px 30px rgba(15,44,77,.24)}
+.caidat.on{display:flex}
+.caidat img{width:42px;height:42px;border-radius:11px;flex:0 0 auto}
+.caidat .tt{font-size:14px;font-weight:700;line-height:1.3}
+.caidat .ss{font-size:12.5px;color:var(--ink3);line-height:1.45;margin-top:2px}
+.caidat .go{background:var(--brand);color:#fff;border:0;border-radius:9px;padding:9px 14px;
+  font-size:13.5px;font-weight:700;white-space:nowrap}
+.caidat .bo{background:none;border:0;color:var(--ink3);font-size:19px;line-height:1;padding:4px 2px}
 
 /* ================= SHELL ================= */
 .shell{max-width:1240px;margin:0 auto;padding:16px 18px 60px 66px;display:grid;gap:18px;grid-template-columns:1fr}
@@ -213,7 +233,9 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#1B6BA8,#5BB0E8);transition:width .3s}
 .scanitem{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line2)}
 .scanitem:first-child{border-top:0}
-.scanitem .st{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;flex:0 0 auto;margin-top:1px}
+.scanitem .st{width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:12.5px;font-weight:800;line-height:1;flex:0 0 auto;margin-top:1px;
+  font-variant-numeric:tabular-nums;padding:0;text-align:center}
 .st.wait{background:#EEF2F5;color:#94A3B8}
 .st.ok{background:#DCFCE7;color:#15803D}
 .st.hit{background:#FEF3C7;color:#B45309}
@@ -276,6 +298,16 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
     </div>
     <div class="grid" id="grid"></div>
   </main>
+</div>
+
+<div class="caidat" id="caidat">
+  <img src="./icon-192.png" alt="">
+  <div style="flex:1 1 auto">
+    <div class="tt" id="caiTt">Cài lên màn hình chính</div>
+    <div class="ss" id="caiSs">Mở nhanh như một ứng dụng, không cần gõ địa chỉ.</div>
+  </div>
+  <button class="go" id="caiGo">Cài</button>
+  <button class="bo" id="caiBo" aria-label="Bỏ qua">✕</button>
 </div>
 
 <div class="scrim" id="scrim"></div>
@@ -967,8 +999,10 @@ const RELAYS = [
   {n:"jina",       f:u=>"https://r.jina.ai/"+u}
 ];
 const KNOWN = DOCS.map(d=>d.code).join(" ");
-const TOPIC = /(y tế|khám bệnh|chữa bệnh|thẩm mỹ|mỹ phẩm|thiết bị y tế|trang thiết bị|dược|quảng cáo|phòng cháy|chữa cháy|dữ liệu cá nhân|chất thải|môi trường|doanh nghiệp|lao động|bảo hiểm|hành nghề|giấy phép)/i;
-const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8})/g;
+const LOI = /(thẩm mỹ|khám bệnh|chữa bệnh|khám, chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
+const CAM = /(viễn thông|trồng trọt|bảo vệ thực vật|thủy sản|chăn nuôi|lâm nghiệp|đường sắt|đường bộ|đường thủy|hàng không|hàng hải|giáo dục|đại học|ngân hàng|chứng khoán|hải quan|đất đai|khoáng sản|dầu khí|điện lực|thủy lợi|du lịch|thể thao|quốc phòng|biên phòng|tôn giáo|quy hoạch đô thị|công nghệ lạc hậu|ươm tạo công nghệ|đăng ký hộ kinh doanh|biểu mẫu|giấy phép viễn thông|Sở Nông nghiệp)/i;
+const laYTe = c => /TT-BYT/.test(c);
+const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
 const LOAI = /(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)[^]{0,45}$/;
 
 function analyse(text){
@@ -982,7 +1016,8 @@ function analyse(text){
     let after = clean.slice(m.index + code.length, m.index + code.length + 170);
     const nx = after.search(/(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)\s+(số\s+)?\d/);
     if(nx > 0) after = after.slice(0, nx);
-    if(!TOPIC.test(after)) continue;
+    if(CAM.test(after)) continue;                    // rõ ràng thuộc ngành khác
+    if(!laYTe(code) && !LOI.test(after)) continue;   // không phải văn bản y tế và không có từ khoá liên quan
     const before = clean.slice(Math.max(0, m.index - 50), m.index);
     const loai = (before.match(LOAI) || [""])[0];
     found.set(code, (loai + code + after).trim().slice(0,175));
@@ -1161,6 +1196,71 @@ $("#scrim").addEventListener("click", closeModal);
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
 
 render();
+
+/* ============================================================
+   6. CÀI THÀNH APP + TỰ CẬP NHẬT
+   ============================================================ */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>{
+    navigator.serviceWorker.register("./sw.js").then(reg=>{
+      reg.addEventListener("updatefound", ()=>{
+        const moi = reg.installing;
+        if(!moi) return;
+        moi.addEventListener("statechange", ()=>{
+          // có bản mới và app đang chạy bản cũ -> nạp lại một lần, tự động
+          if(moi.state==="installed" && navigator.serviceWorker.controller){
+            moi.postMessage("capnhat");
+          }
+        });
+      });
+      setInterval(()=>reg.update(), 60*60*1000);   // mỗi giờ dò bản mới một lần
+    }).catch(()=>{});
+    let daNapLai = false;
+    navigator.serviceWorker.addEventListener("controllerchange", ()=>{
+      if(daNapLai) return; daNapLai = true; location.reload();
+    });
+  });
+}
+
+(function moiCai(){
+  const hop = $("#caidat");
+  if(store.get("boQuaCai") === "1") return;
+  const dangChayNhuApp = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  if(dangChayNhuApp) return;
+
+  const iOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  let loiMoi = null;
+
+  window.addEventListener("beforeinstallprompt", e=>{   // Android / Chrome
+    e.preventDefault(); loiMoi = e;
+    $("#caiTt").textContent = "Cài lên màn hình chính";
+    $("#caiSs").textContent = "Mở nhanh như một ứng dụng, không cần gõ địa chỉ.";
+    $("#caiGo").style.display = "";
+    hop.classList.add("on");
+  });
+
+  if(iOS){                                              // iPhone / iPad: phải làm tay
+    $("#caiTt").textContent = "Cài lên màn hình chính iPhone";
+    $("#caiSs").innerHTML = "Bấm nút <b>Chia sẻ</b> ở thanh dưới Safari, kéo xuống chọn <b>Thêm vào MH chính</b>.";
+    $("#caiGo").style.display = "none";
+    setTimeout(()=>hop.classList.add("on"), 1800);
+  }
+
+  $("#caiGo").addEventListener("click", async ()=>{
+    if(!loiMoi) return;
+    hop.classList.remove("on");
+    loiMoi.prompt();
+    try{ await loiMoi.userChoice; }catch(e){}
+    loiMoi = null;
+  });
+  $("#caiBo").addEventListener("click", ()=>{
+    hop.classList.remove("on");
+    store.set("boQuaCai","1");
+  });
+  window.addEventListener("appinstalled", ()=>{
+    hop.classList.remove("on"); store.set("boQuaCai","1");
+  });
+})();
 </script>
 </body>
 </html>
