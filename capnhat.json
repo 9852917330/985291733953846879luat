@@ -1,0 +1,85 @@
+{
+ "ngay": "06/09/2026",
+ "gio": "17:39 ngày 06/09/2026",
+ "daTheoDoi": 18,
+ "nguon": [
+  {
+   "n": "Bộ Y tế — Văn bản pháp quy",
+   "u": "https://moh.gov.vn/van-ban-phap-quy",
+   "trangThai": "loi",
+   "loi": "fetch failed",
+   "phatHien": []
+  },
+  {
+   "n": "Cục Quản lý Khám, chữa bệnh",
+   "u": "https://kcb.vn/van-ban/van-ban-phap-quy",
+   "trangThai": "ok",
+   "phatHien": [
+    {
+     "code": "08/2026/TT-BYT",
+     "mota": "Thông tư số 08/2026/TT-BYT Hướng dẫn về giám định tư pháp trong lĩnh vực chuyên môn thuộc thẩm quyền quản lý của Bộ Y tế 28/04/2026 Tin tức nổi bật Cấp cứu và điều trị cho các"
+    }
+   ]
+  },
+  {
+   "n": "Cổng văn bản Chính phủ",
+   "u": "https://vanban.chinhphu.vn/",
+   "trangThai": "ok",
+   "phatHien": [
+    {
+     "code": "28/2026/VBHN-TT",
+     "mota": "28/2026/VBHN-TT-BTC 28/08/2026 28/08/2026 Ban hành biểu mẫu sử dụng trong đăng ký doanh nghiệp, đăng ký hộ kinh doanh 28/08/2026 Tài liệu đính kèm 16/2026/VBHN-TT-BKHCN 28/08/"
+    },
+    {
+     "code": "16/2026/VBHN-TT",
+     "mota": "16/2026/VBHN-TT-BKHCN 28/08/2026 28/08/2026 Quy định việc phân cấp thẩm quyền cấp, gia hạn, cấp lại, sửa đổi, bổ sung, thu hồi giấy phép viễn thông, yêu cầu chấm dứt hoạt động"
+    },
+    {
+     "code": "15/2026/VBHN-QĐ",
+     "mota": "15/2026/VBHN-QĐ-BKHCN 27/08/2026 27/08/2026 Quy định hồ sơ, trình tự, thủ tục xác định dự án đầu tư sử dụng công nghệ lạc hậu, tiềm ẩn nguy cơ gây ô nhiễm môi trường, thâm dụn"
+    },
+    {
+     "code": "12/2026/VBHN-QĐ",
+     "mota": "12/2026/VBHN-QĐ-BKHCN 27/08/2026 27/08/2026 Quy định trình tự, thủ tục xác nhận hàng hóa sử dụng trực tiếp cho phát triển hoạt động ươm tạo công nghệ, ươm tạo doanh nghiệp kho"
+    },
+    {
+     "code": "01/2026/VBHN-QĐCT",
+     "mota": "01/2026/VBHN-QĐCT-UBND 27/08/2026 27/08/2026 Phân cấp cho Sở Nông nghiệp và Môi trường tổ chức, thực hiện một số nhiệm vụ trong lĩnh vực trồng trọt và bảo vệ thực vật thuộc th"
+    }
+   ]
+  },
+  {
+   "n": "Công báo Chính phủ",
+   "u": "https://congbao.chinhphu.vn/",
+   "trangThai": "ok",
+   "phatHien": []
+  },
+  {
+   "n": "Cục Hạ tầng và Thiết bị y tế",
+   "u": "https://imda.moh.gov.vn/van-ban-phap-quy",
+   "trangThai": "loi",
+   "loi": "fetch failed",
+   "phatHien": []
+  },
+  {
+   "n": "Thư viện pháp luật — Y tế mới",
+   "u": "https://thuvienphapluat.vn/van-ban-moi/The-thao-Y-te",
+   "trangThai": "loi",
+   "loi": "HTTP 403",
+   "phatHien": []
+  },
+  {
+   "n": "Thư viện pháp luật — Văn bản mới",
+   "u": "https://thuvienphapluat.vn/van-ban-moi/vb",
+   "trangThai": "loi",
+   "loi": "HTTP 403",
+   "phatHien": []
+  },
+  {
+   "n": "Cổng đăng ký doanh nghiệp quốc gia",
+   "u": "https://dangkykinhdoanh.gov.vn/",
+   "trangThai": "ok",
+   "phatHien": []
+  }
+ ]
+}
