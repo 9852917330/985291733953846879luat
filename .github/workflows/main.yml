@@ -1,0 +1,126 @@
+name: Quét văn bản pháp luật
+
+on:
+  schedule:
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  quet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Chạy máy quét
+        run: |
+          cat > /tmp/quet.mjs <<'SCRIPT'
+          import { readFileSync, writeFileSync } from "node:fs";
+
+          const NGUON = [
+            { n: "Bộ Y tế — Văn bản pháp quy",         u: "https://moh.gov.vn/van-ban-phap-quy" },
+            { n: "Cục Quản lý Khám, chữa bệnh",        u: "https://kcb.vn/van-ban/van-ban-phap-quy" },
+            { n: "Cổng văn bản Chính phủ",             u: "https://vanban.chinhphu.vn/" },
+            { n: "Công báo Chính phủ",                 u: "https://congbao.chinhphu.vn/" },
+            { n: "Cục Hạ tầng và Thiết bị y tế",       u: "https://imda.moh.gov.vn/van-ban-phap-quy" },
+            { n: "Thư viện pháp luật — Y tế mới",      u: "https://thuvienphapluat.vn/van-ban-moi/The-thao-Y-te" },
+            { n: "Thư viện pháp luật — Văn bản mới",   u: "https://thuvienphapluat.vn/van-ban-moi/vb" },
+            { n: "Cổng đăng ký doanh nghiệp quốc gia", u: "https://dangkykinhdoanh.gov.vn/" }
+          ];
+
+          const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8})/g;
+          const TOPIC  = /(y tế|khám bệnh|chữa bệnh|thẩm mỹ|mỹ phẩm|thiết bị y tế|trang thiết bị|dược|quảng cáo|phòng cháy|chữa cháy|dữ liệu cá nhân|chất thải|môi trường|doanh nghiệp|lao động|bảo hiểm|hành nghề|giấy phép)/i;
+          const LOAI   = /(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)[^]{0,45}$/;
+
+          const DA_CO = (() => {
+            try { return new Set(readFileSync("index.html","utf8").match(new RegExp(CODERE.source,"g")) || []); }
+            catch { return new Set(); }
+          })();
+
+          function locVanBan(html){
+            const sach = String(html)
+              .replace(/<script[\s\S]*?<\/script>/gi," ")
+              .replace(/<style[\s\S]*?<\/style>/gi," ")
+              .replace(/<[^>]+>/g," ").replace(/&nbsp;/g," ").replace(/\s+/g," ");
+            const ra = new Map();
+            const re = new RegExp(CODERE.source,"g");
+            let m;
+            while((m = re.exec(sach)) !== null){
+              const code = m[0];
+              if(DA_CO.has(code) || ra.has(code)) continue;
+              let sau = sach.slice(m.index+code.length, m.index+code.length+170);
+              const kt = sau.search(/(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)\s+(số\s+)?\d/);
+              if(kt > 0) sau = sau.slice(0,kt);
+              if(!TOPIC.test(sau)) continue;
+              const truoc = sach.slice(Math.max(0,m.index-50), m.index);
+              const loai = (truoc.match(LOAI) || [""])[0];
+              ra.set(code, (loai+code+sau).trim().slice(0,175));
+              if(ra.size >= 8) break;
+            }
+            return [...ra.entries()].map(([code,mota]) => ({code,mota}));
+          }
+
+          async function doc(url){
+            for(let lan=1; lan<=2; lan++){
+              try{
+                const r = await fetch(url,{
+                  redirect:"follow", signal: AbortSignal.timeout(30000),
+                  headers:{
+                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36",
+                    "Accept":"text/html,application/xhtml+xml",
+                    "Accept-Language":"vi,en;q=0.8"
+                  }
+                });
+                if(!r.ok){ if(lan===2) return {loi:"HTTP "+r.status}; continue; }
+                const t = await r.text();
+                if(!t || t.length < 400){ if(lan===2) return {loi:"trang rỗng"}; continue; }
+                return {text:t};
+              }catch(e){
+                if(lan===2) return {loi: e.name==="TimeoutError" ? "quá 30 giây" : (e.message||"không kết nối được")};
+                await new Promise(s=>setTimeout(s,3000));
+              }
+            }
+            return {loi:"không đọc được"};
+          }
+
+          const vn = new Date(Date.now() + 7*3600*1000);
+          const p  = n => String(n).padStart(2,"0");
+          const ngay = p(vn.getUTCDate())+"/"+p(vn.getUTCMonth()+1)+"/"+vn.getUTCFullYear();
+          const gio  = p(vn.getUTCHours())+":"+p(vn.getUTCMinutes())+" ngày "+ngay;
+
+          const ketQua = [];
+          for(const s of NGUON){
+            process.stdout.write("Đang đọc " + s.n + " … ");
+            const r = await doc(s.u);
+            if(r.loi){
+              console.log("lỗi: " + r.loi);
+              ketQua.push({n:s.n, u:s.u, trangThai:"loi", loi:r.loi, phatHien:[]});
+            }else{
+              const hits = locVanBan(r.text);
+              console.log("ok, " + hits.length + " văn bản mới");
+              ketQua.push({n:s.n, u:s.u, trangThai:"ok", phatHien:hits});
+            }
+          }
+
+          writeFileSync("capnhat.json", JSON.stringify({ngay, gio, daTheoDoi:DA_CO.size, nguon:ketQua}, null, 1), "utf8");
+          console.log("\nXong. Theo dõi " + DA_CO.size + " văn bản. Đọc được " +
+            ketQua.filter(x=>x.trangThai==="ok").length + "/" + NGUON.length + " nguồn.");
+          SCRIPT
+          node /tmp/quet.mjs
+
+      - name: Lưu kết quả vào repo
+        run: |
+          git config user.name  "may-quet-luat"
+          git config user.email "actions@github.com"
+          git add capnhat.json
+          if git diff --staged --quiet; then
+            echo "Không có thay đổi."
+          else
+            git commit -m "Cập nhật kết quả quét"
+            git push
+          fi
