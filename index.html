@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luật Việt Nam — Dành cho giám đốc điều hành bệnh viện thẩm mỹ</title>
+<style>
+:root{
+  --ink:#111C28; --ink2:#3D4C5A; --ink3:#71828F;
+  --bg:#F4F6F8; --card:#FFFFFF; --line:#E2E8ED; --line2:#EEF2F5;
+  --brand:#1B5FA8; --brand-d:#134580;
+  --r:10px;
+  --c-kcb:#E0453C; --c-dn:#2563EB; --c-pccc:#EA580C; --c-tb:#7C3AED;
+  --c-mt:#16A34A; --c-ld:#0891B2; --c-dl:#DB2777; --c-ktd:#CA8A04; --c-qc:#0D9488;
+  --t1:#DC2626; --t1b:#FEF2F2; --t2:#D97706; --t2b:#FFFBEB; --t3:#2563EB; --t3b:#EFF6FF;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-d)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:4px}
+svg{flex:0 0 auto}
+
+/* ================= HEADER ================= */
+header{background:linear-gradient(135deg,#0F2C4D 0%,#164A7E 55%,#1B6BA8 100%);color:#fff;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05)}
+.hin{max-width:1240px;margin:0 auto;padding:16px 18px 14px 66px;position:relative;z-index:1}
+@media(min-width:960px){.hin{padding-left:18px}}
+.htop{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;justify-content:space-between}
+.brand{display:flex;gap:11px;align-items:center}
+.blogo{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.16);display:grid;place-items:center}
+.brand h1{margin:0;font-size:23px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.brand p{margin:2px 0 0;font-size:12.5px;color:#B7D2E8}
+.upd{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:7px 8px 7px 13px}
+.upd .lbl{font-size:11px;color:#B7D2E8;line-height:1.3}
+.upd .val{font-size:13.5px;font-weight:650;color:#fff}
+.scanbtn{display:flex;align-items:center;gap:7px;background:#F5B700;color:#3A2A00;border:0;
+  border-radius:9px;padding:9px 14px;font-size:13.5px;font-weight:700;white-space:nowrap}
+.scanbtn:hover{background:#FFC722}
+.scanbtn:disabled{opacity:.65;cursor:wait}
+.hnav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.hbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:11px;padding:10px 6px;font-size:12.5px;font-weight:650;line-height:1.2;text-align:center}
+.hbtn .bi{width:28px;height:28px;border-radius:9px;display:grid;place-items:center}
+.hbtn:hover{background:rgba(255,255,255,.24)}
+@media(min-width:520px){.hbtn{font-size:13.5px}}
+
+/* ================= SHELL ================= */
+.shell{max-width:1240px;margin:0 auto;padding:16px 18px 60px 66px;display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:960px){.shell{grid-template-columns:236px 1fr;align-items:start;padding:20px 18px 60px}}
+
+/* ---- sidebar ---- */
+/* ---- rail dọc cố định bên trái (điện thoại / tablet) ---- */
+nav.side{position:fixed;left:6px;top:50%;transform:translateY(-50%);z-index:45;
+  width:52px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:5px;
+  display:flex;flex-direction:column;gap:3px;box-shadow:0 6px 22px rgba(15,44,77,.18);
+  max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);overflow-y:auto;scrollbar-width:none;transition:width .18s ease}
+nav.side::-webkit-scrollbar{display:none}
+nav.side.open{width:214px}
+@media(prefers-reduced-motion:reduce){nav.side{transition:none}}
+.tog{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--bg);border:0;
+  border-radius:9px;padding:8px 4px;color:var(--ink2);width:100%;margin-bottom:2px}
+.tog .tl{display:none;font-size:12.5px;font-weight:700}
+nav.side.open .tog{justify-content:flex-start;padding-left:11px}
+nav.side.open .tog .tl{display:inline}
+.nb{display:flex;align-items:center;gap:10px;background:none;border:0;border-radius:9px;padding:5px 2px;
+  color:var(--ink2);font-size:14px;font-weight:600;text-align:left;width:100%;justify-content:center}
+.nb .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;
+  background:var(--nc,#94A3B8);flex:0 0 auto}
+.nb .lb{display:none;flex:1 1 auto;font-size:13.5px;line-height:1.25}
+.nb .cnt{display:none;font-size:11px;font-weight:700;color:var(--ink3);background:var(--line2);
+  border-radius:20px;padding:1px 7px}
+nav.side.open .nb{justify-content:flex-start;padding:5px 7px}
+nav.side.open .nb .lb{display:block}
+nav.side.open .nb .cnt{display:inline-block}
+.nb[aria-current="true"]{background:#EAF1F7}
+.nb[aria-current="true"] .ic{box-shadow:0 0 0 3px color-mix(in srgb, var(--nc) 28%, transparent)}
+nav.side.open .nb[aria-current="true"]{background:var(--nc,#94A3B8);color:#fff}
+nav.side.open .nb[aria-current="true"] .ic{background:rgba(255,255,255,.24);box-shadow:none}
+nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);color:#fff}
+.nb:hover{background:#F2F6F9}
+
+/* ---- máy tính: sidebar đầy đủ, không nổi ---- */
+@media(min-width:960px){
+  nav.side{position:sticky;top:16px;transform:none;width:auto;left:auto;border-radius:var(--r);
+    box-shadow:none;padding:6px;gap:5px;max-height:none;overflow:visible}
+  nav.side .tog{display:none}
+  .nb{justify-content:flex-start;padding:9px 11px}
+  .nb .lb{display:block}
+  .nb .cnt{display:inline-block;margin-left:auto}
+  .nb[aria-current="true"]{background:var(--nc,#94A3B8);color:#fff}
+  .nb[aria-current="true"] .ic{background:rgba(255,255,255,.24);box-shadow:none}
+  .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);color:#fff}
+}
+.nb:hover{background:#F7FAFC}
+
+/* ---- main ---- */
+.hero{background:linear-gradient(135deg,#B91C1C 0%,#DC2626 55%,#EA580C 100%);border-radius:12px;
+  padding:16px 17px;display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;
+  box-shadow:0 6px 18px rgba(220,38,38,.28);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;bottom:-50px;width:150px;height:150px;
+  border-radius:50%;background:rgba(255,255,255,.09)}
+.hero .hi{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.22);color:#fff;
+  display:grid;place-items:center;position:relative;z-index:1}
+.hero .lb{display:inline-block;background:#FFD84D;color:#7A2E00;font-size:10.5px;font-weight:800;
+  padding:2px 8px;border-radius:20px;margin-bottom:5px;letter-spacing:.02em}
+.hero h2{margin:0 0 5px;font-size:15.5px;font-weight:750;color:#fff;position:relative;z-index:1}
+.hero p{margin:0;font-size:14px;line-height:1.55;color:#FFE8E4;position:relative;z-index:1}
+.hero b{color:#fff;font-weight:750}
+.hero > div{position:relative;z-index:1}
+
+.stitle{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.stitle .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;background:var(--nc,#94A3B8)}
+.stitle h2{margin:0;font-size:19px;font-weight:700;letter-spacing:-.015em}
+.stitle p{margin:1px 0 0;font-size:12.5px;color:var(--ink3);font-weight:500}
+
+.search{position:relative;margin-bottom:14px}
+.search input{width:100%;padding:11px 13px 11px 40px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);border-radius:9px}
+.search input::placeholder{color:#9AA9B4}
+.search svg{position:absolute;left:13px;top:12px;color:#9AA9B4}
+
+.grid{display:grid;gap:11px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.doc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px;
+  text-align:left;width:100%;position:relative;overflow:hidden;transition:border-color .12s,transform .12s}
+.doc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--nc,#94A3B8)}
+.doc:hover{border-color:var(--nc,#94A3B8);transform:translateY(-1px)}
+.doc .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:750;padding:3px 9px;border-radius:20px}
+.tag.t1{background:#DC2626;color:#fff;box-shadow:0 2px 6px rgba(220,38,38,.35)}
+.tag.t2{background:#F59E0B;color:#422006;box-shadow:0 2px 6px rgba(245,158,11,.32)}
+.tag.t3{background:#2563EB;color:#fff}
+.tag.new{background:#10B981;color:#fff}
+.tag.warn{background:#F97316;color:#fff}
+.dhead{display:flex;gap:10px;align-items:flex-start;margin-bottom:7px}
+.dic{width:32px;height:32px;border-radius:9px;background:var(--nc,#94A3B8);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.doc h3{margin:0;font-size:15.5px;font-weight:650;line-height:1.35;letter-spacing:-.01em}
+.doc .code{display:inline-block;font-size:11.5px;font-weight:700;color:var(--nc,#475569);background:#F5F8FA;
+  border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-variant-numeric:tabular-nums}
+.doc .eff{font-size:12.5px;color:var(--ink3);margin-top:6px}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:30px 18px;
+  text-align:center;color:var(--ink3);font-size:14px}
+
+/* ================= MODAL ================= */
+.scrim{position:fixed;inset:0;background:rgba(10,25,40,.6);z-index:80;opacity:0;pointer-events:none;transition:opacity .18s}
+.scrim.on{opacity:1;pointer-events:auto}
+.modal{position:fixed;z-index:90;left:0;right:0;bottom:0;max-height:92vh;background:var(--card);
+  border-radius:16px 16px 0 0;transform:translateY(101%);transition:transform .24s cubic-bezier(.32,.72,0,1);
+  display:flex;flex-direction:column}
+.modal.on{transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.modal,.scrim{transition:none}}
+@media(min-width:820px){
+  .modal{left:50%;right:auto;top:0;bottom:0;width:min(680px,100%);max-height:100vh;border-radius:0;
+    transform:translate(-50%,101%)}
+  .modal.on{transform:translate(-50%,0)}
+}
+.mhead{padding:16px 18px 13px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start;
+  background:var(--mh,#F7FAFC)}
+.mhead .mi{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--nc,#94A3B8)}
+.mhead h2{margin:0 0 5px;font-size:17.5px;font-weight:700;line-height:1.3;letter-spacing:-.015em}
+.x{border:1px solid var(--line);background:#fff;border-radius:8px;width:32px;height:32px;font-size:16px;
+  line-height:1;color:var(--ink2);display:grid;place-items:center}
+.mbody{overflow-y:auto;padding:2px 18px 26px;-webkit-overflow-scrolling:touch}
+.mbody h4{display:flex;align-items:center;gap:7px;margin:20px 0 8px;font-size:13.5px;font-weight:700;color:var(--nc,var(--brand))}
+.mbody p{margin:0 0 10px;font-size:14.5px;line-height:1.62;color:var(--ink2)}
+.mbody ul{margin:0;padding-left:19px}
+.mbody li{font-size:14.5px;line-height:1.6;color:var(--ink2);margin-bottom:8px}
+.callout{border-radius:9px;padding:11px 13px;font-size:13.5px;line-height:1.55;margin:14px 0 0;
+  border-left:4px solid var(--t3);background:var(--t3b);color:#1E40AF}
+.callout[data-t="1"]{border-color:var(--t1);background:var(--t1b);color:#991B1B}
+.callout[data-t="2"]{border-color:var(--t2);background:var(--t2b);color:#92400E}
+.fine{background:linear-gradient(135deg,#BE123C,#E11D48);border:0;border-radius:12px;padding:14px 16px;margin:14px 0 0;
+  display:flex;gap:13px;align-items:center;box-shadow:0 5px 14px rgba(190,18,60,.28)}
+.fine .fi{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.22);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.fine .n{font-size:25px;font-weight:850;color:#fff;line-height:1.05;letter-spacing:-.025em}
+.fine .l{font-size:12.5px;color:#FFDDE4;margin-top:3px;line-height:1.4}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 14px 38px;font-size:14.5px;line-height:1.6;color:var(--ink2)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:8px;
+  background:var(--nc,var(--brand));color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
+.steps li b{color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 4px}
+.btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:13.5px;font-weight:650;
+  padding:10px 14px;border-radius:9px;border:1px solid var(--brand);color:var(--brand-d);background:#fff}
+.btn.solid{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn:hover{filter:brightness(1.06)}
+
+/* ---- list rows inside modal ---- */
+.rows{display:flex;flex-direction:column;gap:9px;margin-top:4px}
+.rowc{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:12px 13px;text-align:left;width:100%}
+.rowc:hover{border-color:var(--brand)}
+.rowc .num{width:28px;height:28px;border-radius:8px;background:var(--nc,var(--brand));color:#fff;
+  font-size:13px;font-weight:700;display:grid;place-items:center}
+.rowc .tt{font-size:14.5px;font-weight:650;line-height:1.4;margin:0 0 3px}
+.rowc .ss{font-size:12.5px;color:var(--ink3);line-height:1.45}
+.freq{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;
+  background:#EEF2F5;color:var(--ink2);margin-bottom:5px}
+.srcrow{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:12px 13px;text-decoration:none;color:var(--ink)}
+.srcrow:hover{border-color:var(--brand);background:#F8FBFD}
+.srcrow .tt{font-size:14.5px;font-weight:650}
+.srcrow .ss{font-size:12.5px;color:var(--ink3)}
+
+/* ---- scan ---- */
+.bar{height:7px;background:var(--line2);border-radius:20px;overflow:hidden;margin:6px 0 16px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#1B6BA8,#5BB0E8);transition:width .3s}
+.scanitem{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line2)}
+.scanitem:first-child{border-top:0}
+.scanitem .st{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;flex:0 0 auto;margin-top:1px}
+.st.wait{background:#EEF2F5;color:#94A3B8}
+.st.ok{background:#DCFCE7;color:#15803D}
+.st.hit{background:#FEF3C7;color:#B45309}
+.st.err{background:#FEE2E2;color:#B91C1C}
+.scanitem .nm{font-size:14px;font-weight:650;line-height:1.4}
+.scanitem .ds{font-size:12.5px;color:var(--ink3);line-height:1.5;margin-top:2px}
+.hits{margin-top:7px;display:flex;flex-direction:column;gap:6px}
+.hit{background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:8px 10px;font-size:13px;
+  line-height:1.5;color:#78350F}
+.hit b{font-weight:750;color:#92400E}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hin">
+    <div class="htop">
+      <div class="brand">
+        <span class="blogo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 7v6c0 4.5 3.8 8 9 8s9-3.5 9-8V7l-9-4Z"/><path d="M9 12h6M12 9v6"/></svg></span>
+        <div>
+          <h1>Luật Việt Nam</h1>
+          <p>Dành cho giám đốc điều hành bệnh viện thẩm mỹ</p>
+        </div>
+      </div>
+      <div class="upd">
+        <div>
+          <div class="lbl">Cập nhật lần cuối</div>
+          <div class="val" id="lastUpd">—</div>
+        </div>
+        <button class="scanbtn" id="scanBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+          Cập nhật ngay
+        </button>
+      </div>
+    </div>
+    <div class="hnav">
+      <button class="hbtn" data-open="actions"><span class="bi" style="background:#10B981"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>Việc cần làm</button>
+      <button class="hbtn" data-open="risks"><span class="bi" style="background:#DC2626"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>Điểm dễ vỡ</button>
+      <button class="hbtn" data-open="sources"><span class="bi" style="background:#0EA5E9"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span>Nguồn chính thống</button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="side" id="side" aria-label="Nhóm luật"></nav>
+  <main>
+    <div class="hero">
+      <span class="hi"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>
+      <div>
+        <span class="lb">ĐỌC TRƯỚC TIÊN</span>
+        <h2>Thay đổi lớn nhất cần biết ngay</h2>
+        <p>Toàn bộ khung xử phạt y tế đã đổi: <b>Nghị định 90/2026/NĐ-CP</b> hiệu lực từ 15/5/2026, thay thế Nghị định 117/2020/NĐ-CP. Mọi quy trình nội bộ và tài liệu đào tạo còn dẫn 117/2020 đều đã sai căn cứ.</p>
+      </div>
+    </div>
+
+    <div class="stitle" id="secTitle"></div>
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Gõ vấn đề đang gặp: quảng cáo, filler, cháy nổ, ảnh khách hàng…" aria-label="Tìm">
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="mhead" id="mHead">
+    <span class="mi" id="mIcon"></span>
+    <div style="flex:1 1 auto">
+      <h2 id="mTitle"></h2>
+      <div id="mMeta" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+    <button class="x" id="mClose" aria-label="Đóng">✕</button>
+  </div>
+  <div class="mbody" id="mBody"></div>
+</section>
+
+<script>
+/* ============================================================
+   1. DỮ LIỆU — sửa ở đây khi có văn bản mới
+   ============================================================ */
+let LAST_UPDATE = "06/09/2026";
+
+const I = {
+  kcb:'<path d="M12 3 3 7v6c0 4.5 3.8 8 9 8s9-3.5 9-8V7l-9-4Z"/><path d="M9 12h6M12 9v6"/>',
+  dn :'<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01"/>',
+  pccc:'<path d="M12 2s4 4.5 4 8a4 4 0 0 1-8 0c0-1.5.7-2.8.7-2.8S6 10 6 14a6 6 0 0 0 12 0c0-5-6-12-6-12Z"/>',
+  tb :'<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 10h2l1.5 3 2-6 1.5 3h5"/>',
+  mt :'<path d="M11 20A7 7 0 0 1 4 13c0-6 7-9 16-9 0 9-3 16-9 16Z"/><path d="M4 21c1-6 4-9 8-11"/>',
+  ld :'<circle cx="9" cy="7" r="3.5"/><path d="M2 21v-1.5A5.5 5.5 0 0 1 7.5 14h3A5.5 5.5 0 0 1 16 19.5V21"/><path d="M17 7.5a3 3 0 0 1 0 5.5M18.5 14a4.5 4.5 0 0 1 3.5 4.4V21"/>',
+  dl :'<path d="M12 2 4 5.5V11c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5.5L12 2Z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11"/>',
+  ktd:'<path d="M12 3v18M6 7h12"/><path d="m6 7-3 6a3 3 0 0 0 6 0L6 7ZM18 7l-3 6a3 3 0 0 0 6 0l-3-6Z"/><path d="M8 21h8"/>',
+  qc :'<path d="M3 10v4a1 1 0 0 0 1 1h3l6 4V5L7 9H4a1 1 0 0 0-1 1Z"/><path d="M17.5 8.5a5 5 0 0 1 0 7M20.5 5.5a9 9 0 0 1 0 13"/>',
+  all:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  act:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+  risk:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/>',
+  src:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+  scan:'<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/>'
+};
+const svg = (p,s=18) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+
+const CATS = [
+  {k:"all", n:"Tất cả",              c:"#475569", sub:"Toàn bộ văn bản đang theo dõi"},
+  {k:"kcb", n:"Khám chữa bệnh",      c:"var(--c-kcb)",  sub:"Giấy phép, phạm vi chuyên môn, xử phạt y tế, thẩm mỹ"},
+  {k:"dn",  n:"Doanh nghiệp",        c:"var(--c-dn)",   sub:"Quản trị công ty, thẩm quyền ký, ngành nghề có điều kiện"},
+  {k:"pccc",n:"Phòng cháy chữa cháy",c:"var(--c-pccc)", sub:"Nghĩa vụ hằng tháng, kiểm tra, bảo hiểm cháy nổ"},
+  {k:"tb",  n:"Thiết bị & mỹ phẩm",  c:"var(--c-tb)",   sub:"Số lưu hành thiết bị, công bố mỹ phẩm, ghi nhãn"},
+  {k:"mt",  n:"Môi trường & chất thải",c:"var(--c-mt)", sub:"Giấy phép môi trường, nước thải, chất thải lây nhiễm"},
+  {k:"ld",  n:"Lao động & BHXH",     c:"var(--c-ld)",   sub:"Hợp đồng, bảo hiểm, an toàn vệ sinh lao động"},
+  {k:"dl",  n:"Dữ liệu cá nhân",     c:"var(--c-dl)",   sub:"Ảnh trước sau, hồ sơ khách hàng, mức phạt tới 3 tỷ"},
+  {k:"ktd", n:"Người tiêu dùng & hình sự",c:"var(--c-ktd)",sub:"Hợp đồng dịch vụ, khiếu nại, trách nhiệm khi có tai biến"},
+  {k:"qc",  n:"Quảng cáo",           c:"var(--c-qc)",   sub:"Nội dung bắt buộc, cam kết kết quả, ảnh trước sau"}
+];
+const CAT = k => CATS.find(c=>c.k===k) || CATS[0];
+
+const DOCS = [
+/* ---- KHÁM CHỮA BỆNH ---- */
+{id:"nd90",cat:"kcb",tier:1,flag:"new",
+ title:"Xử phạt vi phạm hành chính trong lĩnh vực y tế",
+ code:"90/2026/NĐ-CP", eff:"Hiệu lực 15/5/2026",
+ fine:"200 triệu đồng", fineNote:"mức phạt tối đa với tổ chức; riêng dược và thiết bị y tế lên 300 triệu",
+ essence:"Đây là văn bản mà thanh tra cầm trên tay khi bước vào bệnh viện. Nó không tạo nghĩa vụ mới, nó định giá từng hành vi sai. Nghị định thay thế hoàn toàn Nghị định 117/2020/NĐ-CP.",
+ duties:["Rà lại toàn bộ tài liệu nội bộ, thay số hiệu 117/2020 bằng 90/2026 ở mọi nơi.",
+   "Đối chiếu 13 nhóm hành vi vi phạm về khám chữa bệnh với thực tế đang vận hành: giấy phép hành nghề, điều kiện hoạt động, chuyên môn kỹ thuật, hồ sơ bệnh án, bảo mật thông tin người bệnh.",
+   "Phổ biến mức phạt mới cho trưởng khoa và bộ phận marketing trước khi họ duyệt bất cứ quy trình hay nội dung nào."],
+ risks:["Phạt tiền tối đa 100 triệu với cá nhân và 200 triệu với tổ chức; dược và thiết bị y tế lên 150 triệu cá nhân, 300 triệu tổ chức.",
+   "Phạt bổ sung nặng hơn tiền: tước giấy phép hoặc chứng chỉ hành nghề 1 đến 24 tháng, đình chỉ hoạt động 1 đến 24 tháng.",
+   "Bổ sung chế tài cho vi phạm trên môi trường điện tử và hành vi làm lộ lọt dữ liệu sức khỏe cá nhân."],
+ notes:"Đây là văn bản duy nhất tao khuyên đọc nguyên văn phần khám chữa bệnh thay vì đọc tóm tắt.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/?pageid=27160&docid=217386&classid=1&orggroupid=2"},
+ q:"Nghị định 90/2026/NĐ-CP xử phạt vi phạm hành chính lĩnh vực y tế toàn văn"},
+
+{id:"luatkcb",cat:"kcb",tier:1,
+ title:"Luật Khám bệnh, chữa bệnh",
+ code:"15/2023/QH15", eff:"Hiệu lực 01/01/2024 · hợp nhất tại 26/VBHN-VPQH ngày 26/02/2026",
+ essence:"Luật gốc dựng nên toàn bộ giấy phép mà bệnh viện đang sống bằng nó: giấy phép hoạt động của cơ sở, giấy phép hành nghề của từng người, và phạm vi chuyên môn được duyệt.",
+ duties:["Nắm chính xác phạm vi hoạt động chuyên môn đã được phê duyệt, và biết kỹ thuật nào nằm ngoài đó.",
+   "Giấy phép hành nghề có thời hạn 5 năm, mỗi người chỉ được cấp một giấy có giá trị toàn quốc — cần bảng theo dõi hạn của từng người hành nghề.",
+   "Kiểm soát danh sách hành vi bị nghiêm cấm tại Điều 7, đặc biệt: khám chữa bệnh ngoài phạm vi được phép, tẩy xóa sửa chữa hồ sơ bệnh án, lập hồ sơ khống.",
+   "Luật đã được sửa đổi bởi Luật Quy hoạch 112/2025/QH15 (hiệu lực 01/3/2026) và Luật Dân số 113/2025/QH15 (hiệu lực 01/7/2026)."],
+ risks:["Làm kỹ thuật ngoài phạm vi được phê duyệt là gốc rễ của phần lớn vụ đình chỉ bệnh viện thẩm mỹ.",
+   "Bác sĩ hết hạn giấy phép hành nghề mà vẫn đứng bàn mổ khiến cả cơ sở chịu trách nhiệm."],
+ notes:"Đọc bản hợp nhất 26/VBHN-VPQH thay vì bản 2023 gốc, vì bản gốc chưa có hai lần sửa đổi năm 2025.",
+ src:{label:"Công báo Chính phủ",url:"https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-26-vbhn-vpqh-469053/63165.htm"},
+ q:"Văn bản hợp nhất 26/VBHN-VPQH Luật Khám bệnh chữa bệnh"},
+
+{id:"nd96",cat:"kcb",tier:1,
+ title:"Quy định chi tiết Luật Khám bệnh, chữa bệnh — ranh giới ngành thẩm mỹ",
+ code:"96/2023/NĐ-CP", eff:"Ban hành 30/12/2023",
+ essence:"Nghị định này chứa điều khoản quan trọng nhất với ngành thẩm mỹ: khoản 12 Điều 40. Nó vẽ ranh giới giữa cơ sở làm đẹp thường và cơ sở khám chữa bệnh.",
+ duties:["Ghi nhớ ranh giới: dịch vụ thẩm mỹ có dùng thuốc, chất hoặc thiết bị can thiệp vào cơ thể người — phẫu thuật, thủ thuật, tiêm, chích, bơm, chiếu tia, sóng, đốt hoặc can thiệp xâm lấn khác — chỉ được làm tại bệnh viện, phòng khám đa khoa hoặc phòng khám chuyên khoa.",
+   "Xăm, phun, thêu trên da có dùng thuốc gây tê dạng tiêm cũng rơi vào nhóm phải là cơ sở khám chữa bệnh. Không dùng thuốc tê tiêm thì chỉ cần đăng ký kinh doanh và chứng chỉ đào tạo nghề.",
+   "Kiểm tra mọi dịch vụ đang bán trên website và bảng giá, phân loại từng cái vào đúng bên của ranh giới.",
+   "Lưu đủ chứng chỉ hoặc giấy chứng nhận đào tạo nghề của từng kỹ thuật viên phun xăm."],
+ risks:["Đây là điều khoản thanh tra dùng để kết luận một cơ sở đã lấn sang hoạt động khám chữa bệnh không phép — chế tài là đình chỉ, không chỉ phạt tiền.",
+   "Rủi ro hay bị bỏ qua: bộ phận spa hoặc chăm sóc da trong cùng tòa nhà lặng lẽ làm tiêm hoặc chiếu tia dưới danh nghĩa dịch vụ không xâm lấn."],
+ notes:"Nghị định 96/2023 đã bỏ nhóm cơ sở thẩm mỹ phi y tế ra khỏi phạm vi điều chỉnh. Nếu bệnh viện có chi nhánh phun xăm riêng, nên hỏi Sở Y tế Hà Nội bằng văn bản thay vì suy đoán.",
+ src:{label:"Toàn văn trên Cổng Xây dựng chính sách",url:"https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-quy-dinh-chi-tiet-mot-so-dieu-cua-luat-kham-benh-chua-benh-119240115115947657.htm"},
+ q:"khoản 12 Điều 40 Nghị định 96/2023/NĐ-CP dịch vụ thẩm mỹ"},
+
+{id:"tt23",cat:"kcb",tier:2,
+ title:"Danh mục kỹ thuật trong khám bệnh, chữa bệnh",
+ code:"23/2024/TT-BYT", eff:"Bộ Y tế ban hành năm 2024",
+ essence:"Từ điển chuẩn để đối chiếu: kỹ thuật bệnh viện đang làm có tên trong danh mục không, và có nằm trong phạm vi chuyên môn được duyệt không.",
+ duties:["Lập bảng đối chiếu ba cột: dịch vụ đang bán — tên kỹ thuật theo danh mục — đã có trong phạm vi chuyên môn được duyệt hay chưa.",
+   "Kỹ thuật mới phải làm thủ tục bổ sung phạm vi trước khi thực hiện ca đầu tiên, không làm ngược lại."],
+ risks:["Triển khai kỹ thuật chưa được phê duyệt là vi phạm về chuyên môn kỹ thuật, chế tài nằm ở Nghị định 90/2026."],
+ notes:"", src:{label:"Cục Quản lý Khám, chữa bệnh",url:"https://kcb.vn/van-ban/van-ban-phap-quy"},
+ q:"Thông tư 23/2024/TT-BYT danh mục kỹ thuật khám bệnh chữa bệnh"},
+
+{id:"tt35",cat:"kcb",tier:2,
+ title:"Tiêu chuẩn chất lượng cơ bản đối với bệnh viện",
+ code:"35/2024/TT-BYT", eff:"Bộ Y tế ban hành năm 2024",
+ essence:"Đặt sàn chất lượng phải duy trì liên tục, không chỉ tại thời điểm xin phép. Đây là bộ tiêu chí thanh tra dùng để chấm khi kiểm tra định kỳ.",
+ duties:["Tự đánh giá theo bộ tiêu chuẩn ít nhất một lần mỗi năm và lưu hồ sơ tự đánh giá.",
+   "Gắn kết quả tự đánh giá với kế hoạch cải tiến có người chịu trách nhiệm và mốc thời gian."],
+ risks:["Không có hồ sơ tự đánh giá là điểm trừ đầu tiên trong mọi đợt kiểm tra chất lượng."],
+ notes:"Cần đối chiếu bản mới nhất trên cổng Bộ Y tế — thông tư chất lượng bệnh viện được sửa khá thường xuyên.",
+ src:{label:"Cục Quản lý Khám, chữa bệnh",url:"https://kcb.vn/van-ban/van-ban-phap-quy"},
+ q:"Thông tư 35/2024/TT-BYT tiêu chuẩn chất lượng cơ bản đối với bệnh viện"},
+
+{id:"nd148",cat:"kcb",tier:3,
+ title:"Phân quyền, phân cấp trong lĩnh vực y tế",
+ code:"148/2025/NĐ-CP", eff:"Hiệu lực 01/7/2025",
+ essence:"Không tạo nghĩa vụ mới nhưng đổi địa chỉ nộp hồ sơ. Nhiều thẩm quyền trước ở Bộ Y tế nay chuyển xuống Sở Y tế và cơ sở y tế.",
+ duties:["Trước khi nộp hồ sơ gia hạn, điều chỉnh phạm vi chuyên môn hay bổ sung kỹ thuật, xác nhận lại cơ quan có thẩm quyền hiện tại.",
+   "Cập nhật danh bạ đầu mối liên hệ tại Sở Y tế Hà Nội."],
+ risks:["Nộp nhầm cấp làm chậm thủ tục, kéo theo giấy phép hết hạn trong lúc chờ."],
+ notes:"", src:{label:"Cục Quản lý Khám, chữa bệnh",url:"https://kcb.vn/van-ban/van-ban-phap-quy"},
+ q:"Nghị định 148/2025/NĐ-CP phân quyền phân cấp lĩnh vực y tế"},
+
+{id:"tt38",cat:"kcb",tier:3,
+ title:"Hệ thống thông tin quản lý hoạt động khám bệnh, chữa bệnh",
+ code:"38/2024/TT-BYT", eff:"Bộ Y tế ban hành năm 2024",
+ essence:"Cơ sở khám chữa bệnh phải kết nối và gửi dữ liệu hoạt động lên hệ thống của ngành. Đây là nền cho việc hậu kiểm bằng dữ liệu thay vì kiểm tra thực địa.",
+ duties:["Xác nhận phần mềm bệnh viện đã kết nối và gửi dữ liệu đúng chuẩn.",
+   "Cử một đầu mối chịu trách nhiệm về tính đúng của dữ liệu gửi đi."],
+ risks:["Sai lệch giữa dữ liệu gửi lên hệ thống và hồ sơ bệnh án thực tế rất khó giải thích khi bị hậu kiểm."],
+ notes:"", src:{label:"Cục Quản lý Khám, chữa bệnh",url:"https://kcb.vn/van-ban/van-ban-phap-quy"},
+ q:"Thông tư 38/2024/TT-BYT hệ thống thông tin quản lý khám bệnh chữa bệnh"},
+
+/* ---- DOANH NGHIỆP ---- */
+{id:"luatdn",cat:"dn",tier:2,flag:"new",
+ title:"Luật Doanh nghiệp, sửa đổi bổ sung năm 2025",
+ code:"59/2020/QH14 · sửa bởi 76/2025/QH15", eff:"Bản sửa đổi hiệu lực 01/7/2025",
+ essence:"Khung quản trị công ty. Điểm mới lớn nhất năm 2025 là nghĩa vụ về chủ sở hữu hưởng lợi — nhà nước muốn nhìn xuyên qua các lớp sở hữu để biết ai thực sự đứng sau doanh nghiệp.",
+ duties:["Thu thập, cập nhật và lưu giữ thông tin chủ sở hữu hưởng lợi, cung cấp cho cơ quan nhà nước khi được yêu cầu.",
+   "Doanh nghiệp thành lập trước 01/7/2025 bổ sung thông tin này đồng thời tại lần thông báo thay đổi đăng ký doanh nghiệp gần nhất.",
+   "Nắm rõ ranh giới thẩm quyền của mình: việc nào thuộc quyền giám đốc, việc nào phải trình hội đồng quản trị, việc nào phải do người đại diện theo pháp luật ký."],
+ risks:["Ký vượt thẩm quyền là rủi ro cá nhân của người điều hành, hậu quả có thể là trách nhiệm bồi thường cá nhân.",
+   "Hồ sơ chủ sở hữu hưởng lợi không đầy đủ gây tắc mọi thủ tục đăng ký thay đổi về sau."],
+ notes:"Với vị trí giám đốc điều hành, việc đáng làm nhất ở luật này là đọc lại điều lệ công ty và quy chế phân cấp thẩm quyền — biết chính xác mình được ký cái gì.",
+ src:{label:"Cổng đăng ký doanh nghiệp quốc gia",url:"https://dangkykinhdoanh.gov.vn/vn/Pages/ChiTietVanBan.aspx?vID=27042"},
+ q:"Luật số 76/2025/QH15 sửa đổi Luật Doanh nghiệp chủ sở hữu hưởng lợi"},
+
+{id:"luatdt",cat:"dn",tier:3,
+ title:"Luật Đầu tư — ngành nghề kinh doanh có điều kiện",
+ code:"61/2020/QH14", eff:"Hiệu lực 01/01/2021, đã qua nhiều lần sửa đổi",
+ essence:"Dịch vụ khám bệnh, chữa bệnh nằm trong danh mục ngành nghề kinh doanh có điều kiện. Điều kiện phải được duy trì suốt vòng đời hoạt động, không chỉ lúc xin phép.",
+ duties:["Rà soát định kỳ xem các điều kiện đã dùng để được cấp phép còn được duy trì hay không: nhân sự chịu trách nhiệm chuyên môn, cơ sở vật chất, thiết bị, thuốc cấp cứu.",
+   "Khi người chịu trách nhiệm chuyên môn kỹ thuật nghỉ việc, phải có phương án thay thế trước khi người đó rời đi."],
+ risks:["Mất người chịu trách nhiệm chuyên môn mà chưa có người thay khiến giấy phép hoạt động bị treo trên thực tế."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"danh mục ngành nghề đầu tư kinh doanh có điều kiện dịch vụ khám bệnh chữa bệnh"},
+
+/* ---- PCCC ---- */
+{id:"nd105",cat:"pccc",tier:1,flag:"new",
+ title:"Quy định chi tiết thi hành Luật Phòng cháy chữa cháy và cứu nạn cứu hộ",
+ code:"105/2025/NĐ-CP", eff:"Ban hành 15/5/2025 · hiệu lực 01/7/2025",
+ essence:"Thay thế Nghị định 136/2020, 83/2017 và 50/2024. Đây là nơi chứa nghĩa vụ hằng tháng dễ quên nhất của cả bệnh viện.",
+ duties:["Mọi cơ sở phải tự kiểm tra phòng cháy chữa cháy định kỳ mỗi tháng một lần và lưu biên bản.",
+   "Cơ quan chức năng kiểm tra theo chu kỳ 1 đến 3 năm một lần tùy loại cơ sở, cộng kiểm tra đột xuất khi có dấu hiệu vi phạm hoặc đơn tố cáo.",
+   "Danh mục cơ sở thuộc diện quản lý về phòng cháy tại Phụ lục I mở rộng lên 34 loại — đối chiếu lại xem bệnh viện và hạng mục phụ trợ rơi vào đâu.",
+   "Kiểm tra nghĩa vụ mua bảo hiểm cháy nổ bắt buộc theo danh mục tại nghị định.",
+   "Rà lại nội quy phòng cháy chữa cháy theo đúng các nội dung bắt buộc mà nghị định quy định."],
+ risks:["Không có biên bản tự kiểm tra hằng tháng là lỗi bị bắt ngay khi đoàn kiểm tra vào, vì nó thuần túy là giấy tờ.",
+   "Thiếu bảo hiểm cháy nổ bắt buộc vừa bị phạt vừa mất khả năng bù đắp khi sự cố thật xảy ra."],
+ notes:"Kỳ hạn thực tập phương án chữa cháy do nghị định này quy định — đọc đúng điều khoản thay vì áp theo thói quen cũ từ Nghị định 136/2020.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/?pageid=27160&docid=213702"},
+ q:"Nghị định 105/2025/NĐ-CP tự kiểm tra phòng cháy chữa cháy hằng tháng"},
+
+{id:"luatpccc",cat:"pccc",tier:1,flag:"new",
+ title:"Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ",
+ code:"55/2024/QH15", eff:"Hiệu lực 01/7/2025",
+ essence:"Luật mới thay hoàn toàn Luật Phòng cháy và chữa cháy 2001. Với bệnh viện, trách nhiệm rơi thẳng vào người đứng đầu cơ sở chứ không phân tán.",
+ duties:["Xác định bệnh viện thuộc nhóm cơ sở nào trong danh mục cơ sở thuộc diện quản lý về phòng cháy — nhóm quyết định toàn bộ nghĩa vụ phía sau.",
+   "Người đứng đầu cơ sở chịu trách nhiệm trực tiếp về điều kiện an toàn phòng cháy, không ủy quyền hết cho phòng hành chính được."],
+ risks:["Cháy tại cơ sở y tế có người lưu trú qua đêm là kịch bản dẫn tới trách nhiệm hình sự của người đứng đầu.",
+   "Bệnh viện thẩm mỹ có rủi ro riêng: cồn, hóa chất, oxy y tế, và bệnh nhân đang gây mê không tự thoát được."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Luật Phòng cháy chữa cháy và cứu nạn cứu hộ 2024 số 55/2024/QH15"},
+
+{id:"nd106",cat:"pccc",tier:2,flag:"new",
+ title:"Xử phạt vi phạm hành chính về phòng cháy, chữa cháy và cứu nạn, cứu hộ",
+ code:"106/2025/NĐ-CP", eff:"Cùng khung với Nghị định 105/2025",
+ essence:"Bảng giá cho sai phạm phòng cháy chữa cháy, đi kèm Nghị định 105/2025 tạo thành khung pháp lý hiện hành.",
+ duties:["Đưa mức phạt vào báo cáo rủi ro hằng quý gửi hội đồng quản trị, để đầu tư thiết bị phòng cháy được nhìn như giảm rủi ro chứ không phải chi phí."],
+ risks:["Đình chỉ hoạt động vì lý do phòng cháy dừng doanh thu ngay lập tức, không có thời gian khắc phục dần."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Nghị định 106/2025/NĐ-CP xử phạt vi phạm hành chính phòng cháy chữa cháy"},
+
+/* ---- THIẾT BỊ & MỸ PHẨM ---- */
+{id:"nd98",cat:"tb",tier:2,
+ title:"Quản lý thiết bị y tế",
+ code:"98/2021/NĐ-CP · sửa bởi 07/2023 và 04/2025", eff:"Hợp nhất tại 08/VBHN-BYT năm 2026",
+ fine:"300 triệu đồng", fineNote:"mức phạt tối đa với tổ chức trong lĩnh vực thiết bị y tế theo Nghị định 90/2026",
+ essence:"Mọi máy can thiệp trong bệnh viện thẩm mỹ — laser, RF, HIFU, máy hút mỡ — là thiết bị y tế và phải có số lưu hành hợp lệ. Rủi ro âm thầm vì máy thường do nhà cung cấp mang tới.",
+ duties:["Lập sổ theo dõi toàn bộ thiết bị: tên, chủng loại, số lưu hành, nhà cung cấp, ngày đưa vào sử dụng, lịch bảo trì và hiệu chuẩn.",
+   "Trước khi nhận máy mới, yêu cầu nhà cung cấp xuất trình đầy đủ hồ sơ pháp lý của thiết bị và lưu bản sao.",
+   "Theo dõi Thông tư 24/2026/TT-BYT về biện pháp quản lý sản phẩm hàng hóa là thiết bị y tế, hiệu lực 01/7/2026."],
+ risks:["Sử dụng thiết bị không có số lưu hành hoặc không rõ nguồn gốc nằm trong nhóm bị phạt cao nhất, tới 300 triệu với tổ chức.",
+   "Máy xách tay hoặc máy mượn dùng thử của nhà phân phối là bẫy phổ biến nhất."],
+ notes:"", src:{label:"Cục Cơ sở hạ tầng và Thiết bị y tế",url:"https://imda.moh.gov.vn/van-ban-phap-quy"},
+ q:"Nghị định 98/2021/NĐ-CP quản lý thiết bị y tế văn bản hợp nhất mới nhất"},
+
+{id:"mypham",cat:"tb",tier:2,flag:"warn",
+ title:"Quản lý mỹ phẩm và ghi nhãn hàng hóa",
+ code:"Nhóm văn bản đang thay đổi", eff:"Nghị định 37/2026/NĐ-CP về nhãn hàng hóa hiệu lực 23/01/2026",
+ essence:"Mỹ phẩm bán hoặc dùng trong bệnh viện phải có phiếu công bố sản phẩm mỹ phẩm hợp lệ. Khung pháp lý nhóm này đang chuyển đổi nên cần theo dõi sát nhất.",
+ duties:["Rà soát toàn bộ mỹ phẩm đang dùng và đang bán: phiếu công bố còn hiệu lực không, nhãn đúng quy định không.",
+   "Kiểm tra nhãn theo Nghị định 37/2026/NĐ-CP về nhãn hàng hóa, đã hiệu lực từ 23/01/2026.",
+   "Theo dõi nghị định mới về quản lý mỹ phẩm do Bộ Y tế soạn thảo."],
+ risks:["Mỹ phẩm không rõ nguồn gốc hoặc chưa công bố nằm trong nhóm bị xử phạt nặng theo Nghị định 90/2026."],
+ notes:"Tao chưa xác nhận được nghị định quản lý mỹ phẩm mới đã ban hành chính thức hay còn ở dạng dự thảo. Đây là mục cần kiểm tra đầu tiên mỗi lần bấm Cập nhật ngay.",
+ src:{label:"Cổng thông tin Bộ Y tế",url:"https://moh.gov.vn/"},
+ q:"nghị định quản lý mỹ phẩm mới nhất phiếu công bố sản phẩm mỹ phẩm 2026"},
+
+/* ---- MÔI TRƯỜNG ---- */
+{id:"luatbvmt",cat:"mt",tier:2,
+ title:"Luật Bảo vệ môi trường",
+ code:"72/2020/QH14", eff:"Hiệu lực 01/01/2022",
+ essence:"Bệnh viện là đối tượng phải có giấy phép môi trường. Nước thải y tế và chất thải lây nhiễm là hai thứ cơ quan chức năng kiểm tra kỹ nhất.",
+ duties:["Có giấy phép môi trường còn hiệu lực và vận hành đúng nội dung đã cam kết trong giấy phép.",
+   "Hệ thống xử lý nước thải y tế phải đạt quy chuẩn kỹ thuật hiện hành — cần xác nhận quy chuẩn nào đang áp dụng, vì bộ quy chuẩn nước thải vừa được cập nhật.",
+   "Quan trắc nước thải định kỳ theo tần suất ghi trong giấy phép và lưu kết quả.",
+   "Lập báo cáo công tác bảo vệ môi trường hằng năm."],
+ risks:["Xả nước thải vượt quy chuẩn có mức phạt rất cao và có thể kèm đình chỉ.",
+   "Giấy phép môi trường hết hạn mà chưa gia hạn là lỗi giấy tờ nhưng hậu quả tương đương lỗi kỹ thuật."],
+ notes:"Bộ quy chuẩn kỹ thuật về nước thải đang trong giai đoạn chuyển đổi. Xác nhận với đơn vị tư vấn môi trường thay vì mặc định quy chuẩn cũ.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"giấy phép môi trường bệnh viện thẩm mỹ quy chuẩn nước thải y tế hiện hành"},
+
+{id:"tt20",cat:"mt",tier:2,
+ title:"Quản lý chất thải y tế trong khuôn viên cơ sở y tế",
+ code:"20/2021/TT-BYT", eff:"Bộ Y tế ban hành năm 2021",
+ essence:"Quy định cách phân loại, thu gom, lưu giữ và chuyển giao chất thải y tế ngay bên trong cơ sở. Đây là chỗ mà sai sót nhỏ của một điều dưỡng trở thành vi phạm của cả bệnh viện.",
+ duties:["Phân loại đúng tại nguồn: chất thải lây nhiễm, chất thải nguy hại không lây nhiễm, chất thải thông thường.",
+   "Lưu chứng từ chuyển giao chất thải nguy hại cho từng lần thu gom, có chữ ký xác nhận của đơn vị thu gom.",
+   "Lập báo cáo quản lý chất thải y tế theo mẫu tại Phụ lục 07 của thông tư.",
+   "Tập huấn định kỳ cho nhân viên về phân loại chất thải và lưu hồ sơ tập huấn."],
+ risks:["Bệnh viện thẩm mỹ phát sinh nhiều vật sắc nhọn và bông băng nhiễm khuẩn — khối lượng thực tế thường vượt xa con số đã khai trong hồ sơ môi trường."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Thông tư 20/2021/TT-BYT quản lý chất thải y tế còn hiệu lực"},
+
+/* ---- LAO ĐỘNG ---- */
+{id:"atvsld",cat:"ld",tier:2,
+ title:"Luật An toàn, vệ sinh lao động",
+ code:"84/2015/QH13", eff:"Hiệu lực 01/7/2016",
+ essence:"Nhân viên y tế thuộc nhóm có yếu tố nguy hiểm nghề nghiệp: phơi nhiễm máu và dịch, hóa chất, tia laser. Luật buộc cơ sở quản lý rủi ro đó một cách có hồ sơ.",
+ duties:["Khám sức khỏe định kỳ và khám phát hiện bệnh nghề nghiệp cho nhóm có yếu tố nguy hiểm.",
+   "Huấn luyện an toàn vệ sinh lao động theo nhóm đối tượng, lưu hồ sơ huấn luyện.",
+   "Quan trắc môi trường lao động định kỳ.",
+   "Có quy trình xử lý phơi nhiễm nghề nghiệp, đặc biệt với kim tiêm và dịch cơ thể."],
+ risks:["Không có hồ sơ khám sức khỏe và huấn luyện là lỗi phổ biến và dễ bị bắt vì hoàn toàn nằm ở giấy tờ."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Luật An toàn vệ sinh lao động 2015 khám sức khỏe định kỳ huấn luyện an toàn"},
+
+{id:"bhxh",cat:"ld",tier:3,flag:"new",
+ title:"Luật Bảo hiểm xã hội",
+ code:"41/2024/QH15", eff:"Hiệu lực 01/7/2025",
+ essence:"Luật mới thay Luật Bảo hiểm xã hội 2014, mở rộng đối tượng tham gia bắt buộc và siết chế tài với hành vi chậm đóng, trốn đóng.",
+ duties:["Rà lại danh sách nhân sự để xác định ai thuộc diện đóng bảo hiểm xã hội bắt buộc theo quy định mới — diện này đã rộng hơn trước.",
+   "Không để phát sinh nợ đóng: chậm đóng và trốn đóng nay có chế tài riêng và nặng hơn."],
+ risks:["Trốn đóng bảo hiểm xã hội ở mức độ nhất định có thể bị xử lý hình sự, không dừng ở phạt hành chính."],
+ notes:"Cần kiểm tra các nghị định và thông tư hướng dẫn mới nhất, vì nhóm văn bản hướng dẫn được ban hành rải rác trong 2025 và 2026.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Luật Bảo hiểm xã hội 2024 số 41/2024/QH15 nghị định hướng dẫn"},
+
+{id:"blld",cat:"ld",tier:3,
+ title:"Bộ luật Lao động",
+ code:"45/2019/QH14", eff:"Hiệu lực 01/01/2021",
+ essence:"Nền tảng cho quan hệ với nhân sự. Hai điểm nóng riêng của bệnh viện thẩm mỹ: hợp đồng với bác sĩ kiêm nhiệm nhiều nơi, và điều khoản bảo mật với kỹ thuật viên.",
+ duties:["Kiểm tra loại hợp đồng đang ký với từng nhóm nhân sự có đúng bản chất công việc không — gọi là cộng tác viên nhưng làm việc như người lao động toàn thời gian là rủi ro.",
+   "Nội quy lao động, thang bảng lương, thỏa ước lao động tập thể phải còn hiệu lực và đã đăng ký đúng quy định.",
+   "Xây quy trình xử lý kỷ luật đúng trình tự — sa thải sai trình tự gần như luôn thua khi ra tòa lao động."],
+ risks:["Tranh chấp lao động với bác sĩ hoặc kỹ thuật viên có tiếng thường kéo theo rủi ro truyền thông lớn hơn rủi ro tiền."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Bộ luật Lao động 2019 số 45/2019/QH14 văn bản hợp nhất mới nhất"},
+
+/* ---- DỮ LIỆU CÁ NHÂN ---- */
+{id:"luatdlcn",cat:"dl",tier:1,flag:"new",
+ title:"Luật Bảo vệ dữ liệu cá nhân",
+ code:"91/2025/QH15", eff:"Hiệu lực 01/01/2026",
+ fine:"3 tỷ đồng", fineNote:"mức phạt tiền tối đa với tổ chức; riêng chuyển dữ liệu xuyên biên giới tối đa 5% doanh thu năm trước",
+ essence:"Rủi ro mới và bị đánh giá thấp nhất của ngành thẩm mỹ. Bệnh viện thẩm mỹ nắm loại dữ liệu nhạy cảm nhất có thể tưởng tượng: dữ liệu sức khỏe cộng với ảnh trước và sau của khách hàng.",
+ duties:["Xác lập cơ sở pháp lý cho từng luồng dữ liệu: đăng ký khách hàng, hồ sơ bệnh án, ảnh trước sau, video quảng cáo, camera an ninh, dữ liệu marketing.",
+   "Sự đồng ý phải rõ ràng và có thể rút lại. Đặc biệt với ảnh trước sau dùng cho quảng cáo — đây là điểm gãy phổ biến nhất của ngành.",
+   "Chỉ định nhân sự phụ trách bảo vệ dữ liệu cá nhân hoặc thuê dịch vụ bên ngoài.",
+   "Lập hồ sơ đánh giá tác động xử lý dữ liệu cá nhân theo hướng dẫn tại Nghị định 356/2025.",
+   "Xóa dữ liệu cá nhân của người lao động khi họ nghỉ việc."],
+ risks:["Mức phạt tiền tối đa cho các hành vi vi phạm khác trong lĩnh vực bảo vệ dữ liệu cá nhân là 3 tỷ đồng với tổ chức.",
+   "Vi phạm về chuyển dữ liệu cá nhân xuyên biên giới bị phạt tối đa 5% doanh thu của năm liền trước.",
+   "Vi phạm nghiêm trọng có thể bị truy cứu trách nhiệm hình sự.",
+   "Rủi ro thực tế cao nhất: nhân viên marketing đăng ảnh trước sau của khách lên mạng xã hội mà không có văn bản đồng ý còn hiệu lực."],
+ notes:"Nếu chỉ có thời gian làm một việc trong quý này, tao chọn việc này: dựng lại mẫu đồng ý sử dụng hình ảnh và dữ liệu sức khỏe của khách hàng. Vừa là rủi ro tiền lớn nhất, vừa là thứ dễ sửa nhất.",
+ src:{label:"Bộ Công an",url:"https://bocongan.gov.vn/chinh-sach-phap-luat/bai-viet/luat-bao-ve-du-lieu-ca-nhan-chinh-thuc-co-hieu-luc-thi-hanh-tu-ngay-01-01-2026-1767186124"},
+ q:"Luật Bảo vệ dữ liệu cá nhân 2025 số 91/2025/QH15 mức phạt doanh nghiệp"},
+
+{id:"nd356",cat:"dl",tier:2,flag:"new",
+ title:"Quy định chi tiết thi hành Luật Bảo vệ dữ liệu cá nhân",
+ code:"356/2025/NĐ-CP", eff:"Ban hành 31/12/2025 · hiệu lực 01/01/2026",
+ essence:"Thay thế Nghị định 13/2023/NĐ-CP. Đây là nơi có mẫu biểu và quy trình thực tế: hồ sơ đánh giá tác động, thủ tục chuyển dữ liệu ra nước ngoài, cách tính mức phạt.",
+ duties:["Lập và lưu hồ sơ đánh giá tác động xử lý dữ liệu cá nhân theo mẫu và quy trình của nghị định.",
+   "Nếu dùng phần mềm quản lý khách hàng hoặc lưu trữ đám mây đặt máy chủ ở nước ngoài, phải xử lý đúng thủ tục chuyển dữ liệu xuyên biên giới."],
+ risks:["Nhiều bệnh viện dùng công cụ marketing và CRM nước ngoài mà không nhận ra mình đang chuyển dữ liệu sức khỏe ra khỏi Việt Nam."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Nghị định 356/2025/NĐ-CP hướng dẫn Luật Bảo vệ dữ liệu cá nhân"},
+
+/* ---- NGƯỜI TIÊU DÙNG & HÌNH SỰ ---- */
+{id:"hinhsu",cat:"ktd",tier:1,
+ title:"Bộ luật Hình sự — Điều 315 và các tội liên quan",
+ code:"100/2015/QH13 · sửa đổi 2017 và các lần sau", eff:"Đang có hiệu lực",
+ essence:"Ranh giới cuối cùng. Khi một ca thẩm mỹ có tai biến nặng hoặc tử vong, vụ việc không dừng ở phạt hành chính. Điều 315 quy định tội vi phạm quy định về khám bệnh, chữa bệnh.",
+ duties:["Hiểu ba yếu tố khiến vụ việc chuyển từ hành chính sang hình sự: làm sai phạm vi được cấp phép, người thực hiện không đủ điều kiện hành nghề, hồ sơ bệnh án không trung thực.",
+   "Bảo đảm hồ sơ bệnh án ghi chép đầy đủ và trung thực ngay tại thời điểm thực hiện — đây là bằng chứng bảo vệ tốt nhất khi có sự cố.",
+   "Có quy trình xử lý sự cố y khoa: báo cáo nội bộ ngay, giữ nguyên hiện trường và hồ sơ, không sửa chữa bổ sung sau khi sự cố xảy ra."],
+ risks:["Trách nhiệm hình sự có thể rơi vào cả người trực tiếp thực hiện và người quản lý, tùy mức độ lỗi trong tổ chức và giám sát.",
+   "Song song với hình sự là trách nhiệm bồi thường dân sự và khủng hoảng truyền thông — ba mặt trận cùng lúc."],
+ notes:"Nếu bệnh viện chưa có quy trình xử lý sự cố y khoa được viết ra và diễn tập, đó là lỗ hổng nghiêm trọng hơn bất kỳ giấy tờ nào khác.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Điều 315 Bộ luật Hình sự tội vi phạm quy định về khám bệnh chữa bệnh"},
+
+{id:"bvntd",cat:"ktd",tier:2,
+ title:"Luật Bảo vệ quyền lợi người tiêu dùng",
+ code:"19/2023/QH15", eff:"Hiệu lực 01/7/2024",
+ essence:"Khách hàng thẩm mỹ là người tiêu dùng. Luật này chi phối hợp đồng dịch vụ, điều khoản mẫu, chính sách hoàn tiền và cách xử lý khiếu nại.",
+ duties:["Hợp đồng dịch vụ và điều khoản mẫu phải minh bạch, không chứa điều khoản loại trừ trách nhiệm một cách bất công.",
+   "Cung cấp thông tin đầy đủ, chính xác về dịch vụ, rủi ro và chi phí trước khi khách ký.",
+   "Có quy trình tiếp nhận và giải quyết khiếu nại bằng văn bản, có thời hạn phản hồi rõ ràng."],
+ risks:["Điều khoản mẫu bắt khách hàng từ bỏ quyền khiếu nại thường bị tuyên vô hiệu, và làm xấu vị thế khi tranh chấp."],
+ notes:"Giấy cam kết trước phẫu thuật không phải lá chắn pháp lý như nhiều cơ sở tưởng. Nó chỉ có giá trị khi chứng minh được khách đã được giải thích đầy đủ và tự nguyện.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Luật Bảo vệ quyền lợi người tiêu dùng 2023 hợp đồng theo mẫu điều kiện giao dịch chung"},
+
+/* ---- QUẢNG CÁO ---- */
+{id:"nd342",cat:"qc",tier:2,flag:"new",
+ title:"Quy định chi tiết Luật Quảng cáo — nội dung bắt buộc",
+ code:"342/2025/NĐ-CP", eff:"Ban hành 26/12/2025 · hiệu lực 15/02/2026",
+ essence:"Văn bản mà đội marketing phải dán lên tường. Nó liệt kê chính xác thông tin bắt buộc trong mỗi mẩu quảng cáo dịch vụ khám chữa bệnh và mỹ phẩm, và bãi bỏ hoàn toàn Nghị định 181/2013 và 70/2021.",
+ duties:["Nội dung quảng cáo dịch vụ khám chữa bệnh bắt buộc phải có: tên, địa chỉ, số giấy phép hoạt động, thời gian hoạt động của cơ sở; và phạm vi hoạt động chuyên môn đã được cơ quan y tế phê duyệt.",
+   "Rà lại toàn bộ tài sản quảng cáo hiện có: website, fanpage, TikTok, biển hiệu, tờ rơi, bài PR.",
+   "Quảng cáo mỹ phẩm không được gây hiểu nhầm sản phẩm là thuốc chữa bệnh.",
+   "Ban hành quy trình duyệt nội dung nội bộ: mọi bài đăng phải qua một người kiểm tra khối thông tin bắt buộc."],
+ risks:["Thiếu số giấy phép hoạt động hoặc phạm vi chuyên môn trong bài quảng cáo là lỗi hình thức, rất dễ bị bắt và rất khó cãi.",
+   "Quảng cáo vượt quá phạm vi chuyên môn được duyệt là bằng chứng tự khai về việc làm sai phạm vi."],
+ notes:"Đây là văn bản có tỷ lệ lợi ích trên công sức cao nhất trong cả danh sách. Một buổi rà soát nội dung theo Điều 9 nghị định này loại bỏ phần lớn rủi ro marketing.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Nghị định 342/2025/NĐ-CP nội dung quảng cáo dịch vụ khám bệnh chữa bệnh Điều 9"},
+
+{id:"luatqc",cat:"qc",tier:2,flag:"new",
+ title:"Luật Quảng cáo, sửa đổi bổ sung năm 2025",
+ code:"16/2012/QH13 · sửa bởi 75/2025/QH15", eff:"Bản sửa đổi hiệu lực 01/01/2026",
+ essence:"Lần sửa đổi toàn diện đầu tiên kể từ 2012. Với bệnh viện thẩm mỹ, đây là văn bản chi phối toàn bộ marketing — thứ tạo ra doanh thu nhưng cũng tạo ra nhiều án phạt nhất của ngành.",
+ duties:["Dịch vụ khám chữa bệnh thuộc nhóm dịch vụ đặc biệt: quảng cáo phải có giấy phép hành nghề hoặc giấy phép hoạt động khám chữa bệnh làm căn cứ.",
+   "Quảng cáo mỹ phẩm phải có phiếu công bố sản phẩm mỹ phẩm.",
+   "Nội dung phải trung thực, chính xác, rõ ràng, không gây hiểu nhầm về tính năng, chất lượng, công dụng.",
+   "Luật bổ sung trách nhiệm của người chuyển tải sản phẩm quảng cáo — áp dụng cho KOL và cả nhân sự bệnh viện khi lên hình."],
+ risks:["Thổi phồng công dụng, cam kết kết quả, dùng ảnh trước sau không đúng thực tế là nhóm vi phạm phổ biến nhất và bị xử lý công khai trên báo.",
+   "Một nội dung sai có thể vừa bị xử phạt về quảng cáo, vừa bị xử phạt về khám chữa bệnh theo Nghị định 90/2026."],
+ notes:"", src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Luật số 75/2025/QH15 sửa đổi bổ sung một số điều của Luật Quảng cáo"},
+
+{id:"nd38",cat:"qc",tier:2,flag:"warn",
+ title:"Xử phạt vi phạm hành chính lĩnh vực văn hóa và quảng cáo",
+ code:"38/2021/NĐ-CP", eff:"Đã được sửa đổi, bổ sung",
+ essence:"Bảng giá cho sai phạm quảng cáo. Song hành với Nghị định 90/2026 — một nội dung sai có thể bị soi từ cả hai phía.",
+ duties:["Đưa mức phạt cụ thể vào tài liệu đào tạo nhân sự marketing, không nói chung chung là sẽ bị phạt."],
+ risks:["Phạt tiền cộng buộc tháo gỡ và cải chính công khai — thiệt hại thương hiệu thường lớn hơn tiền phạt."],
+ notes:"Nghị định này đã qua nhiều lần sửa đổi. Tao chưa xác nhận được có văn bản thay thế sau khi Luật Quảng cáo sửa đổi có hiệu lực 01/01/2026 hay không — kiểm tra trước khi trích dẫn mức phạt.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Nghị định 38/2021/NĐ-CP xử phạt quảng cáo còn hiệu lực hay đã thay thế"}
+];
+
+/* ---- VIỆC CẦN LÀM (có hướng dẫn từng bước) ---- */
+const ACTIONS = [
+{id:"a1",cat:"pccc",freq:"Mỗi tháng",title:"Tự kiểm tra phòng cháy chữa cháy và lập biên bản",
+ why:"Nghị định 105/2025 buộc mọi cơ sở tự kiểm tra mỗi tháng một lần. Đoàn kiểm tra hỏi biên bản này đầu tiên vì nó thuần túy là giấy tờ — không có là lỗi ngay, không cãi được.",
+ steps:["Chọn một ngày cố định trong tháng, ví dụ ngày 25, và giao cho một người duy nhất chịu trách nhiệm. Đừng chia cho nhiều người.",
+  "In sẵn mẫu biên bản gồm các mục: bình chữa cháy còn hạn và đủ áp, lối thoát nạn không bị chặn, đèn báo thoát hiểm sáng, hệ thống báo cháy hoạt động, tủ điện gọn gàng, kho hóa chất và cồn đúng nơi quy định.",
+  "Đi một vòng toàn bộ tòa nhà theo đúng thứ tự trong mẫu, chụp ảnh những chỗ chưa đạt.",
+  "Ghi rõ tồn tại và thời hạn khắc phục, ai chịu trách nhiệm khắc phục.",
+  "Ký tên người kiểm tra và người đứng đầu cơ sở, đóng dấu, lưu vào một cặp hồ sơ riêng theo năm.",
+  "Tháng sau kiểm tra lại xem tồn tại tháng trước đã khắc phục chưa, ghi vào biên bản mới."],
+ who:"Trưởng phòng hành chính hoặc người phụ trách cơ sở vật chất, giám đốc điều hành ký duyệt."},
+
+{id:"a2",cat:"qc",freq:"Mỗi quý",title:"Rà soát toàn bộ nội dung quảng cáo đang chạy",
+ why:"Nghị định 342/2025 hiệu lực 15/02/2026 buộc mỗi mẩu quảng cáo dịch vụ khám chữa bệnh phải có đủ khối thông tin bắt buộc. Đây là việc rẻ nhất và chặn được nhiều rủi ro nhất.",
+ steps:["Liệt kê ra giấy mọi nơi bệnh viện đang xuất hiện: website, Facebook, TikTok, Instagram, YouTube, Zalo OA, biển hiệu ngoài trời, tờ rơi, banner trong sảnh, bài PR trên báo.",
+  "Với từng nơi, kiểm tra có đủ bốn thông tin bắt buộc chưa: tên và địa chỉ cơ sở, số giấy phép hoạt động, thời gian hoạt động, và phạm vi hoạt động chuyên môn đã được phê duyệt.",
+  "Soát từ ngữ cấm: cam kết, đảm bảo, một trăm phần trăm, không đau, không biến chứng, tốt nhất, số một. Xóa hết.",
+  "Soát ảnh trước và sau: mỗi ảnh phải có văn bản đồng ý của khách còn hiệu lực. Không có giấy thì gỡ ảnh xuống ngay, đừng chờ.",
+  "Soát dịch vụ đang quảng cáo có nằm trong phạm vi chuyên môn được duyệt không. Quảng cáo dịch vụ ngoài phạm vi là tự khai làm sai.",
+  "Ban hành quy trình: từ nay mọi bài đăng phải qua một người duyệt theo đúng checklist này trước khi lên."],
+ who:"Trưởng phòng marketing lập danh sách, giám đốc điều hành hoặc người phụ trách pháp chế duyệt."},
+
+{id:"a3",cat:"dl",freq:"Mỗi quý",title:"Kiểm soát ảnh khách hàng và hồ sơ dữ liệu cá nhân",
+ why:"Luật Bảo vệ dữ liệu cá nhân hiệu lực 01/01/2026 phạt tới 3 tỷ đồng với tổ chức. Bệnh viện thẩm mỹ nắm dữ liệu sức khỏe cộng ảnh cơ thể khách hàng — loại dữ liệu nhạy cảm nhất.",
+ steps:["Dựng một mẫu văn bản đồng ý riêng cho hình ảnh, tách khỏi giấy cam kết phẫu thuật. Ghi rõ dùng ở đâu, trong bao lâu, và cách khách rút lại sự đồng ý.",
+  "Rà toàn bộ ảnh đang dùng công khai, đối chiếu với danh sách khách đã ký. Ảnh nào không tìm được giấy thì gỡ.",
+  "Liệt kê mọi nơi đang lưu dữ liệu khách: phần mềm quản lý bệnh viện, file Excel, Google Drive, Zalo của nhân viên tư vấn, điện thoại cá nhân của bác sĩ.",
+  "Cấm lưu ảnh và hồ sơ khách trên thiết bị cá nhân. Đây là lỗ rò lớn nhất và không tốn tiền để bịt.",
+  "Chỉ định một người phụ trách bảo vệ dữ liệu cá nhân bằng quyết định bằng văn bản, theo yêu cầu của luật.",
+  "Kiểm tra phần mềm và dịch vụ lưu trữ đang dùng có đặt máy chủ ở nước ngoài không. Nếu có, đó là chuyển dữ liệu xuyên biên giới và cần làm đúng thủ tục.",
+  "Lập hồ sơ đánh giá tác động xử lý dữ liệu cá nhân theo Nghị định 356/2025 và lưu lại."],
+ who:"Giám đốc điều hành chủ trì, phối hợp phòng công nghệ thông tin và marketing."},
+
+{id:"a4",cat:"kcb",freq:"Mỗi quý",title:"Đối chiếu dịch vụ đang bán với phạm vi chuyên môn được duyệt",
+ why:"Làm kỹ thuật ngoài phạm vi được phê duyệt là gốc rễ của phần lớn vụ đình chỉ bệnh viện thẩm mỹ, và là tình tiết định tội khi có tai biến.",
+ steps:["In bảng giá dịch vụ hiện tại và bản phạm vi hoạt động chuyên môn đã được Sở Y tế phê duyệt, đặt cạnh nhau.",
+  "Kẻ ba cột: tên dịch vụ đang bán, tên kỹ thuật tương ứng theo danh mục của Bộ Y tế, có trong phạm vi được duyệt hay chưa.",
+  "Đánh dấu đỏ mọi dòng chưa có trong phạm vi được duyệt.",
+  "Với dòng đỏ, chọn một trong hai: dừng bán ngay, hoặc làm thủ tục bổ sung phạm vi rồi mới bán tiếp. Không có lựa chọn thứ ba.",
+  "Đi kiểm tra thực tế các phòng, đặc biệt khu chăm sóc da và spa, xem có ai đang làm tiêm hoặc chiếu tia ngoài khu vực được phép không.",
+  "Lưu bảng đối chiếu có chữ ký để chứng minh bệnh viện có kiểm soát chủ động."],
+ who:"Người chịu trách nhiệm chuyên môn kỹ thuật lập, giám đốc điều hành duyệt."},
+
+{id:"a5",cat:"kcb",freq:"Mỗi quý",title:"Theo dõi hạn giấy phép hành nghề của toàn bộ người hành nghề",
+ why:"Giấy phép hành nghề có thời hạn 5 năm. Một bác sĩ hết hạn mà vẫn đứng bàn mổ khiến cả cơ sở chịu trách nhiệm, không chỉ cá nhân đó.",
+ steps:["Lập một bảng duy nhất: họ tên, chức danh, số giấy phép hành nghề, phạm vi hành nghề, ngày cấp, ngày hết hạn.",
+  "Tô màu theo mốc: đỏ nếu còn dưới 3 tháng, vàng nếu còn dưới 6 tháng, xanh nếu còn trên 6 tháng.",
+  "Đặt nhắc trên lịch trước ngày hết hạn 6 tháng, vì thủ tục gia hạn cần thời gian và cần chứng minh cập nhật kiến thức y khoa liên tục.",
+  "Kiểm tra phạm vi hành nghề ghi trên giấy của từng người có khớp với việc họ đang làm thực tế không.",
+  "Với bác sĩ làm việc kiêm nhiệm nhiều nơi, xác nhận họ đã đăng ký hành nghề tại bệnh viện đúng quy định.",
+  "Cập nhật bảng ngay mỗi khi có người vào hoặc ra."],
+ who:"Phòng nhân sự lập và cập nhật, giám đốc điều hành xem hằng quý."},
+
+{id:"a6",cat:"tb",freq:"Khi nhận máy mới",title:"Thẩm định pháp lý thiết bị trước khi đưa vào sử dụng",
+ why:"Thiết bị không có số lưu hành nằm trong nhóm bị phạt cao nhất, tới 300 triệu với tổ chức. Máy thường do nhà cung cấp mang tới nên bệnh viện hay bỏ qua khâu kiểm tra giấy tờ.",
+ steps:["Ra quy định nội bộ: không máy nào được cắm điện phục vụ khách trước khi hồ sơ pháp lý được duyệt. Kể cả máy mượn dùng thử.",
+  "Yêu cầu nhà cung cấp nộp: số lưu hành hoặc số đăng ký của thiết bị, giấy tờ nhập khẩu, chứng nhận chất lượng, hướng dẫn sử dụng tiếng Việt, hợp đồng bảo hành và bảo trì.",
+  "Đối chiếu tên và chủng loại máy thực tế với tên trên giấy tờ. Sai một chữ cũng là vấn đề.",
+  "Ghi máy vào sổ theo dõi thiết bị: ngày đưa vào sử dụng, người phụ trách, lịch bảo trì và hiệu chuẩn.",
+  "Đào tạo người vận hành và lưu hồ sơ đào tạo.",
+  "Rà lại toàn bộ máy đang có ít nhất một lần mỗi năm bằng chính checklist này."],
+ who:"Phòng vật tư thiết bị chuẩn bị hồ sơ, giám đốc điều hành ký duyệt cho phép sử dụng."},
+
+{id:"a7",cat:"mt",freq:"Mỗi năm",title:"Báo cáo môi trường và quản lý chất thải y tế",
+ why:"Bệnh viện phải có giấy phép môi trường và báo cáo hằng năm. Để lẫn chất thải lây nhiễm vào rác sinh hoạt là lỗi bị bắt nhiều nhất tại cơ sở y tế.",
+ steps:["Kiểm tra giấy phép môi trường còn hiệu lực đến ngày nào, đặt nhắc gia hạn trước 6 tháng.",
+  "Thu thập đủ chứng từ chuyển giao chất thải nguy hại của cả năm, mỗi lần thu gom phải có chữ ký đơn vị thu gom.",
+  "Đối chiếu khối lượng chất thải thực tế phát sinh với con số đã khai trong hồ sơ môi trường. Bệnh viện thẩm mỹ thường phát sinh nhiều hơn khai báo.",
+  "Tập hợp kết quả quan trắc nước thải theo tần suất ghi trong giấy phép.",
+  "Lập báo cáo quản lý chất thải y tế theo mẫu Phụ lục 07 của Thông tư 20/2021/TT-BYT.",
+  "Tổ chức tập huấn phân loại chất thải cho toàn bộ điều dưỡng và hộ lý, lưu danh sách ký tên."],
+ who:"Cán bộ phụ trách kiểm soát nhiễm khuẩn hoặc môi trường y tế, giám đốc điều hành ký báo cáo."},
+
+{id:"a8",cat:"ld",freq:"Mỗi năm",title:"Khám sức khỏe định kỳ và huấn luyện an toàn lao động",
+ why:"Nhân viên y tế thuộc nhóm có yếu tố nguy hiểm nghề nghiệp. Đây là nhóm lỗi nằm hoàn toàn ở giấy tờ nên rất dễ bị bắt và cũng rất dễ khắc phục.",
+ steps:["Lập danh sách người lao động theo nhóm yếu tố nguy hiểm: tiếp xúc máu và dịch, hóa chất, tia laser, bức xạ.",
+  "Ký hợp đồng với cơ sở y tế đủ điều kiện để khám sức khỏe định kỳ và khám phát hiện bệnh nghề nghiệp.",
+  "Tổ chức huấn luyện an toàn vệ sinh lao động theo đúng nhóm đối tượng, lưu danh sách và chứng nhận.",
+  "Thực hiện quan trắc môi trường lao động định kỳ và lưu kết quả.",
+  "Ban hành quy trình xử lý phơi nhiễm nghề nghiệp, dán tại các phòng thủ thuật, có sẵn thuốc và vật tư xử lý ban đầu.",
+  "Lưu tất cả hồ sơ trên trong một cặp duy nhất để xuất trình khi thanh tra."],
+ who:"Phòng nhân sự phối hợp phòng kiểm soát nhiễm khuẩn."},
+
+{id:"a9",cat:"kcb",freq:"Mỗi năm",title:"Tự đánh giá chất lượng bệnh viện",
+ why:"Thông tư 35/2024/TT-BYT đặt sàn chất lượng phải duy trì liên tục. Không có hồ sơ tự đánh giá là điểm trừ đầu tiên trong mọi đợt kiểm tra.",
+ steps:["Tải bộ tiêu chuẩn chất lượng cơ bản hiện hành từ cổng Bộ Y tế và xác nhận đúng phiên bản mới nhất.",
+  "Phân công từng nhóm tiêu chí cho từng khoa phòng tự chấm, có bằng chứng kèm theo.",
+  "Họp hội đồng chất lượng để thống nhất điểm và xác định các tiêu chí chưa đạt.",
+  "Lập kế hoạch cải tiến cho từng tiêu chí chưa đạt: làm gì, ai làm, xong khi nào, cần bao nhiêu tiền.",
+  "Ký ban hành kế hoạch và theo dõi tiến độ hằng quý.",
+  "Lưu toàn bộ hồ sơ tự đánh giá và kế hoạch cải tiến cùng một chỗ."],
+ who:"Hội đồng quản lý chất lượng bệnh viện, giám đốc điều hành chủ trì."},
+
+{id:"a10",cat:"ktd",freq:"Ngay lập tức",title:"Xây quy trình xử lý sự cố y khoa",
+ why:"Đây là lỗ hổng nghiêm trọng hơn bất kỳ giấy tờ nào khác. Sửa hồ sơ bệnh án sau khi có sự cố biến một tai biến chuyên môn thành hành vi có dấu hiệu che giấu.",
+ steps:["Viết ra một quy trình một trang, dán trong phòng mổ và phòng trực: ai gọi ai, gọi số nào, làm gì trong 10 phút đầu.",
+  "Quy tắc tuyệt đối phải in đậm: không sửa, không xóa, không viết thêm vào hồ sơ bệnh án sau khi sự cố xảy ra. Mọi bổ sung phải ghi rõ là bổ sung, có ngày giờ và chữ ký.",
+  "Chỉ định một người phát ngôn duy nhất. Cấm toàn bộ nhân viên khác trả lời báo chí, mạng xã hội hay người nhà.",
+  "Chuẩn bị sẵn danh bạ khẩn: bệnh viện tuyến trên nhận chuyển tuyến, luật sư, đơn vị bảo hiểm trách nhiệm nghề nghiệp.",
+  "Giữ nguyên hiện trường, thuốc và vỏ thuốc đã dùng, thiết bị đã dùng. Chụp ảnh lại.",
+  "Diễn tập quy trình này ít nhất một lần mỗi năm như diễn tập chữa cháy. Quy trình không diễn tập thì không tồn tại."],
+ who:"Giám đốc điều hành và người chịu trách nhiệm chuyên môn kỹ thuật cùng ban hành."},
+
+{id:"a11",cat:"dn",freq:"Khi có thay đổi",title:"Bổ sung hồ sơ chủ sở hữu hưởng lợi và rà thẩm quyền ký",
+ why:"Luật sửa đổi Luật Doanh nghiệp 2025 buộc doanh nghiệp lưu giữ thông tin chủ sở hữu hưởng lợi. Ký vượt thẩm quyền là rủi ro cá nhân của người điều hành, không phải của công ty.",
+ steps:["Xác định ai là chủ sở hữu hưởng lợi thực sự của công ty theo tiêu chí trong luật, không chỉ nhìn tên trên giấy đăng ký kinh doanh.",
+  "Chuẩn bị hồ sơ để nộp bổ sung đồng thời tại lần thông báo thay đổi đăng ký doanh nghiệp gần nhất.",
+  "Đọc lại điều lệ công ty, đánh dấu những việc thuộc thẩm quyền giám đốc điều hành và những việc phải trình hội đồng quản trị.",
+  "Lập một bảng hạn mức rõ ràng: hợp đồng bao nhiêu tiền thì được tự ký, trên mức đó phải trình ai.",
+  "Với mọi hợp đồng lớn, kiểm tra người ký có đúng là người đại diện theo pháp luật hoặc có giấy ủy quyền hợp lệ không.",
+  "Lưu bảng phân cấp thẩm quyền ở nơi kế toán và pháp chế đều truy cập được."],
+ who:"Giám đốc điều hành phối hợp kế toán trưởng và bộ phận pháp chế."}
+];
+
+/* ---- ĐIỂM DỄ VỠ ---- */
+const RISKS = [
+ ["Làm kỹ thuật ngoài phạm vi chuyên môn được duyệt","kcb","Gốc rễ của phần lớn vụ đình chỉ. Thường bắt đầu từ một bác sĩ giỏi làm thêm một kỹ thuật mà bệnh viện chưa xin bổ sung."],
+ ["Ảnh trước và sau đăng lên mạng không có văn bản đồng ý","dl","Vừa vi phạm bảo vệ dữ liệu cá nhân với mức phạt tới 3 tỷ, vừa là nguồn khiếu kiện dân sự."],
+ ["Quảng cáo thiếu số giấy phép hoạt động và phạm vi chuyên môn","qc","Lỗi hình thức, dễ bị bắt, gần như không cãi được. Chi phí sửa gần bằng không."],
+ ["Cam kết kết quả trong quảng cáo và trong tư vấn","qc","Vừa vi phạm quảng cáo, vừa trở thành cam kết hợp đồng khi khách khiếu nại kết quả."],
+ ["Thiết bị không có số lưu hành hoặc máy mượn dùng thử","tb","Nằm trong nhóm bị phạt nặng nhất theo Nghị định 90/2026, tới 300 triệu với tổ chức."],
+ ["Không có biên bản tự kiểm tra phòng cháy hằng tháng","pccc","Giấy tờ thuần túy nhưng là thứ đoàn kiểm tra hỏi đầu tiên."],
+ ["Chất thải lây nhiễm lẫn vào rác sinh hoạt","mt","Một thao tác sai của một điều dưỡng thành vi phạm của cả bệnh viện."],
+ ["Người chịu trách nhiệm chuyên môn nghỉ mà chưa có người thay","dn","Giấy phép hoạt động bị treo trên thực tế dù giấy vẫn còn hạn."],
+ ["Sửa hồ sơ bệnh án sau khi có sự cố","ktd","Biến một tai biến chuyên môn thành hành vi có dấu hiệu che giấu. Đây là sai lầm phá hủy nhiều nhất."],
+ ["Bộ phận spa hoặc chăm sóc da lặng lẽ làm thủ thuật xâm lấn","kcb","Vi phạm khoản 12 Điều 40 Nghị định 96/2023 — hoạt động khám chữa bệnh không phép."]
+];
+
+/* ---- NGUỒN QUÉT ---- */
+const SOURCES = [
+ {n:"Bộ Y tế — Văn bản pháp quy", u:"https://moh.gov.vn/van-ban-phap-quy", d:"Thông tư, quyết định ngành y tế"},
+ {n:"Cục Quản lý Khám, chữa bệnh", u:"https://kcb.vn/van-ban/van-ban-phap-quy", d:"Giấy phép, chuyên môn kỹ thuật, chất lượng"},
+ {n:"Cổng văn bản Chính phủ", u:"https://vanban.chinhphu.vn/", d:"Luật, nghị định, nghị quyết"},
+ {n:"Công báo Chính phủ", u:"https://congbao.chinhphu.vn/", d:"Bản gốc có giá trị pháp lý"},
+ {n:"Cục Hạ tầng và Thiết bị y tế", u:"https://imda.moh.gov.vn/van-ban-phap-quy", d:"Thiết bị y tế, số lưu hành"},
+ {n:"Thư viện pháp luật — Y tế mới", u:"https://thuvienphapluat.vn/van-ban-moi/The-thao-Y-te", d:"Danh sách văn bản y tế mới ban hành"},
+ {n:"Thư viện pháp luật — Văn bản mới", u:"https://thuvienphapluat.vn/van-ban-moi/vb", d:"Toàn bộ văn bản mới theo tuần"},
+ {n:"Cổng đăng ký doanh nghiệp quốc gia", u:"https://dangkykinhdoanh.gov.vn/", d:"Luật doanh nghiệp, thủ tục đăng ký"}
+];
+
+/* ============================================================
+   2. TIỆN ÍCH
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const gsearch = q => "https://www.google.com/search?q="+encodeURIComponent(q);
+const tvpl = q => "https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword="+encodeURIComponent(q);
+const store = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+};
+const today = () => { const d=new Date(); const p=n=>String(n).padStart(2,"0");
+  return p(d.getDate())+"/"+p(d.getMonth()+1)+"/"+d.getFullYear(); };
+
+LAST_UPDATE = store.get("lastScan") || LAST_UPDATE;
+$("#lastUpd").textContent = LAST_UPDATE;
+
+const TIER = {
+ 1:{n:"Nguy hiểm nhất",c:"t1",i:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/>'},
+ 2:{n:"Phạt nặng",c:"t2",i:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.6h-3a1.8 1.8 0 0 0 0 3.6h4"/>'},
+ 3:{n:"Nền tảng",c:"t3",i:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5"/>'}
+};
+const TIERTXT = {
+ 1:"Mức rủi ro cao nhất. Sai ở đây dẫn tới đình chỉ hoạt động hoặc trách nhiệm hình sự, không chỉ phạt tiền.",
+ 2:"Rủi ro tiền và giấy phép. Phạt hành chính nặng, có thể kèm tước quyền sử dụng giấy phép.",
+ 3:"Nền tảng điều hành. Ít khi bị phạt trực tiếp nhưng là gốc của nhiều rủi ro khác."
+};
+
+/* ============================================================
+   3. RENDER
+   ============================================================ */
+let cur = "all", qtext = "";
+
+$("#side").innerHTML =
+  `<button class="tog" id="railTog" aria-label="Mở rộng menu" aria-expanded="false">
+     ${svg('<path d="M4 6h16M4 12h16M4 18h16"/>',17)}<span class="tl">Nhóm luật</span>
+   </button>` +
+  CATS.map(c=>{
+  const n = c.k==="all" ? DOCS.length : DOCS.filter(d=>d.cat===c.k).length;
+  return `<button class="nb" data-k="${c.k}" style="--nc:${c.c}" aria-current="${c.k===cur}" title="${c.n}" aria-label="${c.n}">
+    <span class="ic">${svg(I[c.k]||I.all,16)}</span><span class="lb">${c.n}</span><span class="cnt">${n}</span></button>`;
+}).join("");
+
+function render(){
+  const c = CAT(cur);
+  $("#secTitle").style.setProperty("--nc", c.c);
+  $("#secTitle").innerHTML = `<span class="ic">${svg(I[cur]||I.all,18)}</span>
+    <div><h2>${c.n}</h2><p>${c.sub}</p></div>`;
+
+  const q = qtext.trim().toLowerCase();
+  const list = DOCS.filter(d=>{
+    if(cur!=="all" && d.cat!==cur) return false;
+    if(!q) return true;
+    return [d.title,d.code,d.essence,d.notes,...(d.duties||[]),...(d.risks||[]),CAT(d.cat).n]
+      .join(" ").toLowerCase().includes(q);
+  }).sort((a,b)=>a.tier-b.tier);
+
+  $("#grid").innerHTML = list.length ? list.map(d=>{
+    const cc = CAT(d.cat);
+    return `<button class="doc" data-id="${d.id}" style="--nc:${cc.c}">
+      <div class="badges">
+        <span class="tag ${TIER[d.tier].c}">${svg(TIER[d.tier].i,12)}${TIER[d.tier].n}</span>
+        ${d.flag==="new"?'<span class="tag new">Mới</span>':""}
+        ${d.flag==="warn"?'<span class="tag warn">Đang thay đổi</span>':""}
+      </div>
+      <div class="dhead">
+        <span class="dic">${svg(I[d.cat]||I.all,17)}</span>
+        <h3>${esc(d.title)}</h3>
+      </div>
+      <span class="code">${esc(d.code)}</span>
+      <div class="eff">${esc(d.eff)}</div>
+    </button>`;
+  }).join("") : `<div class="empty" style="grid-column:1/-1">Không có văn bản nào khớp. Thử từ khoá ngắn hơn: quảng cáo, cháy, dữ liệu, thiết bị.</div>`;
+}
+
+/* ---- modal ---- */
+function openModal(color, iconPath, title, metaHTML, bodyHTML){
+  $("#mHead").style.setProperty("--nc", color);
+  $("#mBody").style.setProperty("--nc", color);
+  $("#mIcon").innerHTML = svg(iconPath,19);
+  $("#mTitle").textContent = title;
+  $("#mMeta").innerHTML = metaHTML;
+  $("#mBody").innerHTML = bodyHTML;
+  $("#modal").classList.add("on"); $("#scrim").classList.add("on");
+  $("#mBody").scrollTop = 0; document.body.style.overflow="hidden"; $("#mClose").focus();
+}
+function closeModal(){
+  $("#modal").classList.remove("on"); $("#scrim").classList.remove("on"); document.body.style.overflow="";
+}
+
+function openDoc(id){
+  const d = DOCS.find(x=>x.id===id); if(!d) return; const c = CAT(d.cat);
+  openModal(c.c, I[d.cat]||I.all, d.title,
+    `<span class="tag ${TIER[d.tier].c}">${svg(TIER[d.tier].i,12)}${TIER[d.tier].n}</span>
+     <span class="code">${esc(d.code)}</span>
+     <span style="font-size:12.5px;color:var(--ink3)">${esc(d.eff)}</span>`,
+    `<div class="callout" data-t="${d.tier}">${TIERTXT[d.tier]}</div>
+     ${d.fine?`<div class="fine"><span class="fi">${svg(I.risk,20)}</span><div><div class="n">${esc(d.fine)}</div><div class="l">${esc(d.fineNote||"")}</div></div></div>`:""}
+     <h4>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',15)} Bản chất</h4>
+     <p>${esc(d.essence)}</p>
+     <h4>${svg(I.act,15)} Việc cụ thể phải làm</h4>
+     <ul>${d.duties.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+     <h4>${svg(I.risk,15)} Rủi ro nếu làm sai</h4>
+     <ul>${d.risks.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+     ${d.notes?`<h4>${svg('<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/>',15)} Lưu ý thực chiến</h4><p>${esc(d.notes)}</p>`:""}
+     <div class="links">
+       <a class="btn solid" href="${d.src.url}" target="_blank" rel="noopener">${svg(I.src,15)} ${esc(d.src.label)}</a>
+       <a class="btn" href="${tvpl(d.code.split(" ")[0])}" target="_blank" rel="noopener">Xem trên Thư viện pháp luật</a>
+       <a class="btn" href="${gsearch(d.q)}" target="_blank" rel="noopener">Kiểm tra hiệu lực hôm nay</a>
+     </div>`);
+}
+
+function openActions(){
+  openModal("var(--brand)", I.act, "Việc cần làm",
+    `<span style="font-size:12.5px;color:var(--ink3)">${ACTIONS.length} việc · bấm từng việc để xem hướng dẫn từng bước</span>`,
+    `<p>Đây là danh sách hành động cụ thể, xếp theo tần suất. Mỗi việc mở ra một hướng dẫn từng bước có thể giao thẳng cho nhân viên.</p>
+     <div class="rows">${ACTIONS.map((a,i)=>{const c=CAT(a.cat);
+       return `<button class="rowc" data-act="${a.id}" style="--nc:${c.c}">
+         <span class="num">${i+1}</span>
+         <span style="flex:1 1 auto">
+           <span class="freq">${esc(a.freq)}</span>
+           <p class="tt">${esc(a.title)}</p>
+           <p class="ss">${esc(c.n)}</p>
+         </span></button>`;}).join("")}</div>`);
+}
+
+function openAction(id){
+  const a = ACTIONS.find(x=>x.id===id); if(!a) return; const c = CAT(a.cat);
+  openModal(c.c, I[a.cat]||I.act, a.title,
+    `<span class="freq">${esc(a.freq)}</span> <span style="font-size:12.5px;color:var(--ink3)">${esc(c.n)}</span>`,
+    `<h4>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',15)} Tại sao phải làm</h4>
+     <p>${esc(a.why)}</p>
+     <h4>${svg(I.act,15)} Làm từng bước</h4>
+     <ol class="steps">${a.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol>
+     <h4>${svg(I.ld,15)} Ai làm</h4>
+     <p>${esc(a.who)}</p>
+     <div class="links"><button class="btn" id="backAct">← Về danh sách việc cần làm</button></div>`);
+  const b = $("#backAct"); if(b) b.addEventListener("click", openActions);
+}
+
+function openRisks(){
+  openModal("var(--t1)", I.risk, "Mười điểm dễ vỡ nhất",
+    `<span style="font-size:12.5px;color:var(--ink3)">Xếp theo mức độ hay xảy ra và hậu quả</span>`,
+    `<p>Đây là những chỗ bệnh viện thẩm mỹ hay gãy nhất trên thực tế, không phải theo lý thuyết.</p>
+     <div class="rows">${RISKS.map((r,i)=>{const c=CAT(r[1]);
+       return `<div class="rowc" style="--nc:${c.c}">
+         <span class="num">${i+1}</span>
+         <span style="flex:1 1 auto"><p class="tt">${esc(r[0])}</p><p class="ss">${esc(r[2])}</p></span>
+       </div>`;}).join("")}</div>`);
+}
+
+function openSources(){
+  openModal("var(--brand)", I.src, "Nguồn chính thống",
+    `<span style="font-size:12.5px;color:var(--ink3)">${SOURCES.length} nguồn được nút Cập nhật ngay quét tự động</span>`,
+    `<p>Nút Cập nhật ngay sẽ đọc các trang này và báo lại nếu thấy văn bản mới liên quan. Có thể mở trực tiếp từng trang ở đây.</p>
+     <div class="rows">${SOURCES.map(s=>`<a class="srcrow" href="${s.u}" target="_blank" rel="noopener">
+       <span style="color:var(--brand)">${svg(I.src,17)}</span>
+       <span><span class="tt">${esc(s.n)}</span><br><span class="ss">${esc(s.d)}</span></span></a>`).join("")}</div>`);
+}
+
+/* ============================================================
+   4. QUÉT CẬP NHẬT
+   ============================================================ */
+const RELAYS = [
+  {n:"codetabs",   f:u=>"https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(u)},
+  {n:"allorigins", f:u=>"https://api.allorigins.win/raw?url="+encodeURIComponent(u)},
+  {n:"corsproxy",  f:u=>"https://corsproxy.io/?url="+encodeURIComponent(u)},
+  {n:"jina",       f:u=>"https://r.jina.ai/"+u}
+];
+const KNOWN = DOCS.map(d=>d.code).join(" ");
+const TOPIC = /(y tế|khám bệnh|chữa bệnh|thẩm mỹ|mỹ phẩm|thiết bị y tế|trang thiết bị|dược|quảng cáo|phòng cháy|chữa cháy|dữ liệu cá nhân|chất thải|môi trường|doanh nghiệp|lao động|bảo hiểm|hành nghề|giấy phép)/i;
+const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8})/g;
+const LOAI = /(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)[^]{0,45}$/;
+
+function analyse(text){
+  const found = new Map();
+  const clean = String(text).replace(/<[^>]+>/g," ").replace(/\s+/g," ");
+  const re = new RegExp(CODERE.source, "g");
+  let m;
+  while((m = re.exec(clean)) !== null){
+    const code = m[0];
+    if(KNOWN.includes(code) || found.has(code)) continue;
+    let after = clean.slice(m.index + code.length, m.index + code.length + 170);
+    const nx = after.search(/(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)\s+(số\s+)?\d/);
+    if(nx > 0) after = after.slice(0, nx);
+    if(!TOPIC.test(after)) continue;
+    const before = clean.slice(Math.max(0, m.index - 50), m.index);
+    const loai = (before.match(LOAI) || [""])[0];
+    found.set(code, (loai + code + after).trim().slice(0,175));
+    if(found.size >= 8) break;
+  }
+  return [...found.entries()];
+}
+
+/* ---------- CHẾ ĐỘ 1: đọc kết quả do máy chủ GitHub quét sẵn ---------- */
+async function scan(){
+  openModal("var(--brand)", I.scan, "Cập nhật văn bản mới",
+    `<span style="font-size:12.5px;color:var(--ink3)">Đọc kết quả quét tự động</span>`,
+    `<p id="pmsg" style="font-size:14px">Đang tải kết quả quét mới nhất…</p><div id="slist"></div>`);
+  let data = null, err = "";
+  try{
+    const r = await fetch("capnhat.json?t="+Date.now(), {cache:"no-store"});
+    if(r.ok) data = await r.json(); else err = "HTTP "+r.status;
+  }catch(e){ err = e.message || "không đọc được tệp"; }
+
+  if(!data || data.chuaChay){
+    $("#pmsg").innerHTML = `<b style="color:#B45309">Máy quét tự động chưa chạy lần nào.</b>
+      ${err?`<br><span style="font-size:12.5px;color:var(--ink3)">Chi tiết: ${esc(err)}</span>`:""}
+      <br><br>Vào repo GitHub → tab <b>Actions</b> → chọn <b>Quét văn bản pháp luật</b> → bấm <b>Run workflow</b>.
+      Sau đó quay lại đây bấm Cập nhật ngay lần nữa.`;
+    $("#slist").innerHTML = `<div class="links">
+      <button class="btn solid" id="directBtn">Quét trực tiếp ngay bây giờ</button></div>`;
+    bindDirect(); return;
+  }
+
+  LAST_UPDATE = data.ngay || today();
+  store.set("lastScan", LAST_UPDATE);
+  $("#lastUpd").textContent = LAST_UPDATE;
+
+  const tong = (data.nguon||[]).reduce((s,x)=>s+((x.phatHien||[]).length),0);
+  const okN  = (data.nguon||[]).filter(x=>x.trangThai==="ok").length;
+  $("#pmsg").innerHTML = tong===0
+    ? `<b style="color:#15803D">Không có văn bản mới nào liên quan.</b> Máy quét chạy lúc ${esc(data.gio||data.ngay||"")}, đọc được ${okN}/${(data.nguon||[]).length} nguồn.`
+    : `<b style="color:#B45309">Phát hiện ${tong} văn bản có thể liên quan.</b> Máy quét chạy lúc ${esc(data.gio||data.ngay||"")}. Bấm từng dòng vàng để đọc toàn văn.`;
+
+  $("#slist").innerHTML = (data.nguon||[]).map(s=>{
+    const hits = s.phatHien||[];
+    const cls = s.trangThai!=="ok" ? "err" : hits.length ? "hit" : "ok";
+    const sym = s.trangThai!=="ok" ? "!" : hits.length ? hits.length : "✓";
+    const ds  = s.trangThai!=="ok"
+      ? `Không đọc được. ${esc(s.loi||"")} <a href="${s.u}" target="_blank" rel="noopener">Mở trang xem tay</a>`
+      : hits.length
+        ? `Phát hiện ${hits.length} văn bản chưa có trong danh sách:
+           <span class="hits">${hits.map(x=>`<a class="hit" href="${gsearch(x.code+' toàn văn')}" target="_blank" rel="noopener"><b>${esc(x.code)}</b> — ${esc(x.mota)}</a>`).join("")}</span>`
+        : "Không thấy văn bản mới nào ngoài danh sách đang theo dõi.";
+    return `<div class="scanitem"><span class="st ${cls}">${sym}</span>
+      <span style="flex:1 1 auto"><div class="nm">${esc(s.n)}</div><div class="ds">${ds}</div></span></div>`;
+  }).join("") + `<div class="links"><button class="btn" id="directBtn">Quét lại trực tiếp từ trình duyệt</button></div>`;
+  bindDirect();
+}
+
+/* ---------- CHẾ ĐỘ 2: quét thẳng từ trình duyệt (dự phòng, hay bị chặn) ---------- */
+function bindDirect(){
+  const b = $("#directBtn"); if(b) b.addEventListener("click", directScan);
+}
+
+async function grab(url){
+  const loi = [];
+  for(const rl of RELAYS){
+    try{
+      const ctl = new AbortController();
+      const to = setTimeout(()=>ctl.abort("hết giờ"), 22000);
+      const r = await fetch(rl.f(url), {signal:ctl.signal});
+      clearTimeout(to);
+      if(!r.ok){ loi.push(rl.n+": HTTP "+r.status); continue; }
+      const t = await r.text();
+      if(!t || t.length < 400){ loi.push(rl.n+": trang rỗng"); continue; }
+      return {text:t, via:rl.n};
+    }catch(e){ loi.push(rl.n+": "+(e.name==="AbortError"?"quá 22 giây":(e.message||"bị chặn"))); }
+  }
+  return {text:null, loi:loi.join(" · ")};
+}
+
+let scanning = false;
+async function directScan(){
+  if(scanning) return; scanning = true;
+
+  openModal("var(--brand)", I.scan, "Quét trực tiếp",
+    `<span style="font-size:12.5px;color:var(--ink3)">Đọc ${SOURCES.length} nguồn qua trình duyệt</span>`,
+    `<div class="bar"><i id="pbar"></i></div>
+     <p id="pmsg" style="font-size:13.5px">Đang kết nối…</p>
+     <div id="slist"></div>`);
+
+  $("#slist").innerHTML = SOURCES.map((s,i)=>`<div class="scanitem" id="si${i}">
+      <span class="st wait">•</span>
+      <span style="flex:1 1 auto"><div class="nm">${esc(s.n)}</div><div class="ds">Đang chờ…</div></span>
+    </div>`).join("");
+
+  let done=0, totalHits=0, okCount=0;
+  for(let i=0;i<SOURCES.length;i++){
+    const s = SOURCES[i], el = document.getElementById("si"+i);
+    if(el) el.querySelector(".ds").textContent = "Đang đọc trang…";
+    if($("#pmsg")) $("#pmsg").textContent = "Đang đọc: " + s.n;
+
+    const res = await grab(s.u);
+    done++;
+    const pb = $("#pbar"); if(pb) pb.style.width = Math.round(done/SOURCES.length*100)+"%";
+    if(!el) continue;
+
+    if(!res.text){
+      el.querySelector(".st").className = "st err"; el.querySelector(".st").textContent = "!";
+      el.querySelector(".ds").innerHTML =
+        `<span style="color:#B91C1C">Không đọc được.</span> ${esc(res.loi||"")}
+         <br><a href="${s.u}" target="_blank" rel="noopener">Mở trang để xem tay</a>`;
+      continue;
+    }
+    okCount++;
+    const hits = analyse(res.text);
+    if(!hits.length){
+      el.querySelector(".st").className = "st ok"; el.querySelector(".st").textContent = "✓";
+      el.querySelector(".ds").textContent = "Không thấy văn bản mới nào ngoài danh sách. (qua "+res.via+")";
+    }else{
+      totalHits += hits.length;
+      el.querySelector(".st").className = "st hit"; el.querySelector(".st").textContent = hits.length;
+      el.querySelector(".ds").innerHTML =
+        `Phát hiện ${hits.length} văn bản chưa có trong danh sách:
+         <span class="hits">${hits.map(([code,line])=>
+           `<a class="hit" href="${gsearch(code+' toàn văn')}" target="_blank" rel="noopener"><b>${esc(code)}</b> — ${esc(line)}</a>`).join("")}</span>`;
+    }
+  }
+
+  if(okCount>0){ LAST_UPDATE = today(); store.set("lastScan", LAST_UPDATE); $("#lastUpd").textContent = LAST_UPDATE; }
+
+  if($("#pmsg")){
+    $("#pmsg").innerHTML = okCount===0
+      ? `<b style="color:#B91C1C">Không quét được nguồn nào từ trình duyệt.</b>
+         Đây là hạn chế đã biết: trình duyệt không được phép đọc trang của tên miền khác, phải đi qua dịch vụ trung chuyển miễn phí và các dịch vụ này hay bị chặn.
+         <br><br><b>Cách chắc ăn:</b> dùng máy quét tự động chạy trên GitHub, không qua trình duyệt nên không bị chặn. Xem hướng dẫn cài trong tệp <b>HUONG-DAN.md</b>.`
+      : totalHits===0
+        ? `<b style="color:#15803D">Xong. Không thấy văn bản mới nào liên quan.</b> Đọc được ${okCount}/${SOURCES.length} nguồn.`
+        : `<b style="color:#B45309">Xong. Phát hiện ${totalHits} văn bản có thể liên quan.</b>`;
+  }
+  scanning = false;
+}
+
+/* ============================================================
+   5. SỰ KIỆN
+   ============================================================ */
+const rail = $("#side");
+function setRail(open){
+  rail.classList.toggle("open", open);
+  const t = $("#railTog"); if(t) t.setAttribute("aria-expanded", open);
+}
+$("#railTog").addEventListener("click", ()=> setRail(!rail.classList.contains("open")));
+rail.addEventListener("click", e=>{
+  const b = e.target.closest(".nb"); if(!b) return;
+  cur = b.dataset.k;
+  [...rail.querySelectorAll(".nb")].forEach(x=>x.setAttribute("aria-current", x===b));
+  render();
+  setRail(false);
+  if(window.innerWidth < 960){
+    const y = $("#secTitle").getBoundingClientRect().top + window.scrollY - 12;
+    window.scrollTo({top:y, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  }
+});
+document.addEventListener("click", e=>{
+  if(rail.classList.contains("open") && !e.target.closest("nav.side")) setRail(false);
+});
+$("#q").addEventListener("input", e=>{ qtext = e.target.value; render(); });
+$("#grid").addEventListener("click", e=>{
+  const b = e.target.closest(".doc"); if(b) openDoc(b.dataset.id);
+});
+$("#mBody").addEventListener("click", e=>{
+  const b = e.target.closest("[data-act]"); if(b) openAction(b.dataset.act);
+});
+document.querySelectorAll("[data-open]").forEach(b=>{
+  b.addEventListener("click", ()=>({actions:openActions,risks:openRisks,sources:openSources})[b.dataset.open]());
+});
+$("#scanBtn").addEventListener("click", scan);
+$("#mClose").addEventListener("click", closeModal);
+$("#scrim").addEventListener("click", closeModal);
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
+
+render();
+</script>
+</body>
+</html>
