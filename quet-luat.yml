@@ -17,11 +17,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Chạy máy quét
+      - name: Quét và phân tích
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           cat > /tmp/quet.mjs <<'SCRIPT'
-          import { readFileSync, writeFileSync } from "node:fs";
+          import { readFileSync, writeFileSync, existsSync } from "node:fs";
           import { execFileSync } from "node:child_process";
+
+          /* ---------------- PHẦN 1: QUÉT ---------------- */
 
           const NGUON = [
             { n: "Cục Quản lý Khám, chữa bệnh",        u: "https://kcb.vn/van-ban/van-ban-phap-quy" },
@@ -36,119 +41,232 @@ jobs:
           ];
 
           const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
-          const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|khám, chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
+          const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
           const CAM  = /(viễn thông|trồng trọt|bảo vệ thực vật|thủy sản|chăn nuôi|lâm nghiệp|đường sắt|đường bộ|đường thủy|hàng không|hàng hải|giáo dục|đại học|ngân hàng|chứng khoán|hải quan|đất đai|khoáng sản|dầu khí|điện lực|thủy lợi|du lịch|thể thao|quốc phòng|biên phòng|tôn giáo|quy hoạch đô thị|công nghệ lạc hậu|ươm tạo công nghệ|đăng ký hộ kinh doanh|biểu mẫu|giấy phép viễn thông|Sở Nông nghiệp)/i;
           const LOAI = /(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)[^]{0,45}$/;
           const laYTe = c => /TT-BYT/.test(c);
-
-          const DA_CO = (() => {
-            try { return new Set(readFileSync("index.html","utf8").match(new RegExp(CODERE.source,"g")) || []); }
-            catch { return new Set(); }
-          })();
-
-          function locVanBan(html){
-            const sach = String(html)
-              .replace(/<script[\s\S]*?<\/script>/gi," ")
-              .replace(/<style[\s\S]*?<\/style>/gi," ")
-              .replace(/<[^>]+>/g," ").replace(/&nbsp;/g," ").replace(/\s+/g," ");
-            const ra = new Map();
-            const re = new RegExp(CODERE.source,"g");
-            let m;
-            while((m = re.exec(sach)) !== null){
-              const code = m[0];
-              if(DA_CO.has(code) || ra.has(code)) continue;
-              let sau = sach.slice(m.index+code.length, m.index+code.length+170);
-              const kt = sau.search(/(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)\s+(số\s+)?\d/);
-              if(kt > 0) sau = sau.slice(0,kt);
-              if(CAM.test(sau)) continue;
-              if(!laYTe(code) && !LOI.test(sau)) continue;
-              const truoc = sach.slice(Math.max(0,m.index-50), m.index);
-              const loai = (truoc.match(LOAI) || [""])[0];
-              ra.set(code, (loai+code+sau).trim().slice(0,175));
-              if(ra.size >= 8) break;
-            }
-            return [...ra.entries()].map(([code,mota]) => ({code,mota}));
-          }
-
           const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
 
-          function curl(url, them){
-            const goc = new URL(url).origin + "/";
-            const args = [
-              "-sSL","--compressed","--max-time","45","--retry","2","--retry-delay","4",
+          let DA_CO = new Set();
+          try { DA_CO = new Set(readFileSync("index.html","utf8").match(new RegExp(CODERE.source,"g")) || []); }
+          catch (e) { console.log("Không đọc được index.html: " + e.message); }
+
+          let DA_PHANTICH = [];
+          try { if(existsSync("vanban-moi.json")) DA_PHANTICH = JSON.parse(readFileSync("vanban-moi.json","utf8")) || []; }
+          catch (e) { DA_PHANTICH = []; }
+          if(!Array.isArray(DA_PHANTICH)) DA_PHANTICH = [];
+          DA_PHANTICH.forEach(v => v && v.code && DA_CO.add(v.code));
+
+          function locVanBan(html){
+            try{
+              const sach = String(html)
+                .replace(/<script[\s\S]*?<\/script>/gi," ").replace(/<style[\s\S]*?<\/style>/gi," ")
+                .replace(/<[^>]+>/g," ").replace(/&nbsp;/g," ").replace(/\s+/g," ");
+              const ra = new Map();
+              const re = new RegExp(CODERE.source,"g");
+              let m;
+              while((m = re.exec(sach)) !== null){
+                const code = m[0];
+                if(DA_CO.has(code) || ra.has(code)) continue;
+                let sau = sach.slice(m.index+code.length, m.index+code.length+170);
+                const kt = sau.search(/(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)\s+(số\s+)?\d/);
+                if(kt > 0) sau = sau.slice(0,kt);
+                if(CAM.test(sau)) continue;
+                if(!laYTe(code) && !LOI.test(sau)) continue;
+                const truoc = sach.slice(Math.max(0,m.index-50), m.index);
+                const loai = (truoc.match(LOAI) || [""])[0];
+                ra.set(code, (loai+code+sau).trim().slice(0,175));
+                if(ra.size >= 8) break;
+              }
+              return [...ra.entries()].map(([code,mota]) => ({code,mota}));
+            }catch(e){ return []; }
+          }
+
+          function curl(url, them, nhanh){
+            let goc = "/"; try { goc = new URL(url).origin + "/"; } catch(e) {}
+            const thoiGian = nhanh ? ["--max-time","25","--retry","1","--retry-delay","3"]
+                                    : ["--max-time","45","--retry","2","--retry-delay","4"];
+            const args = ["-sSL","--compressed"].concat(thoiGian).concat([
               "-A", UA,
-              "-H","Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+              "-H","Accept: text/html,application/xhtml+xml,*/*;q=0.8",
               "-H","Accept-Language: vi-VN,vi;q=0.9,en-US;q=0.8",
-              "-H","Upgrade-Insecure-Requests: 1",
-              "-H","Sec-Fetch-Dest: document",
-              "-H","Sec-Fetch-Mode: navigate",
-              "-H","Sec-Fetch-Site: none",
-              "-H","Referer: " + goc,
-              ...(them || []),
-              url
-            ];
+              "-H","Referer: " + goc]).concat(them||[]).concat([url]);
             return execFileSync("curl", args, { encoding:"utf8", maxBuffer: 60*1024*1024, stdio:["ignore","pipe","pipe"] });
           }
 
+          /* Nhiều cổng thông tin nhà nước (đặc biệt moh.gov.vn, imda.moh.gov.vn) trả "fetch failed" vì
+             máy chủ của họ có cấu hình TLS/HTTP2 cũ hoặc lệch chuẩn — curl mặc định gọi HTTP/2 nên hay
+             gãy ở đúng chỗ trình duyệt vẫn tự lùi về HTTP/1.1 được. Thử lần lượt nhiều kiểu kết nối,
+             kiểu nào qua được thì dừng. Chưa chạy thử thật trên GitHub Actions vì môi trường phát triển
+             bị chặn mạng — cần bấm Run workflow một lần để xác nhận kiểu nào thật sự khắc phục được. */
           async function doc(url){
-            const cach = [
-              { ten:"thường",        them:[] },
-              { ten:"bỏ kiểm chứng chỉ", them:["-k"] },
-              { ten:"ép IPv4",       them:["-4","-k"] }
-            ];
             let loiCuoi = "";
-            for(const c of cach){
+            const kieu = [
+              { them: [],                     nhanh:false },
+              { them: ["--http1.1"],          nhanh:true  },
+              { them: ["-k"],                 nhanh:true  },
+              { them: ["--http1.1","-k"],     nhanh:true  },
+              { them: ["-4","-k"],            nhanh:true  },
+              { them: ["--http1.1","--tlsv1.2","-k"], nhanh:true }
+            ];
+            for(const kt of kieu){
               try{
-                const t = curl(url, c.them);
+                const t = curl(url, kt.them, kt.nhanh);
                 if(t && t.length > 400) return { text:t };
-                loiCuoi = "trang rỗng (" + c.ten + ")";
+                loiCuoi = "trang rỗng";
               }catch(e){
-                const err = (e.stderr || "").toString().trim().split("\n").pop() || ("mã lỗi " + e.status);
-                loiCuoi = err.slice(0,120);
-                if(/403/.test(err)) break;
+                let err = ""; try { err = (e.stderr||"").toString().trim().split("\n").pop() || ""; } catch(x){}
+                loiCuoi = (err || ("mã lỗi " + (e.status === undefined ? "?" : e.status))).slice(0,120);
               }
             }
             try{
               const r = await fetch(url, { redirect:"follow", signal: AbortSignal.timeout(30000), headers:{ "User-Agent": UA } });
               if(r.ok){ const t = await r.text(); if(t && t.length > 400) return { text:t }; }
               else loiCuoi = "HTTP " + r.status;
-            }catch(e){ /* giữ lỗi curl */ }
+            }catch(e){}
             return { loi: loiCuoi || "không đọc được" };
           }
 
           const vn = new Date(Date.now() + 7*3600*1000);
-          const p  = n => String(n).padStart(2,"0");
+          const p = n => String(n).padStart(2,"0");
           const ngay = p(vn.getUTCDate())+"/"+p(vn.getUTCMonth()+1)+"/"+vn.getUTCFullYear();
           const gio  = p(vn.getUTCHours())+":"+p(vn.getUTCMinutes())+" ngày "+ngay;
 
-          const ketQua = [];
+          console.log("=== QUÉT NGUỒN ===");
+          const ketQua = [], moiTim = [];
           for(const s of NGUON){
-            process.stdout.write("Đang đọc " + s.n + " … ");
-            const r = await doc(s.u);
-            if(r.loi){
-              console.log("LỖI: " + r.loi);
-              ketQua.push({n:s.n, u:s.u, trangThai:"loi", loi:r.loi, phatHien:[]});
-            }else{
+            let r; try { r = await doc(s.u); } catch(e){ r = { loi:(e.message||"lỗi").slice(0,120) }; }
+            if(r && r.text){
               const hits = locVanBan(r.text);
-              console.log("ok, " + hits.length + " văn bản mới");
+              console.log("OK   " + s.n + " — " + hits.length + " văn bản mới");
               ketQua.push({n:s.n, u:s.u, trangThai:"ok", phatHien:hits});
+              hits.forEach(x => { if(!moiTim.some(y=>y.code===x.code)) moiTim.push(x); });
+            }else{
+              console.log("LỖI  " + s.n + " — " + (r.loi||"?"));
+              ketQua.push({n:s.n, u:s.u, trangThai:"loi", loi:r.loi||"không đọc được", phatHien:[]});
             }
           }
 
-          writeFileSync("capnhat.json", JSON.stringify({ngay, gio, daTheoDoi:DA_CO.size, nguon:ketQua}, null, 1), "utf8");
-          console.log("\nXong. Theo dõi " + DA_CO.size + " văn bản. Đọc được " +
-            ketQua.filter(x=>x.trangThai==="ok").length + "/" + NGUON.length + " nguồn.");
+          try{
+            writeFileSync("capnhat.json", JSON.stringify({ngay, gio, daTheoDoi:DA_CO.size, nguon:ketQua}, null, 1), "utf8");
+          }catch(e){ console.log("Không ghi được capnhat.json: " + e.message); }
+
+          /* ---------------- PHẦN 2: NHỜ GEMINI PHÂN TÍCH ---------------- */
+
+          const KEY = process.env.GEMINI_API_KEY || "";
+          if(!KEY){
+            console.log("\nChưa cài GEMINI_API_KEY, bỏ qua bước phân tích.");
+            process.exit(0);
+          }
+          if(!moiTim.length){
+            console.log("\nKhông có văn bản mới cần phân tích.");
+            process.exit(0);
+          }
+
+          const MODELS = ["gemini-2.5-flash","gemini-3-flash-preview","gemini-2.0-flash","gemini-2.5-flash-lite"];
+          let MODEL = null;
+          try{
+            const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key="+KEY, { signal: AbortSignal.timeout(20000) });
+            if(r.ok){
+              const j = await r.json();
+              const ten = (j.models||[]).map(m => (m.name||"").replace("models/",""));
+              MODEL = MODELS.find(m => ten.includes(m))
+                   || ten.find(m => /flash/.test(m) && !/image|tts|embedding|live|native/.test(m));
+            } else { console.log("Không lấy được danh sách model: HTTP " + r.status); }
+          }catch(e){ console.log("Không lấy được danh sách model: " + e.message); }
+          if(!MODEL) MODEL = MODELS[0];
+          console.log("\n=== PHÂN TÍCH BẰNG " + MODEL + " ===");
+
+          const HD = `Bạn là chuyên gia pháp luật Việt Nam, tư vấn cho GIÁM ĐỐC ĐIỀU HÀNH một BỆNH VIỆN THẨM MỸ tư nhân ở Hà Nội.
+          Hãy tra cứu văn bản pháp luật được nêu và trả về DUY NHẤT một đối tượng JSON, không kèm chữ nào khác, không bọc trong khối mã.
+
+          Cấu trúc JSON bắt buộc:
+          {
+            "lienQuan": true hoặc false,
+            "cat": một trong "kcb","dn","pccc","tb","mt","ld","dl","ktd","qc",
+            "tier": 1, 2 hoặc 3,
+            "title": "tên ngắn gọn dễ hiểu, không chép nguyên tên hành chính dài",
+            "eff": "ngày ban hành và ngày hiệu lực, nêu cả văn bản bị thay thế nếu có",
+            "essence": "2 đến 3 câu về bản chất: nó điều chỉnh cái gì và vì sao bệnh viện thẩm mỹ phải quan tâm",
+            "duties": ["3 đến 5 việc cụ thể giám đốc điều hành phải làm"],
+            "risks": ["2 đến 4 rủi ro nếu làm sai, nêu mức phạt cụ thể nếu biết"],
+            "fine": "mức phạt tối đa dạng ngắn ví dụ 200 triệu đồng, để chuỗi rỗng nếu không rõ",
+            "fineNote": "một dòng giải thích con số trên",
+            "notes": "một lưu ý thực chiến, để chuỗi rỗng nếu không có",
+            "url": "đường dẫn tới toàn văn trên trang chính thống, để chuỗi rỗng nếu không chắc"
+          }
+
+          Quy tắc:
+          - lienQuan = false nếu văn bản KHÔNG liên quan tới vận hành bệnh viện thẩm mỹ. Khi đó các trường khác để rỗng.
+          - Ý nghĩa nhóm: kcb khám chữa bệnh và giấy phép, dn doanh nghiệp, pccc phòng cháy chữa cháy, tb thiết bị y tế và mỹ phẩm, mt môi trường và chất thải, ld lao động và bảo hiểm, dl dữ liệu cá nhân, ktd người tiêu dùng và trách nhiệm hình sự, qc quảng cáo.
+          - tier 1 nếu sai có thể bị đình chỉ hoạt động hoặc truy cứu hình sự, tier 2 nếu phạt tiền nặng hoặc tước giấy phép, tier 3 nếu chỉ là nền tảng cần biết.
+          - Viết tiếng Việt tự nhiên, câu ngắn, không dùng dấu gạch ngang giữa câu, không dùng dấu ngoặc kép bên trong nội dung.
+          - Nếu không tra được văn bản, đặt lienQuan = false.`;
+
+          async function hoiGemini(v){
+            const body = {
+              systemInstruction: { parts: [{ text: HD }] },
+              contents: [{ role:"user", parts:[{ text: "Văn bản cần phân tích:\n" + v.code + " — " + v.mota }]}],
+              tools: [{ google_search: {} }],
+              generationConfig: { temperature: 0.2, maxOutputTokens: 2048 }
+            };
+            const r = await fetch(
+              "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent?key=" + KEY,
+              { method:"POST", headers:{ "Content-Type":"application/json" },
+                body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
+            if(!r.ok){
+              const t = await r.text().catch(()=> "");
+              throw new Error("HTTP " + r.status + " " + t.slice(0,160).replace(/\s+/g," "));
+            }
+            const j = await r.json();
+            const parts = ((j.candidates||[])[0]||{}).content;
+            let txt = ((parts && parts.parts) || []).map(x => x.text || "").join("").trim();
+            txt = txt.replace(/^```(?:json)?/i,"").replace(/```$/,"").trim();
+            const a = txt.indexOf("{"), b = txt.lastIndexOf("}");
+            if(a < 0 || b < a) throw new Error("không tìm thấy JSON trong câu trả lời");
+            return JSON.parse(txt.slice(a, b+1));
+          }
+
+          const NHOM = ["kcb","dn","pccc","tb","mt","ld","dl","ktd","qc"];
+          let them = 0;
+          for(const v of moiTim){
+            if(DA_PHANTICH.some(x => x.code === v.code)) continue;
+            let kq = null, loi = "";
+            for(let lan = 1; lan <= 2; lan++){
+              try { kq = await hoiGemini(v); break; }
+              catch(e){ loi = e.message; await new Promise(s => setTimeout(s, 4000)); }
+            }
+            if(!kq){ console.log("BỎ QUA " + v.code + " — " + loi); continue; }
+            if(!kq.lienQuan){ console.log("LOẠI   " + v.code + " — không liên quan bệnh viện thẩm mỹ"); continue; }
+            if(!NHOM.includes(kq.cat)) kq.cat = "kcb";
+            kq.code = v.code;
+            kq.napLuc = gio;
+            DA_PHANTICH.push(kq);
+            them++;
+            console.log("THÊM   " + v.code + " → nhóm " + kq.cat + ", mức " + kq.tier + " — " + (kq.title||""));
+            await new Promise(s => setTimeout(s, 2500));
+          }
+
+          try{
+            writeFileSync("vanban-moi.json", JSON.stringify(DA_PHANTICH, null, 1), "utf8");
+            console.log("\nĐã ghi vanban-moi.json. Thêm mới " + them + ", tổng " + DA_PHANTICH.length + " văn bản tự động.");
+          }catch(e){ console.log("Không ghi được vanban-moi.json: " + e.message); }
           SCRIPT
-          node /tmp/quet.mjs
+          node /tmp/quet.mjs || echo "Máy quét gặp lỗi, giữ nguyên kết quả cũ."
 
       - name: Lưu kết quả vào repo
+        continue-on-error: true
         run: |
           git config user.name  "may-quet-luat"
           git config user.email "actions@github.com"
-          git add capnhat.json
+          git add capnhat.json vanban-moi.json 2>/dev/null || true
           if git diff --staged --quiet; then
-            echo "Không có thay đổi."
+            echo "Không có thay đổi, không cần lưu."
           else
-            git commit -m "Cập nhật kết quả quét"
-            git push
+            git commit -m "Cập nhật kết quả quét" || true
+            for i in 1 2 3; do
+              git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "Đã lưu."; break; fi
+              echo "Đẩy lần $i thất bại, thử lại…"; sleep 5
+            done
           fi

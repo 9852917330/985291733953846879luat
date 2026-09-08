@@ -1,17 +1,73 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
+────────────────────────────────────────────
+CẬP NHẬT LẦN NÀY — 07/09/2026
+────────────────────────────────────────────
+
+Chỉ 2 tệp đổi so với gói trước: index.html và quet-luat.yml.
+4 tệp còn lại (manifest.json, sw.js, 3 icon) giữ nguyên, không cần upload lại.
+
+Đã sửa trong index.html:
+  1. Nghị định 38/2021/NĐ-CP về xử phạt quảng cáo đã HẾT HIỆU LỰC thật —
+     tra cứu ngày 07/09/2026 xác nhận nó bị thay bằng Nghị định 87/2026/NĐ-CP
+     (ban hành 27/3/2026, hiệu lực 15/5/2026). Đã đổi thẻ trong nhóm Quảng cáo
+     sang văn bản mới, kèm mức phạt thật: quảng cáo tối đa 200 triệu tổ chức,
+     văn hóa tối đa 100 triệu tổ chức.
+  2. Nghị định quản lý mỹ phẩm mới: tra cứu xác nhận VẪN CÒN LÀ DỰ THẢO,
+     bản dự thảo mới nhất công bố lấy ý kiến ngày 29/5/2026, chưa có số hiệu,
+     chưa ký ban hành. Trong lúc chờ, thẻ Mỹ phẩm đã ghi rõ căn cứ đang dùng
+     thật là Thông tư 06/2011/TT-BYT (sửa bởi Thông tư 34/2025/TT-BYT,
+     hiệu lực 18/8/2025) thay vì để trống "chưa xác nhận được" như trước.
+
+Đã sửa trong quet-luat.yml:
+  3. Thêm kiểu kết nối --http1.1 vào máy quét, xen giữa các lần thử.
+     Nhiều cổng nhà nước (đặc biệt moh.gov.vn, imda.moh.gov.vn) hay báo
+     "fetch failed" vì máy chủ của họ cấu hình HTTP/2 lệch chuẩn — trình
+     duyệt tự lùi về HTTP/1.1 nên vẫn vào được, còn curl mặc định thì gãy.
+     CHƯA CHẠY THỬ THẬT được vì môi trường Cowork hiện tại bị chặn mạng ra
+     ngoài, chỉ kiểm tra được cú pháp đúng. Cần bấm Run workflow một lần
+     để biết có hết lỗi thật không.
+
+Hai việc CHƯA sửa được, biết rõ lý do, không phải bỏ quên:
+  - thuvienphapluat.vn báo HTTP 403: đây là chặn có chủ đích với IP máy chủ/
+    trung tâm dữ liệu đặt ngoài Việt Nam, không phải lỗi kỹ thuật của máy
+    quét. Không có cách sửa bằng header hay curl. 8 nguồn còn lại, trong đó
+    có Công báo Chính phủ là nguồn gốc chính thống nhất, vẫn phủ gần hết
+    những gì thuvienphapluat.vn có — mất nguồn này không đáng ngại.
+  - Gemini API có thể báo lỗi "User location is not supported" khi gọi từ
+    IP máy chủ đám mây (GitHub Actions dùng IP trung tâm dữ liệu). Đây là
+    giới hạn của Google với gói miễn phí, không phải lỗi trong code, và
+    không có cách sửa miễn phí chắc chắn — cách sửa thật là bật billing cho
+    project Google Cloud hoặc tự host máy chủ chạy máy quét, cả hai đều tốn
+    tiền nên tao không tự ý làm. Nếu dán khóa mà vẫn gặp lỗi này, máy quét
+    vẫn không hỏng: phần quét (không cần Gemini) vẫn chạy, vẫn ghi văn bản
+    mới tìm thấy vào capnhat.json, và trang web vẫn hiện link tra cứu Google
+    cho từng văn bản mới đó — chỉ là không có thẻ phân tích tự động đầy đủ.
+
+QUAN TRỌNG — giới hạn thật của Cowork trong phiên này:
+  Cowork ở đây KHÔNG có quyền tự đẩy code lên GitHub của mày (không có
+  GitHub connector, không đang liên kết với máy tính nào của mày). Nên lần
+  này vẫn phải tự tay upload 2 tệp đổi lên GitHub như hướng dẫn dưới, y như
+  trước giờ. Muốn Cowork tự git push thẳng cho những lần sau, cách duy nhất
+  là mở phiên làm việc này (hoặc phiên mới) từ ứng dụng Claude desktop, chọn
+  liên kết với máy tính có sẵn git đã đăng nhập GitHub của mày — lúc đó
+  Cowork chạy lệnh git ngay trên máy mày, không qua khâu tải lên tải xuống.
+
 TỆP TRONG THƯ MỤC NÀY
-  index.html        trang web
-  manifest.json     thông tin app (tên, logo, màu)
-  sw.js             máy chạy nền, giúp app tự cập nhật và mở được khi mất mạng
-  icon-192.png      logo Android
-  icon-512.png      logo Android bản lớn
-  icon-180.png      logo iPhone
-  quet-luat.yml     máy quét tự động (nội dung để dán, xem BƯỚC 2)
+  index.html        trang web (đã sửa — xem ở trên)
+  manifest.json     thông tin app (tên, logo, màu) — không đổi
+  sw.js             máy chạy nền, giúp app tự cập nhật — không đổi
+  icon-192.png      logo Android — không đổi
+  icon-512.png      logo Android bản lớn — không đổi
+  icon-180.png      logo iPhone — không đổi
+  quet-luat.yml     máy quét tự động (đã sửa — xem ở trên)
 
 ────────────────────────────────────────────
-CÀI ĐẶT — LÀM TRÊN TRÌNH DUYỆT ĐIỆN THOẠI
+CÀI ĐẶT LẦN ĐẦU — LÀM TRÊN TRÌNH DUYỆT ĐIỆN THOẠI
 ────────────────────────────────────────────
+(Nếu repo đã có sẵn 6 tệp từ trước, bỏ qua BƯỚC 1, chỉ upload đè
+index.html và quet-luat.yml — cách upload đè giống hệt BƯỚC 1, GitHub tự
+hỏi "This file already exists, replace it?" thì bấm đồng ý.)
 
 BƯỚC 1 — Đưa 6 tệp lên GitHub
   1. Vào repo, bấm Add file
@@ -28,7 +84,22 @@ BƯỚC 2 — Cài máy quét tự động
   4. Mở tệp quet-luat.yml, copy toàn bộ, dán vào
   5. Bấm Commit changes hai lần
 
-BƯỚC 3 — Cho máy quét quyền ghi
+  Nếu workflow đã cài từ trước: vào Actions → chọn workflow "Quét văn bản
+  pháp luật" → bấm nút … → Edit file, xoá hết nội dung cũ, dán nội dung
+  quet-luat.yml mới vào, Commit changes.
+
+BƯỚC 3 — Dán khóa Gemini để máy tự phân tích
+  1. Vào aistudio.google.com/apikey, tạo API key miễn phí, copy
+  2. Về repo, bấm tab Settings
+  3. Cột trái bấm "Secrets and variables", bấm "Actions"
+  4. Bấm "New repository secret"
+  5. Ô Name gõ đúng: GEMINI_API_KEY
+  6. Ô Secret dán khóa vừa copy
+  7. Bấm "Add secret"
+
+  Không dán khóa thì máy vẫn quét, chỉ không tự phân tích.
+
+BƯỚC 4 — Cho máy quét quyền ghi
   1. Bấm tab Settings
   2. Cột trái bấm Actions
   3. Bấm General
@@ -36,12 +107,14 @@ BƯỚC 3 — Cho máy quét quyền ghi
   5. Chọn "Read and write permissions"
   6. Bấm Save
 
-BƯỚC 4 — Chạy thử
+BƯỚC 5 — Chạy thử
   1. Bấm tab Actions
   2. Cột trái bấm "Quét văn bản pháp luật"
   3. Bấm Run workflow
   4. Bấm Run workflow màu xanh trong ô sổ xuống
   5. Đợi một phút, làm mới trang, chấm xanh là xong
+  6. Bấm vào lần chạy đó, mở bước "Quét và phân tích", đọc log xem còn
+     nguồn nào báo lỗi không — đây là cách kiểm chứng bản sửa lần này.
 
 ────────────────────────────────────────────
 CÀI THÀNH APP RA MÀN HÌNH
