@@ -1,7 +1,42 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
 ────────────────────────────────────────────
-CẬP NHẬT LẦN NÀY — 08/09/2026
+CẬP NHẬT LẦN NÀY — 08/09/2026 (bản chiều)
+────────────────────────────────────────────
+
+SỬA LỖI GEMINI TRẢ 404 — nguyên nhân thật đã tìm ra từ log lần chạy #5.
+
+Không phải bị chặn IP như lo ban đầu. Khoá API sống bình thường. Lỗi là
+Google đã ngừng cấp model gemini-2.5-flash cho khoá mới tạo, trả về
+"no longer available to new users", trong khi danh sách model của chính
+Google VẪN liệt kê nó. Code cũ tin vào danh sách nên chọn nhầm model chết.
+
+Cách sửa: không tin danh sách nữa, chỉ dùng nó để xếp thứ tự ứng viên,
+rồi GỌI THẬT từng model. Model nào trả về kết quả thật thì khoá lại dùng
+cho cả phiên; model nào trả 404 hoặc 400 thì loại hẳn, không thử lại.
+Thứ tự ưu tiên: đời mới trước, bản flash trước (nhanh và hạn mức miễn phí
+rộng nhất), bản preview để sau cùng.
+
+Đã chạy thử với máy chủ giả mô phỏng đúng lỗi này, cả kịch bản xấu nhất
+là mọi model flash đều chết: máy loại dần đúng thứ tự rồi tìm ra model
+sống và tiếp tục chạy bình thường.
+
+Muốn ép dùng một model cụ thể thì thêm secret tên GEMINI_MODEL, giá trị
+là tên model. Không thêm thì máy tự chọn.
+
+CÒN SỬA THÊM:
+  - Mỗi nguồn chỉ được thử tối đa 90 giây rồi bỏ qua. Lần chạy #5 mất
+    8 phút 32 chủ yếu vì moh.gov.vn chết mà vẫn bị thử đủ 6 kiểu kết nối.
+  - node-version đổi từ 20 lên 24, hết cảnh báo Node.js 20 sắp bị khai tử.
+
+KẾT QUẢ THẬT CỦA LẦN CHẠY #5 — bản sửa http1.1 đã ăn:
+  8 trên 9 nguồn đọc được, trước đó chỉ 3 trên 9.
+  imda.moh.gov.vn từ "fetch failed" nay chạy tốt, tìm được 5 văn bản.
+  thuvienphapluat.vn từ 403 nay cũng qua được.
+  Chỉ còn moh.gov.vn timeout.
+
+────────────────────────────────────────────
+CẬP NHẬT SÁNG 08/09/2026
 ────────────────────────────────────────────
 
 BỎ HẲN CHẾ ĐỘ QUÉT TRỰC TIẾP TỪ TRÌNH DUYỆT.
