@@ -1,7 +1,48 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
 ────────────────────────────────────────────
-CẬP NHẬT LẦN NÀY — 08/09/2026 (bản chiều)
+CẬP NHẬT LẦN NÀY — 08/09/2026 (bản tối)
+────────────────────────────────────────────
+
+XỬ LÝ LỖI 429 HẾT HẠN MỨC, phát hiện từ log lần chạy #6.
+
+Lần #6 đã hết lỗi 404, danh sách model lấy đúng (gemini-3.8-flash và các
+bản 3.x). Nhưng gọi thật thì cả 5 lượt đều trả 429 "exceeded your current
+quota". Nguyên nhân nhiều khả năng: các model đời mới nhất không nằm trong
+hạn mức miễn phí.
+
+Sửa ba chỗ:
+  1. Gặp 429 thì THỬ MODEL KHÁC thay vì bỏ cuộc. Code cũ coi 429 là lỗi
+     ngoài tầm model nên dừng luôn — sai, vì model rẻ hơn có thể vẫn còn
+     hạn mức miễn phí.
+  2. Đảo thứ tự ưu tiên: bản lite và bản nhỏ thử trước, model đắt tiền
+     (pro, ultra) xuống cuối. Mục tiêu là chạy được miễn phí, không phải
+     dùng model xịn nhất. Danh sách thử nới từ 8 lên 16 model để với tới
+     cả các đời cũ, nơi hạn mức miễn phí thường còn.
+  3. Khi mọi model đều 429 thì dừng hẳn cả phiên, không gọi tiếp cho các
+     văn bản còn lại. Lần #6 đã đốt 10 lượt gọi vô ích vào cùng một lỗi.
+
+Thêm bộ lọc loại sớm: trạm y tế xã phường đặc khu, định mức máy móc tài
+sản công, mã số hàng hoá xuất nhập khẩu, đầu tư công, viên chức. Đây đúng
+là 5 văn bản đã ngốn sạch lượt gọi AI ở lần #6 mà chẳng cái nào dính tới
+bệnh viện thẩm mỹ tư nhân.
+
+Đã chạy thử hai kịch bản bằng máy chủ giả:
+  - Model đời mới hết hạn mức, model lite còn: máy tự chuyển và chạy tiếp,
+    chỉ tốn 4 lượt gọi cho 3 văn bản.
+  - Mọi model đều hết hạn mức: máy dừng đúng lúc, 6 lượt thay vì 30.
+
+NẾU CHẠY LẠI VẪN 429 TOÀN BỘ thì nguyên nhân là hết hạn mức ở mức tài
+khoản, không phải mức model. Khi đó chọn một trong bốn hướng:
+  - Đợi sang ngày mới, hạn mức miễn phí hồi lại (reset theo giờ Mỹ, tức
+    khoảng đầu giờ chiều giờ Việt Nam).
+  - Tạo khoá mới từ một project Google khác, vẫn miễn phí.
+  - Bật billing cho project, hết cảnh bị chặn nhưng phát sinh chi phí.
+  - Bỏ hẳn phần AI. Máy quét vẫn chạy, app vẫn hiện văn bản mới ở mục
+    "Đang chờ phân tích" kèm link tra cứu, chỉ không có thẻ phân tích sẵn.
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 08/09/2026 (bản chiều)
 ────────────────────────────────────────────
 
 SỬA LỖI GEMINI TRẢ 404 — nguyên nhân thật đã tìm ra từ log lần chạy #5.
