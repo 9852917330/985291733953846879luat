@@ -1,6 +1,6 @@
 {
  "ngay": "08/09/2026",
- "gio": "19:06 ngày 08/09/2026",
+ "gio": "19:22 ngày 08/09/2026",
  "daTheoDoi": 23,
  "nguon": [
   {
@@ -25,7 +25,7 @@
    "n": "Bộ Y tế — Văn bản pháp quy",
    "u": "https://moh.gov.vn/van-ban-phap-quy",
    "trangThai": "loi",
-   "loi": "curl: (28) Connection timed out after 45002 milliseconds (dừng sau 90 giây)",
+   "loi": "curl: (28) Connection timed out after 45001 milliseconds (dừng sau 90 giây)",
    "phatHien": []
   },
   {
@@ -34,24 +34,8 @@
    "trangThai": "ok",
    "phatHien": [
     {
-     "code": "23/2026/TT-BYT",
-     "mota": "Thông tư 23/2026/TT-BYT ngày 29/06/2026 THÔNG TƯ Hướng dẫn về thiết kế Trạm Y tế xã, phường, đặc khu"
-    },
-    {
-     "code": "22/2026/TT-BYT",
-     "mota": "Thông tư 22/2026/TT-BYT ngày 29/06/2026 THÔNG TƯ Hướng dẫn danh mục máy móc, thiết bị cơ bản phục vụ hoạt động chuyên môn của Trạm Y tế xã, phường, đặc khu"
-    },
-    {
-     "code": "10/2026/TT-BYT",
-     "mota": "Thông tư 10/2026/TT-BYT ngày 14/05/2026 THÔNG TƯ Quy định chi tiết hướng dẫn về tiêu chuẩn, định mức sử dụng máy móc, thiết bị chuyên dùng trong lĩnh vực y tế thuộc lĩnh vực q"
-    },
-    {
      "code": "44/2025/TT-BYT",
      "mota": "Thông tư số 44/2025/TT-BYT ngày 22/11/2025 Quy định việc phân cấp thực hiện một số nhiệm vụ, giải quyết một số thủ tục hành chính trong lĩnh vực thiết bị y tế thuộc thẩm quyền"
-    },
-    {
-     "code": "19/2024/TT-BYT",
-     "mota": "Thông tư 19/2024/TT-BYT ngày 01/10/2024 Ban hành Danh mục thiết bị y tế xuất khẩu, nhập khẩu đã được xác định mã số hàng hóa theo danh mục hàng hóa xuất khẩu, nhập khẩu Việt N"
     }
    ]
   },
