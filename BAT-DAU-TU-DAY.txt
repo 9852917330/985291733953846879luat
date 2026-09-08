@@ -1,7 +1,73 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
 ────────────────────────────────────────────
-CẬP NHẬT LẦN NÀY — 08/09/2026 (bản tối)
+CẬP NHẬT LẦN NÀY — 08/09/2026 (bản đêm)
+────────────────────────────────────────────
+
+1. BỎ TOÀN BỘ XƯNG HÔ SUỒNG SÃ TRONG TRANG WEB.
+   Mọi chỗ dùng "tao" đã chuyển sang văn phong khách quan, chuyên nghiệp,
+   phù hợp với người đọc là giám đốc điều hành bệnh viện. Nội dung và mức
+   độ thẳng thắn giữ nguyên, chỉ đổi cách xưng hô.
+
+2. THÊM NHÓM MỚI: DƯỢC & THUỐC.
+   Đặt ngay sau nhóm Thiết bị & mỹ phẩm trong menu dọc. Màu chàm, biểu
+   tượng viên nang. Tổng số văn bản theo dõi tăng từ 27 lên 31.
+
+   Bốn văn bản trong nhóm, đã tra cứu và đối chiếu ngày 08/09/2026:
+     - Luật Dược 105/2016/QH13, sửa bởi Luật 44/2024/QH15 hiệu lực
+       01/7/2025, hợp nhất tại 76/VBHN-VPQH năm 2026.
+     - Nghị định 163/2025/NĐ-CP quy định chi tiết thi hành Luật Dược,
+       ban hành 29/6/2025, hiệu lực 01/7/2025.
+     - Thông tư 26/2025/TT-BYT về kê đơn thuốc, hiệu lực 01/7/2025, thay
+       thế bốn thông tư cũ. Điểm quan trọng nhất: đơn thuốc điện tử là
+       BẮT BUỘC, bệnh viện từ 01/10/2025, cơ sở khác từ 01/01/2026 — cả
+       hai mốc đều đã qua.
+     - Thông tư 18/2026/TT-BYT về thuốc phải kiểm soát đặc biệt, ban hành
+       01/6/2026, hiệu lực 16/7/2026, thay Thông tư 20/2017. Bổ sung
+       Etomidate và Carisoprodol vào danh mục hướng thần — Etomidate là
+       thuốc khởi mê nên nhiều cơ sở thẩm mỹ đang có sẵn.
+
+   Kèm theo: 2 việc cần làm mới (kiểm kê thuốc kiểm soát đặc biệt hằng
+   tháng, kiểm tra đơn thuốc điện tử và nguồn gốc thuốc), 3 điểm dễ vỡ
+   mới. Việc cần làm tăng từ 11 lên 13, điểm dễ vỡ từ 10 lên 13.
+
+   Máy quét cũng đã được cập nhật để nhận nhóm này: thêm từ khoá về dược
+   vào bộ lọc, và thêm mã nhóm duoc vào danh sách để trợ lý AI xếp đúng
+   chỗ khi phát hiện văn bản mới về thuốc.
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 08/09/2026 (bản tối, lần 2)
+────────────────────────────────────────────
+
+ĐÃ TÌM RA THỦ PHẠM THẬT CỦA LỖI 429.
+
+Không phải model hết hạn mức. Là công cụ TRA CỨU GOOGLE kèm theo mỗi lần
+gọi. Trên gói miễn phí, tính năng này có hạn mức riêng và thấp hơn nhiều
+so với hạn mức gọi model thường. Vì nó nằm ngoài model nên đổi model bao
+nhiêu lần cũng vô ích — đúng như log lần #7: cả 14 model đều 429 ngay từ
+lượt gọi đầu.
+
+Cách sửa: khi dính 429 lúc đang bật tra web, thử lại ngay cùng model đó
+nhưng bỏ tra web. Qua được thì cả phiên chuyển sang chế độ không tra web.
+
+ĐÁNH ĐỔI PHẢI BIẾT: không tra web nghĩa là trợ lý AI chỉ còn dựa vào tên
+văn bản và kiến thức sẵn có. Với nội dung pháp luật, bịa nguy hiểm hơn bỏ
+trống, nên đã xử lý ba lớp:
+  - Siết hướng dẫn: cấm suy đoán số điều khoản, mức phạt, ngày hiệu lực.
+    Không chắc thì để trống. Quá ít thông tin thì loại luôn văn bản đó.
+  - Thẻ hiện trên app được gắn nhãn cam "Cần đối chiếu".
+  - Phần lưu ý của thẻ ghi rõ mục này phân tích khi không tra cứu được
+    internet, bắt buộc mở toàn văn đối chiếu trước khi dùng.
+
+Muốn tự xem hạn mức thật của khoá mình đang dùng thì vào
+aistudio.google.com/rate-limit
+
+Đã chạy thử hai kịch bản: hạn mức tra web cạn còn gọi thường vẫn chạy
+(máy tự chuyển chế độ, 3 lượt gọi cho 2 văn bản), và cả hai đều cạn
+(máy dừng đúng lúc, không đốt thêm).
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 08/09/2026 (bản tối, lần 1)
 ────────────────────────────────────────────
 
 XỬ LÝ LỖI 429 HẾT HẠN MỨC, phát hiện từ log lần chạy #6.

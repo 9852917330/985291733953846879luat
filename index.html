@@ -20,6 +20,7 @@
   --r:10px;
   --c-kcb:#E0453C; --c-dn:#2563EB; --c-pccc:#EA580C; --c-tb:#7C3AED;
   --c-mt:#16A34A; --c-ld:#0891B2; --c-dl:#DB2777; --c-ktd:#CA8A04; --c-qc:#0D9488;
+  --c-duoc:#4338CA;
   --t1:#DC2626; --t1b:#FEF2F2; --t2:#D97706; --t2b:#FFFBEB; --t3:#2563EB; --t3b:#EFF6FF;
 }
 *{box-sizing:border-box}
@@ -352,6 +353,7 @@ const I = {
   dn :'<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01"/>',
   pccc:'<path d="M12 2s4 4.5 4 8a4 4 0 0 1-8 0c0-1.5.7-2.8.7-2.8S6 10 6 14a6 6 0 0 0 12 0c0-5-6-12-6-12Z"/>',
   tb :'<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 10h2l1.5 3 2-6 1.5 3h5"/>',
+  duoc:'<path d="M10.5 20.5 3.5 13.5a4.95 4.95 0 0 1 7-7l7 7a4.95 4.95 0 0 1-7 7Z"/><path d="M8.5 8.5l7 7"/>',
   mt :'<path d="M11 20A7 7 0 0 1 4 13c0-6 7-9 16-9 0 9-3 16-9 16Z"/><path d="M4 21c1-6 4-9 8-11"/>',
   ld :'<circle cx="9" cy="7" r="3.5"/><path d="M2 21v-1.5A5.5 5.5 0 0 1 7.5 14h3A5.5 5.5 0 0 1 16 19.5V21"/><path d="M17 7.5a3 3 0 0 1 0 5.5M18.5 14a4.5 4.5 0 0 1 3.5 4.4V21"/>',
   dl :'<path d="M12 2 4 5.5V11c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5.5L12 2Z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11"/>',
@@ -371,6 +373,7 @@ const CATS = [
   {k:"dn",  n:"Doanh nghiệp",        c:"var(--c-dn)",   sub:"Quản trị công ty, thẩm quyền ký, ngành nghề có điều kiện"},
   {k:"pccc",n:"Phòng cháy chữa cháy",c:"var(--c-pccc)", sub:"Nghĩa vụ hằng tháng, kiểm tra, bảo hiểm cháy nổ"},
   {k:"tb",  n:"Thiết bị & mỹ phẩm",  c:"var(--c-tb)",   sub:"Số lưu hành thiết bị, công bố mỹ phẩm, ghi nhãn"},
+  {k:"duoc",n:"Dược & thuốc",        c:"var(--c-duoc)", sub:"Nguồn gốc thuốc, kê đơn điện tử, thuốc kiểm soát đặc biệt"},
   {k:"mt",  n:"Môi trường & chất thải",c:"var(--c-mt)", sub:"Giấy phép môi trường, nước thải, chất thải lây nhiễm"},
   {k:"ld",  n:"Lao động & BHXH",     c:"var(--c-ld)",   sub:"Hợp đồng, bảo hiểm, an toàn vệ sinh lao động"},
   {k:"dl",  n:"Dữ liệu cá nhân",     c:"var(--c-dl)",   sub:"Ảnh trước sau, hồ sơ khách hàng, mức phạt tới 3 tỷ"},
@@ -392,7 +395,7 @@ const DOCS = [
  risks:["Phạt tiền tối đa 100 triệu với cá nhân và 200 triệu với tổ chức; dược và thiết bị y tế lên 150 triệu cá nhân, 300 triệu tổ chức.",
    "Phạt bổ sung nặng hơn tiền: tước giấy phép hoặc chứng chỉ hành nghề 1 đến 24 tháng, đình chỉ hoạt động 1 đến 24 tháng.",
    "Bổ sung chế tài cho vi phạm trên môi trường điện tử và hành vi làm lộ lọt dữ liệu sức khỏe cá nhân."],
- notes:"Đây là văn bản duy nhất tao khuyên đọc nguyên văn phần khám chữa bệnh thay vì đọc tóm tắt.",
+ notes:"Đây là văn bản duy nhất nên đọc nguyên văn phần khám chữa bệnh thay vì đọc bản tóm tắt.",
  src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/?pageid=27160&docid=217386&classid=1&orggroupid=2"},
  q:"Nghị định 90/2026/NĐ-CP xử phạt vi phạm hành chính lĩnh vực y tế toàn văn"},
 
@@ -552,6 +555,64 @@ const DOCS = [
  src:{label:"Toàn văn dự thảo trên Cổng Xây dựng chính sách",url:"https://xaydungchinhsach.chinhphu.vn/toan-van-du-thao-nghi-dinh-quy-dinh-ve-quan-ly-my-pham-119260529154617902.htm"},
  q:"nghị định quản lý mỹ phẩm mới nhất phiếu công bố sản phẩm mỹ phẩm 2026"},
 
+/* ---- DƯỢC & THUỐC ---- */
+{id:"luatduoc",cat:"duoc",tier:2,
+ title:"Luật Dược",
+ code:"105/2016/QH13 · sửa bởi 44/2024/QH15", eff:"Bản sửa đổi hiệu lực 01/7/2025 · hợp nhất tại 76/VBHN-VPQH năm 2026",
+ fine:"300 triệu đồng", fineNote:"mức phạt tối đa với tổ chức trong lĩnh vực dược theo Nghị định 90/2026",
+ essence:"Bệnh viện thẩm mỹ dùng thuốc mỗi ngày: thuốc tê, thuốc mê, an thần, kháng sinh, botulinum toxin. Luật Dược chi phối toàn bộ nguồn gốc, bảo quản và sử dụng số thuốc đó. Đây là nhóm rủi ro thường bị bỏ quên vì cơ sở nghĩ mình không kinh doanh dược.",
+ duties:["Xác nhận bộ phận dược của bệnh viện có người chịu trách nhiệm chuyên môn về dược đủ điều kiện theo quy định.",
+   "Chỉ mua thuốc từ cơ sở đủ điều kiện kinh doanh dược, lưu hóa đơn và chứng từ chứng minh nguồn gốc từng lô.",
+   "Mọi thuốc sử dụng cho người bệnh phải có giấy đăng ký lưu hành hợp lệ tại Việt Nam — đặc biệt với botulinum toxin và các thuốc tiêm dùng trong thẩm mỹ.",
+   "Kiểm soát hạn dùng và điều kiện bảo quản theo đúng khuyến cáo của nhà sản xuất, có nhật ký theo dõi nhiệt độ nơi bảo quản."],
+ risks:["Sử dụng thuốc không rõ nguồn gốc hoặc chưa được cấp phép lưu hành là vi phạm nặng, có thể bị đình chỉ hoạt động và truy cứu trách nhiệm hình sự nếu xảy ra tai biến.",
+   "Thuốc xách tay, hàng biếu tặng hoặc hàng do người giới thiệu sản phẩm để lại là con đường phổ biến nhất đưa thuốc không hợp pháp vào cơ sở thẩm mỹ."],
+ notes:"Nên đọc bản hợp nhất 76/VBHN-VPQH thay vì bản Luật Dược 2016 gốc, vì bản gốc chưa có nội dung sửa đổi năm 2024.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/?pageid=27160&docid=212466&classid=1&typegroupid=3"},
+ q:"Văn bản hợp nhất 76/VBHN-VPQH Luật Dược toàn văn"},
+
+{id:"nd163",cat:"duoc",tier:2,flag:"new",
+ title:"Quy định chi tiết thi hành Luật Dược",
+ code:"163/2025/NĐ-CP", eff:"Ban hành 29/6/2025 · hiệu lực 01/7/2025",
+ essence:"Nghị định hướng dẫn thi hành Luật Dược sau lần sửa đổi 2024. Đây là nơi quy định chi tiết điều kiện đối với bộ phận dược trong cơ sở khám bệnh, chữa bệnh, cùng bộ thủ tục hành chính đi kèm.",
+ duties:["Rà soát điều kiện của bộ phận dược trong bệnh viện: nhân sự chịu trách nhiệm chuyên môn, cơ sở vật chất, tài liệu kỹ thuật.",
+   "Đối chiếu danh mục thủ tục hành chính mới và thủ tục bị bãi bỏ được công bố tại Quyết định 2278/QĐ-BYT kèm theo nghị định này, trước khi nộp bất kỳ hồ sơ nào về dược.",
+   "Cập nhật quy chế dược nội bộ theo khung mới thay vì giữ nguyên quy chế soạn theo Nghị định 54/2017."],
+ risks:["Thiếu người chịu trách nhiệm chuyên môn về dược khiến toàn bộ hoạt động cấp phát và sử dụng thuốc nội bộ không có căn cứ pháp lý vững.",
+   "Nộp hồ sơ theo thủ tục cũ đã bị bãi bỏ làm kéo dài thời gian xử lý, ảnh hưởng tới các mốc tuân thủ khác."],
+ notes:"",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Nghị định 163/2025/NĐ-CP quy định chi tiết thi hành Luật Dược toàn văn"},
+
+{id:"tt26kd",cat:"duoc",tier:2,flag:"new",
+ title:"Kê đơn thuốc và lộ trình đơn thuốc điện tử bắt buộc",
+ code:"26/2025/TT-BYT", eff:"Ban hành 30/6/2025 · hiệu lực 01/7/2025",
+ essence:"Thay thế bốn thông tư cũ về kê đơn, trong đó có Thông tư 52/2017. Điểm buộc phải hành động ngay là lộ trình đơn thuốc điện tử: bệnh viện áp dụng từ 01/10/2025, các cơ sở khám bệnh chữa bệnh khác từ 01/01/2026. Cả hai mốc đều đã qua.",
+ duties:["Xác nhận phần mềm của bệnh viện đã kê đơn thuốc điện tử và liên thông dữ liệu đúng quy định. Đây là việc kiểm tra đầu tiên vì mốc bắt buộc đã qua từ lâu.",
+   "Bảo đảm đơn thuốc có đủ thông tin bắt buộc: định danh người bệnh, tên thuốc, hàm lượng, số lượng, liều dùng, cách dùng và thời gian dùng.",
+   "Rà lại thực tế ai đang ký đơn thuốc — chỉ người hành nghề đủ điều kiện theo quy định mới được kê đơn.",
+   "Nắm giới hạn thời gian kê đơn với nhóm thuốc kiểm soát đặc biệt: thuốc gây nghiện tối đa 7 ngày cho bệnh cấp tính, thuốc hướng thần tối đa 10 ngày cho bệnh cấp tính và 30 ngày cho bệnh mạn tính."],
+ risks:["Chưa chuyển sang đơn thuốc điện tử là vi phạm đã quá hạn tuân thủ, rất dễ bị phát hiện khi hậu kiểm bằng dữ liệu thay vì kiểm tra thực địa.",
+   "Người không đủ điều kiện đứng tên kê đơn là lỗi nghiêm trọng, kéo theo trách nhiệm liên đới của cơ sở khi có tai biến."],
+ notes:"Trong nhóm Dược, đây là mục nên kiểm tra trước tiên vì thời hạn tuân thủ đã trôi qua và bằng chứng vi phạm nằm sẵn trong dữ liệu hệ thống.",
+ src:{label:"Toàn văn trên Cổng thông tin Chính phủ",url:"https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/26-byt.pdf"},
+ q:"Thông tư 26/2025/TT-BYT kê đơn thuốc đơn thuốc điện tử lộ trình bắt buộc"},
+
+{id:"tt18ksdb",cat:"duoc",tier:1,flag:"new",
+ title:"Thuốc và nguyên liệu làm thuốc phải kiểm soát đặc biệt",
+ code:"18/2026/TT-BYT", eff:"Ban hành 01/6/2026 · hiệu lực 16/7/2026",
+ essence:"Thay thế Thông tư 20/2017. Quy định cách quản lý thuốc gây nghiện, thuốc hướng thần và tiền chất dùng làm thuốc. Với bệnh viện thẩm mỹ, đây chính là nhóm thuốc dùng khi gây mê, an thần và giảm đau — quản lý sai không dừng ở phạt tiền mà chuyển thẳng sang rủi ro hình sự.",
+ duties:["Rà danh mục thuốc đang sử dụng đối chiếu danh mục mới. Etomidate và Carisoprodol đã được bổ sung vào danh mục dược chất hướng thần từ 01/6/2026 — riêng Etomidate là thuốc dùng khởi mê nên nhiều cơ sở thẩm mỹ có sẵn.",
+   "Bảo quản thuốc kiểm soát đặc biệt trong tủ riêng có khóa, giao cho người phụ trách bằng văn bản, có sổ theo dõi xuất nhập tồn tới từng ống thuốc.",
+   "Hủy thuốc phải lập hội đồng và biên bản theo đúng quy trình, tuyệt đối không tự hủy rồi ghi sổ sau.",
+   "Thông tư cho phép dùng hồ sơ điện tử thay sổ giấy, nhưng chỉ khi đáp ứng đủ điều kiện về toàn vẹn dữ liệu, khả năng truy xuất, bảo mật và xác thực. Chuyển đổi nửa vời vừa mất sổ giấy vừa không đạt điều kiện là tình huống xấu nhất."],
+ risks:["Thất thoát thuốc gây nghiện hoặc hướng thần là vụ việc hình sự, người phụ trách và người đứng đầu cơ sở cùng chịu trách nhiệm.",
+   "Sổ sách không khớp số lượng thực tế là lỗi bị phát hiện ngay trong mọi đợt kiểm tra, và rất khó giải thích khi chênh lệch nằm ở nhóm thuốc này.",
+   "Dùng thuốc gây mê, an thần khi chưa được phê duyệt phạm vi chuyên môn tương ứng làm rủi ro nhân đôi: vừa vi phạm về dược, vừa vi phạm về khám chữa bệnh."],
+ notes:"Đây là mục có hậu quả nặng nhất trong nhóm Dược. Nếu bệnh viện có thực hiện gây mê hoặc tiền mê, cần kiểm tra ngay danh mục thuốc và sổ theo dõi trước khi thông tư áp dụng ổn định.",
+ src:{label:"Cổng văn bản Chính phủ",url:"https://vanban.chinhphu.vn/"},
+ q:"Thông tư 18/2026/TT-BYT thuốc phải kiểm soát đặc biệt toàn văn"},
+
 /* ---- MÔI TRƯỜNG ---- */
 {id:"luatbvmt",cat:"mt",tier:2,
  title:"Luật Bảo vệ môi trường",
@@ -629,7 +690,7 @@ const DOCS = [
    "Vi phạm về chuyển dữ liệu cá nhân xuyên biên giới bị phạt tối đa 5% doanh thu của năm liền trước.",
    "Vi phạm nghiêm trọng có thể bị truy cứu trách nhiệm hình sự.",
    "Rủi ro thực tế cao nhất: nhân viên marketing đăng ảnh trước sau của khách lên mạng xã hội mà không có văn bản đồng ý còn hiệu lực."],
- notes:"Nếu chỉ có thời gian làm một việc trong quý này, tao chọn việc này: dựng lại mẫu đồng ý sử dụng hình ảnh và dữ liệu sức khỏe của khách hàng. Vừa là rủi ro tiền lớn nhất, vừa là thứ dễ sửa nhất.",
+ notes:"Nếu chỉ làm được một việc trong quý này, nên chọn việc này: dựng lại mẫu đồng ý sử dụng hình ảnh và dữ liệu sức khỏe của khách hàng. Vừa là rủi ro tiền lớn nhất, vừa là thứ dễ khắc phục nhất.",
  src:{label:"Bộ Công an",url:"https://bocongan.gov.vn/chinh-sach-phap-luat/bai-viet/luat-bao-ve-du-lieu-ca-nhan-chinh-thuc-co-hieu-luc-thi-hanh-tu-ngay-01-01-2026-1767186124"},
  q:"Luật Bảo vệ dữ liệu cá nhân 2025 số 91/2025/QH15 mức phạt doanh nghiệp"},
 
@@ -721,7 +782,7 @@ const DOCS = [
    "Đối chiếu lại các hành vi bị phạt bổ sung liên quan giấy phép hoạt động khám bệnh, chữa bệnh — nghị định có nhắc chế tài tước quyền sử dụng giấy phép, cần đọc kỹ điều khoản áp dụng cho quảng cáo dịch vụ y tế."],
  risks:["Phạt tiền cộng buộc tháo gỡ và cải chính công khai — thiệt hại thương hiệu thường lớn hơn tiền phạt.",
    "Dùng lại số liệu mức phạt cũ theo 38/2021 khi báo cáo hội đồng quản trị hoặc đào tạo nội bộ là căn cứ sai từ 15/5/2026."],
- notes:"Đã kiểm chứng ngày 07/09/2026: 38/2021/NĐ-CP hết hiệu lực, thay bằng 87/2026/NĐ-CP. Tao mới xác nhận được khung mức phạt tổng quát qua tra cứu, chưa đọc toàn văn chi tiết từng hành vi — trước khi dùng để xử lý một ca cụ thể, tải bản đầy đủ trên Công báo Chính phủ.",
+ notes:"Đã kiểm chứng ngày 07/09/2026: Nghị định 38/2021/NĐ-CP hết hiệu lực, thay bằng Nghị định 87/2026/NĐ-CP. Mới xác nhận được khung mức phạt tổng quát, chưa đối chiếu toàn văn chi tiết từng hành vi — trước khi dùng để xử lý một vụ việc cụ thể, cần tải bản đầy đủ trên Công báo Chính phủ.",
  src:{label:"Công báo Chính phủ",url:"https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359/64268.htm"},
  q:"Nghị định 87/2026/NĐ-CP xử phạt vi phạm hành chính văn hóa quảng cáo toàn văn"}
 ];
@@ -789,6 +850,26 @@ const ACTIONS = [
   "Rà lại toàn bộ máy đang có ít nhất một lần mỗi năm bằng chính checklist này."],
  who:"Phòng vật tư thiết bị chuẩn bị hồ sơ, giám đốc điều hành ký duyệt cho phép sử dụng."},
 
+{id:"a12",cat:"duoc",freq:"Mỗi tháng",title:"Kiểm kê thuốc kiểm soát đặc biệt và đối chiếu sổ sách",
+ why:"Thuốc gây nghiện và hướng thần là nhóm duy nhất mà chênh lệch sổ sách dẫn thẳng tới trách nhiệm hình sự, không dừng ở phạt hành chính. Thông tư 18/2026/TT-BYT vừa siết thêm và bổ sung Etomidate vào danh mục hướng thần từ 01/6/2026.",
+ steps:["Lập danh sách thuốc kiểm soát đặc biệt bệnh viện đang có, đối chiếu với danh mục tại Thông tư 18/2026/TT-BYT. Chú ý các thuốc dùng khởi mê và an thần vì danh mục vừa được bổ sung.",
+  "Kiểm đếm thực tế từng ống, từng vỉ trong tủ có khóa, so với số liệu trên sổ theo dõi xuất nhập tồn.",
+  "Mọi chênh lệch phải truy nguyên ngay trong ngày và ghi rõ nguyên nhân, không để sang tháng sau.",
+  "Kiểm tra người được giao phụ trách đã có quyết định bằng văn bản chưa, và người đó có bàn giao đúng quy trình khi nghỉ phép không.",
+  "Kiểm tra vỏ ống thuốc đã dùng có được giữ lại theo quy định nội bộ không, đây là bằng chứng đối chiếu quan trọng khi có sự cố.",
+  "Ký xác nhận biên bản kiểm kê, lưu cùng một cặp hồ sơ theo năm."],
+ who:"Người phụ trách dược thực hiện, người chịu trách nhiệm chuyên môn kỹ thuật và giám đốc điều hành cùng ký xác nhận."},
+
+{id:"a13",cat:"duoc",freq:"Ngay lập tức",title:"Kiểm tra đơn thuốc điện tử và nguồn gốc thuốc",
+ why:"Lộ trình bắt buộc đơn thuốc điện tử theo Thông tư 26/2025/TT-BYT đã qua từ 01/10/2025 với bệnh viện. Nếu chưa làm thì cơ sở đang ở trạng thái vi phạm, và bằng chứng nằm sẵn trong dữ liệu hệ thống nên không thể giải thích khác.",
+ steps:["Mở phần mềm bệnh viện, kiểm tra đơn thuốc có được tạo và lưu dưới dạng điện tử đúng quy định không, có liên thông dữ liệu không.",
+  "Lấy ngẫu nhiên mười đơn thuốc gần nhất, kiểm tra đủ thông tin bắt buộc: định danh người bệnh, tên thuốc, hàm lượng, số lượng, liều dùng, cách dùng, thời gian dùng.",
+  "Đối chiếu người ký đơn với danh sách người hành nghề đủ điều kiện kê đơn. Loại ngay trường hợp điều dưỡng hoặc nhân viên tư vấn ký thay bác sĩ.",
+  "Lấy ngẫu nhiên năm loại thuốc tiêm đang dùng, truy ngược hóa đơn và chứng từ nhập để chứng minh nguồn gốc từng lô.",
+  "Với botulinum toxin và chất làm đầy, kiểm tra giấy đăng ký lưu hành tại Việt Nam còn hiệu lực không. Đây là nhóm hay bị nhập không chính ngạch nhất.",
+  "Ra quy định nội bộ cấm tuyệt đối việc đưa thuốc xách tay hoặc thuốc do người giới thiệu sản phẩm để lại vào sử dụng cho khách hàng."],
+ who:"Phòng dược và phòng công nghệ thông tin phối hợp rà soát, giám đốc điều hành duyệt kết quả."},
+
 {id:"a7",cat:"mt",freq:"Mỗi năm",title:"Báo cáo môi trường và quản lý chất thải y tế",
  why:"Bệnh viện phải có giấy phép môi trường và báo cáo hằng năm. Để lẫn chất thải lây nhiễm vào rác sinh hoạt là lỗi bị bắt nhiều nhất tại cơ sở y tế.",
  steps:["Kiểm tra giấy phép môi trường còn hiệu lực đến ngày nào, đặt nhắc gia hạn trước 6 tháng.",
@@ -847,6 +928,9 @@ const RISKS = [
  ["Quảng cáo thiếu số giấy phép hoạt động và phạm vi chuyên môn","qc","Lỗi hình thức, dễ bị bắt, gần như không cãi được. Chi phí sửa gần bằng không."],
  ["Cam kết kết quả trong quảng cáo và trong tư vấn","qc","Vừa vi phạm quảng cáo, vừa trở thành cam kết hợp đồng khi khách khiếu nại kết quả."],
  ["Thiết bị không có số lưu hành hoặc máy mượn dùng thử","tb","Nằm trong nhóm bị phạt nặng nhất theo Nghị định 90/2026, tới 300 triệu với tổ chức."],
+ ["Sổ thuốc gây nghiện, hướng thần không khớp thực tế","duoc","Nhóm duy nhất mà chênh lệch sổ sách dẫn thẳng tới trách nhiệm hình sự. Etomidate vừa được bổ sung vào danh mục hướng thần từ 01/6/2026."],
+ ["Thuốc tiêm và botulinum toxin không chứng minh được nguồn gốc","duoc","Hàng xách tay hoặc hàng do người giới thiệu sản phẩm để lại là con đường phổ biến nhất đưa thuốc không hợp pháp vào cơ sở thẩm mỹ."],
+ ["Chưa chuyển sang đơn thuốc điện tử","duoc","Thời hạn bắt buộc với bệnh viện đã qua từ 01/10/2025. Bằng chứng vi phạm nằm sẵn trong dữ liệu hệ thống."],
  ["Không có biên bản tự kiểm tra phòng cháy hằng tháng","pccc","Giấy tờ thuần túy nhưng là thứ đoàn kiểm tra hỏi đầu tiên."],
  ["Chất thải lây nhiễm lẫn vào rác sinh hoạt","mt","Một thao tác sai của một điều dưỡng thành vi phạm của cả bệnh viện."],
  ["Người chịu trách nhiệm chuyên môn nghỉ mà chưa có người thay","dn","Giấy phép hoạt động bị treo trên thực tế dù giấy vẫn còn hạn."],
@@ -912,11 +996,11 @@ $("#side").innerHTML =
 let AUTO = [];  // văn bản máy quét tìm được và Gemini đã phân tích, nạp từ vanban-moi.json
 
 function cauHoiAI(v){
-  return "Tao là giám đốc điều hành một bệnh viện thẩm mỹ tư nhân ở Hà Nội. "
-    + "Phân tích giúp tao văn bản pháp luật sau:\n\n" + v + "\n\n"
-    + "Cho tao biết gọn và thực chiến: đã có hiệu lực chưa, thay thế văn bản nào, "
-    + "bản chất điều chỉnh cái gì, bệnh viện thẩm mỹ phải làm gì theo từng bước, "
-    + "sai thì phạt bao nhiêu và có bị đình chỉ không, mức độ ưu tiên.";
+  return "Tôi là giám đốc điều hành một bệnh viện thẩm mỹ tư nhân tại Hà Nội. "
+    + "Vui lòng phân tích giúp tôi văn bản pháp luật sau:\n\n" + v + "\n\n"
+    + "Cho tôi biết ngắn gọn và thực tế: văn bản đã có hiệu lực chưa, thay thế văn bản nào, "
+    + "bản chất điều chỉnh vấn đề gì, bệnh viện thẩm mỹ phải làm những gì theo từng bước, "
+    + "vi phạm thì mức phạt bao nhiêu và có bị đình chỉ hoạt động không, mức độ ưu tiên xử lý.";
 }
 
 async function chep(text, nut){
@@ -954,7 +1038,10 @@ async function napTuDong(){
       essence: v.essence || "",
       duties: Array.isArray(v.duties) && v.duties.length ? v.duties : ["Đọc toàn văn và đối chiếu với hoạt động thực tế của bệnh viện."],
       risks:  Array.isArray(v.risks)  && v.risks.length  ? v.risks  : ["Chưa xác định. Cần đối chiếu bản gốc."],
-      notes: (v.notes || "") + " Mục này do máy quét tìm thấy và trợ lý AI phân tích tự động. Đối chiếu bản gốc trước khi dùng làm căn cứ cho quyết định quan trọng.",
+      khongTraWeb: !!v.khongTraWeb,
+      notes: (v.notes || "") + (v.khongTraWeb
+        ? " CẢNH BÁO: mục này được phân tích khi máy KHÔNG tra cứu được internet, nên chỉ dựa trên tên văn bản và kiến thức sẵn có của trợ lý AI. Số điều khoản, mức phạt và ngày hiệu lực ở đây có thể thiếu hoặc sai. Bắt buộc mở toàn văn đối chiếu trước khi dùng."
+        : " Mục này do máy quét tìm thấy và trợ lý AI phân tích tự động. Đối chiếu bản gốc trước khi dùng làm căn cứ cho quyết định quan trọng."),
       src: { label: "Đọc toàn văn", url: v.url || gsearch(v.code + " toàn văn") },
       q: v.code + " toàn văn"
     }));
@@ -996,6 +1083,7 @@ function render(){
         ${d.flag==="new"?'<span class="tag new">Mới</span>':""}
         ${d.flag==="warn"?'<span class="tag warn">Đang thay đổi</span>':""}
         ${d.auto?'<span class="tag auto">Tự động cập nhật</span>':""}
+        ${d.khongTraWeb?'<span class="tag warn">Cần đối chiếu</span>':""}
       </div>
       <div class="dhead">
         <span class="dic">${svg(I[d.cat]||I.all,17)}</span>
@@ -1076,7 +1164,7 @@ function openAction(id){
 }
 
 function openRisks(){
-  openModal("var(--t1)", I.risk, "Mười điểm dễ vỡ nhất",
+  openModal("var(--t1)", I.risk, RISKS.length + " điểm dễ vỡ nhất",
     `<span style="font-size:12.5px;color:var(--ink3)">Xếp theo mức độ hay xảy ra và hậu quả</span>`,
     `<p>Đây là những chỗ bệnh viện thẩm mỹ hay gãy nhất trên thực tế, không phải theo lý thuyết.</p>
      <div class="rows">${RISKS.map((r,i)=>{const c=CAT(r[1]);

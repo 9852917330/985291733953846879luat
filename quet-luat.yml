@@ -43,7 +43,7 @@ jobs:
           ];
 
           const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
-          const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
+          const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|Luật Dược|kinh doanh dược|đăng ký lưu hành thuốc|kê đơn|đơn thuốc|kiểm soát đặc biệt|gây nghiện|hướng thần|tiền chất|gây mê|gây tê|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
           /* Nhóm sau đây thuộc ngành khác hoặc thuộc khối y tế công lập, không chạm tới một
              bệnh viện thẩm mỹ tư nhân. Lọc thẳng ở đây để khỏi tốn lượt gọi AI — lần chạy #6
              đã đốt cả 5 lượt vào loại văn bản này (trạm y tế xã, định mức máy móc công lập,
@@ -231,7 +231,7 @@ jobs:
           Cấu trúc JSON bắt buộc:
           {
             "lienQuan": true hoặc false,
-            "cat": một trong "kcb","dn","pccc","tb","mt","ld","dl","ktd","qc",
+            "cat": một trong "kcb","dn","pccc","tb","duoc","mt","ld","dl","ktd","qc",
             "tier": 1, 2 hoặc 3,
             "title": "tên ngắn gọn dễ hiểu, không chép nguyên tên hành chính dài",
             "eff": "ngày ban hành và ngày hiệu lực, nêu cả văn bản bị thay thế nếu có",
@@ -246,19 +246,31 @@ jobs:
 
           Quy tắc:
           - lienQuan = false nếu văn bản KHÔNG liên quan tới vận hành bệnh viện thẩm mỹ. Khi đó các trường khác để rỗng.
-          - Ý nghĩa nhóm: kcb khám chữa bệnh và giấy phép, dn doanh nghiệp, pccc phòng cháy chữa cháy, tb thiết bị y tế và mỹ phẩm, mt môi trường và chất thải, ld lao động và bảo hiểm, dl dữ liệu cá nhân, ktd người tiêu dùng và trách nhiệm hình sự, qc quảng cáo.
+          - Ý nghĩa nhóm: kcb khám chữa bệnh và giấy phép, dn doanh nghiệp, pccc phòng cháy chữa cháy, tb thiết bị y tế và mỹ phẩm, duoc thuốc và dược gồm nguồn gốc thuốc kê đơn thuốc kiểm soát đặc biệt, mt môi trường và chất thải, ld lao động và bảo hiểm, dl dữ liệu cá nhân, ktd người tiêu dùng và trách nhiệm hình sự, qc quảng cáo.
           - tier 1 nếu sai có thể bị đình chỉ hoạt động hoặc truy cứu hình sự, tier 2 nếu phạt tiền nặng hoặc tước giấy phép, tier 3 nếu chỉ là nền tảng cần biết.
           - Viết tiếng Việt tự nhiên, câu ngắn, không dùng dấu gạch ngang giữa câu, không dùng dấu ngoặc kép bên trong nội dung.
           - Nếu không tra được văn bản, đặt lienQuan = false.`;
 
-          /* Gọi một model cụ thể. Trả về {ok:true, data} hoặc {ok:false, status, text}. */
-          async function goiMot(model, v){
+          /* Bản hướng dẫn dùng khi KHÔNG được tra cứu web. Với nội dung pháp luật, bịa đặt
+             nguy hiểm hơn là bỏ trống, nên ở chế độ này phải siết chặt: cấm suy đoán số điều,
+             mức phạt, ngày hiệu lực. Không chắc thì để trống, không đủ thông tin thì loại. */
+          const HD_KHONG_WEB = HD + `
+
+          RẤT QUAN TRỌNG cho lần trả lời này: bạn KHÔNG được tra cứu internet.
+          Chỉ dùng đúng thông tin trong tên văn bản đã cho, cộng với kiến thức mà bạn chắc chắn.
+          Tuyệt đối không bịa số điều khoản, không bịa mức phạt, không bịa ngày ban hành hay ngày hiệu lực.
+          Trường nào không chắc thì để chuỗi rỗng, kể cả trường eff và fine.
+          Nếu thông tin quá ít để nói được điều gì thực sự có ích, đặt lienQuan bằng false.`;
+
+          /* Gọi một model cụ thể. traWeb quyết định có kèm công cụ tra cứu Google hay không.
+             Trả về {ok:true, data} hoặc {ok:false, status, text}. */
+          async function goiMot(model, v, traWeb){
             const body = {
-              systemInstruction: { parts: [{ text: HD }] },
+              systemInstruction: { parts: [{ text: traWeb ? HD : HD_KHONG_WEB }] },
               contents: [{ role:"user", parts:[{ text: "Văn bản cần phân tích:\n" + v.code + " — " + v.mota }]}],
-              tools: [{ google_search: {} }],
               generationConfig: { temperature: 0.2, maxOutputTokens: 2048 }
             };
+            if(traWeb) body.tools = [{ google_search: {} }];
             let r;
             try{
               r = await fetch(
@@ -282,23 +294,41 @@ jobs:
           }
 
           let HET_QUOTA = false;   // bật lên khi MỌI model đều báo hết hạn mức
+          let TRA_WEB   = true;    // tắt khi phát hiện hạn mức tra cứu web đã cạn
 
           async function hoiGemini(v){
             const thu = MODEL ? [MODEL] : UNGVIEN.slice();
             if(!thu.length) throw new Error("không còn model nào khả dụng");
-            let loiCuoi = "", so429 = 0, soThu = 0;
+            let loiCuoi = "", so429 = 0, soLoai = 0, soThu = 0;
 
             for(const m of thu){
               soThu++;
-              const kq = await goiMot(m, v);
+              let kq = await goiMot(m, v, TRA_WEB);
+
+              /* Thủ phạm thật của 429 ở lần chạy #6 và #7: công cụ tra cứu Google kèm theo có
+                 hạn mức RIÊNG và rất thấp trên gói miễn phí, thấp hơn nhiều so với hạn mức gọi
+                 model thường. Nên khi dính 429 lúc đang bật tra web, thử lại ngay cùng model mà
+                 bỏ tra web — nếu qua được thì thủ phạm đúng là nó, và cả phiên chuyển sang chạy
+                 không tra web. Đổi lại phải siết prompt để model không bịa, xem HD_KHONG_WEB. */
+              if(!kq.ok && kq.status === 429 && TRA_WEB){
+                console.log("   " + m + ": hết hạn mức TRA CỨU WEB, thử lại không tra web");
+                kq = await goiMot(m, v, false);
+                if(kq.ok){
+                  TRA_WEB = false;
+                  console.log("   → chuyển sang chế độ không tra web cho cả phiên");
+                }
+              }
+
               if(kq.ok){
-                if(!MODEL){ MODEL = m; console.log("→ Model đang dùng: " + m); }
+                if(!MODEL){ MODEL = m; console.log("→ Model đang dùng: " + m + (TRA_WEB ? " (có tra web)" : " (không tra web)")); }
+                if(!TRA_WEB) kq.data.khongTraWeb = true;
                 return kq.data;
               }
               loiCuoi = "HTTP " + kq.status + " " + kq.text;
 
               /* 404 và 400: model không tồn tại hoặc khoá không được phép dùng — loại hẳn. */
               if(kq.status === 404 || kq.status === 400){
+                soLoai++;
                 UNGVIEN = UNGVIEN.filter(x => x !== m);
                 console.log("   loại model " + m + " — " + kq.text.slice(0,90));
                 if(MODEL === m) MODEL = null;
@@ -319,13 +349,22 @@ jobs:
               break;   // 500, lỗi mạng, hết giờ: không phải lỗi model, để vòng ngoài thử lại
             }
 
-            /* Mọi ứng viên đều 429 nghĩa là hết hạn mức ở mức tài khoản, không phải mức model.
-               Bật cờ để dừng hẳn, tránh gọi thêm hàng chục lần vô ích và càng đốt hạn mức. */
-            if(so429 > 0 && so429 === soThu) HET_QUOTA = true;
+            /* Mọi ứng viên còn dùng được đều 429 nghĩa là hết hạn mức ở mức TÀI KHOẢN, không
+               phải mức model. Bật cờ để dừng hẳn.
+               Lỗi ở lần chạy #7: điều kiện cũ là so429 === soThu, nhưng soThu tính cả model bị
+               loại vì 404, nên khi có model 404 xen vào thì cờ không bao giờ bật — máy thử lại
+               vòng hai, đốt 32 lượt gọi thay vì 16. Trừ số bị loại ra là đúng. */
+            if(so429 > 0 && so429 === (soThu - soLoai)){
+              HET_QUOTA = true;
+              console.log("\n!!! Toàn bộ " + so429 + " model đều báo hết hạn mức.");
+              console.log("    Đây là giới hạn ở mức tài khoản Google, không phải lỗi của máy quét.");
+              console.log("    Cách xử lý: đợi hạn mức hồi theo ngày, hoặc tạo khoá mới từ một");
+              console.log("    project Google khác, hoặc bật billing cho project đang dùng.");
+            }
             throw new Error(loiCuoi || "không gọi được");
           }
 
-          const NHOM = ["kcb","dn","pccc","tb","mt","ld","dl","ktd","qc"];
+          const NHOM = ["kcb","dn","pccc","tb","duoc","mt","ld","dl","ktd","qc"];
           let them = 0;
           for(const v of moiTim){
             if(DA_PHANTICH.some(x => x.code === v.code)) continue;
