@@ -23,6 +23,7 @@ jobs:
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
         run: |
           cat > /tmp/quet.mjs <<'SCRIPT'
           import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -110,7 +111,12 @@ jobs:
               { them: ["-4","-k"],            nhanh:true  },
               { them: ["--http1.1","--tlsv1.2","-k"], nhanh:true }
             ];
+            /* Ngân sách thời gian cho mỗi nguồn. Nguồn nào chết hẳn (như moh.gov.vn đang
+               timeout) thì thử đủ 6 kiểu sẽ ngốn tới 8 phút mà kết quả vẫn hỏng — cắt ở 90
+               giây là đủ để các kiểu cứu được TLS/HTTP2 kịp phát huy, mà không treo cả job. */
+            const hetHan = Date.now() + 90000;
             for(const kt of kieu){
+              if(Date.now() > hetHan){ loiCuoi = (loiCuoi || "không đọc được") + " (dừng sau 90 giây)"; break; }
               try{
                 const t = curl(url, kt.them, kt.nhanh);
                 if(t && t.length > 400) return { text:t };
@@ -164,19 +170,51 @@ jobs:
             process.exit(0);
           }
 
-          const MODELS = ["gemini-2.5-flash","gemini-3-flash-preview","gemini-2.0-flash","gemini-2.5-flash-lite"];
+          /* ---- CHỌN MODEL ----
+             Bài học từ lần chạy 08/09/2026: danh sách /models VẪN liệt kê gemini-2.5-flash,
+             nhưng gọi thật thì Google trả 404 "no longer available to new users". Nghĩa là
+             không được tin danh sách, phải GỌI THẬT mới biết model nào sống. Ở đây chỉ dùng
+             danh sách để xếp thứ tự ứng viên, còn model chính thức do lần gọi thành công đầu
+             tiên quyết định. Model chết bị loại khỏi danh sách ngay, không thử lại.
+             Muốn ép dùng một model cụ thể thì tạo thêm secret GEMINI_MODEL. */
+          const MODEL_EP = (process.env.GEMINI_MODEL || "").trim();
+
+          function diemModel(ten){
+            let d = 0;
+            const m = ten.match(/gemini-(\d+(?:\.\d+)?)/);
+            if(m) d += parseFloat(m[1]) * 100;        // đời càng mới càng ưu tiên
+            if(/flash/.test(ten))   d += 50;          // flash: nhanh, hạn mức miễn phí rộng nhất
+            if(/lite/.test(ten))    d += 8;
+            if(/latest/.test(ten))  d += 5;
+            if(/preview|exp|thinking/.test(ten)) d -= 20;
+            return d;
+          }
+
+          let UNGVIEN = [];
+          if(MODEL_EP){
+            UNGVIEN = [MODEL_EP];
+          }else{
+            try{
+              const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key="+KEY, { signal: AbortSignal.timeout(20000) });
+              if(r.ok){
+                const j = await r.json();
+                (j.models || []).forEach(m => {
+                  const ten = (m.name || "").replace("models/","");
+                  const pp  = m.supportedGenerationMethods || [];
+                  if(!ten || !pp.includes("generateContent")) return;
+                  if(/image|imagen|tts|audio|embedding|live|native|veo|vision|gemma/i.test(ten)) return;
+                  UNGVIEN.push(ten);
+                });
+                UNGVIEN.sort((a,b) => diemModel(b) - diemModel(a));
+              } else { console.log("Không lấy được danh sách model: HTTP " + r.status); }
+            }catch(e){ console.log("Không lấy được danh sách model: " + e.message); }
+          }
+          if(!UNGVIEN.length) UNGVIEN = ["gemini-3-flash","gemini-flash-latest","gemini-2.0-flash"];
+          UNGVIEN = UNGVIEN.slice(0, 8);
+
           let MODEL = null;
-          try{
-            const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key="+KEY, { signal: AbortSignal.timeout(20000) });
-            if(r.ok){
-              const j = await r.json();
-              const ten = (j.models||[]).map(m => (m.name||"").replace("models/",""));
-              MODEL = MODELS.find(m => ten.includes(m))
-                   || ten.find(m => /flash/.test(m) && !/image|tts|embedding|live|native/.test(m));
-            } else { console.log("Không lấy được danh sách model: HTTP " + r.status); }
-          }catch(e){ console.log("Không lấy được danh sách model: " + e.message); }
-          if(!MODEL) MODEL = MODELS[0];
-          console.log("\n=== PHÂN TÍCH BẰNG " + MODEL + " ===");
+          console.log("\n=== PHÂN TÍCH ===");
+          console.log("Thứ tự model sẽ thử: " + UNGVIEN.join(", "));
 
           const HD = `Bạn là chuyên gia pháp luật Việt Nam, tư vấn cho GIÁM ĐỐC ĐIỀU HÀNH một BỆNH VIỆN THẨM MỸ tư nhân ở Hà Nội.
           Hãy tra cứu văn bản pháp luật được nêu và trả về DUY NHẤT một đối tượng JSON, không kèm chữ nào khác, không bọc trong khối mã.
@@ -204,28 +242,59 @@ jobs:
           - Viết tiếng Việt tự nhiên, câu ngắn, không dùng dấu gạch ngang giữa câu, không dùng dấu ngoặc kép bên trong nội dung.
           - Nếu không tra được văn bản, đặt lienQuan = false.`;
 
-          async function hoiGemini(v){
+          /* Gọi một model cụ thể. Trả về {ok:true, data} hoặc {ok:false, status, text}. */
+          async function goiMot(model, v){
             const body = {
               systemInstruction: { parts: [{ text: HD }] },
               contents: [{ role:"user", parts:[{ text: "Văn bản cần phân tích:\n" + v.code + " — " + v.mota }]}],
               tools: [{ google_search: {} }],
               generationConfig: { temperature: 0.2, maxOutputTokens: 2048 }
             };
-            const r = await fetch(
-              "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent?key=" + KEY,
-              { method:"POST", headers:{ "Content-Type":"application/json" },
-                body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
+            let r;
+            try{
+              r = await fetch(
+                "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent?key=" + KEY,
+                { method:"POST", headers:{ "Content-Type":"application/json" },
+                  body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
+            }catch(e){ return { ok:false, status:0, text:(e.message||"lỗi mạng").slice(0,160) }; }
+
             if(!r.ok){
               const t = await r.text().catch(()=> "");
-              throw new Error("HTTP " + r.status + " " + t.slice(0,160).replace(/\s+/g," "));
+              return { ok:false, status:r.status, text:t.slice(0,200).replace(/\s+/g," ") };
             }
             const j = await r.json();
             const parts = ((j.candidates||[])[0]||{}).content;
             let txt = ((parts && parts.parts) || []).map(x => x.text || "").join("").trim();
             txt = txt.replace(/^```(?:json)?/i,"").replace(/```$/,"").trim();
             const a = txt.indexOf("{"), b = txt.lastIndexOf("}");
-            if(a < 0 || b < a) throw new Error("không tìm thấy JSON trong câu trả lời");
-            return JSON.parse(txt.slice(a, b+1));
+            if(a < 0 || b < a) return { ok:false, status:200, text:"không tìm thấy JSON trong câu trả lời" };
+            try { return { ok:true, data: JSON.parse(txt.slice(a, b+1)) }; }
+            catch(e){ return { ok:false, status:200, text:"JSON hỏng: " + (e.message||"").slice(0,80) }; }
+          }
+
+          async function hoiGemini(v){
+            const thu = MODEL ? [MODEL] : UNGVIEN.slice();
+            if(!thu.length) throw new Error("không còn model nào khả dụng");
+            let loiCuoi = "";
+            for(const m of thu){
+              const kq = await goiMot(m, v);
+              if(kq.ok){
+                if(!MODEL){ MODEL = m; console.log("→ Model đang dùng: " + m); }
+                return kq.data;
+              }
+              loiCuoi = "HTTP " + kq.status + " " + kq.text;
+              /* 404 và 400 nghĩa là model không dùng được với khoá này — loại hẳn, sang model kế.
+                 Các lỗi khác (429 quá hạn mức, 500 lỗi máy chủ, hết giờ) không phải lỗi model,
+                 nên dừng lại để vòng thử lại bên ngoài xử lý, tránh đốt hết ứng viên vô ích. */
+              if(kq.status === 404 || kq.status === 400){
+                UNGVIEN = UNGVIEN.filter(x => x !== m);
+                console.log("   loại model " + m + " — " + kq.text.slice(0,90));
+                if(MODEL === m) MODEL = null;
+                continue;
+              }
+              break;
+            }
+            throw new Error(loiCuoi || "không gọi được");
           }
 
           const NHOM = ["kcb","dn","pccc","tb","mt","ld","dl","ktd","qc"];
