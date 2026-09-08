@@ -1,15 +1,8 @@
 {
  "ngay": "08/09/2026",
- "gio": "07:01 ngày 08/09/2026",
- "daTheoDoi": 21,
+ "gio": "18:14 ngày 08/09/2026",
+ "daTheoDoi": 23,
  "nguon": [
-  {
-   "n": "Bộ Y tế — Văn bản pháp quy",
-   "u": "https://moh.gov.vn/van-ban-phap-quy",
-   "trangThai": "loi",
-   "loi": "fetch failed",
-   "phatHien": []
-  },
   {
    "n": "Cục Quản lý Khám, chữa bệnh",
    "u": "https://kcb.vn/van-ban/van-ban-phap-quy",
@@ -20,20 +13,7 @@
    "n": "Cổng văn bản Chính phủ",
    "u": "https://vanban.chinhphu.vn/",
    "trangThai": "ok",
-   "phatHien": [
-    {
-     "code": "15/2026/VBHN-NĐ",
-     "mota": "15/2026/VBHN-NĐ-BYT 30/09/2026 30/09/2026 Quy định chi tiết và hướng dẫn thi hành một số điều của Luật Bảo hiểm xã hội về trợ cấp hưu trí xã hội 30/09/2026 Tài liệu đính kèm 1"
-    },
-    {
-     "code": "28/2026/VBHN-TT",
-     "mota": "28/2026/VBHN-TT-BTC 28/08/2026 28/08/2026 Ban hành biểu mẫu sử dụng trong đăng ký doanh nghiệp, đăng ký hộ kinh doanh 28/08/2026 Tài liệu đính kèm 16/2026/VBHN-TT-BKHCN 28/08/"
-    },
-    {
-     "code": "16/2026/VBHN-TT",
-     "mota": "16/2026/VBHN-TT-BKHCN 28/08/2026 28/08/2026 Quy định việc phân cấp thẩm quyền cấp, gia hạn, cấp lại, sửa đổi, bổ sung, thu hồi giấy phép viễn thông, yêu cầu chấm dứt hoạt động"
-    }
-   ]
+   "phatHien": []
   },
   {
    "n": "Công báo Chính phủ",
@@ -42,24 +22,55 @@
    "phatHien": []
   },
   {
+   "n": "Bộ Y tế — Văn bản pháp quy",
+   "u": "https://moh.gov.vn/van-ban-phap-quy",
+   "trangThai": "loi",
+   "loi": "curl: (28) Connection timed out after 25002 milliseconds",
+   "phatHien": []
+  },
+  {
    "n": "Cục Hạ tầng và Thiết bị y tế",
    "u": "https://imda.moh.gov.vn/van-ban-phap-quy",
-   "trangThai": "loi",
-   "loi": "fetch failed",
+   "trangThai": "ok",
+   "phatHien": [
+    {
+     "code": "23/2026/TT-BYT",
+     "mota": "Thông tư 23/2026/TT-BYT ngày 29/06/2026 THÔNG TƯ Hướng dẫn về thiết kế Trạm Y tế xã, phường, đặc khu"
+    },
+    {
+     "code": "22/2026/TT-BYT",
+     "mota": "Thông tư 22/2026/TT-BYT ngày 29/06/2026 THÔNG TƯ Hướng dẫn danh mục máy móc, thiết bị cơ bản phục vụ hoạt động chuyên môn của Trạm Y tế xã, phường, đặc khu"
+    },
+    {
+     "code": "10/2026/TT-BYT",
+     "mota": "Thông tư 10/2026/TT-BYT ngày 14/05/2026 THÔNG TƯ Quy định chi tiết hướng dẫn về tiêu chuẩn, định mức sử dụng máy móc, thiết bị chuyên dùng trong lĩnh vực y tế thuộc lĩnh vực q"
+    },
+    {
+     "code": "44/2025/TT-BYT",
+     "mota": "Thông tư số 44/2025/TT-BYT ngày 22/11/2025 Quy định việc phân cấp thực hiện một số nhiệm vụ, giải quyết một số thủ tục hành chính trong lĩnh vực thiết bị y tế thuộc thẩm quyền"
+    },
+    {
+     "code": "19/2024/TT-BYT",
+     "mota": "Thông tư 19/2024/TT-BYT ngày 01/10/2024 Ban hành Danh mục thiết bị y tế xuất khẩu, nhập khẩu đã được xác định mã số hàng hóa theo danh mục hàng hóa xuất khẩu, nhập khẩu Việt N"
+    }
+   ]
+  },
+  {
+   "n": "Xây dựng chính sách — Chính phủ",
+   "u": "https://xaydungchinhsach.chinhphu.vn/",
+   "trangThai": "ok",
+   "phatHien": []
+  },
+  {
+   "n": "Bộ Công an",
+   "u": "https://bocongan.gov.vn/",
+   "trangThai": "ok",
    "phatHien": []
   },
   {
    "n": "Thư viện pháp luật — Y tế mới",
    "u": "https://thuvienphapluat.vn/van-ban-moi/The-thao-Y-te",
-   "trangThai": "loi",
-   "loi": "HTTP 403",
-   "phatHien": []
-  },
-  {
-   "n": "Thư viện pháp luật — Văn bản mới",
-   "u": "https://thuvienphapluat.vn/van-ban-moi/vb",
-   "trangThai": "loi",
-   "loi": "HTTP 403",
+   "trangThai": "ok",
    "phatHien": []
   },
   {
