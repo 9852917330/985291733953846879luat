@@ -2,7 +2,9 @@ name: Quét văn bản pháp luật
 
 on:
   schedule:
-    - cron: "0 22 * * *"
+    # Giờ ghi theo giờ quốc tế. Việt Nam nhanh hơn 7 tiếng.
+    - cron: "0 22 * * *"    # 5 giờ sáng giờ Việt Nam
+    - cron: "0 10 * * *"    # 5 giờ chiều giờ Việt Nam
   workflow_dispatch:
 
 permissions:

@@ -1,7 +1,33 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
 ────────────────────────────────────────────
-CẬP NHẬT LẦN NÀY — 07/09/2026
+CẬP NHẬT LẦN NÀY — 08/09/2026
+────────────────────────────────────────────
+
+BỎ HẲN CHẾ ĐỘ QUÉT TRỰC TIẾP TỪ TRÌNH DUYỆT.
+
+Đây là nguyên nhân thật của việc chậm: trình duyệt không được phép đọc
+trang của tên miền khác, nên phải đi vòng qua dịch vụ trung chuyển miễn
+phí, mỗi nguồn chờ tới 22 giây, 8 nguồn là vài phút, lại hay thất bại.
+Toàn bộ phần đó đã bị xoá khỏi giao diện.
+
+Nút "Cập nhật ngay" bây giờ chỉ đọc kết quả máy chủ đã quét sẵn:
+  - Bấm là ra ngay, không thanh tiến trình, không tên nguồn, không mã lỗi.
+  - Văn bản mới hiện thành thẻ đúng định dạng như thẻ viết tay: nhãn mức
+    rủi ro (nguy hiểm nhất / phạt nặng / nền tảng), nhóm, số hiệu, ngày
+    hiệu lực. Bấm vào thẻ ra đủ bản chất, việc phải làm, rủi ro, mức phạt.
+  - Văn bản máy thấy nhưng AI chưa kịp phân tích thì gom riêng xuống dưới
+    mục "Đang chờ phân tích", không phải lỗi nên không báo lỗi.
+  - Chấm đỏ trên nút đếm đúng số văn bản mới chưa xem.
+
+Máy quét chạy ngầm 2 lần mỗi ngày thay vì 1: 5 giờ sáng và 5 giờ chiều
+giờ Việt Nam. Vẫn miễn phí.
+
+Đã chạy thử thật bằng trình duyệt với dữ liệu mẫu: mở kết quả tức thì,
+không lỗi JavaScript, bấm thẻ mới mở được chi tiết đầy đủ.
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 07/09/2026
 ────────────────────────────────────────────
 
 Chỉ 2 tệp đổi so với gói trước: index.html và quet-luat.yml.

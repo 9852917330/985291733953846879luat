@@ -1096,171 +1096,102 @@ function openSources(){
 }
 
 /* ============================================================
-   4. QUÉT CẬP NHẬT
+   4. CẬP NHẬT — CHỈ ĐỌC KẾT QUẢ MÁY CHỦ ĐÃ QUÉT SẴN
+   ------------------------------------------------------------
+   Nguyên tắc: trình duyệt KHÔNG tự đi quét. Máy chủ GitHub quét và nhờ AI
+   phân tích từ trước, ghi sẵn ra hai tệp. Ở đây chỉ việc đọc hai tệp đó,
+   nên bấm nút là ra kết quả gần như tức thì, không có thanh tiến trình,
+   không có tên nguồn, không có mã lỗi kỹ thuật cho người dùng phải đọc.
    ============================================================ */
-const RELAYS = [
-  {n:"codetabs",   f:u=>"https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(u)},
-  {n:"allorigins", f:u=>"https://api.allorigins.win/raw?url="+encodeURIComponent(u)},
-  {n:"corsproxy",  f:u=>"https://corsproxy.io/?url="+encodeURIComponent(u)},
-  {n:"jina",       f:u=>"https://r.jina.ai/"+u}
-];
-const KNOWN = DOCS.map(d=>d.code).join(" ");
-const LOI = /(thẩm mỹ|khám bệnh|chữa bệnh|khám, chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
-const CAM = /(viễn thông|trồng trọt|bảo vệ thực vật|thủy sản|chăn nuôi|lâm nghiệp|đường sắt|đường bộ|đường thủy|hàng không|hàng hải|giáo dục|đại học|ngân hàng|chứng khoán|hải quan|đất đai|khoáng sản|dầu khí|điện lực|thủy lợi|du lịch|thể thao|quốc phòng|biên phòng|tôn giáo|quy hoạch đô thị|công nghệ lạc hậu|ươm tạo công nghệ|đăng ký hộ kinh doanh|biểu mẫu|giấy phép viễn thông|Sở Nông nghiệp)/i;
-const laYTe = c => /TT-BYT/.test(c);
-const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
-const LOAI = /(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)[^]{0,45}$/;
 
-function analyse(text){
-  const found = new Map();
-  const clean = String(text).replace(/<[^>]+>/g," ").replace(/\s+/g," ");
-  const re = new RegExp(CODERE.source, "g");
-  let m;
-  while((m = re.exec(clean)) !== null){
-    const code = m[0];
-    if(KNOWN.includes(code) || found.has(code)) continue;
-    let after = clean.slice(m.index + code.length, m.index + code.length + 170);
-    const nx = after.search(/(Nghị định|Thông tư|Luật|Quyết định|Nghị quyết|Văn bản hợp nhất)\s+(số\s+)?\d/);
-    if(nx > 0) after = after.slice(0, nx);
-    if(CAM.test(after)) continue;                    // rõ ràng thuộc ngành khác
-    if(!laYTe(code) && !LOI.test(after)) continue;   // không phải văn bản y tế và không có từ khoá liên quan
-    const before = clean.slice(Math.max(0, m.index - 50), m.index);
-    const loai = (before.match(LOAI) || [""])[0];
-    found.set(code, (loai + code + after).trim().slice(0,175));
-    if(found.size >= 8) break;
-  }
-  return [...found.entries()];
+/* Đọc mã văn bản máy quét thấy nhưng AI chưa kịp phân tích thành thẻ */
+function maChuaPhanTich(data){
+  const daCo = DOCS.concat(AUTO).map(d => d.code).join(" ");
+  const ra = [];
+  (data && data.nguon || []).forEach(s => (s.phatHien || []).forEach(x => {
+    if(!x || !x.code) return;
+    if(daCo.indexOf(x.code) !== -1) return;
+    if(ra.some(y => y.code === x.code)) return;
+    ra.push(x);
+  }));
+  return ra;
 }
 
-/* ---------- CHẾ ĐỘ 1: đọc kết quả do máy chủ GitHub quét sẵn ---------- */
+function theTomTat(d){
+  const cc = CAT(d.cat);
+  return `<button class="doc" data-id="${d.id}" style="--nc:${cc.c};margin-bottom:10px">
+    <div class="badges">
+      <span class="tag ${TIER[d.tier].c}">${svg(TIER[d.tier].i,12)}${TIER[d.tier].n}</span>
+      <span class="tag auto">Máy tự cập nhật</span>
+    </div>
+    <div class="dhead">
+      <span class="dic">${svg(I[d.cat]||I.all,17)}</span>
+      <h3>${esc(d.title)}</h3>
+    </div>
+    <span class="code">${esc(d.code)}</span>
+    <div class="eff">${esc(cc.n)} · ${esc(d.eff)}</div>
+  </button>`;
+}
+
 async function scan(){
-  openModal("var(--brand)", I.scan, "Cập nhật văn bản mới",
-    `<span style="font-size:12.5px;color:var(--ink3)">Đọc kết quả quét tự động</span>`,
-    `<p id="pmsg" style="font-size:14px">Đang tải kết quả quét mới nhất…</p><div id="slist"></div>`);
-  let data = null, err = "";
+  openModal("var(--brand)", I.scan, "Văn bản mới",
+    `<span style="font-size:12.5px;color:var(--ink3)">Kết quả máy quét tự động</span>`,
+    `<p id="pmsg" style="font-size:14px;color:var(--ink3)">Đang mở kết quả…</p><div id="slist"></div>`);
+
+  let data = null;
   try{
     const r = await fetch("capnhat.json?t="+Date.now(), {cache:"no-store"});
-    if(r.ok) data = await r.json(); else err = "HTTP "+r.status;
-  }catch(e){ err = e.message || "không đọc được tệp"; }
+    if(r.ok) data = await r.json();
+  }catch(e){}
 
-  if(!data || data.chuaChay){
-    $("#pmsg").innerHTML = `<b style="color:#B45309">Máy quét tự động chưa chạy lần nào.</b>
-      ${err?`<br><span style="font-size:12.5px;color:var(--ink3)">Chi tiết: ${esc(err)}</span>`:""}
-      <br><br>Vào repo GitHub → tab <b>Actions</b> → chọn <b>Quét văn bản pháp luật</b> → bấm <b>Run workflow</b>.
-      Sau đó quay lại đây bấm Cập nhật ngay lần nữa.`;
-    $("#slist").innerHTML = `<div class="links">
-      <button class="btn solid" id="directBtn">Quét trực tiếp ngay bây giờ</button></div>`;
-    bindDirect(); return;
+  await napTuDong();                       // nạp lại thẻ AI đã phân tích, mới nhất
+
+  if(data && (data.ngay || data.gio)){
+    LAST_UPDATE = data.ngay || today();
+    store.set("lastScan", LAST_UPDATE);
+    $("#lastUpd").textContent = LAST_UPDATE;
   }
 
-  LAST_UPDATE = data.ngay || today();
-  store.set("lastScan", LAST_UPDATE);
-  $("#lastUpd").textContent = LAST_UPDATE;
+  const cham = $("#cham"); if(cham) cham.classList.remove("on");
+  const tatCaMa = AUTO.map(d => d.code).concat(maChuaPhanTich(data).map(x => x.code));
+  if(tatCaMa.length) store.set("daXem", tatCaMa.join(","));
 
-  const tong = (data.nguon||[]).reduce((s,x)=>s+((x.phatHien||[]).length),0);
-  const okN  = (data.nguon||[]).filter(x=>x.trangThai==="ok").length;
-  $("#pmsg").innerHTML = tong===0
-    ? `<b style="color:#15803D">Không có văn bản mới nào liên quan.</b> Máy quét chạy lúc ${esc(data.gio||data.ngay||"")}, đọc được ${okN}/${(data.nguon||[]).length} nguồn.`
-    : `<b style="color:#B45309">Phát hiện ${tong} văn bản có thể liên quan.</b> Máy quét chạy lúc ${esc(data.gio||data.ngay||"")}. Bấm từng dòng vàng để đọc toàn văn.`;
+  const tho = maChuaPhanTich(data);
+  const luc = data && data.gio ? data.gio : (data && data.ngay ? "ngày " + data.ngay : "");
+  const theoDoi = DOCS.length + AUTO.length;
 
-  $("#slist").innerHTML = (data.nguon||[]).map(s=>{
-    const hits = s.phatHien||[];
-    const cls = s.trangThai!=="ok" ? "err" : hits.length ? "hit" : "ok";
-    const sym = s.trangThai!=="ok" ? "!" : hits.length ? hits.length : "✓";
-    const ds  = s.trangThai!=="ok"
-      ? `Không đọc được. ${esc(s.loi||"")} <a href="${s.u}" target="_blank" rel="noopener">Mở trang xem tay</a>`
-      : hits.length
-        ? `Phát hiện ${hits.length} văn bản chưa có trong danh sách:
-           <span class="hits">${hits.map(x=>`<a class="hit" href="${gsearch(x.code+' toàn văn')}" target="_blank" rel="noopener"><b>${esc(x.code)}</b> — ${esc(x.mota)}</a>`).join("")}</span>`
-        : "Không thấy văn bản mới nào ngoài danh sách đang theo dõi.";
-    return `<div class="scanitem"><span class="st ${cls}">${sym}</span>
-      <span style="flex:1 1 auto"><div class="nm">${esc(s.n)}</div><div class="ds">${ds}</div></span></div>`;
-  }).join("") + `<div class="links"><button class="btn" id="directBtn">Quét lại trực tiếp từ trình duyệt</button></div>`;
-  bindDirect();
-}
-
-/* ---------- CHẾ ĐỘ 2: quét thẳng từ trình duyệt (dự phòng, hay bị chặn) ---------- */
-function bindDirect(){
-  const b = $("#directBtn"); if(b) b.addEventListener("click", directScan);
-}
-
-async function grab(url){
-  const loi = [];
-  for(const rl of RELAYS){
-    try{
-      const ctl = new AbortController();
-      const to = setTimeout(()=>ctl.abort("hết giờ"), 22000);
-      const r = await fetch(rl.f(url), {signal:ctl.signal});
-      clearTimeout(to);
-      if(!r.ok){ loi.push(rl.n+": HTTP "+r.status); continue; }
-      const t = await r.text();
-      if(!t || t.length < 400){ loi.push(rl.n+": trang rỗng"); continue; }
-      return {text:t, via:rl.n};
-    }catch(e){ loi.push(rl.n+": "+(e.name==="AbortError"?"quá 22 giây":(e.message||"bị chặn"))); }
-  }
-  return {text:null, loi:loi.join(" · ")};
-}
-
-let scanning = false;
-async function directScan(){
-  if(scanning) return; scanning = true;
-
-  openModal("var(--brand)", I.scan, "Quét trực tiếp",
-    `<span style="font-size:12.5px;color:var(--ink3)">Đọc ${SOURCES.length} nguồn qua trình duyệt</span>`,
-    `<div class="bar"><i id="pbar"></i></div>
-     <p id="pmsg" style="font-size:13.5px">Đang kết nối…</p>
-     <div id="slist"></div>`);
-
-  $("#slist").innerHTML = SOURCES.map((s,i)=>`<div class="scanitem" id="si${i}">
-      <span class="st wait">•</span>
-      <span style="flex:1 1 auto"><div class="nm">${esc(s.n)}</div><div class="ds">Đang chờ…</div></span>
-    </div>`).join("");
-
-  let done=0, totalHits=0, okCount=0;
-  for(let i=0;i<SOURCES.length;i++){
-    const s = SOURCES[i], el = document.getElementById("si"+i);
-    if(el) el.querySelector(".ds").textContent = "Đang đọc trang…";
-    if($("#pmsg")) $("#pmsg").textContent = "Đang đọc: " + s.n;
-
-    const res = await grab(s.u);
-    done++;
-    const pb = $("#pbar"); if(pb) pb.style.width = Math.round(done/SOURCES.length*100)+"%";
-    if(!el) continue;
-
-    if(!res.text){
-      el.querySelector(".st").className = "st err"; el.querySelector(".st").textContent = "!";
-      el.querySelector(".ds").innerHTML =
-        `<span style="color:#B91C1C">Không đọc được.</span> ${esc(res.loi||"")}
-         <br><a href="${s.u}" target="_blank" rel="noopener">Mở trang để xem tay</a>`;
-      continue;
-    }
-    okCount++;
-    const hits = analyse(res.text);
-    if(!hits.length){
-      el.querySelector(".st").className = "st ok"; el.querySelector(".st").textContent = "✓";
-      el.querySelector(".ds").textContent = "Không thấy văn bản mới nào ngoài danh sách. (qua "+res.via+")";
-    }else{
-      totalHits += hits.length;
-      el.querySelector(".st").className = "st hit"; el.querySelector(".st").textContent = hits.length;
-      el.querySelector(".ds").innerHTML =
-        `Phát hiện ${hits.length} văn bản chưa có trong danh sách:
-         <span class="hits">${hits.map(([code,line])=>
-           `<a class="hit" href="${gsearch(code+' toàn văn')}" target="_blank" rel="noopener"><b>${esc(code)}</b> — ${esc(line)}</a>`).join("")}</span>`;
-    }
+  if(!AUTO.length && !tho.length){
+    $("#pmsg").innerHTML = `<b style="color:#15803D">Không có văn bản mới nào liên quan.</b>`;
+    $("#slist").innerHTML =
+      `<p style="font-size:14px;color:var(--ink2);line-height:1.6">
+         Đang theo dõi <b>${theoDoi} văn bản</b>. Máy tự kiểm tra các cổng thông tin
+         chính thống mỗi ngày và chỉ báo khi có văn bản mới thật sự liên quan tới
+         bệnh viện thẩm mỹ.${luc?` Lần kiểm tra gần nhất: ${esc(luc)}.`:""}
+       </p>`;
+    return;
   }
 
-  if(okCount>0){ LAST_UPDATE = today(); store.set("lastScan", LAST_UPDATE); $("#lastUpd").textContent = LAST_UPDATE; }
+  $("#pmsg").innerHTML = AUTO.length
+    ? `<b style="color:#B45309">Có ${AUTO.length} văn bản mới đã được phân tích và xếp vào nhóm.</b>
+       <br><span style="font-size:12.5px;color:var(--ink3)">Bấm từng thẻ để xem việc phải làm, rủi ro và mức phạt.${luc?` Cập nhật ${esc(luc)}.`:""}</span>`
+    : `<b style="color:#B45309">Phát hiện ${tho.length} văn bản mới, đang chờ phân tích.</b>
+       <br><span style="font-size:12.5px;color:var(--ink3)">Kết quả đầy đủ sẽ hiện trong lần kiểm tra kế tiếp.</span>`;
 
-  if($("#pmsg")){
-    $("#pmsg").innerHTML = okCount===0
-      ? `<b style="color:#B91C1C">Không quét được nguồn nào từ trình duyệt.</b>
-         Đây là hạn chế đã biết: trình duyệt không được phép đọc trang của tên miền khác, phải đi qua dịch vụ trung chuyển miễn phí và các dịch vụ này hay bị chặn.
-         <br><br><b>Cách chắc ăn:</b> dùng máy quét tự động chạy trên GitHub, không qua trình duyệt nên không bị chặn. Xem tệp <b>BAT-DAU-TU-DAY.txt</b> trong gói tải về.`
-      : totalHits===0
-        ? `<b style="color:#15803D">Xong. Không thấy văn bản mới nào liên quan.</b> Đọc được ${okCount}/${SOURCES.length} nguồn.`
-        : `<b style="color:#B45309">Xong. Phát hiện ${totalHits} văn bản có thể liên quan.</b>`;
+  const dsAuto = AUTO.slice().sort((a,b) => a.tier - b.tier);
+  let html = dsAuto.map(theTomTat).join("");
+
+  if(tho.length){
+    html += `<div class="moihead" style="margin-top:18px">
+        ${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',15)} Đang chờ phân tích
+      </div>` +
+      tho.map(x => `<a class="moi" style="display:block;text-decoration:none"
+          href="${gsearch(x.code + " toàn văn")}" target="_blank" rel="noopener">
+          <span class="cd">${esc(x.code)}</span>
+          <div class="tx">${esc(x.mota || "Văn bản mới phát hiện trên cổng thông tin chính thống.")}</div>
+        </a>`).join("");
   }
-  scanning = false;
+
+  $("#slist").innerHTML = html;
 }
 
 /* ============================================================
@@ -1291,7 +1222,8 @@ $("#grid").addEventListener("click", e=>{
   const b = e.target.closest(".doc"); if(b) openDoc(b.dataset.id);
 });
 $("#mBody").addEventListener("click", e=>{
-  const b = e.target.closest("[data-act]"); if(b) openAction(b.dataset.act);
+  const a = e.target.closest("[data-act]"); if(a){ openAction(a.dataset.act); return; }
+  const d = e.target.closest(".doc"); if(d) openDoc(d.dataset.id);   // bấm thẻ mới trong modal cập nhật
 });
 document.querySelectorAll("[data-open]").forEach(b=>{
   b.addEventListener("click", ()=>({actions:openActions,risks:openRisks,sources:openSources})[b.dataset.open]());
@@ -1329,24 +1261,25 @@ if("serviceWorker" in navigator){
   });
 }
 
-(async function bao(){                       // chấm đỏ báo có văn bản mới chưa xem
+/* Chấm đỏ trên nút Cập nhật: đếm văn bản mới thật sự, ưu tiên thẻ AI đã phân tích.
+   Chạy sau napTuDong nên AUTO đã có dữ liệu. */
+(async function bao(){
+  await new Promise(s => setTimeout(s, 1200));   // chờ napTuDong nạp xong
+  let d = null;
   try{
     const r = await fetch("capnhat.json?t="+Date.now(), {cache:"no-store"});
-    if(!r.ok) return;
-    const d = await r.json();
-    if(d.chuaChay) return;
-    const ma = (d.nguon||[]).flatMap(s=>(s.phatHien||[]).map(x=>x.code));
-    if(!ma.length) return;
-    const daXem = (store.get("daXem")||"").split(",");
-    const moi = ma.filter(c=>!daXem.includes(c));
-    if(!moi.length) return;
-    const c = $("#cham"); c.textContent = moi.length; c.classList.add("on");
-    $("#scanBtn").addEventListener("click", ()=>{
-      store.set("daXem", ma.join(","));
-      c.classList.remove("on");
-    }, {once:true});
-    if(d.ngay){ LAST_UPDATE = d.ngay; $("#lastUpd").textContent = d.ngay; }
+    if(r.ok) d = await r.json();
   }catch(e){}
+  if(d && d.ngay){ LAST_UPDATE = d.ngay; $("#lastUpd").textContent = d.ngay; }
+
+  const ma = AUTO.map(x => x.code).concat(maChuaPhanTich(d).map(x => x.code));
+  if(!ma.length) return;
+  const daXem = (store.get("daXem") || "").split(",");
+  const moi = ma.filter(c => daXem.indexOf(c) === -1);
+  if(!moi.length) return;
+
+  const c = $("#cham");
+  if(c){ c.textContent = moi.length; c.classList.add("on"); }
 })();
 
 (function moiCai(){
