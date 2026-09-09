@@ -22,6 +22,12 @@ jobs:
         with:
           node-version: 24
 
+      # Cần cho nhánh dự phòng khi văn bản chỉ có bản PDF mà không có bản DOCX.
+      # unzip dùng cho DOCX đã có sẵn trên máy chạy nên không phải cài.
+      - name: Cài công cụ đọc PDF
+        continue-on-error: true
+        run: sudo apt-get install -y -qq poppler-utils < /dev/null > /dev/null 2>&1 || echo "Không cài được poppler-utils, sẽ chỉ đọc bản DOCX."
+
       - name: Quét và phân tích
         continue-on-error: true
         env:
@@ -60,7 +66,7 @@ jobs:
           ];
 
           const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BVHTTDL|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|TT-BTC|QH15|QH16|QĐ-TTg|QĐ-BYT|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
-          const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|Luật Dược|kinh doanh dược|đăng ký lưu hành thuốc|kê đơn|đơn thuốc|kiểm soát đặc biệt|gây nghiện|hướng thần|tiền chất|gây mê|gây tê|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
+          const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|Luật Dược|kinh doanh dược|đăng ký lưu hành thuốc|kê đơn|đơn thuốc|kiểm soát đặc biệt|gây nghiện|hướng thần|tiền chất|gây mê|gây tê|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế|an ninh, trật tự|niêm yết giá|kê khai giá|hóa đơn điện tử|bệnh án điện tử|kiểm soát nhiễm khuẩn|sự cố y khoa|lưu trữ hồ sơ|bảo hiểm trách nhiệm)/i;
           /* Nhóm sau đây thuộc ngành khác hoặc thuộc khối y tế công lập, không chạm tới một
              bệnh viện thẩm mỹ tư nhân. Lọc thẳng ở đây để khỏi tốn lượt gọi AI — lần chạy #6
              đã đốt cả 5 lượt vào loại văn bản này (trạm y tế xã, định mức máy móc công lập,
@@ -162,6 +168,271 @@ jobs:
               nhan.push({ code, mota: noiDung.slice(0, 300), link });
             }
             return { nhan, boSot };
+          }
+
+          /* ============================================================
+             LẤY TOÀN VĂN — phần quyết định chất lượng thẻ tự động
+             ------------------------------------------------------------
+             Thẻ viết tay chính xác vì người viết đọc bản gốc. Thẻ tự động trước đây chỉ có
+             mỗi tiêu đề nên trợ lý AI buộc phải đoán, và đoán về pháp luật là bịa.
+             Trang chi tiết của Công báo cho hai thứ quý:
+               1. Bảng thuộc tính chuẩn: số hiệu, cơ quan ban hành, ngày ban hành, người ký.
+                  Đây là DỮ KIỆN, lấy thẳng, không cho AI đụng vào.
+               2. Link tải bản DOCX và PDF của toàn văn.
+             DOCX được ưu tiên vì nó chỉ là tệp ZIP chứa word/document.xml, giải nén bằng unzip
+             có sẵn trên máy chạy, chữ sạch, không phải bản quét ảnh. PDF là phương án dự phòng.
+             ============================================================ */
+
+          function chayLenh(lenh, tham, gioiHan){
+            return execFileSync(lenh, tham, {
+              encoding: "utf8", maxBuffer: (gioiHan || 40) * 1024 * 1024,
+              stdio: ["ignore", "pipe", "pipe"], timeout: 60000
+            });
+          }
+
+          /* Gỡ thẻ HTML và thực thể, trả về chữ thuần. */
+          function boThe(s){
+            return String(s)
+              .replace(/<script[\s\S]*?<\/script>/gi, " ")
+              .replace(/<style[\s\S]*?<\/style>/gi, " ")
+              .replace(/<[^>]+>/g, " ")
+              .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+              .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, " ")
+              .replace(/\s+/g, " ").trim();
+          }
+
+          /* Đọc một ô trong bảng thuộc tính. Làm trên bản đã gỡ thẻ cho đỡ phụ thuộc cấu trúc
+             HTML, nhưng gỡ thẻ xong thì mất luôn ranh giới giữa các ô, nên phải tự cắt: lấy
+             đoạn sau nhãn cần tìm rồi dừng ngay khi gặp nhãn kế tiếp.
+             Chạy thử bắt được lỗi này — bản đầu không cắt nên trường Số hiệu nuốt luôn cả cơ
+             quan ban hành, ngày ban hành và người ký vào làm một. */
+          const NHAN_TT = ["Số hiệu", "Loại văn bản", "Cơ quan ban hành", "Ngày ban hành",
+                           "Ngày hiệu lực", "Ngày đăng công báo", "Người ký", "Số công báo",
+                           "Công báo", "Trích yếu", "Nguồn", "Tình trạng"];
+          function layThuocTinh(chu, nhan){
+            const vt = chu.search(new RegExp(nhan + "\\s*:", "i"));
+            if(vt < 0) return "";
+            let sau = chu.slice(vt).replace(new RegExp("^" + nhan + "\\s*:\\s*", "i"), "");
+            let het = sau.length;
+            for(const n of NHAN_TT){
+              if(n.toLowerCase() === nhan.toLowerCase()) continue;
+              const p = sau.search(new RegExp(n + "\\s*:", "i"));
+              if(p > 0 && p < het) het = p;
+            }
+            return sau.slice(0, het).replace(/\s+/g, " ").trim().slice(0, 90);
+          }
+
+          /* Văn bản dài thì cắt có chủ đích thay vì cắt cụt đầu: giữ phần mở đầu (căn cứ, phạm
+             vi, đối tượng áp dụng), giữ phần cuối (điều khoản thi hành, hiệu lực, bãi bỏ) và
+             nhặt thêm các đoạn có từ khóa liên quan bệnh viện thẩm mỹ. */
+          function catThongMinh(text, tran){
+            const t = String(text).replace(/\s+/g, " ").trim();
+            if(t.length <= tran) return { text: t, catBot: false };
+            const dau  = t.slice(0, Math.floor(tran * 0.45));
+            const cuoi = t.slice(-Math.floor(tran * 0.25));
+            const giua = [];
+            let con = tran - dau.length - cuoi.length;
+            const cau = t.slice(dau.length, t.length - cuoi.length).split(/(?<=\.)\s+/);
+            for(const c of cau){
+              if(con <= 0) break;
+              if(LOI.test(c)){ giua.push(c.slice(0, con)); con -= c.length; }
+            }
+            return {
+              text: dau + "\n[...]\n" + giua.join(" ") + "\n[...]\n" + cuoi,
+              catBot: true
+            };
+          }
+
+          /* Trả về { toanVan, thuocTinh, nguon } hoặc null nếu không lấy được. */
+          async function layToanVan(link){
+            if(!link || !/^https?:\/\//i.test(link)) return null;
+            let html = "";
+            try{
+              const r = await doc(link);
+              if(!r || !r.text) return null;
+              html = r.text;
+            }catch(e){ return null; }
+
+            const chu = boThe(html);
+            const thuocTinh = {
+              soHieu:   layThuocTinh(chu, "Số hiệu"),
+              coQuan:   layThuocTinh(chu, "Cơ quan ban hành"),
+              ngayBH:   layThuocTinh(chu, "Ngày ban hành"),
+              ngayHL:   layThuocTinh(chu, "Ngày hiệu lực"),
+              nguoiKy:  layThuocTinh(chu, "Người ký"),
+              trichYeu: layThuocTinh(chu, "Trích yếu")
+            };
+
+            /* Tìm link tải. Ưu tiên docx vì giải nén được bằng unzip có sẵn. */
+            const hrefs = (html.match(/https?:\/\/[^"'\s<>]+/g) || [])
+              .map(x => x.replace(/&amp;/g, "&"));
+            const linkDocx = hrefs.find(x => /\.docx(\?|$|&)/i.test(x) || /file_name=[^&]*\.docx/i.test(x));
+            const linkPdf  = hrefs.find(x => /\.pdf(\?|$|&)/i.test(x)  || /file_name=[^&]*\.pdf/i.test(x));
+
+            let toanVan = "", nguon = "";
+
+            if(linkDocx){
+              try{
+                chayLenh("curl", ["-sSL", "--max-time", "60", "-A", UA, "-o", "/tmp/vb.docx", linkDocx]);
+                const xml = chayLenh("unzip", ["-p", "/tmp/vb.docx", "word/document.xml"]);
+                toanVan = String(xml)
+                  .replace(/<\/w:p>/g, "\n")
+                  .replace(/<[^>]+>/g, "")
+                  .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+                  .replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+                if(toanVan.length > 400) nguon = "bản DOCX trên Công báo";
+                else toanVan = "";
+              }catch(e){ toanVan = ""; }
+            }
+
+            if(!toanVan && linkPdf){
+              try{
+                chayLenh("curl", ["-sSL", "--max-time", "60", "-A", UA, "-o", "/tmp/vb.pdf", linkPdf]);
+                toanVan = chayLenh("pdftotext", ["-layout", "-enc", "UTF-8", "/tmp/vb.pdf", "-"]).trim();
+                if(toanVan.length > 400) nguon = "bản PDF trên Công báo";
+                else toanVan = "";
+              }catch(e){ toanVan = ""; }
+            }
+
+            /* Không tải được tệp thì vẫn còn phần chữ của trang chi tiết, tốt hơn mỗi tiêu đề. */
+            if(!toanVan && chu.length > 800){
+              toanVan = chu;
+              nguon = "trang chi tiết trên Công báo";
+            }
+            if(!toanVan) return null;
+            return { toanVan, thuocTinh, nguon };
+          }
+
+          /* ============================================================
+             BA TẦNG KIỂM CHỨNG BẰNG MÁY
+             ------------------------------------------------------------
+             Có toàn văn rồi thì AI vẫn phải VIẾT LẠI, và chính bước viết lại là chỗ sai lệch.
+             Ba tầng dưới đây để máy tự đối chiếu, không đẩy việc đó sang người đọc:
+               A. Mọi khẳng định quan trọng phải kèm đoạn trích nguyên văn, máy kiểm tra đoạn
+                  trích đó có thật nằm trong toàn văn không.
+               B. Máy tự đọc phần điều khoản thi hành để biết văn bản này thay thế hay sửa đổi
+                  văn bản nào, rồi nối quan hệ đó với các thẻ đang có trong bảng.
+               C. Máy tự trích mức phạt cao nhất và tự kiểm tra nhóm, đối chiếu với AI.
+             ============================================================ */
+
+          /* Chuẩn hóa để so khớp: bỏ dấu câu, gộp khoảng trắng, hạ chữ thường. AI thường trích
+             lệch chút về dấu phẩy hay viết hoa nên so khớp thô sẽ báo sai oan. */
+          function chuanHoa(s){
+            return String(s).toLowerCase()
+              .replace(/[.,;:!?()\[\]"'“”‘’]/g, " ")
+              .replace(/\s+/g, " ").trim();
+          }
+
+          /* Kiểm chứng từng đoạn trích. Khớp nguyên đoạn thì đạt; không thì thử tìm một chuỗi
+             8 từ liên tiếp của đoạn đó trong toàn văn, đủ để loại các câu AI tự nghĩ ra mà
+             không quá khắt khe với sai lệch nhỏ. */
+          function kiemChungTrich(toanVan, bangChung){
+            const goc = chuanHoa(toanVan);
+            const dat = [], truot = [];
+            (Array.isArray(bangChung) ? bangChung : []).forEach(b => {
+              const t = String(b || "").trim();
+              if(t.length < 12) return;
+              const c = chuanHoa(t);
+              if(goc.includes(c)){ dat.push(t); return; }
+              const tu = c.split(" ");
+              let thay = false;
+              for(let k = 0; k + 8 <= tu.length && !thay; k++){
+                if(goc.includes(tu.slice(k, k + 8).join(" "))) thay = true;
+              }
+              (thay ? dat : truot).push(t);
+            });
+            return { dat, truot };
+          }
+
+          /* Đọc phần điều khoản thi hành để biết văn bản này khai tử hay chỉ sửa văn bản nào.
+             Phân biệt hai loại vì hệ quả khác nhau: bị thay thế là hết hiệu lực hoàn toàn, còn
+             bị sửa đổi thì vẫn còn hiệu lực nhưng nội dung đã khác. */
+          const RE_THAY = /(thay thế|bãi bỏ|hết hiệu lực|ngưng hiệu lực|không còn hiệu lực)/i;
+          const RE_SUA  = /(sửa đổi|bổ sung)/i;
+
+          function trichQuanHe(toanVan){
+            const thayThe = new Set(), suaDoi = new Set();
+            /* Xét theo TỪNG CÂU. Chạy thử bản đầu dùng cửa sổ 400 ký tự quanh từ khóa, và nó
+               lấn sang câu kế bên: một nghị định chỉ bị sửa đổi đã bị đánh dấu là thay thế.
+               Đánh dấu sai kiểu đó nguy hiểm hơn bỏ sót, vì người đọc sẽ tưởng văn bản còn
+               hiệu lực đã chết và bỏ qua nó. Quan hệ pháp lý luôn nằm gọn trong một câu, nên
+               tách câu là đúng bản chất. Dấu chấm giữa hai chữ số không tính là hết câu, để
+               không cắt vụn các con số như 3.000.000.000. */
+            const cau = String(toanVan)
+              .replace(/\s+/g, " ")
+              .split(/(?<![0-9])\.(?![0-9])|;/);
+            for(const c of cau){
+              const ma = c.match(new RegExp(CODERE.source, "g")) || [];
+              if(!ma.length) continue;
+              const coThay = RE_THAY.test(c), coSua = RE_SUA.test(c);
+              if(!coThay && !coSua) continue;
+              if(coThay && coSua){
+                /* Câu có cả hai thì gán theo từ khóa đứng gần mã hơn. */
+                const viThay = c.search(new RegExp(RE_THAY.source, "i"));
+                const viSua  = c.search(new RegExp(RE_SUA.source, "i"));
+                ma.forEach(x => {
+                  const viMa = c.indexOf(x);
+                  (Math.abs(viMa - viThay) <= Math.abs(viMa - viSua) ? thayThe : suaDoi).add(x);
+                });
+              }else if(coThay){ ma.forEach(x => thayThe.add(x)); }
+              else { ma.forEach(x => suaDoi.add(x)); }
+            }
+            /* Mã nằm ở cả hai nhóm thì coi là bị thay thế, vì hệ quả nặng hơn. */
+            thayThe.forEach(x => suaDoi.delete(x));
+            return { thayThe: [...thayThe].slice(0, 12), suaDoi: [...suaDoi].slice(0, 12) };
+          }
+
+          /* Tự trích mức phạt tiền cao nhất trong toàn văn. Con số do máy đọc từ bản gốc đáng
+             tin hơn con số AI nhớ lại, nên dùng nó để đối chiếu và sửa nếu AI ghi lệch. */
+          function trichMucPhat(toanVan){
+            const t = String(toanVan).replace(/\s+/g, " ");
+            let caoNhat = 0;
+            const re = /([\d][\d.,]{5,})\s*(đồng|đ\b)/gi;
+            let m;
+            while((m = re.exec(t)) !== null){
+              const so = parseInt(String(m[1]).replace(/[.,]/g, ""), 10);
+              if(!isNaN(so) && so > caoNhat && so <= 100000000000) caoNhat = so;
+            }
+            const re2 = /([\d]+(?:[.,][\d]+)?)\s*(tỷ|tỉ|triệu)\s*(đồng)?/gi;
+            while((m = re2.exec(t)) !== null){
+              const n = parseFloat(String(m[1]).replace(",", "."));
+              const so = /tỷ|tỉ/i.test(m[2]) ? n * 1e9 : n * 1e6;
+              if(so > caoNhat && so <= 100000000000) caoNhat = so;
+            }
+            if(!caoNhat) return "";
+            if(caoNhat >= 1e9){
+              const ty = caoNhat / 1e9;
+              return (Number.isInteger(ty) ? ty : ty.toFixed(1)) + " tỷ đồng";
+            }
+            return Math.round(caoNhat / 1e6) + " triệu đồng";
+          }
+
+          /* Từ khóa đặc trưng từng nhóm, dùng để tự kiểm tra AI có xếp đúng chỗ không. */
+          const TUKHOA_NHOM = {
+            kcb:  /(khám bệnh|chữa bệnh|giấy phép hành nghề|phạm vi hoạt động chuyên môn|người hành nghề|hồ sơ bệnh án)/i,
+            dn:   /(doanh nghiệp|điều lệ|đăng ký kinh doanh|chủ sở hữu hưởng lợi|người đại diện theo pháp luật)/i,
+            pccc: /(phòng cháy|chữa cháy|cứu nạn|cứu hộ|thoát nạn)/i,
+            tb:   /(thiết bị y tế|số lưu hành|mỹ phẩm|phiếu công bố|ghi nhãn)/i,
+            duoc: /(thuốc|dược|kê đơn|đơn thuốc|gây nghiện|hướng thần|tiền chất|nguyên liệu làm thuốc)/i,
+            mt:   /(môi trường|chất thải|nước thải|quan trắc|giấy phép môi trường)/i,
+            ld:   /(người lao động|hợp đồng lao động|bảo hiểm xã hội|an toàn.{0,10}lao động|bệnh nghề nghiệp)/i,
+            dl:   /(dữ liệu cá nhân|bảo vệ dữ liệu|chủ thể dữ liệu|xử lý dữ liệu)/i,
+            ktd:  /(người tiêu dùng|hợp đồng theo mẫu|giám định|hình sự|khiếu nại)/i,
+            qc:   /(quảng cáo|người chuyển tải|nội dung quảng cáo)/i,
+            antt: /(an ninh, trật tự|an ninh trật tự|điều kiện về an ninh|cơ quan công an)/i,
+            gia:  /(niêm yết giá|kê khai giá|hóa đơn|chứng từ điện tử|quản lý thuế)/i
+          };
+          /* Trả về nhóm hợp lý nhất theo số lần từ khóa xuất hiện. Chỉ dùng để sửa khi AI xếp
+             vào nhóm mà toàn văn không hề có dấu vết của nhóm đó. */
+          function nhomTheoToanVan(toanVan){
+            const t = String(toanVan).slice(0, 60000);
+            let tot = "", diem = 0;
+            for(const k of Object.keys(TUKHOA_NHOM)){
+              const re = new RegExp(TUKHOA_NHOM[k].source, "gi");
+              const n = (t.match(re) || []).length;
+              if(n > diem){ diem = n; tot = k; }
+            }
+            return { nhom: tot, diem };
           }
 
           function curl(url, them, nhanh){
@@ -331,7 +602,7 @@ jobs:
           Cấu trúc JSON bắt buộc:
           {
             "lienQuan": true hoặc false,
-            "cat": một trong "kcb","dn","pccc","tb","duoc","mt","ld","dl","ktd","qc",
+            "cat": một trong "kcb","antt","dn","pccc","tb","duoc","mt","ld","dl","ktd","qc","gia",
             "tier": 1, 2 hoặc 3,
             "title": "tên ngắn gọn dễ hiểu, không chép nguyên tên hành chính dài",
             "eff": "ngày ban hành và ngày hiệu lực, nêu cả văn bản bị thay thế nếu có",
@@ -341,12 +612,13 @@ jobs:
             "fine": "mức phạt tối đa dạng ngắn ví dụ 200 triệu đồng, để chuỗi rỗng nếu không rõ",
             "fineNote": "một dòng giải thích con số trên",
             "notes": "một lưu ý thực chiến, để chuỗi rỗng nếu không có",
-            "url": "đường dẫn tới toàn văn trên trang chính thống, để chuỗi rỗng nếu không chắc"
+            "url": "đường dẫn tới toàn văn trên trang chính thống, để chuỗi rỗng nếu không chắc",
+            "bangChung": ["chỉ điền khi được cung cấp toàn văn, xem quy tắc bên dưới"]
           }
 
           Quy tắc:
           - lienQuan = false nếu văn bản KHÔNG liên quan tới vận hành bệnh viện thẩm mỹ. Khi đó các trường khác để rỗng.
-          - Ý nghĩa nhóm: kcb khám chữa bệnh và giấy phép, dn doanh nghiệp, pccc phòng cháy chữa cháy, tb thiết bị y tế và mỹ phẩm, duoc thuốc và dược gồm nguồn gốc thuốc kê đơn thuốc kiểm soát đặc biệt, mt môi trường và chất thải, ld lao động và bảo hiểm, dl dữ liệu cá nhân, ktd người tiêu dùng và trách nhiệm hình sự, qc quảng cáo.
+          - Ý nghĩa nhóm: kcb khám chữa bệnh và giấy phép, antt an ninh trật tự gồm giấy chứng nhận đủ điều kiện an ninh trật tự do công an cấp, gia giá và hóa đơn gồm niêm yết giá kê khai giá hóa đơn điện tử, dn doanh nghiệp, pccc phòng cháy chữa cháy, tb thiết bị y tế và mỹ phẩm, duoc thuốc và dược gồm nguồn gốc thuốc kê đơn thuốc kiểm soát đặc biệt, mt môi trường và chất thải, ld lao động và bảo hiểm, dl dữ liệu cá nhân, ktd người tiêu dùng và trách nhiệm hình sự, qc quảng cáo.
           - tier 1 nếu sai có thể bị đình chỉ hoạt động hoặc truy cứu hình sự, tier 2 nếu phạt tiền nặng hoặc tước giấy phép, tier 3 nếu chỉ là nền tảng cần biết.
           - Viết tiếng Việt tự nhiên, câu ngắn, không dùng dấu gạch ngang giữa câu, không dùng dấu ngoặc kép bên trong nội dung.
           - Nếu không tra được văn bản, đặt lienQuan = false.`;
@@ -364,13 +636,51 @@ jobs:
 
           /* Gọi một model cụ thể. traWeb quyết định có kèm công cụ tra cứu Google hay không.
              Trả về {ok:true, data} hoặc {ok:false, status, text}. */
+          /* Hướng dẫn khi ĐÃ CÓ toàn văn. Đây là chế độ tốt nhất: không cần tra web, không cần
+             model nhớ gì, chỉ cần đọc bản gốc nằm ngay trong câu hỏi. Chất lượng tiệm cận thẻ
+             viết tay vì nguồn dữ liệu giống hệt nhau — bản gốc của văn bản. */
+          const HD_CO_TOANVAN = HD + `
+
+          Lần này bạn được cung cấp TOÀN VĂN của văn bản ngay trong câu hỏi.
+          Chỉ được dựa vào toàn văn đó, không dùng trí nhớ, không suy đoán, không tra cứu.
+          Mọi con số bạn nêu phải trích từ toàn văn: mức phạt, số điều khoản, ngày hiệu lực,
+          tên văn bản bị thay thế hoặc bãi bỏ.
+          Nếu toàn văn có ghi chú đã bị cắt bớt, chỉ kết luận trong phạm vi phần được cung cấp,
+          và không khẳng định điều gì về phần bị cắt.
+          Điều nào toàn văn không nói thì để chuỗi rỗng, tuyệt đối không lấp bằng phỏng đoán.
+
+          BẮT BUỘC thêm một trường nữa vào JSON:
+            "bangChung": [từ 2 đến 5 đoạn TRÍCH NGUYÊN VĂN từ toàn văn, mỗi đoạn 1 đến 3 câu]
+          Quy tắc cho bangChung:
+          - Phải sao y nguyên chữ trong toàn văn, không diễn đạt lại, không rút gọn, không sửa
+            dấu câu. Hệ thống sẽ đối chiếu từng đoạn với bản gốc bằng máy, đoạn nào không tìm
+            thấy sẽ bị loại và mục này bị đánh dấu là kém tin cậy.
+          - Ưu tiên trích đúng những câu chứa con số bạn đã nêu: mức phạt, thời hạn, ngày hiệu
+            lực, và câu nói rõ văn bản nào bị thay thế hoặc bãi bỏ.
+          - Nếu không trích được câu nào chứng minh cho một con số, hãy bỏ con số đó khỏi câu
+            trả lời thay vì cố giữ.`;
+
           async function goiMot(model, v, traWeb){
+            const coTV = !!v.toanVan;
+            const nhacViec = coTV
+              ? ("Văn bản cần phân tích: " + (v.code || "chưa rõ số hiệu") + "\n"
+                 + (v.thuocTinh ? "Thuộc tính chính thức lấy từ Công báo:\n"
+                     + "  Số hiệu: " + (v.thuocTinh.soHieu || "-") + "\n"
+                     + "  Cơ quan ban hành: " + (v.thuocTinh.coQuan || "-") + "\n"
+                     + "  Ngày ban hành: " + (v.thuocTinh.ngayBH || "-") + "\n"
+                     + "  Ngày hiệu lực: " + (v.thuocTinh.ngayHL || "-") + "\n" : "")
+                 + (v.catBot ? "\nLƯU Ý: toàn văn dưới đây ĐÃ BỊ CẮT BỚT phần giữa, chỗ cắt đánh dấu bằng [...].\n" : "")
+                 + "\n--- TOÀN VĂN ---\n" + v.toanVan + "\n--- HẾT TOÀN VĂN ---")
+              : ("Văn bản cần phân tích:\n" + v.code + " — " + v.mota);
+
             const body = {
-              systemInstruction: { parts: [{ text: traWeb ? HD : HD_KHONG_WEB }] },
-              contents: [{ role:"user", parts:[{ text: "Văn bản cần phân tích:\n" + v.code + " — " + v.mota }]}],
+              systemInstruction: { parts: [{ text: coTV ? HD_CO_TOANVAN : (traWeb ? HD : HD_KHONG_WEB) }] },
+              contents: [{ role:"user", parts:[{ text: nhacViec }]}],
               generationConfig: { temperature: 0.2, maxOutputTokens: 2048 }
             };
-            if(traWeb) body.tools = [{ google_search: {} }];
+            /* Có toàn văn rồi thì không cần công cụ tra cứu Google nữa — vừa chính xác hơn vì
+               đọc bản gốc thay vì bài viết thứ cấp, vừa không tiêu hạn mức tra web vốn rất hẹp. */
+            if(traWeb && !coTV) body.tools = [{ google_search: {} }];
             let r;
             try{
               r = await fetch(
@@ -464,7 +774,7 @@ jobs:
             throw new Error(loiCuoi || "không gọi được");
           }
 
-          const NHOM = ["kcb","dn","pccc","tb","duoc","mt","ld","dl","ktd","qc"];
+          const NHOM = ["kcb","antt","dn","pccc","tb","duoc","mt","ld","dl","ktd","qc","gia"];
           let them = 0;
           for(const v of moiTim){
             if(DA_PHANTICH.some(x => x.code === v.code)) continue;
@@ -472,6 +782,22 @@ jobs:
               console.log("BỎ QUA " + v.code + " — đã hết hạn mức, dừng gọi để khỏi đốt thêm");
               continue;
             }
+            /* Lấy toàn văn TRƯỚC khi hỏi AI. Đây là thay đổi quyết định chất lượng: có bản gốc
+               thì AI đọc mà trả lời, không có thì mới phải đoán từ tiêu đề. */
+            let tv = null;
+            try { tv = await layToanVan(v.link); } catch(e){ tv = null; }
+            if(tv){
+              const cat = catThongMinh(tv.toanVan, 30000);
+              v.toanVan   = cat.text;
+              v.catBot    = cat.catBot;
+              v.thuocTinh = tv.thuocTinh;
+              v.nguonTV   = tv.nguon;
+              console.log("       đã lấy toàn văn " + v.code + " (" + tv.nguon + ", "
+                          + tv.toanVan.length + " ký tự" + (cat.catBot ? ", có cắt bớt" : "") + ")");
+            }else{
+              console.log("       KHÔNG lấy được toàn văn " + v.code + ", sẽ phân tích theo tiêu đề");
+            }
+
             let kq = null, loi = "";
             for(let lan = 1; lan <= 2; lan++){
               try { kq = await hoiGemini(v); break; }
@@ -486,9 +812,76 @@ jobs:
             if(!NHOM.includes(kq.cat)) kq.cat = "kcb";
             kq.code = v.code;
             kq.napLuc = gio;
+
+            /* Dữ kiện lấy từ bảng thuộc tính của Công báo là sự thật, còn phần AI viết chỉ là
+               diễn giải. Nên ngày tháng và cơ quan ban hành ghi đè lên những gì AI trả về —
+               loại bỏ hẳn khả năng bịa ngày hiệu lực, thứ nguy hiểm nhất trong một bảng pháp lý. */
+            const tt = v.thuocTinh;
+            if(tt && (tt.ngayBH || tt.ngayHL)){
+              const phan = [];
+              if(tt.ngayBH) phan.push("Ban hành " + tt.ngayBH);
+              if(tt.ngayHL) phan.push("hiệu lực " + tt.ngayHL);
+              kq.eff = phan.join(" · ");
+              if(tt.coQuan) kq.eff += " · " + tt.coQuan;
+            }
+            if(v.link) kq.url = v.link;
+
+            /* Ghi lại đã đọc bản gốc hay chưa, để trang web nói thật với người dùng. */
+            kq.coToanVan = !!v.toanVan;
+            kq.nguonTV   = v.nguonTV || "";
+            kq.catBot    = !!v.catBot;
+            if(v.toanVan) delete kq.khongTraWeb;   // có bản gốc thì không còn là suy đoán
+
+            /* ---- BA TẦNG KIỂM CHỨNG, chỉ chạy khi có bản gốc để đối chiếu ---- */
+            if(v.toanVan){
+              /* A. Bằng chứng trích dẫn. */
+              const kc = kiemChungTrich(v.toanVan, kq.bangChung);
+              kq.bangChung = kc.dat;
+              kq.soTrichDat = kc.dat.length;
+              kq.soTrichTruot = kc.truot.length;
+              const tongTrich = kc.dat.length + kc.truot.length;
+              kq.tinCay = tongTrich === 0 ? "khong-trich"
+                        : kc.truot.length === 0 ? "cao"
+                        : kc.dat.length >= kc.truot.length ? "vua" : "thap";
+              if(kc.truot.length){
+                console.log("       " + kc.truot.length + "/" + tongTrich
+                            + " đoạn trích KHÔNG tìm thấy trong bản gốc, đã loại");
+                kc.truot.slice(0,2).forEach(x => console.log("         loại: " + x.slice(0,80)));
+              }
+
+              /* B. Quan hệ hiệu lực: văn bản này khai tử hay sửa văn bản nào. */
+              const qh = trichQuanHe(v.toanVan);
+              kq.thayThe = qh.thayThe.filter(x => x !== v.code);
+              kq.suaDoi  = qh.suaDoi.filter(x => x !== v.code);
+              if(kq.thayThe.length) console.log("       thay thế: " + kq.thayThe.join(", "));
+              if(kq.suaDoi.length)  console.log("       sửa đổi:  " + kq.suaDoi.join(", "));
+
+              /* C1. Mức phạt do máy đọc từ bản gốc. Lệch với AI thì tin máy. */
+              const phatMay = trichMucPhat(v.toanVan);
+              if(phatMay){
+                const soAI  = String(kq.fine || "").replace(/[^\d]/g, "");
+                const soMay = phatMay.replace(/[^\d]/g, "");
+                if(!kq.fine || soAI !== soMay){
+                  if(kq.fine) console.log("       mức phạt AI ghi " + kq.fine + ", máy đọc được " + phatMay + " — dùng số của máy");
+                  kq.fine = phatMay;
+                  kq.fineNote = "mức tiền cao nhất máy đọc được trong toàn văn, cần xem điều khoản cụ thể để biết áp cho hành vi nào";
+                }
+              }
+
+              /* C2. Nhóm: chỉ sửa khi toàn văn không có dấu vết của nhóm AI chọn. */
+              const nt = nhomTheoToanVan(v.toanVan);
+              const reAI = TUKHOA_NHOM[kq.cat];
+              const coDauVet = reAI ? reAI.test(v.toanVan) : false;
+              if(!coDauVet && nt.nhom && nt.diem >= 3){
+                console.log("       nhóm AI chọn (" + kq.cat + ") không khớp toàn văn, đổi sang " + nt.nhom);
+                kq.cat = nt.nhom;
+              }
+            }
+
             DA_PHANTICH.push(kq);
             them++;
-            console.log("THÊM   " + v.code + " → nhóm " + kq.cat + ", mức " + kq.tier + " — " + (kq.title||""));
+            console.log("THÊM   " + v.code + " → nhóm " + kq.cat + ", mức " + kq.tier
+                        + (v.toanVan ? " [đọc toàn văn]" : " [chỉ tiêu đề]") + " — " + (kq.title||""));
             await new Promise(s => setTimeout(s, 2500));
           }
 

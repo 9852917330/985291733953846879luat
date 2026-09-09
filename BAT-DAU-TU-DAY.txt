@@ -1,7 +1,169 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
 ────────────────────────────────────────────
-CẬP NHẬT LẦN NÀY — 08/09/2026 (đổi cách lấy dữ liệu)
+CẬP NHẬT LẦN NÀY — 09/09/2026 (BỔ SUNG 12 VĂN BẢN CÒN THIẾU)
+────────────────────────────────────────────
+
+ĐO ĐỘ PHỦ RỒI BỊT LỖ HỔNG. Bảng tăng từ 31 lên 43 văn bản, từ 11 lên 13
+nhóm, việc cần làm từ 13 lên 16, điểm dễ vỡ từ 13 lên 16.
+
+Cách đo: dựng danh mục nghĩa vụ pháp lý thật của một bệnh viện thẩm mỹ tư
+nhân rồi soi ngược lại bảng. Kết quả: bảng cũ phủ khoảng 70%, và thiếu ba
+mảng ở mức có thể bị đình chỉ hoạt động.
+
+BA LỖ HỔNG NGHIÊM TRỌNG NHẤT, nay đã có thẻ:
+
+1. AN NINH TRẬT TỰ — nhóm mới hoàn toàn, trước đây bảng không có một dòng.
+   Kinh doanh dịch vụ phẫu thuật thẩm mỹ nằm trong danh mục ngành nghề phải
+   có Giấy chứng nhận đủ điều kiện về an ninh, trật tự do CÔNG AN cấp, độc
+   lập với giấy phép hoạt động của Sở Y tế. Nghị định 58/2026/NĐ-CP hiệu
+   lực 15/3/2026 vừa MỞ RỘNG định nghĩa sang cả dịch vụ dùng thuốc, chất
+   hoặc thiết bị can thiệp vào cơ thể, và cả xăm phun thêu. Cơ sở dựa vào
+   tư vấn cũ hoàn toàn có thể đang thiếu giấy mà không biết.
+
+2. HỒ SƠ BỆNH ÁN ĐIỆN TỬ — Thông tư 13/2025/TT-BYT thay Thông tư 46/2018.
+   Bệnh viện phải triển khai chậm nhất 30/9/2025. Mốc đã qua gần một năm.
+   Lưu ý khi tra cứu: trang benhandientu.moh.gov.vn của Bộ Y tế vẫn liệt kê
+   Thông tư 46/2018 là còn hiệu lực và chưa cập nhật — đó là trang chưa cập
+   nhật, không phải bằng chứng.
+
+3. KIỂM SOÁT NHIỄM KHUẨN — Thông tư 16/2018/TT-BYT, vẫn còn hiệu lực. Với
+   cơ sở có phẫu thuật, đây là điều kiện hoạt động chứ không phải giấy tờ
+   phụ. Cơ sở từ 150 giường trở lên phải có đủ hội đồng, khoa hoặc bộ phận,
+   mạng lưới kiểm soát nhiễm khuẩn và người chuyên trách đã đào tạo.
+
+CHÍN VĂN BẢN CÒN LẠI ĐƯỢC BỔ SUNG:
+   Phòng ngừa sự cố y khoa — Thông tư 43/2018/TT-BYT.
+   Cập nhật kiến thức y khoa liên tục 120 giờ tín chỉ trong 5 năm, điều kiện
+     gia hạn giấy phép hành nghề — Thông tư 32/2023/TT-BYT Điều 3.
+   Thời hạn lưu trữ hồ sơ bệnh án — Thông tư 33/2025/TT-BYT. Mốc cũ 10/15/20
+     năm đến từ Quy chế bệnh viện 1997 đã bị Thông tư 18/2024 bãi bỏ. Hồ sơ
+     người bệnh tử vong nay là 30 NĂM, không phải 20 như thói quen cũ.
+   Bảo hiểm trách nhiệm nghề nghiệp — Điều 103 Luật Khám bệnh chữa bệnh 2023.
+   Nghị định hướng dẫn Luật Bảo vệ môi trường — 08/2022/NĐ-CP đã sửa hai lần
+     bởi 05/2025 và 48/2026. Bảng cũ chỉ có Luật, thiếu đúng phần phải làm.
+   Quy chuẩn nước thải — QCVN 28:2010/BTNMT ĐÃ BỊ BÃI BỎ từ 01/9/2025, thay
+     bằng QCVN 40:2025/BTNMT. Cơ sở có giấy phép trước mốc đó được dùng quy
+     chuẩn cũ tới 31/12/2031.
+   Niêm yết và kê khai giá dịch vụ — nhóm mới, Luật Giá 2023 và Nghị định
+     85/2024. Bệnh viện tư tự quyết định giá nhưng phải kê khai và niêm yết.
+   Hóa đơn điện tử — Nghị định 254/2026/NĐ-CP hiệu lực 01/7/2026, thay
+     Nghị định 123/2020 và 70/2025. Mọi quy trình còn dẫn 123/2020 đã sai
+     căn cứ.
+   Biển hiệu cơ sở — Điều 34 Luật Quảng cáo, xử phạt tại Điều 67 Nghị định
+     87/2026, từ 5 tới 20 triệu với cá nhân, tổ chức gấp đôi.
+
+BA CHỖ CHƯA CHỐT ĐƯỢC, đã ghi thẳng trong thẻ chứ không giấu:
+   Nghị định 102/2011 về bảo hiểm trách nhiệm nghề nghiệp: ban hành để hướng
+     dẫn Luật Khám bệnh chữa bệnh 2009 đã hết hiệu lực, nhưng không tìm được
+     văn bản nào bãi bỏ nó, cũng không có nghị định mới thay thế.
+   QCVN 40:2025 tự mô tả phạm vi là nước thải công nghiệp nên chưa rõ bệnh
+     viện áp dụng cột và hệ số nào.
+   Điều 34 Luật Quảng cáo có bị Luật 75/2025 sửa hay không, các nguồn không
+     thống nhất.
+   Nguyên nhân chung: vbpl.vn, cơ sở dữ liệu quốc gia của Bộ Tư pháp và là
+   nơi duy nhất có trường tình trạng hiệu lực chính thức, chặn truy cập tự
+   động. Đây là trần của bài toán chứ không phải lỗi của hệ thống này.
+
+Máy quét cũng đã nhận hai nhóm mới, thêm từ khóa lọc tương ứng để bắt được
+văn bản về an ninh trật tự, giá, hóa đơn, bệnh án điện tử, kiểm soát nhiễm
+khuẩn và lưu trữ hồ sơ.
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 09/09/2026 (MÁY TỰ ĐỐI CHIẾU)
+────────────────────────────────────────────
+
+BỎ HẲN VIỆC NGƯỜI DÙNG PHẢI TỰ ĐỐI CHIẾU. Máy làm nốt phần đó.
+
+Đọc được toàn văn là điều kiện cần, chưa đủ: trợ lý AI vẫn phải viết lại,
+và chính bước viết lại là chỗ sai lệch. Nên thêm ba tầng để MÁY tự kiểm,
+không đẩy sang người đọc.
+
+TẦNG A — MỌI KHẲNG ĐỊNH PHẢI CÓ TRÍCH DẪN LÀM BẰNG
+  AI buộc phải kèm 2 đến 5 đoạn trích NGUYÊN VĂN từ toàn văn, ưu tiên đúng
+  những câu chứa con số nó nêu. Máy đối chiếu từng đoạn với bản gốc: khớp
+  nguyên đoạn thì đạt, không thì thử tìm chuỗi 8 từ liên tiếp để bỏ qua sai
+  lệch nhỏ về dấu câu. Đoạn nào không tìm thấy sẽ bị loại và thẻ bị hạ mức
+  tin cậy. Chạy thử với 3 trích dẫn thật cộng 2 trích dẫn bịa: loại đúng cả
+  2 cái bịa, giữ đúng cả 3 cái thật.
+  Trên trang web, các đoạn đã xác nhận hiện trong mục "Trích nguyên văn từ
+  bản gốc" — đọc chính chữ trong văn bản, không phải diễn giải của AI.
+
+TẦNG B — TỰ NỐI QUAN HỆ HIỆU LỰC
+  Máy đọc điều khoản thi hành của văn bản mới để biết nó thay thế, bãi bỏ
+  hay chỉ sửa đổi văn bản nào, rồi nối với các thẻ đang có trong bảng.
+  Thẻ cũ tự động mang nhãn đen "Đã bị thay thế" hoặc nhãn cam "Đã bị sửa
+  đổi", mở ra có hộp cảnh báo nói rõ bị văn bản nào thay, kèm nút bấm sang
+  thẳng văn bản mới. Nghĩa là không ai phải tự biết văn bản nào đã chết.
+  Một lỗi bắt được khi chạy thử, đáng ghi lại: bản đầu quét trong cửa sổ
+  400 ký tự quanh từ khóa nên lấn sang câu bên cạnh, khiến một nghị định
+  chỉ bị sửa đổi bị đánh dấu là đã thay thế. Đánh dấu sai kiểu đó nguy hiểm
+  hơn bỏ sót, vì người đọc sẽ tưởng văn bản còn hiệu lực đã chết rồi bỏ qua.
+  Đã sửa thành xét theo từng câu, và dấu chấm giữa hai chữ số không tính là
+  hết câu để không cắt vụn những con số như 3.000.000.000.
+
+TẦNG C — MÁY TỰ ĐỌC SỐ VÀ TỰ KIỂM NHÓM
+  Mức phạt: máy tự quét toàn văn tìm số tiền cao nhất. Lệch với số AI ghi
+  thì tin số của máy, vì máy đọc bản gốc còn AI thì nhớ lại.
+  Nhóm: nếu toàn văn không hề có dấu vết từ khóa của nhóm AI chọn, máy xếp
+  lại theo nhóm có nhiều từ khóa nhất.
+
+Kết quả chạy thử đầy đủ trên bộ dữ liệu mẫu: trích dẫn bịa bị loại sạch,
+văn bản bị thay thế và bị sửa đổi phân loại đúng, mức phạt đọc ra 3 tỷ
+đồng đúng như bản gốc, nhóm xếp đúng, không lỗi JavaScript.
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 09/09/2026 (AI ĐỌC TOÀN VĂN)
+────────────────────────────────────────────
+
+SỬA TẬN GỐC VẤN ĐỀ CHẤT LƯỢNG THẺ TỰ ĐỘNG.
+
+Vấn đề: thẻ viết tay chính xác vì người viết đọc bản gốc. Thẻ tự động
+trước đây chỉ có mỗi tiêu đề nên trợ lý AI buộc phải đoán, mà đoán về
+pháp luật chính là bịa. Đó là lý do độ tin cậy của chúng chỉ khoảng 40%.
+
+Lời giải: cho AI đọc TOÀN VĂN, đúng nguồn dữ liệu mà người viết tay dùng.
+
+Cách làm, ba tầng:
+  1. Từ đường dẫn trong RSS, tải trang chi tiết văn bản trên Công báo.
+     Trang này có bảng thuộc tính chuẩn: số hiệu, cơ quan ban hành, ngày
+     ban hành, ngày hiệu lực, người ký.
+  2. Trên trang đó có link tải bản DOCX và bản PDF của toàn văn. Ưu tiên
+     DOCX vì tệp DOCX thực chất là tệp ZIP chứa word/document.xml, giải
+     nén bằng unzip có sẵn trên máy chạy, chữ sạch, không phải bản quét
+     ảnh. PDF là phương án dự phòng, cần poppler-utils nên đã thêm bước
+     cài đặt vào workflow.
+  3. Văn bản dài thì cắt có chủ đích thay vì cắt cụt: giữ phần đầu (căn
+     cứ, phạm vi, đối tượng áp dụng), giữ phần cuối (điều khoản thi hành,
+     hiệu lực, bãi bỏ) và nhặt thêm các đoạn có từ khóa liên quan bệnh
+     viện thẩm mỹ. Chỗ bị cắt đánh dấu [...] và báo cho AI biết là đã cắt.
+
+HAI ĐIỂM QUAN TRỌNG VỀ ĐỘ CHÍNH XÁC:
+
+  a. Dữ kiện không do AI quyết định nữa. Số hiệu, cơ quan ban hành, ngày
+     ban hành và ngày hiệu lực lấy thẳng từ bảng thuộc tính của Công báo
+     rồi ghi đè lên những gì AI trả về. Khả năng bịa ngày hiệu lực, thứ
+     nguy hiểm nhất trong một bảng pháp lý, bị loại bỏ hoàn toàn.
+
+  b. Có toàn văn thì không cần công cụ tra cứu Google nữa. Vừa chính xác
+     hơn vì đọc bản gốc thay vì bài viết thứ cấp, vừa không tiêu hạn mức
+     tra web vốn rất hẹp trên gói miễn phí — chính thứ đã gây lỗi 429.
+
+TRANG WEB NÓI THẬT VỀ MỨC ĐỘ TIN CẬY:
+  Thẻ đã đọc bản gốc mang nhãn xanh lá "Đã đọc toàn văn", kèm ghi chú nêu
+  rõ lấy từ bản DOCX hay PDF trên Công báo và có bị cắt bớt hay không.
+  Thẻ không lấy được bản gốc giữ nhãn cam "Cần đối chiếu" như cũ.
+  Nhìn màu nhãn là biết ngay nên tin tới đâu.
+
+Hai lỗi bắt được khi chạy thử, đáng ghi lại:
+  - Hàm trích bảng thuộc tính lúc đầu nuốt luôn các trường phía sau, khiến
+    trường Số hiệu gộp cả cơ quan ban hành lẫn ngày tháng vào làm một. Đã
+    sửa thành cắt đúng tại nhãn kế tiếp.
+  - Nhãn mới không hiện trong bảng Cập nhật ngay vì phần đó dựng thẻ bằng
+    một hàm riêng. Đã bổ sung.
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 08/09/2026 (đổi cách lấy dữ liệu)
 ────────────────────────────────────────────
 
 ĐỔI XƯƠNG SỐNG CỦA MÁY QUÉT: TỪ CÀO TRANG WEB SANG ĐỌC RSS CÔNG BÁO.
