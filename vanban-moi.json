@@ -1,1 +1,52 @@
-[]
+[
+ {
+  "lienQuan": true,
+  "cat": "dl",
+  "tier": 2,
+  "title": "Xử phạt vi phạm hành chính về bảo vệ dữ liệu cá nhân",
+  "eff": "",
+  "essence": "Văn bản này quy định các chế tài xử phạt khi vi phạm quy định về bảo vệ dữ liệu cá nhân. Bệnh viện thẩm mỹ cần quan tâm vì lưu trữ lượng lớn dữ liệu sức khỏe và hình ảnh nhạy cảm của khách hàng.",
+  "duties": [
+   "Xây dựng quy trình thu thập và xử lý dữ liệu cá nhân của khách hàng đúng pháp luật",
+   "Ban hành chính sách bảo mật thông tin và lấy sự đồng ý hợp lệ của khách hàng",
+   "Đảm bảo an toàn hệ thống công nghệ thông tin lưu trữ hồ sơ bệnh án thẩm mỹ",
+   "Phân công nhân sự chịu trách nhiệm bảo vệ dữ liệu cá nhân tại bệnh viện"
+  ],
+  "risks": [
+   "Bị phạt tiền nặng nếu để lộ lọt hoặc mua bán dữ liệu khách hàng",
+   "Bị đình chỉ hoạt động xử lý dữ liệu cá nhân khi vi phạm nghiêm trọng",
+   "Mất uy tín thương hiệu và đối mặt với yêu cầu bồi thường thiệt hại từ khách hàng"
+  ],
+  "fine": "",
+  "fineNote": "",
+  "notes": "Dữ liệu hình ảnh trước và sau phẫu thuật thẩm mỹ cùng thông tin khám chữa bệnh là dữ liệu cá nhân nhạy cảm, cần được bảo vệ ở mức độ cao nhất.",
+  "url": "",
+  "khongTraWeb": true,
+  "code": "330/2026/NĐ-CP",
+  "napLuc": "09:25 ngày 09/09/2026"
+ },
+ {
+  "lienQuan": true,
+  "cat": "tb",
+  "tier": 2,
+  "title": "Phân cấp thủ tục hành chính thiết bị y tế",
+  "eff": "Ngày 22/11/2025",
+  "essence": "Văn bản quy định việc phân cấp thực hiện nhiệm vụ và giải quyết thủ tục hành chính liên quan đến thiết bị y tế. Bệnh viện thẩm mỹ cần nắm rõ để thực hiện đúng các thủ tục pháp lý khi mua sắm và sử dụng trang thiết bị y tế.",
+  "duties": [
+   "Rà soát lại toàn bộ danh mục thiết bị y tế đang sử dụng tại bệnh viện",
+   "Cập nhật các thủ tục hành chính mới theo quy định phân cấp để nộp hồ sơ đúng cơ quan thẩm quyền",
+   "Phân công bộ phận thiết bị y tế theo dõi sát sao các thay đổi pháp lý"
+  ],
+  "risks": [
+   "Nộp hồ sơ sai cơ quan thẩm quyền gây chậm trễ hoạt động mua sắm thiết bị",
+   "Sử dụng thiết bị y tế chưa hoàn thiện thủ tục pháp lý theo phân cấp mới"
+  ],
+  "fine": "",
+  "fineNote": "",
+  "notes": "Kiểm tra kỹ cơ quan tiếp nhận hồ sơ mới sau khi phân cấp để tránh mất thời gian.",
+  "url": "",
+  "khongTraWeb": true,
+  "code": "44/2025/TT-BYT",
+  "napLuc": "09:25 ngày 09/09/2026"
+ }
+]

@@ -1,8 +1,30 @@
 {
  "ngay": "09/09/2026",
- "gio": "06:53 ngày 09/09/2026",
+ "gio": "09:25 ngày 09/09/2026",
  "daTheoDoi": 27,
  "nguon": [
+  {
+   "n": "Công báo Chính phủ — văn bản mới ban hành",
+   "u": "https://congbao.chinhphu.vn/cac-van-ban-moi-ban-hanh.rss",
+   "trangThai": "ok",
+   "phatHien": [
+    {
+     "code": "330/2026/NĐ-CP",
+     "mota": "Quy định xử phạt vi phạm hành chính trong lĩnh vực an ninh mạng và bảo vệ dữ liệu cá nhân"
+    }
+   ]
+  },
+  {
+   "n": "Công báo Chính phủ — số công báo mới đăng",
+   "u": "https://congbao.chinhphu.vn/cac-so-cong-bao-moi-dang.rss",
+   "trangThai": "ok",
+   "phatHien": [
+    {
+     "code": "313/2026/NĐ-CP",
+     "mota": "474 Trong số Công báo này gồm: Nghị định số 313/2026/NĐ-CP Quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Y tế; Quyết định số 40/2026/QĐ-TTg Về tiêu chí phân loại doanh nghiệp để thực hiện cơ cấu lại vốn nhà nước tại doanh nghiệp nhà nước, doanh nghiệp có vốn nhà nước; Thông tư số "
+    }
+   ]
+  },
   {
    "n": "Cục Quản lý Khám, chữa bệnh",
    "u": "https://kcb.vn/van-ban/van-ban-phap-quy",
@@ -16,16 +38,10 @@
    "phatHien": []
   },
   {
-   "n": "Công báo Chính phủ",
-   "u": "https://congbao.chinhphu.vn/",
-   "trangThai": "ok",
-   "phatHien": []
-  },
-  {
-   "n": "Bộ Y tế — Văn bản pháp quy",
-   "u": "https://moh.gov.vn/van-ban-phap-quy",
+   "n": "Bộ Y tế — Hệ thống tra cứu văn bản",
+   "u": "https://emohbackup.moh.gov.vn/publish/home",
    "trangThai": "loi",
-   "loi": "curl: (28) Connection timed out after 45001 milliseconds (dừng sau 90 giây)",
+   "loi": "trang rỗng",
    "phatHien": []
   },
   {
