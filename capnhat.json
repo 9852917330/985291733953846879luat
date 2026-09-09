@@ -1,18 +1,13 @@
 {
  "ngay": "09/09/2026",
- "gio": "09:25 ngày 09/09/2026",
- "daTheoDoi": 27,
+ "gio": "15:41 ngày 09/09/2026",
+ "daTheoDoi": 29,
  "nguon": [
   {
    "n": "Công báo Chính phủ — văn bản mới ban hành",
    "u": "https://congbao.chinhphu.vn/cac-van-ban-moi-ban-hanh.rss",
    "trangThai": "ok",
-   "phatHien": [
-    {
-     "code": "330/2026/NĐ-CP",
-     "mota": "Quy định xử phạt vi phạm hành chính trong lĩnh vực an ninh mạng và bảo vệ dữ liệu cá nhân"
-    }
-   ]
+   "phatHien": []
   },
   {
    "n": "Công báo Chính phủ — số công báo mới đăng",
@@ -48,12 +43,7 @@
    "n": "Cục Hạ tầng và Thiết bị y tế",
    "u": "https://imda.moh.gov.vn/van-ban-phap-quy",
    "trangThai": "ok",
-   "phatHien": [
-    {
-     "code": "44/2025/TT-BYT",
-     "mota": "Thông tư số 44/2025/TT-BYT ngày 22/11/2025 Quy định việc phân cấp thực hiện một số nhiệm vụ, giải quyết một số thủ tục hành chính trong lĩnh vực thiết bị y tế thuộc thẩm quyền"
-    }
-   ]
+   "phatHien": []
   },
   {
    "n": "Xây dựng chính sách — Chính phủ",
