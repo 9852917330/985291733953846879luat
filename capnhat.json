@@ -1,7 +1,7 @@
 {
  "ngay": "09/09/2026",
- "gio": "15:41 ngày 09/09/2026",
- "daTheoDoi": 29,
+ "gio": "21:00 ngày 09/09/2026",
+ "daTheoDoi": 41,
  "nguon": [
   {
    "n": "Công báo Chính phủ — văn bản mới ban hành",
@@ -30,7 +30,12 @@
    "n": "Cổng văn bản Chính phủ",
    "u": "https://vanban.chinhphu.vn/",
    "trangThai": "ok",
-   "phatHien": []
+   "phatHien": [
+    {
+     "code": "34/2026/TT-BYT",
+     "mota": "34/2026/TT-BYT 08/09/2026 08/09/2026 Hướng dẫn một số nội dung thực hiện Chương trình mục tiêu quốc gia về chăm sóc sức khỏe, dân số và phát triển giai đoạn 2026-2035, giai đo"
+    }
+   ]
   },
   {
    "n": "Bộ Y tế — Hệ thống tra cứu văn bản",
