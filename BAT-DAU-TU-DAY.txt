@@ -1,7 +1,53 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
 ────────────────────────────────────────────
-CẬP NHẬT LẦN NÀY — 08/09/2026 (bản đêm)
+CẬP NHẬT LẦN NÀY — 08/09/2026 (đổi cách lấy dữ liệu)
+────────────────────────────────────────────
+
+ĐỔI XƯƠNG SỐNG CỦA MÁY QUÉT: TỪ CÀO TRANG WEB SANG ĐỌC RSS CÔNG BÁO.
+
+Vì sao đổi. Cào trang chủ là cách kém nhất: trang chủ chỉ hiện vài văn bản
+mới nhất nên máy không biết cái gì mới kể từ lần quét trước; họ đổi giao
+diện là gãy; nhiều trang dựng bằng JavaScript nên tải về chỉ thấy khung
+rỗng; và thứ cào được chỉ là mẩu chữ cắt ngang 170 ký tự sau số hiệu, khiến
+trợ lý AI phải phân tích trên dữ liệu rác.
+
+Nguồn mới: Công báo Chính phủ có hai kênh RSS công khai, miễn phí.
+  https://congbao.chinhphu.vn/cac-van-ban-moi-ban-hanh.rss
+  https://congbao.chinhphu.vn/cac-so-cong-bao-moi-dang.rss
+Mỗi kênh trả về 50 mục gần nhất, dạng XML có cấu trúc, kèm tiêu đề đầy đủ,
+ngày ban hành và đường dẫn. Đây là nguồn đúng về bản chất vì mọi văn bản
+quy phạm pháp luật trung ương đều bắt buộc phải đăng Công báo. RSS là định
+dạng máy đọc nên họ đổi giao diện bao nhiêu lần cũng không ảnh hưởng.
+
+Cái được lớn nhất không phải chạy nhanh hơn, mà là trợ lý AI nhận được
+TIÊU ĐỀ CHÍNH THỨC ĐẦY ĐỦ thay vì mẩu chữ cào lộn xộn. Phân tích chính xác
+hơn hẳn và ít bịa hơn.
+
+Một lỗi bắt được khi chạy thử, đáng ghi lại: đường dẫn Công báo viết số
+hiệu ở dạng thong-tu-so-18-2026-tt-byt chứ không phải 18/2026/TT-BYT, mà
+tiêu đề thì thường không chứa số hiệu. Nếu chỉ dò dạng có gạch chéo thì bỏ
+sót phần lớn văn bản. Đã thêm hàm dựng lại số hiệu chuẩn từ đường dẫn.
+
+CÁC THAY ĐỔI KÈM THEO:
+  - Bỏ moh.gov.vn khỏi danh sách vì timeout kéo dài nhiều lần chạy liền,
+    thay bằng hệ thống tra cứu văn bản của chính Bộ Y tế tại
+    emohbackup.moh.gov.vn, là nơi họ thật sự đăng văn bản.
+  - Tăng từ 2 lên 4 lần quét mỗi ngày: 5 giờ sáng, 11 giờ trưa, 5 giờ
+    chiều, 11 giờ đêm. Kho công khai nên GitHub Actions không giới hạn số
+    phút, tăng tần suất không tốn thêm chi phí.
+  - Nhận diện thêm thông tư Bộ Văn hóa Thể thao Du lịch (nhóm quảng cáo),
+    Bộ Tài chính, và quyết định của Bộ Y tế.
+  - Vẫn giữ các cổng chuyên ngành như kcb.vn và imda.moh.gov.vn, vì Công
+    báo đăng sau khi ban hành vài ngày tới vài tuần, còn các cổng này đăng
+    sớm hơn. RSS lo phần chắc chắn, các cổng lo phần nhanh.
+
+GIỚI HẠN CẦN BIẾT: Việt Nam không có API mở chính thức cho văn bản pháp
+luật, nên mọi giải pháp vẫn là đọc web và không có gì bảo đảm tuyệt đối
+không bỏ sót. Cách tăng độ phủ là nhiều nguồn cộng tần suất cao.
+
+────────────────────────────────────────────
+CẬP NHẬT TRƯỚC ĐÓ — 08/09/2026 (bản đêm)
 ────────────────────────────────────────────
 
 1. BỎ TOÀN BỘ XƯNG HÔ SUỒNG SÃ TRONG TRANG WEB.

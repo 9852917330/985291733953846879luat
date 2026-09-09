@@ -3,8 +3,11 @@ name: Quét văn bản pháp luật
 on:
   schedule:
     # Giờ ghi theo giờ quốc tế. Việt Nam nhanh hơn 7 tiếng.
-    - cron: "0 22 * * *"    # 5 giờ sáng giờ Việt Nam
-    - cron: "0 10 * * *"    # 5 giờ chiều giờ Việt Nam
+    # Chạy 4 lần mỗi ngày. Kho công khai nên GitHub Actions không giới hạn số phút, không tốn phí.
+    - cron: "0 22 * * *"    #  5 giờ sáng giờ Việt Nam
+    - cron: "0 4 * * *"     # 11 giờ trưa giờ Việt Nam
+    - cron: "0 10 * * *"    #  5 giờ chiều giờ Việt Nam
+    - cron: "0 16 * * *"    # 11 giờ đêm giờ Việt Nam
   workflow_dispatch:
 
 permissions:
@@ -30,11 +33,25 @@ jobs:
 
           /* ---------------- PHẦN 1: QUÉT ---------------- */
 
+          /* ---- NGUỒN RSS: xương sống của việc cập nhật ----
+             Công báo Chính phủ phát hành hai kênh RSS công khai, miễn phí. Kênh "văn bản mới
+             ban hành" là thứ đáng giá nhất: mọi văn bản quy phạm pháp luật trung ương đều phải
+             đăng Công báo, và RSS là XML có cấu trúc nên không gãy khi họ đổi giao diện, lại
+             kèm TIÊU ĐỀ ĐẦY ĐỦ của văn bản thay vì đoạn chữ cắt ngang như khi cào trang HTML.
+             Tiêu đề đầy đủ giúp lọc chính xác hơn nhiều và giúp trợ lý AI phân tích đúng hơn. */
+          const RSS = [
+            { n: "Công báo Chính phủ — văn bản mới ban hành", u: "https://congbao.chinhphu.vn/cac-van-ban-moi-ban-hanh.rss" },
+            { n: "Công báo Chính phủ — số công báo mới đăng",  u: "https://congbao.chinhphu.vn/cac-so-cong-bao-moi-dang.rss" }
+          ];
+
+          /* ---- NGUỒN HTML: bổ sung cho RSS ----
+             Vẫn giữ vì các cổng chuyên ngành thường đăng thông tư sớm hơn Công báo vài ngày
+             tới vài tuần. moh.gov.vn đang timeout kéo dài nên thay bằng hệ thống tra cứu văn
+             bản của chính Bộ Y tế, vốn là nơi họ thật sự đăng văn bản. */
           const NGUON = [
             { n: "Cục Quản lý Khám, chữa bệnh",        u: "https://kcb.vn/van-ban/van-ban-phap-quy" },
             { n: "Cổng văn bản Chính phủ",             u: "https://vanban.chinhphu.vn/" },
-            { n: "Công báo Chính phủ",                 u: "https://congbao.chinhphu.vn/" },
-            { n: "Bộ Y tế — Văn bản pháp quy",         u: "https://moh.gov.vn/van-ban-phap-quy" },
+            { n: "Bộ Y tế — Hệ thống tra cứu văn bản", u: "https://emohbackup.moh.gov.vn/publish/home" },
             { n: "Cục Hạ tầng và Thiết bị y tế",       u: "https://imda.moh.gov.vn/van-ban-phap-quy" },
             { n: "Xây dựng chính sách — Chính phủ",    u: "https://xaydungchinhsach.chinhphu.vn/" },
             { n: "Bộ Công an",                         u: "https://bocongan.gov.vn/" },
@@ -42,7 +59,7 @@ jobs:
             { n: "Cổng đăng ký doanh nghiệp quốc gia", u: "https://dangkykinhdoanh.gov.vn/" }
           ];
 
-          const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|QH15|QH16|QĐ-TTg|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
+          const CODERE = /\d{1,4}\/20(?:2[4-9]|3\d)\/(?:NĐ-CP|ND-CP|TT-BYT|TT-BCA|TT-BVHTTDL|TT-BTNMT|TT-BNNMT|TT-BLĐTBXH|TT-BTC|QH15|QH16|QĐ-TTg|QĐ-BYT|NQ-CP|VBHN-[A-ZĐ]{2,8}(?:-[A-ZĐ]{2,8})?)/g;
           const LOI  = /(thẩm mỹ|khám bệnh|chữa bệnh|người bệnh|bệnh viện|cơ sở y tế|hồ sơ bệnh án|bệnh án điện tử|giấy phép hành nghề|hành nghề y|mỹ phẩm|thiết bị y tế|trang thiết bị y tế|dược phẩm|Luật Dược|kinh doanh dược|đăng ký lưu hành thuốc|kê đơn|đơn thuốc|kiểm soát đặc biệt|gây nghiện|hướng thần|tiền chất|gây mê|gây tê|kiểm soát nhiễm khuẩn|chất thải y tế|nước thải y tế|quảng cáo|phòng cháy|chữa cháy|cứu nạn|dữ liệu cá nhân|an toàn vệ sinh lao động|Luật Doanh nghiệp|chủ sở hữu hưởng lợi|bảo hiểm y tế|Bộ Y tế|Sở Y tế)/i;
           /* Nhóm sau đây thuộc ngành khác hoặc thuộc khối y tế công lập, không chạm tới một
              bệnh viện thẩm mỹ tư nhân. Lọc thẳng ở đây để khỏi tốn lượt gọi AI — lần chạy #6
@@ -86,6 +103,65 @@ jobs:
               }
               return [...ra.entries()].map(([code,mota]) => ({code,mota}));
             }catch(e){ return []; }
+          }
+
+          /* ---- ĐỌC RSS ----
+             Lấy nội dung một thẻ trong khối item, gỡ CDATA và thực thể HTML. Viết tay thay vì
+             dùng thư viện vì workflow không cài gói ngoài, giữ nguyên tắc không phụ thuộc. */
+          function goTag(khoi, ten){
+            const m = khoi.match(new RegExp("<" + ten + "[^>]*>([\\s\\S]*?)<\\/" + ten + ">", "i"));
+            if(!m) return "";
+            return m[1]
+              .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+              .replace(/<[^>]+>/g, " ")
+              .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+              .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, " ")
+              .replace(/\s+/g, " ").trim();
+          }
+
+          /* Đường dẫn của Công báo viết số hiệu ở dạng khác hẳn: thong-tu-so-18-2026-tt-byt
+             thay vì 18/2026/TT-BYT. Chạy thử với dữ liệu mẫu cho thấy nếu chỉ dò dạng có gạch
+             chéo thì bỏ sót phần lớn văn bản, vì tiêu đề Công báo thường không chứa số hiệu mà
+             đường dẫn mới chứa. Hàm này dựng lại số hiệu chuẩn từ đường dẫn. */
+          const MAP_LOAI = {
+            "nd-cp":"NĐ-CP", "tt-byt":"TT-BYT", "tt-bca":"TT-BCA", "tt-bvhttdl":"TT-BVHTTDL",
+            "tt-btnmt":"TT-BTNMT", "tt-bnnmt":"TT-BNNMT", "tt-bldtbxh":"TT-BLĐTBXH",
+            "tt-btc":"TT-BTC", "qh15":"QH15", "qh16":"QH16", "qd-ttg":"QĐ-TTg",
+            "qd-byt":"QĐ-BYT", "nq-cp":"NQ-CP"
+          };
+          function maTuLink(link){
+            const m = String(link).toLowerCase()
+              .match(/(\d{1,4})-(20(?:2[4-9]|3\d))-(nd-cp|tt-byt|tt-bca|tt-bvhttdl|tt-btnmt|tt-bnnmt|tt-bldtbxh|tt-btc|qh15|qh16|qd-ttg|qd-byt|nq-cp)/);
+            if(!m) return "";
+            return m[1] + "/" + m[2] + "/" + (MAP_LOAI[m[3]] || m[3].toUpperCase());
+          }
+
+          /* Trả về các mục RSS đáng quan tâm. Khác với cào HTML, ở đây có tiêu đề đầy đủ nên
+             lọc theo nội dung chính xác hơn hẳn. Mục không nhận diện được số hiệu văn bản thì
+             bỏ qua nhưng vẫn đếm, để log cho biết có đang bỏ sót nhiều hay không. */
+          function locRSS(xml){
+            const nhan = [], boSot = [];
+            const khoi = String(xml).split(/<item[\s>]/i).slice(1);
+            for(const it of khoi){
+              const tieuDe = goTag(it, "title");
+              const mo     = goTag(it, "description");
+              const link   = goTag(it, "link") || goTag(it, "guid");
+              const noiDung = (tieuDe + " " + mo).replace(/\s+/g, " ").trim();
+              if(noiDung.length < 15) continue;
+              if(CAM.test(noiDung)) continue;
+
+              const tim = (noiDung + " " + link).match(new RegExp(CODERE.source, "g")) || [];
+              const code = tim[0] || maTuLink(link);
+
+              if(!code){
+                if(LOI.test(noiDung)) boSot.push(noiDung.slice(0, 90));
+                continue;
+              }
+              if(!laYTe(code) && !LOI.test(noiDung)) continue;
+              if(nhan.some(x => x.code === code)) continue;
+              nhan.push({ code, mota: noiDung.slice(0, 300), link });
+            }
+            return { nhan, boSot };
           }
 
           function curl(url, them, nhanh){
@@ -143,8 +219,32 @@ jobs:
           const ngay = p(vn.getUTCDate())+"/"+p(vn.getUTCMonth()+1)+"/"+vn.getUTCFullYear();
           const gio  = p(vn.getUTCHours())+":"+p(vn.getUTCMinutes())+" ngày "+ngay;
 
-          console.log("=== QUÉT NGUỒN ===");
           const ketQua = [], moiTim = [];
+
+          /* Quét RSS trước vì đây là nguồn chuẩn nhất và rẻ nhất. */
+          console.log("=== QUÉT RSS CÔNG BÁO ===");
+          let tongBoSot = 0;
+          for(const s of RSS){
+            let r; try { r = await doc(s.u); } catch(e){ r = { loi:(e.message||"lỗi").slice(0,120) }; }
+            if(r && r.text){
+              const { nhan, boSot } = locRSS(r.text);
+              const moi = nhan.filter(x => !DA_CO.has(x.code));
+              tongBoSot += boSot.length;
+              console.log("OK   " + s.n + " — " + moi.length + " văn bản mới, " + boSot.length + " mục không rõ số hiệu");
+              boSot.slice(0, 3).forEach(x => console.log("       bỏ qua vì không có số hiệu: " + x));
+              ketQua.push({ n:s.n, u:s.u, trangThai:"ok", phatHien: moi.map(x => ({ code:x.code, mota:x.mota })) });
+              moi.forEach(x => { if(!moiTim.some(y => y.code === x.code)) moiTim.push(x); });
+            }else{
+              console.log("LỖI  " + s.n + " — " + (r.loi||"?"));
+              ketQua.push({ n:s.n, u:s.u, trangThai:"loi", loi:r.loi||"không đọc được", phatHien:[] });
+            }
+          }
+          if(tongBoSot > 8){
+            console.log("Lưu ý: " + tongBoSot + " mục RSS có từ khóa liên quan nhưng không đọc được số hiệu.");
+            console.log("Nếu con số này luôn cao thì nên chỉnh lại cách dò số hiệu.");
+          }
+
+          console.log("\n=== QUÉT CÁC CỔNG THÔNG TIN ===");
           for(const s of NGUON){
             let r; try { r = await doc(s.u); } catch(e){ r = { loi:(e.message||"lỗi").slice(0,120) }; }
             if(r && r.text){
