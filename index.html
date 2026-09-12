@@ -1433,7 +1433,7 @@ async function askAI(id, nut){
   const d = allDocs().find(x=>x.id===id);
   if(!d) return;
   await chep(buildAIPrompt(d), nut);
-  showCopyHint('Câu lệnh đã được chuẩn bị đầy đủ để hỏi về văn bản này');
+  showCopyHint('Câu lệnh đã được copy đầy đủ. Hãy dán vào ChatGPT để hỏi về văn bản pháp luật này');
 }
 
 function openDoc(id){
