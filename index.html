@@ -376,7 +376,6 @@ nav.side .tog{display:none}nav.side .nb{flex:0 0 72px;width:72px;display:flex;fl
 <div class="copyhint" id="copyHint" role="status" aria-live="polite"></div>
 <section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="mhead" id="mHead">
-    <button class="back" id="mBack" type="button" aria-label="Quay lại">←</button>
     <span class="mi" id="mIcon"></span>
     <div style="flex:1 1 auto">
       <h2 id="mTitle"></h2>
@@ -1525,9 +1524,7 @@ let modalHistory = [];
 let currentModalView = null;
 
 function updateModalBack(){
-  const b = $("#mBack");
-  if(!b) return;
-  b.classList.toggle("on", modalHistory.length > 0);
+  // Không hiển thị nút Back. Lịch sử chỉ dùng nội bộ để nút X quay về danh sách nguồn.
 }
 function setModalView(view){
   currentModalView = view;
@@ -1566,6 +1563,23 @@ function openModal(color, iconPath, title, metaHTML, bodyHTML, scrollTop=0){
 function closeModal(){
   $("#modal").classList.remove("on"); $("#scrim").classList.remove("on"); document.body.style.overflow="";
   modalHistory = []; currentModalView = null; updateModalBack();
+}
+
+function closeCurrentModal(){
+  // Nếu đang xem chi tiết văn bản được mở từ “Việc cần làm” hoặc “Điểm dễ vỡ”,
+  // nút X chỉ đóng lớp chi tiết và quay về đúng danh sách trước đó.
+  if(currentModalView && currentModalView.type === "doc" && modalHistory.length){
+    for(let i = modalHistory.length - 1; i >= 0; i--){
+      const parent = modalHistory[i];
+      if(parent && (parent.type === "actions" || parent.type === "risks")){
+        modalHistory = modalHistory.slice(0, i);
+        restoreModalView(parent);
+        return;
+      }
+    }
+  }
+  // Ở chính danh sách hoặc khi mở văn bản trực tiếp từ trang chính: X đóng modal hoàn toàn.
+  closeModal();
 }
 
 
@@ -1794,8 +1808,7 @@ document.querySelectorAll("[data-open]").forEach(b=>{
 });
 $("#criticalOpen").addEventListener("click", e=>{ const id=e.currentTarget.dataset.id; if(id) openDoc(id); });
 $("#scanBtn").addEventListener("click", syncNow);
-$("#mBack").addEventListener("click", goModalBack);
-$("#mClose").addEventListener("click", closeModal);
+$("#mClose").addEventListener("click", closeCurrentModal);
 $("#scrim").addEventListener("click", closeModal);
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
 
