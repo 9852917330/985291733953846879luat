@@ -1405,6 +1405,23 @@ function closeModal(){
   $("#modal").classList.remove("on"); $("#scrim").classList.remove("on"); document.body.style.overflow="";
 }
 
+
+function buildAIPrompt(d){
+  const link = safeUrl(d.auto ? (d.sourceFile || d.sourcePage || d.src?.url || '') : (d.src?.url || ''));
+  const nhom = CAT(d.cat).n;
+  const duties = (d.duties||[]).map((x,i)=>`${i+1}. ${x}`).join('\n') || 'Chưa có.';
+  const risks = (d.risks||[]).map((x,i)=>`${i+1}. ${x}`).join('\n') || 'Chưa có.';
+  const claims = (d.claims||[]).map((x,i)=>`${i+1}. ${x.text} (${x.article})`).join('\n');
+  return `Hãy đọc kỹ văn bản pháp luật ở link chính thức dưới đây, sau đó phân tích thật sâu, chính xác, dễ hiểu và dễ nhớ nhất cho người quản lý bệnh viện thẩm mỹ tư nhân.\n\nTHÔNG TIN VĂN BẢN\n- Tên văn bản: ${d.title}\n- Mã/số hiệu: ${d.code}\n- Nhóm: ${nhom}\n- Tình trạng/hiệu lực: ${d.eff}\n- Link nguồn chính thức: ${link}\n\nTÓM TẮT NHANH TỪ WEB (chỉ là dữ liệu đầu vào để đối chiếu lại với văn bản gốc, không được tin mù quáng)\n- Bản chất: ${d.essence || 'Chưa có.'}\n- Việc phải làm:\n${duties}\n- Rủi ro:\n${risks}${claims ? `\n- Một số nhận định đã có sẵn để đối chiếu:\n${claims}` : ''}\n\nYÊU CẦU PHÂN TÍCH\n1. Đọc link nguồn chính thức trước, không dựa vào trí nhớ.\n2. Xác nhận đây có phải văn bản còn hiệu lực hay đã bị thay thế/sửa đổi một phần/toàn bộ không. Nếu có văn bản thay thế/sửa đổi thì nêu rõ.\n3. Tóm tắt văn bản bằng ngôn ngữ cực dễ hiểu, ngắn gọn nhưng không sai bản chất.\n4. Giải thích bản chất cốt lõi: văn bản này thực sự đang quản cái gì, đánh vào rủi ro nào, và tinh thần quản lý là gì.\n5. Phân tích riêng theo góc nhìn bệnh viện thẩm mỹ tư nhân: quy định nào áp dụng trực tiếp, quy định nào không áp dụng, quy định nào cần đọc kèm văn bản khác.\n6. Bóc tách các nghĩa vụ cụ thể thành checklist hành động thực tế: việc phải làm ngay, việc phải chuẩn hóa trong 7 ngày, 30 ngày và duy trì định kỳ.\n7. Hướng dẫn từng bước để triển khai trong thực tế: ai làm, làm theo thứ tự nào, cần hồ sơ/chứng từ gì, bằng chứng lưu ở đâu.\n8. Chỉ ra các lỗi dễ hiểu sai, các bẫy pháp lý, các tình huống dễ bị xử phạt hoặc bị kết luận sai.\n9. Nếu có chế tài, hãy nêu đúng điều kiện áp dụng, đối tượng áp dụng, hành vi vi phạm, mức xử phạt và hậu quả bổ sung; không nói chung chung.\n10. Đề xuất phương án hành động tối ưu cho người vận hành bệnh viện: ưu tiên việc nào trước, việc nào giao bộ phận nào, cần kiểm tra nội bộ ra sao.\n11. Nếu văn bản còn điểm mơ hồ hoặc cần đối chiếu thêm luật/thông tư/nghị định khác thì liệt kê rõ ở cuối dưới mục “Cần kiểm tra thêm”.\n\nBỐ CỤC BẮT BUỘC CỦA CÂU TRẢ LỜI\nA. Kết luận cực ngắn (5-8 dòng)\nB. Văn bản này nói gì — tóm tắt dễ hiểu\nC. Bản chất cốt lõi cần nhớ\nD. Áp dụng gì cho bệnh viện thẩm mỹ tư nhân\nE. Checklist việc phải làm\nF. Hướng dẫn triển khai từng bước\nG. Rủi ro và lỗi dễ dính\nH. Chế tài/mức phạt (nếu có)\nI. Đề xuất hành động ưu tiên\nJ. Cần kiểm tra thêm\n\nYêu cầu cuối: viết rõ ràng, thực dụng, tuyệt đối tránh văn phong lý thuyết dài dòng.`;
+}
+
+async function askAI(id, nut){
+  const d = allDocs().find(x=>x.id===id);
+  if(!d) return;
+  await chep(buildAIPrompt(d), nut);
+  try{ window.open('https://chatgpt.com/', '_blank', 'noopener'); }catch(e){}
+}
+
 function openDoc(id){
   const d = allDocs().find(x=>x.id===id); if(!d) return; const c = CAT(d.cat);
   openModal(c.c, I[d.cat]||I.all, d.title,
@@ -1438,6 +1455,7 @@ function openDoc(id){
      ${d.auto&&d.notes?`<h4>${svg('<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/>',15)} Lưu ý thực chiến</h4><p>${esc(d.notes)}</p>`:""}
      <div class="links">
        <a class="btn solid" href="${safeUrl(d.auto?(d.sourcePage||d.src.url):d.src.url)}" target="_blank" rel="noopener">${svg(I.src,15)} Mở nguồn chính thức</a>
+       <button class="btn" type="button" data-ai="${d.id}">${svg('<path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/><path d="M5 16l.9 2.1L8 19l-2.1.9L5 22l-.9-2.1L2 19l2.1-.9L5 16Z"/><path d="M19 14l1.1 2.5L22.5 17 20 18.1 19 20.5 17.9 18 15.5 17l2.4-1 1.1-2Z>',15)} Hỏi ChatGPT</button>
      </div>`);
 }
 
@@ -1568,6 +1586,7 @@ $("#grid").addEventListener("click", e=>{
 });
 $("#mBody").addEventListener("click", e=>{
   const g = e.target.closest("[data-goto]"); if(g){ openDoc(g.dataset.goto); return; }
+  const a = e.target.closest("[data-ai]"); if(a){ askAI(a.dataset.ai, a); return; }
   const d = e.target.closest(".doc"); if(d) openDoc(d.dataset.id);   // bấm thẻ mới trong modal cập nhật
 });
 document.querySelectorAll("[data-open]").forEach(b=>{
