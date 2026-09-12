@@ -1,78 +1,102 @@
 {
- "ngay": "12/09/2026",
- "gio": "06:55 ngày 12/09/2026",
- "daTheoDoi": 41,
- "nguon": [
-  {
-   "n": "Công báo Chính phủ — văn bản mới ban hành",
-   "u": "https://congbao.chinhphu.vn/cac-van-ban-moi-ban-hanh.rss",
-   "trangThai": "ok",
-   "phatHien": []
-  },
-  {
-   "n": "Công báo Chính phủ — số công báo mới đăng",
-   "u": "https://congbao.chinhphu.vn/cac-so-cong-bao-moi-dang.rss",
-   "trangThai": "ok",
-   "phatHien": [
+  "ngay": "12/09/2026",
+  "gio": "06:55 ngày 12/09/2026",
+  "daTheoDoi": 41,
+  "nguon": [
     {
-     "code": "313/2026/NĐ-CP",
-     "mota": "474 Trong số Công báo này gồm: Nghị định số 313/2026/NĐ-CP Quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Y tế; Quyết định số 40/2026/QĐ-TTg Về tiêu chí phân loại doanh nghiệp để thực hiện cơ cấu lại vốn nhà nước tại doanh nghiệp nhà nước, doanh nghiệp có vốn nhà nước; Thông tư số "
-    }
-   ]
-  },
-  {
-   "n": "Cục Quản lý Khám, chữa bệnh",
-   "u": "https://kcb.vn/van-ban/van-ban-phap-quy",
-   "trangThai": "ok",
-   "phatHien": []
-  },
-  {
-   "n": "Cổng văn bản Chính phủ",
-   "u": "https://vanban.chinhphu.vn/",
-   "trangThai": "ok",
-   "phatHien": [
+      "n": "Công báo Chính phủ — văn bản mới ban hành",
+      "u": "https://congbao.chinhphu.vn/cac-van-ban-moi-ban-hanh.rss",
+      "trangThai": "ok",
+      "phatHien": []
+    },
     {
-     "code": "34/2026/TT-BYT",
-     "mota": "34/2026/TT-BYT 08/09/2026 08/09/2026 Hướng dẫn một số nội dung thực hiện Chương trình mục tiêu quốc gia về chăm sóc sức khỏe, dân số và phát triển giai đoạn 2026-2035, giai đo"
+      "n": "Công báo Chính phủ — số công báo mới đăng",
+      "u": "https://congbao.chinhphu.vn/cac-so-cong-bao-moi-dang.rss",
+      "trangThai": "ok",
+      "phatHien": [
+        {
+          "code": "313/2026/NĐ-CP",
+          "mota": "474 Trong số Công báo này gồm: Nghị định số 313/2026/NĐ-CP Quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Y tế; Quyết định số 40/2026/QĐ-TTg Về tiêu chí phân loại doanh nghiệp để thực hiện cơ cấu lại vốn nhà nước tại doanh nghiệp nhà nước, doanh nghiệp có vốn nhà nước; Thông tư số "
+        }
+      ]
+    },
+    {
+      "n": "Cục Quản lý Khám, chữa bệnh",
+      "u": "https://kcb.vn/van-ban/van-ban-phap-quy",
+      "trangThai": "ok",
+      "phatHien": []
+    },
+    {
+      "n": "Cổng văn bản Chính phủ",
+      "u": "https://vanban.chinhphu.vn/",
+      "trangThai": "ok",
+      "phatHien": [
+        {
+          "code": "34/2026/TT-BYT",
+          "mota": "34/2026/TT-BYT 08/09/2026 08/09/2026 Hướng dẫn một số nội dung thực hiện Chương trình mục tiêu quốc gia về chăm sóc sức khỏe, dân số và phát triển giai đoạn 2026-2035, giai đo"
+        }
+      ]
+    },
+    {
+      "n": "Bộ Y tế — Hệ thống tra cứu văn bản",
+      "u": "https://emohbackup.moh.gov.vn/publish/home",
+      "trangThai": "loi",
+      "loi": "trang rỗng",
+      "phatHien": []
+    },
+    {
+      "n": "Cục Hạ tầng và Thiết bị y tế",
+      "u": "https://imda.moh.gov.vn/van-ban-phap-quy",
+      "trangThai": "ok",
+      "phatHien": []
+    },
+    {
+      "n": "Xây dựng chính sách — Chính phủ",
+      "u": "https://xaydungchinhsach.chinhphu.vn/",
+      "trangThai": "ok",
+      "phatHien": []
+    },
+    {
+      "n": "Bộ Công an",
+      "u": "https://bocongan.gov.vn/",
+      "trangThai": "ok",
+      "phatHien": []
+    },
+    {
+      "n": "Thư viện pháp luật — Y tế mới",
+      "u": "https://thuvienphapluat.vn/van-ban-moi/The-thao-Y-te",
+      "trangThai": "ok",
+      "phatHien": []
+    },
+    {
+      "n": "Cổng đăng ký doanh nghiệp quốc gia",
+      "u": "https://dangkykinhdoanh.gov.vn/",
+      "trangThai": "ok",
+      "phatHien": []
     }
-   ]
-  },
-  {
-   "n": "Bộ Y tế — Hệ thống tra cứu văn bản",
-   "u": "https://emohbackup.moh.gov.vn/publish/home",
-   "trangThai": "loi",
-   "loi": "trang rỗng",
-   "phatHien": []
-  },
-  {
-   "n": "Cục Hạ tầng và Thiết bị y tế",
-   "u": "https://imda.moh.gov.vn/van-ban-phap-quy",
-   "trangThai": "ok",
-   "phatHien": []
-  },
-  {
-   "n": "Xây dựng chính sách — Chính phủ",
-   "u": "https://xaydungchinhsach.chinhphu.vn/",
-   "trangThai": "ok",
-   "phatHien": []
-  },
-  {
-   "n": "Bộ Công an",
-   "u": "https://bocongan.gov.vn/",
-   "trangThai": "ok",
-   "phatHien": []
-  },
-  {
-   "n": "Thư viện pháp luật — Y tế mới",
-   "u": "https://thuvienphapluat.vn/van-ban-moi/The-thao-Y-te",
-   "trangThai": "ok",
-   "phatHien": []
-  },
-  {
-   "n": "Cổng đăng ký doanh nghiệp quốc gia",
-   "u": "https://dangkykinhdoanh.gov.vn/",
-   "trangThai": "ok",
-   "phatHien": []
-  }
- ]
+  ],
+  "pending": [
+    {
+      "code": "330/2026/NĐ-CP",
+      "mota": "Xử phạt vi phạm hành chính về bảo vệ dữ liệu cá nhân",
+      "url": "",
+      "reason": "Nội dung máy quét cũ chưa có toàn văn; chờ đối chiếu"
+    },
+    {
+      "code": "44/2025/TT-BYT",
+      "mota": "Phân cấp thủ tục hành chính thiết bị y tế",
+      "url": "",
+      "reason": "Nội dung máy quét cũ chưa có toàn văn; chờ đối chiếu"
+    },
+    {
+      "code": "313/2026/NĐ-CP",
+      "mota": "474 Trong số Công báo này gồm: Nghị định số 313/2026/NĐ-CP Quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Y tế; Quyết định số 40/2026/QĐ-TTg Về tiêu chí phân loại doanh nghiệp để thực hiện cơ cấu lại vốn nhà nước tại doanh nghiệp nhà nước, doanh nghiệp có vốn nhà nước; Thông tư số ",
+      "reason": "Máy quét cũ mới phát hiện; chưa có căn cứ phân tích"
+    },
+    {
+      "code": "34/2026/TT-BYT",
+      "mota": "34/2026/TT-BYT 08/09/2026 08/09/2026 Hướng dẫn một số nội dung thực hiện Chương trình mục tiêu quốc gia về chăm sóc sức khỏe, dân số và phát triển giai đoạn 2026-2035, giai đo",
+      "reason": "Máy quét cũ mới phát hiện; chưa có căn cứ phân tích"
+    }
+  ]
 }

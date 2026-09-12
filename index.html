@@ -276,6 +276,21 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
 .hit{background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:8px 10px;font-size:13px;
   line-height:1.5;color:#78350F}
 .hit b{font-weight:750;color:#92400E}
+
+:root[data-theme="rice"]{--bg:#F4ECDD;--card:#FFFCF6;--ink:#35291F;--ink2:#604C3B;--ink3:#776450;--line:#DDD0BC;--line2:#EEE3D2;--brand:#865733;--brand-d:#684021}
+:root[data-theme="rice"] header{background:linear-gradient(120deg,#483123,#795338,#966B48)}
+:root[data-theme="rice"] .brand p,:root[data-theme="rice"] .upd .lbl{color:#EADBC7}
+:root[data-theme="rice"] .modal,:root[data-theme="rice"] .mhead{background:var(--card)}
+.tools{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.tools button{border:1px solid #ffffff66;background:#ffffff18;color:white;border-radius:8px;padding:7px 10px;font-size:12px}
+.guide{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}.guide p{margin:6px 0;font-size:14px}.guide summary{font-weight:700;cursor:pointer}
+.setup label{display:block;margin:12px 0}.setup input{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.statusline{font-size:12px;margin:8px 0 0;color:#fff}.evidence{border-left:3px solid var(--brand);padding:10px;background:var(--bg);margin:12px 0}.evidence blockquote{margin:8px 0;font-size:13px}
+@media(max-width:959px){
+.hin{padding:18px 14px}.shell{padding:16px 14px 112px}.upd{width:100%;justify-content:space-between;min-width:0}.htop{gap:16px}.brand h1{font-size:24px}
+nav.side{left:8px;right:8px;top:auto;bottom:calc(8px + env(safe-area-inset-bottom));transform:none;width:auto;max-height:82px;display:flex;flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:6px;gap:5px;border-radius:16px}
+nav.side .tog{display:none}nav.side .nb{flex:0 0 72px;width:72px;display:flex;flex-direction:column;gap:4px;padding:5px 2px;font-size:10px}nav.side .nb .lb{display:block;font-size:10px;text-align:center;line-height:1.15}nav.side .nb .cnt{display:none}nav.side .nb .ic{width:28px;height:28px}nav.side.open{width:auto}
+.caidat{bottom:105px}.modal{max-height:90dvh} .hero{padding:15px;gap:10px}.hero .hi{display:none}
+}
 </style>
 </head>
 <body>
@@ -292,7 +307,7 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
       </div>
       <div class="upd">
         <div>
-          <div class="lbl">Cập nhật lần cuối</div>
+          <div class="lbl">Lần quét nguồn gần nhất</div>
           <div class="val" id="lastUpd">—</div>
         </div>
         <button class="scanbtn" id="scanBtn">
@@ -301,6 +316,7 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
         </button>
       </div>
     </div>
+    <div class="tools"><button id="themeBtn">Đổi theme: Be – nâu</button><button id="setupBtn">Cấu hình cập nhật</button><button id="resultsBtn">Xem kết quả quét</button></div><p class="statusline" id="syncStatus" role="status" aria-live="polite">Đang đọc trạng thái nguồn…</p>
     <div class="hnav">
       <button class="hbtn" data-open="actions"><span class="bi" style="background:#10B981"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>Việc cần làm</button>
       <button class="hbtn" data-open="risks"><span class="bi" style="background:#DC2626"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>Điểm dễ vỡ</button>
@@ -316,11 +332,18 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
       <span class="hi"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>
       <div>
         <span class="lb">ĐỌC TRƯỚC TIÊN</span>
-        <h2>Thay đổi lớn nhất cần biết ngay</h2>
-        <p>Toàn bộ khung xử phạt y tế đã đổi: <b>Nghị định 90/2026/NĐ-CP</b> hiệu lực từ 15/5/2026, thay thế Nghị định 117/2020/NĐ-CP. Mọi quy trình nội bộ và tài liệu đào tạo còn dẫn 117/2020 đều đã sai căn cứ.</p>
+        <h2>Kiểm tra căn cứ trước khi áp dụng</h2>
+        <p><b>Nghị định 90/2026/NĐ-CP</b> có hiệu lực từ 15/5/2026. Khi xử lý vụ việc, cần kiểm tra đúng hành vi, đối tượng và quy định chuyển tiếp; không kết luận mọi hồ sơ dẫn văn bản cũ đều sai. <a style="color:white" href="https://chinhphu.vn/?docid=217386&amp;pageid=27160" target="_blank" rel="noopener">Mở nguồn Chính phủ</a>.</p>
       </div>
     </div>
 
+    <details class="guide" open><summary>Chưa biết luật? Bắt đầu từ đây</summary>
+<p><b>1. Chọn vấn đề:</b> tìm “thuốc”, “quảng cáo”, “hợp đồng”, “giấy phép”… hoặc chọn nhóm bên dưới.</p>
+<p><b>2. Kiểm tra có áp dụng không:</b> bệnh viện tư nhân hay công lập; cá nhân hay tổ chức; hoạt động và thời điểm cụ thể.</p>
+<p><b>3. Đọc việc cần làm:</b> phân công người phụ trách, xác định hồ sơ cần lưu và cách kiểm tra hoàn thành.</p>
+<p><b>4. Xem căn cứ:</b> ngày ban hành khác ngày hiệu lực. Văn bản sửa đổi thường chỉ thay một phần; phải đọc cùng văn bản gốc và quy định chuyển tiếp.</p>
+<p><b>5. Ra quyết định:</b> đối chiếu điều khoản trước khi đổi quy trình chuyên môn, tính mức phạt hoặc xử lý sự cố. Thẻ cũ chưa rà soát và mục chờ phân tích chưa đủ để kết luận.</p>
+<p>“Khuyến nghị vận hành” là cách tổ chức công việc; chỉ mục có điều khoản dẫn chiếu mới thể hiện nhận định về nghĩa vụ pháp lý. Web theo dõi các nguồn công khai, chưa bảo đảm bao phủ mọi quy định trung ương và địa phương.</p></details>
     <div class="stitle" id="secTitle"></div>
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -390,7 +413,7 @@ const CATS = [
   {k:"duoc",n:"Dược & thuốc",        c:"var(--c-duoc)", sub:"Nguồn gốc thuốc, kê đơn điện tử, thuốc kiểm soát đặc biệt"},
   {k:"mt",  n:"Môi trường & chất thải",c:"var(--c-mt)", sub:"Giấy phép môi trường, nước thải, chất thải lây nhiễm"},
   {k:"ld",  n:"Lao động & BHXH",     c:"var(--c-ld)",   sub:"Hợp đồng, bảo hiểm, an toàn vệ sinh lao động"},
-  {k:"dl",  n:"Dữ liệu cá nhân",     c:"var(--c-dl)",   sub:"Ảnh trước sau, hồ sơ khách hàng, mức phạt tới 3 tỷ"},
+  {k:"dl",  n:"Dữ liệu cá nhân",     c:"var(--c-dl)",   sub:"Ảnh trước sau, hồ sơ khách hàng, đồng ý và bảo mật"},
   {k:"ktd", n:"Người tiêu dùng & hình sự",c:"var(--c-ktd)",sub:"Hợp đồng dịch vụ, khiếu nại, trách nhiệm khi có tai biến"},
   {k:"qc",  n:"Quảng cáo",           c:"var(--c-qc)",   sub:"Nội dung bắt buộc, cam kết kết quả, ảnh trước sau"},
   {k:"gia", n:"Giá & hóa đơn",       c:"var(--c-gia)",  sub:"Niêm yết giá, kê khai giá dịch vụ, hóa đơn điện tử"}
@@ -1190,17 +1213,17 @@ const store = {
 const today = () => { const d=new Date(); const p=n=>String(n).padStart(2,"0");
   return p(d.getDate())+"/"+p(d.getMonth()+1)+"/"+d.getFullYear(); };
 
-LAST_UPDATE = store.get("lastScan") || LAST_UPDATE;
+LAST_UPDATE = "Chưa xác nhận";
 $("#lastUpd").textContent = LAST_UPDATE;
 
 const TIER = {
- 1:{n:"Nguy hiểm nhất",c:"t1",i:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/>'},
- 2:{n:"Phạt nặng",c:"t2",i:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.6h-3a1.8 1.8 0 0 0 0 3.6h4"/>'},
+ 1:{n:"Ưu tiên cao",c:"t1",i:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/>'},
+ 2:{n:"Cần rà soát",c:"t2",i:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.6h-3a1.8 1.8 0 0 0 0 3.6h4"/>'},
  3:{n:"Nền tảng",c:"t3",i:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5"/>'}
 };
 const TIERTXT = {
  1:"Mức rủi ro cao nhất. Sai ở đây dẫn tới đình chỉ hoạt động hoặc trách nhiệm hình sự, không chỉ phạt tiền.",
- 2:"Rủi ro tiền và giấy phép. Phạt hành chính nặng, có thể kèm tước quyền sử dụng giấy phép.",
+ 2:"Ưu tiên rà soát. Chế tài phụ thuộc hành vi và điều khoản cụ thể.",
  3:"Nền tảng điều hành. Ít khi bị phạt trực tiếp nhưng là gốc của nhiều rủi ro khác."
 };
 
@@ -1219,7 +1242,12 @@ $("#side").innerHTML =
     <span class="ic">${svg(I[c.k]||I.all,16)}</span><span class="lb">${c.n}</span><span class="cnt">${n}</span></button>`;
 }).join("");
 
-let AUTO = [];  // văn bản máy quét tìm được và Gemini đã phân tích, nạp từ vanban-moi.json
+let AUTO = [];
+function allDocs(){return DOCS.filter(d=>!AUTO.some(v=>maGoc(d.code).includes(v.code))).concat(AUTO);}
+let SNAPSHOT = null;
+const safeUrl = u => {try{const p=new URL(u);return p.protocol==="https:"?esc(p.href):"#";}catch{return "#";}};
+async function jsonFetch(url){const r=await fetch(url,{cache:"no-store",signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error("HTTP "+r.status);return r.json();}
+  // văn bản máy quét tìm được và Gemini đã phân tích, nạp từ vanban-moi.json
 
 /* Bảng quan hệ hiệu lực do máy quét dựng: mã văn bản cũ -> bị văn bản nào thay thế hoặc sửa.
    Máy đọc điều khoản thi hành của văn bản mới rồi tự nối, người dùng không phải đối chiếu. */
@@ -1254,14 +1282,13 @@ async function chep(text, nut){
 /* Nạp văn bản đã được phân tích tự động, đưa vào đúng nhóm như văn bản viết tay */
 async function napTuDong(){
   try{
-    const r = await fetch("vanban-moi.json?t="+Date.now(), {cache:"no-store"});
-    if(!r.ok) return;
-    const ds = await r.json();
-    if(!Array.isArray(ds) || !ds.length) return;
+    const ds = await jsonFetch("vanban-moi.json?t="+Date.now());
+    if(!Array.isArray(ds)) throw Error("Sai định dạng dữ liệu");
     const nhomHopLe = new Set(CATS.map(c=>c.k));
-    AUTO = ds.filter(v => v && v.code && v.title && nhomHopLe.has(v.cat))
-             .filter(v => !DOCS.some(d => d.code.indexOf(v.code) !== -1))
+    AUTO = ds.filter(v => v && v.verificationVersion===2 && v.coToanVan && !v.catBot && v.code && v.title && nhomHopLe.has(v.cat))
+             
              .map(v => ({
+      claims:v.claims||[], steps:v.steps||[], unknowns:v.unknowns||[], checkedAt:v.checkedAt, sourceFile:v.sourceFile,
       id: "auto-" + v.code.replace(/[^0-9A-Za-z]/g,""),
       cat: v.cat,
       tier: [1,2,3].includes(v.tier) ? v.tier : 2,
@@ -1295,18 +1322,18 @@ async function napTuDong(){
        ngay lên thẻ cũ. Nhờ vậy người dùng không phải tự biết văn bản nào đã chết. */
     QUANHE = {};
     AUTO.forEach(v => {
-      v.thayThe.forEach(ma => { QUANHE[ma] = { kieu:"thay", boi:v.code, ten:v.title, id:v.id }; });
-      v.suaDoi.forEach(ma => { if(!QUANHE[ma]) QUANHE[ma] = { kieu:"sua", boi:v.code, ten:v.title, id:v.id }; });
+      [].forEach(ma => { QUANHE[ma] = { kieu:"thay", boi:v.code, ten:v.title, id:v.id }; });
+      [].forEach(ma => { if(!QUANHE[ma]) QUANHE[ma] = { kieu:"sua", boi:v.code, ten:v.title, id:v.id }; });
     });
-    if(AUTO.length){
+    {
       demLaiNhom();
       render();
     }
-  }catch(e){}
+  }catch(e){throw e;}
 }
 
 function demLaiNhom(){
-  const tong = DOCS.concat(AUTO);
+  const tong = allDocs();
   [...$("#side").querySelectorAll(".nb")].forEach(b=>{
     const k = b.dataset.k;
     const n = k==="all" ? tong.length : tong.filter(d=>d.cat===k).length;
@@ -1321,7 +1348,7 @@ function render(){
     <div><h2>${c.n}</h2><p>${c.sub}</p></div>`;
 
   const q = qtext.trim().toLowerCase();
-  const list = DOCS.concat(AUTO).filter(d=>{
+  const list = allDocs().filter(d=>{
     if(cur!=="all" && d.cat!==cur) return false;
     if(!q) return true;
     return [d.title,d.code,d.essence,d.notes,...(d.duties||[]),...(d.risks||[]),CAT(d.cat).n]
@@ -1338,8 +1365,8 @@ function render(){
         ${qh&&qh.kieu==="sua"?'<span class="tag warn">Đã bị sửa đổi</span>':""}
         ${d.flag==="new"?'<span class="tag new">Mới</span>':""}
         ${d.flag==="warn"?'<span class="tag warn">Đang thay đổi</span>':""}
-        ${d.auto?'<span class="tag auto">Tự động cập nhật</span>':""}
-        ${d.coToanVan?'<span class="tag ok">Đã đọc toàn văn</span>':""}
+        ${d.auto?'<span class="tag auto">AI có dẫn chứng · cần rà soát</span>':'<span class="tag warn">Nội dung cũ · chưa rà soát</span>'}
+        ${d.coToanVan?'<span class="tag ok">Đã tải toàn văn</span>':""}
         ${d.khongTraWeb?'<span class="tag warn">Cần đối chiếu</span>':""}
       </div>
       <div class="dhead">
@@ -1368,7 +1395,7 @@ function closeModal(){
 }
 
 function openDoc(id){
-  const d = DOCS.concat(AUTO).find(x=>x.id===id); if(!d) return; const c = CAT(d.cat);
+  const d = allDocs().find(x=>x.id===id); if(!d) return; const c = CAT(d.cat);
   openModal(c.c, I[d.cat]||I.all, d.title,
     `<span class="tag ${TIER[d.tier].c}">${svg(TIER[d.tier].i,12)}${TIER[d.tier].n}</span>
      <span class="code">${esc(d.code)}</span>
@@ -1383,7 +1410,11 @@ function openDoc(id){
                văn bản trên. Nội dung dưới đây có thể đã lạc hậu ở những điều bị sửa.`}
           <br><button data-goto="${q.id}">Mở văn bản mới: ${esc(q.ten||q.boi)}</button>
         </div>`; })()}
-     <div class="callout" data-t="${d.tier}">${TIERTXT[d.tier]}</div>
+     <div class="callout" data-t="2">${d.auto?'AI đã đối chiếu đoạn trích với bản tải về. Điều này chưa chứng minh diễn giải đúng hoặc văn bản còn hiệu lực toàn bộ.':'Nội dung biên soạn từ bản cũ, chưa kiểm tra từng điều khoản trong lần nâng cấp này. Mức phạt và hướng dẫn dưới đây cần rà soát trước khi áp dụng.'}</div>
+     ${d.auto?`<h4>Căn cứ theo từng nhận định</h4>${d.claims.map(x=>`<div class="evidence"><b>${esc(x.article)} · ${esc(x.kind==='fine'?'Mức phạt':x.kind==='effective'?'Hiệu lực':'Nội dung áp dụng')}</b><p>${esc(x.text)}</p>${x.subject?`<p>Đối tượng: ${esc(x.subject)} · Hành vi: ${esc(x.behavior)} · Điều kiện: ${esc(x.conditions)}</p>`:''}<blockquote>${esc(x.quote)}</blockquote></div>`).join('')}
+     <a href="${safeUrl(d.sourceFile)}" target="_blank" rel="noopener">Bản gốc đã dùng để phân tích</a><p>Đối chiếu lần này: ${esc(d.checkedAt||'Chưa có')}</p>
+     <h4>Khuyến nghị vận hành — không phải thời hạn luật định</h4>${d.steps.map(x=>`<div class="evidence"><b>${esc(x.action)}</b><p>Phụ trách: ${esc(x.owner)}</p><p>Hồ sơ cần lưu: ${esc(x.evidence)}</p><p>Khi nào: ${esc(x.when)}</p></div>`).join('')}
+     <h4>Chưa đủ dữ kiện để kết luận</h4><ul>${d.unknowns.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Cần kiểm tra tình trạng sửa đổi và áp dụng cho vụ việc thực tế.</li>'}</ul>`:''}
      ${d.fine?`<div class="fine"><span class="fi">${svg(I.risk,20)}</span><div><div class="n">${esc(d.fine)}</div><div class="l">${esc(d.fineNote||"")}</div></div></div>`:""}
      <h4>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',15)} Bản chất</h4>
      <p>${esc(d.essence)}</p>
@@ -1399,7 +1430,7 @@ function openDoc(id){
        ${d.bangChung.map(x=>`<div class="trich">“${esc(x)}”</div>`).join("")}`:""}
      ${d.notes?`<h4>${svg('<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/>',15)} Lưu ý thực chiến</h4><p>${esc(d.notes)}</p>`:""}
      <div class="links">
-       <a class="btn solid" href="${d.src.url}" target="_blank" rel="noopener">${svg(I.src,15)} ${esc(d.src.label)}</a>
+       <a class="btn solid" href="${safeUrl(d.src.url)}" target="_blank" rel="noopener">${svg(I.src,15)} ${esc(d.src.label)}</a>
        <a class="btn" href="${tvpl(d.code.split(" ")[0])}" target="_blank" rel="noopener">Xem trên Thư viện pháp luật</a>
        <a class="btn" href="${gsearch(d.code.split(" ")[0] + " còn hiệu lực không đã bị thay thế chưa " + d.title)}" target="_blank" rel="noopener">Còn hiệu lực không?</a>
        ${d.auto?'<button class="btn" id="hoiAI">Hỏi thêm AI</button>':""}
@@ -1467,7 +1498,7 @@ function openSources(){
 
 /* Đọc mã văn bản máy quét thấy nhưng AI chưa kịp phân tích thành thẻ */
 function maChuaPhanTich(data){
-  const daCo = DOCS.concat(AUTO).map(d => d.code).join(" ");
+  const daCo = allDocs().map(d => d.code).join(" ");
   const ra = [];
   (data && data.nguon || []).forEach(s => (s.phatHien || []).forEach(x => {
     if(!x || !x.code) return;
@@ -1484,7 +1515,7 @@ function theTomTat(d){
     <div class="badges">
       <span class="tag ${TIER[d.tier].c}">${svg(TIER[d.tier].i,12)}${TIER[d.tier].n}</span>
       <span class="tag auto">Máy tự cập nhật</span>
-      ${d.coToanVan?'<span class="tag ok">Đã đọc toàn văn</span>':""}
+      ${d.coToanVan?'<span class="tag ok">Đã tải toàn văn</span>':""}
       ${d.khongTraWeb?'<span class="tag warn">Cần đối chiếu</span>':""}
     </div>
     <div class="dhead">
@@ -1496,66 +1527,75 @@ function theTomTat(d){
   </button>`;
 }
 
-async function scan(){
-  openModal("var(--brand)", I.scan, "Văn bản mới",
-    `<span style="font-size:12.5px;color:var(--ink3)">Kết quả máy quét tự động</span>`,
-    `<p id="pmsg" style="font-size:14px;color:var(--ink3)">Đang mở kết quả…</p><div id="slist"></div>`);
-
-  let data = null;
-  try{
-    const r = await fetch("capnhat.json?t="+Date.now(), {cache:"no-store"});
-    if(r.ok) data = await r.json();
-  }catch(e){}
-
-  await napTuDong();                       // nạp lại thẻ AI đã phân tích, mới nhất
-
-  if(data && (data.ngay || data.gio)){
-    LAST_UPDATE = data.ngay || today();
-    store.set("lastScan", LAST_UPDATE);
-    $("#lastUpd").textContent = LAST_UPDATE;
-  }
-
-  const cham = $("#cham"); if(cham) cham.classList.remove("on");
-  const tatCaMa = AUTO.map(d => d.code).concat(maChuaPhanTich(data).map(x => x.code));
-  if(tatCaMa.length) store.set("daXem", tatCaMa.join(","));
-
-  const tho = maChuaPhanTich(data);
-  const luc = data && data.gio ? data.gio : (data && data.ngay ? "ngày " + data.ngay : "");
-  const theoDoi = DOCS.length + AUTO.length;
-
-  if(!AUTO.length && !tho.length){
-    $("#pmsg").innerHTML = `<b style="color:#15803D">Không có văn bản mới nào liên quan.</b>`;
-    $("#slist").innerHTML =
-      `<p style="font-size:14px;color:var(--ink2);line-height:1.6">
-         Đang theo dõi <b>${theoDoi} văn bản</b>. Máy tự kiểm tra các cổng thông tin
-         chính thống mỗi ngày và chỉ báo khi có văn bản mới thật sự liên quan tới
-         bệnh viện thẩm mỹ.${luc?` Lần kiểm tra gần nhất: ${esc(luc)}.`:""}
-       </p>`;
-    return;
-  }
-
-  $("#pmsg").innerHTML = AUTO.length
-    ? `<b style="color:#B45309">Có ${AUTO.length} văn bản mới đã được phân tích và xếp vào nhóm.</b>
-       <br><span style="font-size:12.5px;color:var(--ink3)">Bấm từng thẻ để xem việc phải làm, rủi ro và mức phạt.${luc?` Cập nhật ${esc(luc)}.`:""}</span>`
-    : `<b style="color:#B45309">Phát hiện ${tho.length} văn bản mới, đang chờ phân tích.</b>
-       <br><span style="font-size:12.5px;color:var(--ink3)">Kết quả đầy đủ sẽ hiện trong lần kiểm tra kế tiếp.</span>`;
-
-  const dsAuto = AUTO.slice().sort((a,b) => a.tier - b.tier);
-  let html = dsAuto.map(theTomTat).join("");
-
-  if(tho.length){
-    html += `<div class="moihead" style="margin-top:18px">
-        ${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',15)} Đang chờ phân tích
-      </div>` +
-      tho.map(x => `<a class="moi" style="display:block;text-decoration:none"
-          href="${gsearch(x.code + " toàn văn")}" target="_blank" rel="noopener">
-          <span class="cd">${esc(x.code)}</span>
-          <div class="tx">${esc(x.mota || "Văn bản mới phát hiện trên cổng thông tin chính thống.")}</div>
-        </a>`).join("");
-  }
-
-  $("#slist").innerHTML = html;
+let scanning=false, pollTimer=null;
+function config(){try{return JSON.parse(store.get('scanConfig')||'{}')}catch{return {}}}
+function showState(message){$('#syncStatus').textContent=message;}
+async function refreshSnapshot(){
+  const results=await Promise.allSettled([jsonFetch('capnhat.json?t='+Date.now()),napTuDong()]);
+  if(results[0].status==='rejected'){showState('Không đọc được kết quả quét. Nội dung đang xem có thể cũ.');return;}
+  SNAPSHOT=results[0].value;
+  
+  const valid=SNAPSHOT.schemaVersion===2 && SNAPSHOT.checkedAt;
+  $('#lastUpd').textContent=valid?(SNAPSHOT.gio||SNAPSHOT.checkedAt):'Bản cũ · chưa xác nhận';
+  const sources=SNAPSHOT.nguon||[], ok=sources.filter(s=>s.trangThai==='ok').length;
+  const stale=valid && Date.now()-Date.parse(SNAPSHOT.checkedAt)>86400000;
+  showState(valid?`${ok}/${sources.length} nguồn đọc được${stale?' · Quá 24 giờ chưa có kết quả mới':''}. ${SNAPSHOT.status==='failed'?'Quét thất bại.':'Chỉ phản ánh phạm vi đã quét.'}`:'Kết quả từ máy quét cũ; cần chạy bản mới để đối chiếu.');
+  if(results[1].status==='rejected')showState($('#syncStatus').textContent+' Không tải được nội dung phân tích; đang giữ dữ liệu cũ.');
 }
+function scan(){
+  const d=SNAPSHOT, pending=d?.pending||maChuaPhanTich(d);
+  openModal('var(--brand)',I.scan,'Kết quả cập nhật','',`<p>${esc($('#syncStatus').textContent)}</p><p>Thời điểm: ${esc(d?.gio||'Chưa có')}</p>
+    <p>Đây là kết quả được lưu từ lần quét gần nhất. Nút “Cập nhật ngay” gửi một lượt quét mới khi đã cấu hình.</p>
+    <h4>Trạng thái từng nguồn</h4>${(d?.nguon||[]).map(s=>`<p><a target="_blank" rel="noopener" href="${safeUrl(s.u)}">${esc(s.n)}</a>: ${s.trangThai==='ok'?'Đọc được trang nguồn':'Không đọc được'}${s.loi?' · '+esc(s.loi):''}</p>`).join('')}
+    <h4>AI diễn giải có dẫn chứng: ${AUTO.length}</h4>${AUTO.map(theTomTat).join('')}
+    <h4>Chưa đủ căn cứ: ${pending.length}</h4>${pending.map(v=>`<div class="evidence"><b>${esc(v.code)}</b><p>${esc(v.mota||'')}</p><p>${esc(v.reason||'Chưa lấy được toàn văn và phân tích có dẫn chứng.')}</p>${v.url?`<a target="_blank" rel="noopener" href="${safeUrl(v.url)}">Nguồn phát hiện</a>`:''}</div>`).join('')}
+    <p>Không có mục mới không đồng nghĩa không có thay đổi pháp luật. Nguồn lỗi và văn bản chưa phân tích vẫn cần theo dõi.</p>`);
+}
+function setup(){
+ const c=config();
+ openModal('var(--brand)',I.scan,'Cấu hình cập nhật','',`<div class="setup"><p>Quét tự động chạy trên GitHub 4 lần/ngày. Để gọi quét ngay, nhập repository và token giới hạn đúng repository với quyền Actions: Read and write. Token chỉ giữ trong bộ nhớ tab, đóng hoặc tải lại trang cần nhập lại.</p>
+ <label>Repository (chủ-sở-hữu/tên-kho)<input id="repoInput" placeholder="username/repository" value="${esc(c.repo||'')}"></label>
+ <label>Nhánh<input id="branchInput" value="${esc(c.branch||'main')}"></label>
+ <label>GitHub token<input id="tokenInput" type="password" autocomplete="off"></label>
+ <p>Gemini API key đặt trong GitHub → Settings → Secrets and variables → Actions → GEMINI_API_KEY. Không nhập Gemini key vào ô token.</p>
+ <button class="btn solid" id="saveConfig">Lưu cấu hình</button><button class="btn" id="forgetToken">Xóa quyền quét khỏi tab</button><p id="configError" role="status"></p></div>`);
+ $('#saveConfig').onclick=()=>{const repo=$('#repoInput').value.trim(),branch=$('#branchInput').value.trim();if(!/^[\w.-]+\/[\w.-]+$/.test(repo)||!branch){$('#configError').textContent='Nhập đúng chủ-sở-hữu/tên-kho và tên nhánh.';return;}store.set('scanConfig',JSON.stringify({repo,branch}));window.scanToken=$('#tokenInput').value.trim();closeModal();showState('Đã lưu cấu hình. Bấm Cập nhật ngay để quét.');};
+ $('#forgetToken').onclick=()=>{window.scanToken='';$('#tokenInput').value='';$('#configError').textContent='Đã xóa token khỏi tab.';};
+}
+async function github(path,options={}){
+ const r=await fetch('https://api.github.com/repos/'+config().repo+path,{...options,headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10',Authorization:'Bearer '+window.scanToken,...options.headers},signal:AbortSignal.timeout(15000)});
+ if(!r.ok)throw Error('GitHub HTTP '+r.status+(r.status===403?' — kiểm tra quyền Actions/quota':r.status===404?' — kiểm tra repository, nhánh và workflow':''));
+ return r.status===204?null:r.json();
+}
+async function requestScan(){
+ if(scanning)return;
+ if(!config().repo||!window.scanToken){setup();return;}
+ scanning=true;$('#scanBtn').disabled=true;const started=Date.now();
+ try{
+  const dispatched=await github('/actions/workflows/main.yml/dispatches',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ref:config().branch})});
+  showState('Đã gửi yêu cầu. Đang chờ GitHub chạy quét; mày vẫn có thể đọc và dùng web.');
+  const poll=async()=>{
+   try{
+    const list=await github('/actions/workflows/main.yml/runs?event=workflow_dispatch&per_page=10');
+    const run=dispatched?.workflow_run_id?list.workflow_runs.find(r=>r.id===dispatched.workflow_run_id):list.workflow_runs.find(r=>r.head_branch===config().branch&&Date.parse(r.created_at)>=started-5000);
+    if(run?.status==='completed'){
+      if(run.conclusion!=='success')throw Error('Lượt quét kết thúc: '+run.conclusion+'. Xem GitHub Actions để biết bước lỗi.');
+      await refreshSnapshot();const fresh=SNAPSHOT?.schemaVersion===2&&Date.parse(SNAPSHOT.checkedAt)>=started-5000;showState(fresh?'Đã nhận kết quả lượt quét mới. '+$('#syncStatus').textContent:'GitHub đã hoàn tất nhưng web chưa nhận được kết quả mới. Đợi xuất bản và tải lại; chưa xác nhận dữ liệu mới.');done();return;
+    }
+    if(Date.now()-started>32*60*1000)throw Error('Chưa xác nhận hoàn tất sau 32 phút. Kiểm tra GitHub Actions; không coi đây là quét thành công.');
+    showState(run?'Máy đang tải nguồn và phân tích toàn văn. Web vẫn dùng bình thường.':'Yêu cầu đang chờ GitHub xếp lịch.');
+    pollTimer=setTimeout(poll,12000);
+   }catch(e){showState(e.message);done();}
+  };pollTimer=setTimeout(poll,5000);
+ }catch(e){showState(e.message);done();}
+ function done(){scanning=false;$('#scanBtn').disabled=false;clearTimeout(pollTimer);}
+}
+$('#setupBtn').onclick=setup;
+$('#resultsBtn').onclick=()=>{scan();};
+const applyTheme=()=>{const rice=store.get('lawTheme')==='rice';document.documentElement.dataset.theme=rice?'rice':'blue';$('#themeBtn').textContent=rice?'Đổi theme: Xanh':'Đổi theme: Be – nâu';document.querySelector('meta[name="theme-color"]').content=rice?'#483123':'#0F2C4D';};
+$('#themeBtn').onclick=()=>{store.set('lawTheme',store.get('lawTheme')==='rice'?'blue':'rice');applyTheme();};applyTheme();
+setInterval(()=>{if(!document.hidden&&!scanning)refreshSnapshot();},300000);
+window.addEventListener('online',()=>refreshSnapshot());
 
 /* ============================================================
    5. SỰ KIỆN
@@ -1592,13 +1632,13 @@ $("#mBody").addEventListener("click", e=>{
 document.querySelectorAll("[data-open]").forEach(b=>{
   b.addEventListener("click", ()=>({actions:openActions,risks:openRisks,sources:openSources})[b.dataset.open]());
 });
-$("#scanBtn").addEventListener("click", scan);
+$("#scanBtn").addEventListener("click", requestScan);
 $("#mClose").addEventListener("click", closeModal);
 $("#scrim").addEventListener("click", closeModal);
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
 
 render();
-napTuDong();
+refreshSnapshot();
 
 /* ============================================================
    6. CÀI THÀNH APP + TỰ CẬP NHẬT
@@ -1627,25 +1667,6 @@ if("serviceWorker" in navigator){
 
 /* Chấm đỏ trên nút Cập nhật: đếm văn bản mới thật sự, ưu tiên thẻ AI đã phân tích.
    Chạy sau napTuDong nên AUTO đã có dữ liệu. */
-(async function bao(){
-  await new Promise(s => setTimeout(s, 1200));   // chờ napTuDong nạp xong
-  let d = null;
-  try{
-    const r = await fetch("capnhat.json?t="+Date.now(), {cache:"no-store"});
-    if(r.ok) d = await r.json();
-  }catch(e){}
-  if(d && d.ngay){ LAST_UPDATE = d.ngay; $("#lastUpd").textContent = d.ngay; }
-
-  const ma = AUTO.map(x => x.code).concat(maChuaPhanTich(d).map(x => x.code));
-  if(!ma.length) return;
-  const daXem = (store.get("daXem") || "").split(",");
-  const moi = ma.filter(c => daXem.indexOf(c) === -1);
-  if(!moi.length) return;
-
-  const c = $("#cham");
-  if(c){ c.textContent = moi.length; c.classList.add("on"); }
-})();
-
 (function moiCai(){
   const hop = $("#caidat");
   if(store.get("boQuaCai") === "1") return;
