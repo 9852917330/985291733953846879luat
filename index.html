@@ -422,17 +422,17 @@ const svg = (p,s=18) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fil
 
 const CATS = [
   {k:"all", n:"Tất cả",              c:"#475569", sub:"Toàn bộ văn bản đang theo dõi"},
-  {k:"duoc",n:"Dược & thuốc",        c:"var(--c-duoc)", sub:"Nguồn gốc thuốc, kê đơn điện tử, thuốc kiểm soát đặc biệt"},
   {k:"kcb", n:"Khám chữa bệnh",      c:"var(--c-kcb)",  sub:"Giấy phép, phạm vi chuyên môn, xử phạt y tế, thẩm mỹ"},
-  {k:"antt",n:"An ninh trật tự",     c:"var(--c-antt)", sub:"Giấy chứng nhận đủ điều kiện an ninh trật tự do công an cấp"},
+  {k:"duoc",n:"Dược & thuốc",        c:"var(--c-duoc)", sub:"Nguồn gốc thuốc, kê đơn điện tử, thuốc kiểm soát đặc biệt"},
   {k:"pccc",n:"Phòng cháy chữa cháy",c:"var(--c-pccc)", sub:"Nghĩa vụ hằng tháng, kiểm tra, bảo hiểm cháy nổ"},
   {k:"tb",  n:"Thiết bị & mỹ phẩm",  c:"var(--c-tb)",   sub:"Số lưu hành thiết bị, công bố mỹ phẩm, ghi nhãn"},
   {k:"mt",  n:"Môi trường & chất thải",c:"var(--c-mt)", sub:"Giấy phép môi trường, nước thải, chất thải lây nhiễm"},
-  {k:"ld",  n:"Lao động & BHXH",     c:"var(--c-ld)",   sub:"Hợp đồng, bảo hiểm, an toàn vệ sinh lao động"},
-  {k:"dl",  n:"Dữ liệu cá nhân",     c:"var(--c-dl)",   sub:"Ảnh trước sau, hồ sơ khách hàng, đồng ý và bảo mật"},
-  {k:"ktd", n:"Người tiêu dùng & hình sự",c:"var(--c-ktd)",sub:"Hợp đồng dịch vụ, khiếu nại, trách nhiệm khi có tai biến"},
   {k:"gia", n:"Giá & hóa đơn",       c:"var(--c-gia)",  sub:"Niêm yết giá, kê khai giá dịch vụ, hóa đơn điện tử"},
+  {k:"ktd", n:"Người tiêu dùng & hình sự",c:"var(--c-ktd)",sub:"Hợp đồng dịch vụ, khiếu nại, trách nhiệm khi có tai biến"},
+  {k:"dl",  n:"Dữ liệu cá nhân",     c:"var(--c-dl)",   sub:"Ảnh trước sau, hồ sơ khách hàng, đồng ý và bảo mật"},
+  {k:"antt",n:"An ninh trật tự",     c:"var(--c-antt)", sub:"Giấy chứng nhận đủ điều kiện an ninh trật tự do công an cấp"},
   {k:"dn",  n:"Doanh nghiệp",        c:"var(--c-dn)",   sub:"Quản trị công ty, thẩm quyền ký, ngành nghề có điều kiện"},
+  {k:"ld",  n:"Lao động & BHXH",     c:"var(--c-ld)",   sub:"Hợp đồng, bảo hiểm, an toàn vệ sinh lao động"},
   {k:"qc",  n:"Quảng cáo",           c:"var(--c-qc)",   sub:"Nội dung bắt buộc, cam kết kết quả, ảnh trước sau"}
 ];
 const CAT = k => CATS.find(c=>c.k===k) || CATS[0];
