@@ -1,12 +1,12 @@
 {
   "schemaVersion": 3,
-  "checkedAt": null,
-  "ngay": "",
-  "gio": "",
-  "status": "initializing",
+  "checkedAt": "2026-09-12T05:20:39.825816+00:00",
+  "ngay": "12/09/2026",
+  "gio": "12:20 12/09/2026",
+  "status": "degraded",
   "published": 0,
-  "sourcesOk": 0,
-  "sourcesTotal": 0,
-  "processed": 0,
-  "message": "Hệ thống đang thực hiện lần đồng bộ đầu tiên từ nguồn chính thức."
+  "sourcesOk": 6,
+  "sourcesTotal": 9,
+  "processed": 12,
+  "message": "Dữ liệu pháp lý đã được đồng bộ từ các nguồn chính thức."
 }
