@@ -139,6 +139,10 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
 .hero p{margin:0;font-size:14px;line-height:1.55;color:#FFE8E4;position:relative;z-index:1}
 .hero b{color:#fff;font-weight:750}
 .hero > div{position:relative;z-index:1}
+.hero[hidden]{display:none!important}
+.hero-copy{min-width:0}
+.hero-open{margin-top:10px;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.14);color:#fff;border-radius:9px;padding:8px 11px;font:inherit;font-size:12.5px;font-weight:800;cursor:pointer}
+.hero-open:active{transform:translateY(1px)}
 
 .stitle{display:flex;align-items:center;gap:10px;margin:0 0 12px}
 .stitle .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;background:var(--nc,#94A3B8)}
@@ -328,12 +332,13 @@ nav.side .tog{display:none}nav.side .nb{flex:0 0 72px;width:72px;display:flex;fl
 <div class="shell">
   <nav class="side" id="side" aria-label="Nhóm luật"></nav>
   <main>
-    <div class="hero">
-      <span class="hi"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-      <div>
-        <span class="lb">TỰ ĐỘNG CẬP NHẬT</span>
-        <h2>Nội dung pháp lý đã được hệ thống xử lý sẵn</h2>
-        <p>Hệ thống theo dõi nguồn chính thức, đọc toàn văn và kiểm tra dẫn chứng trước khi đưa nội dung mới lên web. Mục chưa đủ căn cứ được giữ nội bộ và không hiển thị cho người dùng.</p>
+    <div class="hero" id="criticalAlert" hidden>
+      <span class="hi" aria-hidden="true"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>
+      <div class="hero-copy">
+        <span class="lb" id="criticalLabel">CẢNH BÁO PHÁP LÝ CỰC CAO</span>
+        <h2 id="criticalTitle"></h2>
+        <p id="criticalText"></p>
+        <button class="hero-open" id="criticalOpen" type="button">Xem ngay văn bản</button>
       </div>
     </div>
     <div class="stitle" id="secTitle"></div>
@@ -416,7 +421,9 @@ const CAT = k => CATS.find(c=>c.k===k) || CATS[0];
    Khi có bản verificationVersion 3 đã kiểm định, bản mới tự động thay bản cùng số hiệu. */
 const DOCS = [
 /* ---- KHÁM CHỮA BỆNH ---- */
-{id:"nd90",cat:"kcb",tier:1,flag:"new",
+{id:"nd90",cat:"kcb",tier:1,flag:"new",critical:true,
+ criticalTitle:"Nghị định 90/2026/NĐ-CP đã có hiệu lực — phải dùng căn cứ xử phạt mới",
+ criticalText:"Không tiếp tục dùng Nghị định 117/2020/NĐ-CP làm căn cứ xử phạt cho các nội dung đã được Nghị định 90/2026/NĐ-CP thay thế. Rủi ro cao nhất không chỉ là tiền phạt mà còn có thể gồm tước giấy phép hoặc đình chỉ hoạt động theo hành vi cụ thể.",
  title:"Xử phạt vi phạm hành chính trong lĩnh vực y tế",
  code:"90/2026/NĐ-CP", eff:"Hiệu lực 15/5/2026",
  fine:"200 triệu đồng", fineNote:"mức phạt tối đa với tổ chức; riêng dược và thiết bị y tế lên 300 triệu",
@@ -1283,6 +1290,9 @@ async function napTuDong(){
       cat: v.cat,
       tier: [1,2,3].includes(v.tier) ? v.tier : 2,
       auto: true, flag: "",
+      critical: !!v.critical || DOCS.some(d => maGoc(d.code).some(c => maGoc(v.code).includes(c)) && d.critical),
+      criticalTitle: v.criticalTitle || (DOCS.find(d => maGoc(d.code).some(c => maGoc(v.code).includes(c)) && d.critical)?.criticalTitle || ""),
+      criticalText: v.criticalText || (DOCS.find(d => maGoc(d.code).some(c => maGoc(v.code).includes(c)) && d.critical)?.criticalText || ""),
       title: v.title,
       code: v.code,
       eff: v.eff || "Máy quét tự cập nhật",
@@ -1311,6 +1321,7 @@ async function napTuDong(){
     {
       demLaiNhom();
       render();
+      renderCriticalAlert();
     }
   }catch(e){throw e;}
 }
@@ -1322,6 +1333,17 @@ function demLaiNhom(){
     const n = k==="all" ? tong.length : tong.filter(d=>d.cat===k).length;
     const c = b.querySelector(".cnt"); if(c) c.textContent = n;
   });
+}
+
+function renderCriticalAlert(){
+  const box = $("#criticalAlert");
+  const candidates = allDocs().filter(d => d && d.critical === true);
+  if(!candidates.length){ box.hidden = true; return; }
+  const d = candidates.sort((a,b)=>a.tier-b.tier)[0];
+  box.hidden = false;
+  $("#criticalTitle").textContent = d.criticalTitle || d.title;
+  $("#criticalText").textContent = d.criticalText || (d.risks && d.risks[0]) || d.essence || "";
+  $("#criticalOpen").dataset.id = d.id;
 }
 
 function render(){
@@ -1529,12 +1551,14 @@ $("#mBody").addEventListener("click", e=>{
 document.querySelectorAll("[data-open]").forEach(b=>{
   b.addEventListener("click", ()=>({actions:openActions,risks:openRisks,sources:openSources})[b.dataset.open]());
 });
+$("#criticalOpen").addEventListener("click", e=>{ const id=e.currentTarget.dataset.id; if(id) openDoc(id); });
 $("#scanBtn").addEventListener("click", syncNow);
 $("#mClose").addEventListener("click", closeModal);
 $("#scrim").addEventListener("click", closeModal);
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
 
 render();
+renderCriticalAlert();
 refreshSnapshot();
 
 /* ============================================================
