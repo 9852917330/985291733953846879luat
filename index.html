@@ -1254,6 +1254,130 @@ $("#side").innerHTML =
     <span class="ic">${svg(I[c.k]||I.all,16)}</span><span class="lb">${c.n}</span><span class="cnt">${n}</span></button>`;
 }).join("");
 
+/* Nguồn chính thức cụ thể cho từng văn bản. Không cho nút nguồn rơi về trang chủ/trang tìm kiếm chung. */
+const OFFICIAL_BY_ID = {
+  nd90:["https://vanban.chinhphu.vn/?pageid=27160&docid=217386&classid=1&orggroupid=2"],
+  luatkcb:["https://vanban.chinhphu.vn/?pageid=27160&docid=207396"],
+  nd96:["https://vanban.chinhphu.vn/?pageid=27160&docid=209491"],
+  tt23:["https://vanban.chinhphu.vn/?pageid=27160&docid=211508"],
+  tt35:["https://vbpl.vn/TW/Pages/vbpq-toanvan.aspx?ItemID=171711"],
+  nd148:["https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-148-2025-nd-cp-45158/56913.htm"],
+  tt38:["https://vanban.chinhphu.vn/?docid=211878&pageid=27160"],
+  tt13bade:["https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=178219"],
+  tt16ksnk:["https://congbao.chinhphu.vn/van-ban/thong-tu-so-16-2018-tt-byt-27152.htm"],
+  tt43sco:["https://vbpl.vn/TW/Pages/vbpq-thuoctinh.aspx?ItemID=137205"],
+  tt32cme:["https://vbpl.vn/botuphap/Pages/vbpq-toanvan.aspx?ItemID=167907"],
+  tt33luu:["https://vanban.chinhphu.vn/?pageid=27160&docid=214427"],
+  bhtnnn:["https://vanban.chinhphu.vn/?pageid=27160&docid=207396"],
+  antt96:[
+    "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-96-2016-nd-cp-20633.htm",
+    "https://vanban.chinhphu.vn/?classid=0&docid=216977&pageid=27160"
+  ],
+  luatdn:[
+    "https://vanban.chinhphu.vn/default.aspx?docid=200447&pageid=27160",
+    "https://vanban.chinhphu.vn/?classid=1&docid=214562&pageid=27160"
+  ],
+  luatdt:["https://vanban.chinhphu.vn/?docid=200449&pageid=27160"],
+  nd105:["https://vanban.chinhphu.vn/?pageid=27160&docid=213702"],
+  luatpccc:["https://vanban.chinhphu.vn/?classid=1&docid=212483&orggroupid=1&pageid=27160"],
+  nd106:["https://vanban.chinhphu.vn/?classid=1&docid=213672&orggroupid=2&pageid=27160"],
+  nd98:["https://vanban.chinhphu.vn/default.aspx?docid=204442&pageid=27160"],
+  mypham:[
+    "https://vanban.chinhphu.vn/default.aspx?docid=99376&pageid=27160",
+    "https://vanban.chinhphu.vn/?classid=1&docid=214428&orggroupid=4&pageid=27160"
+  ],
+  luatduoc:[
+    "https://vanban.chinhphu.vn/?pageid=27160&docid=184569",
+    "https://vanban.chinhphu.vn/?docid=212466&pageid=27160"
+  ],
+  nd163:["https://vanban.chinhphu.vn/?classid=1&docid=214322&pageid=27160&typegroupid=4"],
+  tt26kd:["https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/26-byt.pdf"],
+  tt18ksdb:["https://congbao.chinhphu.vn/van-ban/thong-tu-so-18-2026-tt-byt-469674.htm"],
+  luatbvmt:["https://vanban.chinhphu.vn/?docid=202613&pageid=27160"],
+  nd08mt:[
+    "https://vanban.chinhphu.vn/?pageid=27160&docid=205092",
+    "https://vanban.chinhphu.vn/?docid=212284&pageid=27160"
+  ],
+  qcvn40:["https://congbao.chinhphu.vn/tai-ve-van-ban-so-06-2025-tt-btnmt-44497-55552"],
+  tt20:["https://vanban.chinhphu.vn/?docid=204797&pageid=27160"],
+  atvsld:["https://vanban.chinhphu.vn/?docid=180606&pageid=27160"],
+  bhxh:["https://vanban.chinhphu.vn/?classid=1&docid=211199&orggroupid=1&pageid=27160"],
+  blld:["https://vanban.chinhphu.vn/?classid=1&docid=198540&pageid=27160&typegroupid=3"],
+  luatdlcn:["https://vanban.chinhphu.vn/?pageid=27160&docid=214590&classid=1&typegroupid=3"],
+  nd356:["https://vanban.chinhphu.vn/?docid=216387&pageid=27160"],
+  hinhsu:["https://vanban.chinhphu.vn/?classid=1&docid=183216&pageid=27160"],
+  tt08gd:["https://vanban.chinhphu.vn/?docid=217946&pageid=27160"],
+  bvntd:["https://vanban.chinhphu.vn/?docid=208363&pageid=27160"],
+  nd342:["https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-342-2025-nd-cp-468584.htm"],
+  luatqc:[
+    "https://congbao.chinhphu.vn/van-ban/luat-so-16-2012-qh13-3433.htm",
+    "https://congbao.chinhphu.vn/van-ban/luat-so-75-2025-qh15-45566.htm"
+  ],
+  nd87:["https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359.htm"],
+  bienhieu:[
+    "https://congbao.chinhphu.vn/van-ban/luat-so-16-2012-qh13-3433.htm",
+    "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359.htm"
+  ],
+  giadv:[
+    "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-85-2024-nd-cp-42318.htm",
+    "https://vanban.chinhphu.vn/?pageid=27160&docid=207396",
+    "https://vanban.chinhphu.vn/default.aspx?docid=208367&pageid=27160"
+  ],
+  hoadon:["https://vanban.chinhphu.vn/?docid=218689&pageid=27160&typegroupid=4"]
+};
+/* Đồng bộ luôn trường src của 43 văn bản nền với URL cụ thể đã xác nhận. */
+DOCS.forEach(d=>{
+  const u=OFFICIAL_BY_ID[d.id]?.[0];
+  if(u){ d.src = {...(d.src||{}), url:u}; }
+});
+
+const maGoc = code => (String(code).match(/\d{1,4}\/20\d{2}\/[A-ZĐ0-9-]+/g) || []);
+const OFFICIAL_HOSTS = [
+  "vanban.chinhphu.vn","congbao.chinhphu.vn","datafiles.chinhphu.vn","xaydungchinhsach.chinhphu.vn","baochinhphu.vn",
+  "vbpl.vn","moh.gov.vn","adminmoh.moh.gov.vn","kcb.vn","imda.moh.gov.vn","benhandientu.moh.gov.vn","bocongan.gov.vn","dangkykinhdoanh.gov.vn"
+];
+function isSpecificOfficialSource(u){
+  try{
+    const p = new URL(u);
+    if(p.protocol!=="https:") return false;
+    const h=p.hostname.toLowerCase();
+    if(!OFFICIAL_HOSTS.some(x=>h===x||h.endsWith("."+x))) return false;
+    const path=(p.pathname||"/").replace(/\/+$/,"/").toLowerCase();
+    const q=(p.search||"").toLowerCase();
+    if(h==="vanban.chinhphu.vn" && !/[?&]docid=\d+/.test(q)) return false;
+    if(h==="vbpl.vn" && !/[?&]itemid=\d+/.test(q)) return false;
+    if(h==="kcb.vn" && (/^\/van-ban\/?$/.test(path)||/van-ban-phap-quy\/?$/.test(path))) return false;
+    if(h==="imda.moh.gov.vn" && /van-ban-phap-quy\/?$/.test(path)) return false;
+    if(h==="moh.gov.vn" && /van-ban-phap-quy\/?$/.test(path)) return false;
+    if(h==="congbao.chinhphu.vn" && (/\.rss$/.test(path)||/van-ban-dang-cong-bao/.test(path)||/cac-van-ban-moi/.test(path)||/tim-kiem/.test(path))) return false;
+    if((h==="congbao.chinhphu.vn"||h.endsWith(".chinhphu.vn")) && path==="/" && !q) return false;
+    return true;
+  }catch{return false;}
+}
+function matchingStaticDoc(d){
+  if(!d) return null;
+  if(!d.auto && DOCS.some(x=>x.id===d.id)) return d;
+  const codes=maGoc(d.code);
+  return DOCS.find(x=>maGoc(x.code).some(c=>codes.includes(c))) || null;
+}
+function officialSourcesFor(d){
+  const base=matchingStaticDoc(d);
+  const mapped=base ? (OFFICIAL_BY_ID[base.id]||[]) : [];
+  const candidates=[
+    ...mapped,
+    d?.sourceFile,
+    d?.sourcePage,
+    d?.src?.url,
+    base?.src?.url
+  ].filter(Boolean);
+  const out=[];
+  for(const u of candidates){
+    if(isSpecificOfficialSource(u) && !out.includes(u)) out.push(u);
+  }
+  return out;
+}
+function officialSourceFor(d){ return officialSourcesFor(d)[0] || ""; }
+
 let AUTO = [];
 function allDocs(){
   const autoCodes = new Set(AUTO.flatMap(v=>maGoc(v.code)));
@@ -1267,7 +1391,6 @@ async function jsonFetch(url){const r=await fetch(url,{cache:"no-store",signal:A
 /* Bảng quan hệ hiệu lực do máy quét dựng: mã văn bản cũ -> bị văn bản nào thay thế hoặc sửa.
    Máy đọc điều khoản thi hành của văn bản mới rồi tự nối, người dùng không phải đối chiếu. */
 let QUANHE = {};
-const maGoc = code => (String(code).match(/\d{1,4}\/20\d{2}\/[A-ZĐ0-9-]+/g) || []);
 function tinhQuanHe(d){
   for(const ma of maGoc(d.code)){ if(QUANHE[ma]) return QUANHE[ma]; }
   return null;
@@ -1411,7 +1534,8 @@ function closeModal(){
 
 
 function buildAIPrompt(d){
-  const link = safeUrl(d.auto ? (d.sourceFile || d.sourcePage || d.src?.url || '') : (d.src?.url || ''));
+  const sourceLinks = officialSourcesFor(d);
+  const link = sourceLinks.length ? sourceLinks.map((u,i)=>`${i+1}. ${u}`).join('\n') : 'Chưa có đường dẫn nguồn cụ thể đã được xác nhận.';
   const nhom = CAT(d.cat).n;
   const duties = (d.duties||[]).map((x,i)=>`${i+1}. ${x}`).join('\n') || 'Chưa có.';
   const risks = (d.risks||[]).map((x,i)=>`${i+1}. ${x}`).join('\n') || 'Chưa có.';
@@ -1451,7 +1575,7 @@ function openDoc(id){
         </div>`; })()}
      ${d.auto?'<div class="callout" data-t="3">Đã đối chiếu toàn văn từ nguồn chính thức và kiểm tra lại từng trích dẫn trước khi xuất bản.</div>':''}
      ${d.auto?`<h4>Căn cứ theo từng nhận định</h4>${d.claims.map(x=>`<div class="evidence"><b>${esc(x.article)} · ${esc(x.kind==='fine'?'Mức phạt':x.kind==='effective'?'Hiệu lực':'Nội dung áp dụng')}</b><p>${esc(x.text)}</p>${x.subject?`<p>Đối tượng: ${esc(x.subject)} · Hành vi: ${esc(x.behavior)} · Điều kiện: ${esc(x.conditions)}</p>`:''}<blockquote>${esc(x.quote)}</blockquote></div>`).join('')}
-     <a href="${safeUrl(d.sourceFile)}" target="_blank" rel="noopener">Mở bản gốc chính thức</a><p>Cập nhật: ${esc(d.checkedAt||'')}</p>
+     ${officialSourceFor(d)?`<a href="${safeUrl(officialSourceFor(d))}" target="_blank" rel="noopener">Mở bản gốc chính thức</a>`:''}<p>Cập nhật: ${esc(d.checkedAt||'')}</p>
      <h4>Khuyến nghị vận hành</h4>${d.steps.map(x=>`<div class="evidence"><b>${esc(x.action)}</b><p>Phụ trách: ${esc(x.owner)}</p><p>Hồ sơ cần lưu: ${esc(x.evidence)}</p><p>Khi nào: ${esc(x.when)}</p></div>`).join('')}` : ''}
      ${d.fine?`<div class="fine"><span class="fi">${svg(I.risk,20)}</span><div><div class="n">${esc(d.fine)}</div><div class="l">${esc(d.fineNote||"")}</div></div></div>`:""}
      <h4>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',15)} Bản chất</h4>
@@ -1468,7 +1592,9 @@ function openDoc(id){
        ${d.bangChung.map(x=>`<div class="trich">“${esc(x)}”</div>`).join("")}`:""}
      ${d.auto&&d.notes?`<h4>${svg('<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/>',15)} Lưu ý thực chiến</h4><p>${esc(d.notes)}</p>`:""}
      <div class="links">
-       <a class="btn solid" href="${safeUrl(d.auto?(d.sourcePage||d.src.url):d.src.url)}" target="_blank" rel="noopener">${svg(I.src,15)} Mở nguồn chính thức</a>
+       ${officialSourceFor(d)
+         ? `<a class="btn solid" href="${safeUrl(officialSourceFor(d))}" target="_blank" rel="noopener">${svg(I.src,15)} Mở nguồn chính thức</a>`
+         : `<button class="btn solid" type="button" disabled title="Chưa xác nhận được đường dẫn tới đúng văn bản">${svg(I.src,15)} Nguồn đang được chuẩn hóa</button>`}
        <button class="btn askai" type="button" data-ai="${d.id}" aria-label="Hỏi ChatGPT">Hỏi ChatGPT</button>
      </div>`);
 }
