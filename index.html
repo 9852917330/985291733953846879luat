@@ -243,7 +243,7 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
 .btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:13.5px;font-weight:650;
   padding:10px 14px;border-radius:9px;border:1px solid var(--brand);color:var(--brand-d);background:#fff}
 .btn.solid{background:var(--brand);border-color:var(--brand);color:#fff}
-.btn.askai{justify-content:center;text-align:center;white-space:normal;line-height:1.35;min-height:44px}
+.btn.askai{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-width:142px!important;width:auto!important;max-width:none!important;min-height:44px;text-align:center;white-space:nowrap!important;overflow:visible!important;line-height:1.2;font-weight:700}
 .copyhint{position:fixed;left:50%;bottom:18px;transform:translate(-50%,20px);opacity:0;z-index:120;background:rgba(34,27,22,.96);color:#fff;padding:12px 14px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:13.5px;line-height:1.45;max-width:min(92vw,520px);pointer-events:none;transition:all .22s ease}
 .copyhint.on{transform:translate(-50%,0);opacity:1}
 .btn:hover{filter:brightness(1.06)}
@@ -1469,7 +1469,7 @@ function openDoc(id){
      ${d.auto&&d.notes?`<h4>${svg('<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/>',15)} Lưu ý thực chiến</h4><p>${esc(d.notes)}</p>`:""}
      <div class="links">
        <a class="btn solid" href="${safeUrl(d.auto?(d.sourcePage||d.src.url):d.src.url)}" target="_blank" rel="noopener">${svg(I.src,15)} Mở nguồn chính thức</a>
-       <button class="btn askai" type="button" data-ai="${d.id}" aria-label="Hỏi ChatGPT về văn bản này">${svg('<path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z"/><path d="M5 16l.9 2.1L8 19l-2.1.9L5 22l-.9-2.1L2 19l2.1-.9L5 16Z"/><path d="M19 14l1.1 2.5L22.5 17 20 18.1 19 20.5 17.9 18 15.5 17l2.4-1 1.1-2Z>',15)} <span>Hỏi ChatGPT về văn bản này</span></button>
+       <button class="btn askai" type="button" data-ai="${d.id}" aria-label="Hỏi ChatGPT">Hỏi ChatGPT</button>
      </div>`);
 }
 
