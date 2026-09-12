@@ -429,6 +429,7 @@ const CATS = [
   {k:"gia", n:"Giá & hóa đơn",       c:"var(--c-gia)",  sub:"Niêm yết giá, kê khai giá dịch vụ, hóa đơn điện tử"}
 ];
 const CAT = k => CATS.find(c=>c.k===k) || CATS[0];
+const CAT_ORDER = Object.fromEntries(CATS.filter(c=>c.k!=="all").map((c,i)=>[c.k,i]));
 
 /* Dữ liệu nền luôn được giữ lại để giao diện không bị rỗng khi máy quét đang xác minh bản cập nhật mới.
    Khi có bản verificationVersion 3 đã kiểm định, bản mới tự động thay bản cùng số hiệu. */
@@ -1665,19 +1666,16 @@ function openActions(keepHistory=false, scrollTop=0){
       action, owner:"", evidence:"", when:"",
       id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i, structured:false
     }));
-  }).sort((a,b)=>a.tier-b.tier || a.code.localeCompare(b.code));
+  }).sort((a,b)=>a.tier-b.tier || (CAT_ORDER[a.cat]??999)-(CAT_ORDER[b.cat]??999) || a.code.localeCompare(b.code));
 
   openModal("var(--brand)", I.act, "Việc cần làm",
     `<span style="font-size:12.5px;color:var(--ink3)">${items.length} việc được tổng hợp từ các văn bản đang theo dõi</span>`,
     items.length ? `<div class="rows">${items.map((a,i)=>{const c=CAT(a.cat);
-      const extra = a.structured
-        ? `${a.owner?`<br>Phụ trách: ${esc(a.owner)}`:""}${a.evidence?`<br>Hồ sơ cần lưu: ${esc(a.evidence)}`:""}${a.when?`<br>Thời điểm: ${esc(a.when)}`:""}`
-        : "";
       return `<button class="rowc" data-goto="${a.id}" style="--nc:${c.c}">
         <span class="num">${i+1}</span>
         <span style="flex:1 1 auto">
           <p class="tt">${esc(a.action)}</p>
-          <p class="ss"><b>${esc(a.code)}</b> · ${esc(a.title)}${extra}</p>
+          <p class="ss">${esc(c.n)}</p>
         </span></button>`;}).join("")}</div>`
       : `<p>Chưa có việc cụ thể để hiển thị.</p>`, scrollTop);
   setModalView({type:"actions"});
@@ -1687,13 +1685,13 @@ function openRisks(keepHistory=false, scrollTop=0){
   if(!keepHistory) modalHistory = [];
   const items = allDocs().flatMap(d => (d.risks||[]).map((text,i)=>({
     text, id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i
-  }))).sort((a,b)=>a.tier-b.tier || a.code.localeCompare(b.code));
+  }))).sort((a,b)=>a.tier-b.tier || (CAT_ORDER[a.cat]??999)-(CAT_ORDER[b.cat]??999) || a.code.localeCompare(b.code));
   openModal("var(--t1)", I.risk, "Điểm dễ vỡ",
     `<span style="font-size:12.5px;color:var(--ink3)">${items.length} rủi ro có căn cứ từ các văn bản đã kiểm định</span>`,
     items.length ? `<div class="rows">${items.map((r,i)=>{const c=CAT(r.cat);
       return `<button class="rowc" data-goto="${r.id}" style="--nc:${c.c}">
         <span class="num">${i+1}</span>
-        <span style="flex:1 1 auto"><p class="tt">${esc(r.text)}</p><p class="ss">${esc(r.code)} · ${esc(r.title)}</p></span>
+        <span style="flex:1 1 auto"><p class="tt">${esc(r.text)}</p><p class="ss">${esc(c.n)}</p></span>
       </button>`;}).join("")}</div>`
       : `<p>Chưa có rủi ro cụ thể để hiển thị.</p>`, scrollTop);
   setModalView({type:"risks"});
