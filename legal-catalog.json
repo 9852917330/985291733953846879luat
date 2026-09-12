@@ -1,0 +1,282 @@
+[
+  {
+    "code": "96/2016/NĐ-CP",
+    "title": "Giấy chứng nhận đủ điều kiện về an ninh, trật tự",
+    "cat": "antt",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?docid=185935&pageid=27160"
+  },
+  {
+    "code": "91/2025/QH15",
+    "title": "Luật Bảo vệ dữ liệu cá nhân",
+    "cat": "dl",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214590&orggroupid=1&pageid=27160"
+  },
+  {
+    "code": "18/2026/TT-BYT",
+    "title": "Thuốc và nguyên liệu làm thuốc phải kiểm soát đặc biệt",
+    "cat": "duoc",
+    "tier": 1,
+    "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-18-2026-tt-byt-469674/65587.htm"
+  },
+  {
+    "code": "13/2025/TT-BYT",
+    "title": "Hồ sơ bệnh án điện tử — thời hạn bắt buộc đã qua",
+    "cat": "kcb",
+    "tier": 1,
+    "url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=178219"
+  },
+  {
+    "code": "15/2023/QH15",
+    "title": "Luật Khám bệnh, chữa bệnh",
+    "cat": "kcb",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?docid=207396&pageid=27160"
+  },
+  {
+    "code": "16/2018/TT-BYT",
+    "title": "Kiểm soát nhiễm khuẩn trong cơ sở khám chữa bệnh",
+    "cat": "kcb",
+    "tier": 1,
+    "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-16-2018-tt-byt-27152.htm"
+  },
+  {
+    "code": "90/2026/NĐ-CP",
+    "title": "Xử phạt vi phạm hành chính trong lĩnh vực y tế",
+    "cat": "kcb",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=217386&pageid=27160&typegroupid=4"
+  },
+  {
+    "code": "96/2023/NĐ-CP",
+    "title": "Quy định chi tiết Luật Khám bệnh, chữa bệnh — ranh giới ngành thẩm mỹ",
+    "cat": "kcb",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=209491&pageid=27160"
+  },
+  {
+    "code": "100/2015/QH13",
+    "title": "Bộ luật Hình sự — Điều 315 và các tội liên quan",
+    "cat": "ktd",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=183216&pageid=27160"
+  },
+  {
+    "code": "105/2025/NĐ-CP",
+    "title": "Quy định chi tiết thi hành Luật Phòng cháy chữa cháy và cứu nạn cứu hộ",
+    "cat": "pccc",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=213702"
+  },
+  {
+    "code": "55/2024/QH15",
+    "title": "Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ",
+    "cat": "pccc",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=212483&orggroupid=1&pageid=27160"
+  },
+  {
+    "code": "356/2025/NĐ-CP",
+    "title": "Quy định chi tiết thi hành Luật Bảo vệ dữ liệu cá nhân",
+    "cat": "dl",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=216387&pageid=27160&typegroupid=4"
+  },
+  {
+    "code": "59/2020/QH14",
+    "title": "Luật Doanh nghiệp, sửa đổi bổ sung năm 2025",
+    "cat": "dn",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=200447&pageid=27160&typegroupid=3"
+  },
+  {
+    "code": "105/2016/QH13",
+    "title": "Luật Dược",
+    "cat": "duoc",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=184569&pageid=27160&typegroupid=3"
+  },
+  {
+    "code": "163/2025/NĐ-CP",
+    "title": "Quy định chi tiết thi hành Luật Dược",
+    "cat": "duoc",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214322&pageid=27160&typegroupid=4"
+  },
+  {
+    "code": "26/2025/TT-BYT",
+    "title": "Kê đơn thuốc và lộ trình đơn thuốc điện tử bắt buộc",
+    "cat": "duoc",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214386&pageid=27160&typegroupid=6"
+  },
+  {
+    "code": "254/2026/NĐ-CP",
+    "title": "Hóa đơn điện tử — nền pháp lý vừa đổi",
+    "cat": "gia",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=218689&pageid=27160&typegroupid=4"
+  },
+  {
+    "code": "23/2024/TT-BYT",
+    "title": "Danh mục kỹ thuật trong khám bệnh, chữa bệnh",
+    "cat": "kcb",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=211508&pageid=27160"
+  },
+  {
+    "code": "32/2023/TT-BYT",
+    "title": "Cập nhật kiến thức y khoa liên tục — điều kiện gia hạn giấy phép hành nghề",
+    "cat": "kcb",
+    "tier": 2,
+    "url": "https://vbpl.vn/TW/Pages/vbpq-thuoctinh.aspx?ItemID=167907"
+  },
+  {
+    "code": "35/2024/TT-BYT",
+    "title": "Tiêu chuẩn chất lượng cơ bản đối với bệnh viện",
+    "cat": "kcb",
+    "tier": 2,
+    "url": "https://vbpl.vn/TW/Pages/vbpq-thuoctinh.aspx?ItemID=171711"
+  },
+  {
+    "code": "43/2018/TT-BYT",
+    "title": "Phòng ngừa sự cố y khoa và an toàn người bệnh",
+    "cat": "kcb",
+    "tier": 2,
+    "url": "https://vbpl.vn/tw/Pages/vbpq-toanvan.aspx?ItemID=137205&Keyword=&dvid=13"
+  },
+  {
+    "code": "08/2026/TT-BYT",
+    "title": "Giám định tư pháp trong lĩnh vực y tế",
+    "cat": "ktd",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=217946&pageid=27160"
+  },
+  {
+    "code": "19/2023/QH15",
+    "title": "Luật Bảo vệ quyền lợi người tiêu dùng",
+    "cat": "ktd",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=208363&pageid=27160"
+  },
+  {
+    "code": "84/2015/QH13",
+    "title": "Luật An toàn, vệ sinh lao động",
+    "cat": "ld",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=180606&pageid=27160"
+  },
+  {
+    "code": "06/2025/TT-BTNMT",
+    "title": "Quy chuẩn nước thải — quy chuẩn y tế cũ đã bị bãi bỏ",
+    "cat": "mt",
+    "tier": 2,
+    "url": "https://vbpl.vn/TW/Pages/ivbpq-van-ban-goc.aspx?ItemID=176985"
+  },
+  {
+    "code": "08/2022/NĐ-CP",
+    "title": "Nghị định hướng dẫn Luật Bảo vệ môi trường — giấy phép môi trường",
+    "cat": "mt",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=205092&pageid=27160"
+  },
+  {
+    "code": "20/2021/TT-BYT",
+    "title": "Quản lý chất thải y tế trong khuôn viên cơ sở y tế",
+    "cat": "mt",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=204797&pageid=27160"
+  },
+  {
+    "code": "72/2020/QH14",
+    "title": "Luật Bảo vệ môi trường",
+    "cat": "mt",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=202613&pageid=27160"
+  },
+  {
+    "code": "106/2025/NĐ-CP",
+    "title": "Xử phạt vi phạm hành chính về phòng cháy, chữa cháy và cứu nạn, cứu hộ",
+    "cat": "pccc",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?classid=0&docid=213672&pageid=27160"
+  },
+  {
+    "code": "16/2012/QH13",
+    "title": "Luật Quảng cáo, sửa đổi bổ sung năm 2025",
+    "cat": "qc",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=163008&pageid=27160"
+  },
+  {
+    "code": "342/2025/NĐ-CP",
+    "title": "Quy định chi tiết Luật Quảng cáo — nội dung bắt buộc",
+    "cat": "qc",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?docid=216403&pageid=27160"
+  },
+  {
+    "code": "87/2026/NĐ-CP",
+    "title": "Xử phạt vi phạm hành chính lĩnh vực văn hóa và quảng cáo",
+    "cat": "qc",
+    "tier": 2,
+    "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359/64268.htm"
+  },
+  {
+    "code": "06/2011/TT-BYT",
+    "title": "Quản lý mỹ phẩm và ghi nhãn hàng hóa",
+    "cat": "tb",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/default.aspx?docid=99376&pageid=27160"
+  },
+  {
+    "code": "98/2021/NĐ-CP",
+    "title": "Quản lý thiết bị y tế",
+    "cat": "tb",
+    "tier": 2,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=204442&pageid=27160"
+  },
+  {
+    "code": "61/2020/QH14",
+    "title": "Luật Đầu tư — ngành nghề kinh doanh có điều kiện",
+    "cat": "dn",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?docid=200449&pageid=27160"
+  },
+  {
+    "code": "148/2025/NĐ-CP",
+    "title": "Phân quyền, phân cấp trong lĩnh vực y tế",
+    "cat": "kcb",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160"
+  },
+  {
+    "code": "33/2025/TT-BYT",
+    "title": "Thời hạn lưu trữ hồ sơ bệnh án và tài liệu y tế",
+    "cat": "kcb",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214427&orggroupid=4&pageid=27160"
+  },
+  {
+    "code": "38/2024/TT-BYT",
+    "title": "Hệ thống thông tin quản lý hoạt động khám bệnh, chữa bệnh",
+    "cat": "kcb",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?docid=211878&pageid=27160"
+  },
+  {
+    "code": "41/2024/QH15",
+    "title": "Luật Bảo hiểm xã hội",
+    "cat": "ld",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?docid=211199&pageid=27160"
+  },
+  {
+    "code": "45/2019/QH14",
+    "title": "Bộ luật Lao động",
+    "cat": "ld",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=198540&pageid=27160&typegroupid=3"
+  }
+]
