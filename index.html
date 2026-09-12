@@ -218,8 +218,10 @@ nav.side.open .nb[aria-current="true"] .cnt{background:rgba(255,255,255,.24);col
   background:var(--mh,#F7FAFC)}
 .mhead .mi{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--nc,#94A3B8)}
 .mhead h2{margin:0 0 5px;font-size:17.5px;font-weight:700;line-height:1.3;letter-spacing:-.015em}
-.x{border:1px solid var(--line);background:#fff;border-radius:8px;width:32px;height:32px;font-size:16px;
-  line-height:1;color:var(--ink2);display:grid;place-items:center}
+.x,.back{border:1px solid var(--line);background:#fff;border-radius:8px;width:32px;height:32px;font-size:16px;
+  line-height:1;color:var(--ink2);display:grid;place-items:center;flex:0 0 auto}
+.back{display:none;font-size:21px;font-weight:700}
+.back.on{display:grid}
 .mbody{overflow-y:auto;padding:2px 18px 26px;-webkit-overflow-scrolling:touch}
 .mbody h4{display:flex;align-items:center;gap:7px;margin:20px 0 8px;font-size:13.5px;font-weight:700;color:var(--nc,var(--brand))}
 .mbody p{margin:0 0 10px;font-size:14.5px;line-height:1.62;color:var(--ink2)}
@@ -374,6 +376,7 @@ nav.side .tog{display:none}nav.side .nb{flex:0 0 72px;width:72px;display:flex;fl
 <div class="copyhint" id="copyHint" role="status" aria-live="polite"></div>
 <section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="mhead" id="mHead">
+    <button class="back" id="mBack" type="button" aria-label="Quay lại">←</button>
     <span class="mi" id="mIcon"></span>
     <div style="flex:1 1 auto">
       <h2 id="mTitle"></h2>
@@ -1518,7 +1521,37 @@ function render(){
 }
 
 /* ---- modal ---- */
-function openModal(color, iconPath, title, metaHTML, bodyHTML){
+let modalHistory = [];
+let currentModalView = null;
+
+function updateModalBack(){
+  const b = $("#mBack");
+  if(!b) return;
+  b.classList.toggle("on", modalHistory.length > 0);
+}
+function setModalView(view){
+  currentModalView = view;
+  updateModalBack();
+}
+function rememberModalView(){
+  if(!currentModalView) return;
+  modalHistory.push({...currentModalView, scrollTop: $("#mBody").scrollTop || 0});
+  updateModalBack();
+}
+function restoreModalView(view){
+  if(!view) return;
+  if(view.type === "risks") return openRisks(true, view.scrollTop || 0);
+  if(view.type === "actions") return openActions(true, view.scrollTop || 0);
+  if(view.type === "sources") return openSources(true, view.scrollTop || 0);
+  if(view.type === "doc") return openDoc(view.id, true, view.scrollTop || 0);
+}
+function goModalBack(){
+  const prev = modalHistory.pop();
+  updateModalBack();
+  if(prev) restoreModalView(prev);
+}
+
+function openModal(color, iconPath, title, metaHTML, bodyHTML, scrollTop=0){
   $("#mHead").style.setProperty("--nc", color);
   $("#mBody").style.setProperty("--nc", color);
   $("#mIcon").innerHTML = svg(iconPath,19);
@@ -1526,10 +1559,13 @@ function openModal(color, iconPath, title, metaHTML, bodyHTML){
   $("#mMeta").innerHTML = metaHTML;
   $("#mBody").innerHTML = bodyHTML;
   $("#modal").classList.add("on"); $("#scrim").classList.add("on");
-  $("#mBody").scrollTop = 0; document.body.style.overflow="hidden"; $("#mClose").focus();
+  $("#mBody").scrollTop = 0;
+  requestAnimationFrame(()=>{ $("#mBody").scrollTop = scrollTop || 0; });
+  document.body.style.overflow="hidden";
 }
 function closeModal(){
   $("#modal").classList.remove("on"); $("#scrim").classList.remove("on"); document.body.style.overflow="";
+  modalHistory = []; currentModalView = null; updateModalBack();
 }
 
 
@@ -1560,8 +1596,9 @@ async function askAI(id, nut){
   showCopyHint('Câu lệnh đã được copy đầy đủ. Hãy dán vào ChatGPT để hỏi về văn bản pháp luật này');
 }
 
-function openDoc(id){
+function openDoc(id, keepHistory=false, scrollTop=0){
   const d = allDocs().find(x=>x.id===id); if(!d) return; const c = CAT(d.cat);
+  if(!keepHistory) modalHistory = [];
   openModal(c.c, I[d.cat]||I.all, d.title,
     `<span class="tag ${TIER[d.tier].c}">${svg(TIER[d.tier].i,12)}${TIER[d.tier].n}</span>
      <span class="code">${esc(d.code)}</span>
@@ -1596,26 +1633,44 @@ function openDoc(id){
          ? `<a class="btn solid" href="${safeUrl(officialSourceFor(d))}" target="_blank" rel="noopener">${svg(I.src,15)} Mở nguồn chính thức</a>`
          : `<button class="btn solid" type="button" disabled title="Chưa xác nhận được đường dẫn tới đúng văn bản">${svg(I.src,15)} Nguồn đang được chuẩn hóa</button>`}
        <button class="btn askai" type="button" data-ai="${d.id}" aria-label="Hỏi ChatGPT">Hỏi ChatGPT</button>
-     </div>`);
+     </div>`, scrollTop);
+  setModalView({type:"doc", id:d.id});
 }
 
-function openActions(){
-  const items = allDocs().flatMap(d => (d.steps||[]).map((x,i)=>({
-    ...x, id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i
-  }))).sort((a,b)=>a.tier-b.tier || a.code.localeCompare(b.code));
+function openActions(keepHistory=false, scrollTop=0){
+  if(!keepHistory) modalHistory = [];
+  const items = allDocs().flatMap(d => {
+    const steps = Array.isArray(d.steps) ? d.steps.filter(x=>x && x.action) : [];
+    if(steps.length){
+      return steps.map((x,i)=>({
+        action:x.action, owner:x.owner||"", evidence:x.evidence||"", when:x.when||"",
+        id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i, structured:true
+      }));
+    }
+    return (d.duties||[]).filter(Boolean).map((action,i)=>({
+      action, owner:"", evidence:"", when:"",
+      id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i, structured:false
+    }));
+  }).sort((a,b)=>a.tier-b.tier || a.code.localeCompare(b.code));
+
   openModal("var(--brand)", I.act, "Việc cần làm",
-    `<span style="font-size:12.5px;color:var(--ink3)">${items.length} việc được rút trực tiếp từ các văn bản đã kiểm định</span>`,
+    `<span style="font-size:12.5px;color:var(--ink3)">${items.length} việc được tổng hợp từ các văn bản đang theo dõi</span>`,
     items.length ? `<div class="rows">${items.map((a,i)=>{const c=CAT(a.cat);
+      const extra = a.structured
+        ? `${a.owner?`<br>Phụ trách: ${esc(a.owner)}`:""}${a.evidence?`<br>Hồ sơ cần lưu: ${esc(a.evidence)}`:""}${a.when?`<br>Thời điểm: ${esc(a.when)}`:""}`
+        : "";
       return `<button class="rowc" data-goto="${a.id}" style="--nc:${c.c}">
         <span class="num">${i+1}</span>
         <span style="flex:1 1 auto">
           <p class="tt">${esc(a.action)}</p>
-          <p class="ss"><b>${esc(a.code)}</b> · Phụ trách: ${esc(a.owner)}<br>Hồ sơ cần lưu: ${esc(a.evidence)}<br>Thời điểm: ${esc(a.when)}</p>
+          <p class="ss"><b>${esc(a.code)}</b> · ${esc(a.title)}${extra}</p>
         </span></button>`;}).join("")}</div>`
-      : `<p>Hệ thống đang hoàn tất lần đồng bộ đầu tiên.</p>`);
+      : `<p>Chưa có việc cụ thể để hiển thị.</p>`, scrollTop);
+  setModalView({type:"actions"});
 }
 
-function openRisks(){
+function openRisks(keepHistory=false, scrollTop=0){
+  if(!keepHistory) modalHistory = [];
   const items = allDocs().flatMap(d => (d.risks||[]).map((text,i)=>({
     text, id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i
   }))).sort((a,b)=>a.tier-b.tier || a.code.localeCompare(b.code));
@@ -1626,16 +1681,19 @@ function openRisks(){
         <span class="num">${i+1}</span>
         <span style="flex:1 1 auto"><p class="tt">${esc(r.text)}</p><p class="ss">${esc(r.code)} · ${esc(r.title)}</p></span>
       </button>`;}).join("")}</div>`
-      : `<p>Hệ thống đang hoàn tất lần đồng bộ đầu tiên.</p>`);
+      : `<p>Chưa có rủi ro cụ thể để hiển thị.</p>`, scrollTop);
+  setModalView({type:"risks"});
 }
 
-function openSources(){
+function openSources(keepHistory=false, scrollTop=0){
+  if(!keepHistory) modalHistory = [];
   openModal("var(--brand)", I.src, "Nguồn chính thống",
     `<span style="font-size:12.5px;color:var(--ink3)">${SOURCES.length} nhóm nguồn pháp lý được theo dõi</span>`,
     `<p>Hệ thống tự động đọc các nguồn chính thức và chỉ đưa nội dung đủ căn cứ lên giao diện. Có thể mở trực tiếp nguồn tại đây.</p>
      <div class="rows">${SOURCES.map(s=>`<a class="srcrow" href="${s.u}" target="_blank" rel="noopener">
        <span style="color:var(--brand)">${svg(I.src,17)}</span>
-       <span><span class="tt">${esc(s.n)}</span><br><span class="ss">${esc(s.d)}</span></span></a>`).join("")}</div>`);
+       <span><span class="tt">${esc(s.n)}</span><br><span class="ss">${esc(s.d)}</span></span></a>`).join("")}</div>`, scrollTop);
+  setModalView({type:"sources"});
 }
 
 /* ============================================================
@@ -1725,15 +1783,18 @@ $("#grid").addEventListener("click", e=>{
   const b = e.target.closest(".doc"); if(b) openDoc(b.dataset.id);
 });
 $("#mBody").addEventListener("click", e=>{
-  const g = e.target.closest("[data-goto]"); if(g){ openDoc(g.dataset.goto); return; }
+  const g = e.target.closest("[data-goto]");
+  if(g){ rememberModalView(); openDoc(g.dataset.goto, true); return; }
   const a = e.target.closest("[data-ai]"); if(a){ askAI(a.dataset.ai, a); return; }
-  const d = e.target.closest(".doc"); if(d) openDoc(d.dataset.id);   // bấm thẻ mới trong modal cập nhật
+  const d = e.target.closest(".doc");
+  if(d){ rememberModalView(); openDoc(d.dataset.id, true); return; }
 });
 document.querySelectorAll("[data-open]").forEach(b=>{
   b.addEventListener("click", ()=>({actions:openActions,risks:openRisks,sources:openSources})[b.dataset.open]());
 });
 $("#criticalOpen").addEventListener("click", e=>{ const id=e.currentTarget.dataset.id; if(id) openDoc(id); });
 $("#scanBtn").addEventListener("click", syncNow);
+$("#mBack").addEventListener("click", goModalBack);
 $("#mClose").addEventListener("click", closeModal);
 $("#scrim").addEventListener("click", closeModal);
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
