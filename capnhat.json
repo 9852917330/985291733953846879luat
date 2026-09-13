@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
-  "checkedAt": "2026-09-13T16:21:07.408149+00:00",
-  "ngay": "13/09/2026",
-  "gio": "23:21 13/09/2026",
+  "checkedAt": "2026-09-13T19:29:28.232709+00:00",
+  "ngay": "14/09/2026",
+  "gio": "02:29 14/09/2026",
   "status": "degraded",
   "published": 0,
-  "sourcesOk": 5,
+  "sourcesOk": 6,
   "sourcesTotal": 9,
   "processed": 12,
   "message": "Dữ liệu pháp lý đã được đồng bộ từ các nguồn chính thức."
