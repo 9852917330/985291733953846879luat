@@ -17,7 +17,9 @@
     "tier": 2,
     "url": "https://vbpl.vn/TW/Pages/ivbpq-van-ban-goc.aspx?ItemID=176985",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -26,7 +28,9 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=205092&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
+    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
   },
   {
     "code": "08/2026/TT-BYT",
@@ -47,7 +51,9 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=183216&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
+    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
   },
   {
     "code": "105/2016/QH13",
@@ -56,14 +62,16 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=184569&pageid=27160&typegroupid=3",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
+    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
   },
   {
     "code": "105/2025/NĐ-CP",
     "title": "Quy định chi tiết thi hành Luật Phòng cháy chữa cháy và cứu nạn cứu hộ",
     "cat": "pccc",
     "tier": 1,
-    "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
+    "url": "",
     "origin": "discovery",
     "recheck": false,
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
@@ -75,7 +83,7 @@
     "title": "Xử phạt vi phạm hành chính về phòng cháy, chữa cháy và cứu nạn, cứu hộ",
     "cat": "pccc",
     "tier": 2,
-    "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
+    "url": "",
     "origin": "discovery",
     "recheck": false,
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
@@ -171,7 +179,7 @@
   {
     "code": "169/2025/NĐ-CP",
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
-    "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
+    "url": "",
     "origin": "discovery",
     "reason": "AI HTTP 404",
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
@@ -241,7 +249,7 @@
   {
     "code": "282/2025/NĐ-CP",
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
-    "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
+    "url": "",
     "origin": "discovery",
     "reason": "AI HTTP 404",
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"

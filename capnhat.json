@@ -1,12 +1,104 @@
 {
-  "schemaVersion": 3,
-  "checkedAt": "2026-09-15T01:18:22.905685+00:00",
+  "schemaVersion": 4,
+  "checkedAt": "2026-09-15T01:23:11.489656+00:00",
   "ngay": "15/09/2026",
-  "gio": "08:18 15/09/2026",
+  "gio": "08:23 15/09/2026",
   "status": "degraded",
   "published": 0,
   "sourcesOk": 6,
   "sourcesTotal": 9,
-  "processed": 12,
+  "sourcesFailed": [
+    "Bộ Y tế",
+    "Cục Quản lý Dược",
+    "Cục Hạ tầng và Thiết bị y tế"
+  ],
+  "processed": 4,
+  "publishedNow": 0,
+  "pending": 48,
+  "catalogTotal": 40,
+  "catalogDone": 0,
+  "catalogBlocked": [
+    {
+      "code": "06/2011/TT-BYT",
+      "reason": "AI HTTP 404"
+    },
+    {
+      "code": "06/2025/TT-BTNMT",
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+    },
+    {
+      "code": "08/2022/NĐ-CP",
+      "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức"
+    },
+    {
+      "code": "100/2015/QH13",
+      "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức"
+    },
+    {
+      "code": "105/2016/QH13",
+      "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức"
+    },
+    {
+      "code": "13/2025/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "148/2025/NĐ-CP",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "15/2023/QH15",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "16/2012/QH13",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "16/2018/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "163/2025/NĐ-CP",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "18/2026/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "19/2023/QH15",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "20/2021/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "23/2024/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "254/2026/NĐ-CP",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "26/2025/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "32/2023/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "33/2025/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "342/2025/NĐ-CP",
+      "reason": "chưa tới lượt"
+    }
+  ],
+  "quotaExhausted": false,
   "message": "Dữ liệu pháp lý đã được đồng bộ từ các nguồn chính thức."
 }
