@@ -259,6 +259,94 @@
   {
     "verificationVersion": 3,
     "verified": true,
+    "code": "26/2025/TT-BYT",
+    "title": "Quy định về đơn thuốc và kê đơn thuốc ngoại trú",
+    "cat": "kcb",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-15T21:24:07.482179+00:00",
+    "sourcePage": "https://vanban.chinhphu.vn/?classid=1&docid=214386&pageid=27160&typegroupid=6",
+    "sourceFile": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/26-byt.pdf",
+    "sourceHash": "30e105c0520dbbda5151637962054456867d4ba867045838c87fc6cfabc3e04e",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Bác sĩ, y sĩ có chứng chỉ hoặc giấy phép hành nghề khám bệnh, chữa bệnh mới có thẩm quyền kê đơn thuốc.",
+        "article": "Điều 2",
+        "quote": "Người hành nghề khám bệnh, chữa bệnh có chứng chỉ hành nghề hoặc giấy phép hành nghề khám bệnh, chữa bệnh với chức danh là bác sỹ, y sỹ có thẩm quyền kê đơn thuốc.",
+        "subject": "Người hành nghề",
+        "behavior": "Kê đơn thuốc",
+        "conditions": "Có chứng chỉ hoặc giấy phép hành nghề"
+      },
+      {
+        "kind": "effective",
+        "text": "Đơn thuốc điện tử có giá trị pháp lý tương đương đơn thuốc giấy.",
+        "article": "Điều 10",
+        "quote": "Đơn thuốc kê bằng hình thức điện tử được lập, hiển thị, ký số, chia sẻ, lưu trữ bằng phương thức điện tử phải có đủ các thông tin theo quy định của Thông tư này và có giá trị pháp lý như đơn thuốc giấy.",
+        "subject": "Đơn thuốc điện tử",
+        "behavior": "Sử dụng",
+        "conditions": "Đầy đủ thông tin, ký số"
+      },
+      {
+        "kind": "duty",
+        "text": "Bệnh viện phải thực hiện kê đơn thuốc điện tử trước ngày 01/10/2025.",
+        "article": "Điều 13 khoản 3 điểm a",
+        "quote": "Cơ sở khám bệnh, chữa bệnh có hình thức tổ chức là bệnh viện phải thực hiện việc kê đơn thuốc bằng hình thức điện tử trước ngày 01 tháng 10 năm 2025;",
+        "subject": "Bệnh viện",
+        "behavior": "Kê đơn thuốc điện tử",
+        "conditions": "Trước 01/10/2025"
+      },
+      {
+        "kind": "duty",
+        "text": "Người bệnh phải lĩnh thuốc trong thời hạn tối đa 05 ngày kể từ ngày kê đơn.",
+        "article": "Điều 12 khoản 9 điểm b",
+        "quote": "Lĩnh thuốc trong thời hạn tối đa 05 ngày, kể từ ngày kê đơn thuốc;",
+        "subject": "Người bệnh",
+        "behavior": "Lĩnh thuốc",
+        "conditions": "Tối đa 05 ngày kể từ ngày kê đơn"
+      }
+    ],
+    "steps": [
+      {
+        "action": "Kê đơn thuốc điện tử và gửi lên Hệ thống đơn thuốc quốc gia",
+        "owner": "Bác sĩ/Y sĩ",
+        "evidence": "Đơn thuốc điện tử trên Hệ thống đơn thuốc quốc gia",
+        "when": "Ngay sau khi kết thúc quy trình khám bệnh"
+      },
+      {
+        "action": "Gửi đơn thuốc hoặc mã đơn thuốc cho người bệnh",
+        "owner": "Cơ sở khám bệnh, chữa bệnh",
+        "evidence": "Tin nhắn/Email/Phương tiện điện tử",
+        "when": "Sau khi kê đơn"
+      }
+    ],
+    "cautions": [
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn",
+      "Bản tóm tắt ghi sai Điều khoản chuyển tiếp: Điều 13 khoản 3 điểm a quy định bệnh viện phải thực hiện kê đơn thuốc điện tử trước ngày 01/10/2025, nhưng bản tóm tắt lại diễn đạt như một nghĩa vụ chung thay vì lộ trình thực hiện, đồng thời bỏ sót điểm b khoản 3 về lộ trình cho các cơ sở khám bệnh, chữa bệnh khác.",
+      "Bản tóm tắt bỏ sót các quy định quan trọng về việc hủy bỏ các Thông tư cũ tại Điều 13 khoản 2.",
+      "Bản tóm tắt diễn đạt Điều 12 khoản 9 điểm b (Người bệnh lĩnh thuốc trong thời hạn tối đa 05 ngày) có thể gây hiểu lầm là thời hạn hiệu lực của đơn thuốc, trong khi văn bản gốc quy định đây là trách nhiệm của người bệnh trong việc đi lĩnh thuốc."
+    ],
+    "tinCay": "vua",
+    "essence": "Bác sĩ, y sĩ có chứng chỉ hoặc giấy phép hành nghề khám bệnh, chữa bệnh mới có thẩm quyền kê đơn thuốc. (Điều 2)",
+    "duties": [
+      "Bệnh viện phải thực hiện kê đơn thuốc điện tử trước ngày 01/10/2025. (Điều 13 khoản 3 điểm a)",
+      "Người bệnh phải lĩnh thuốc trong thời hạn tối đa 05 ngày kể từ ngày kê đơn. (Điều 12 khoản 9 điểm b)"
+    ],
+    "risks": [],
+    "eff": "Có hiệu lực · 01/07/2025",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [],
+    "suaDoi": [],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214386&pageid=27160&typegroupid=6",
+    "stale": false,
+    "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
     "code": "33/2025/TT-BYT",
     "title": "Thời hạn lưu trữ hồ sơ, tài liệu ngành y tế theo Thông tư 33/2025/TT-BYT",
     "cat": "kcb",

@@ -212,19 +212,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=218689&pageid=27160&typegroupid=4",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4497 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
-  },
-  {
-    "code": "26/2025/TT-BYT",
-    "title": "Kê đơn thuốc và lộ trình đơn thuốc điện tử bắt buộc",
-    "cat": "duoc",
-    "tier": 2,
-    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214386&pageid=27160&typegroupid=6",
-    "origin": "catalog",
-    "recheck": false,
-    "reason": "Không có nhận định nào đối chiếu được với toàn văn",
-    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4690 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
   },
   {
     "code": "282/2025/NĐ-CP",
@@ -243,7 +232,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
+    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
   },
   {
     "code": "327/2026/NĐ-CP",
@@ -262,8 +251,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=216403&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4003 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4355 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
   },
   {
     "code": "35/2024/TT-BYT",
@@ -274,7 +263,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
+    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
   },
   {
     "code": "356/2025/NĐ-CP",
@@ -284,8 +273,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=216387&pageid=27160&typegroupid=4",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4201 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4489 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
   },
   {
     "code": "38/2024/TT-BYT",
@@ -295,8 +284,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=211878&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4169 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4521 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
   },
   {
     "code": "43/2018/TT-BYT",
@@ -307,7 +296,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
+    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
   },
   {
     "code": "45/2019/QH14",
