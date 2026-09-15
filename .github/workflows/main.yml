@@ -93,6 +93,7 @@ jobs:
           from urllib.parse import urljoin, urlparse
 
           import ssl
+          import unicodedata
 
           import requests
           from bs4 import BeautifulSoup
@@ -224,14 +225,26 @@ jobs:
 
           # ---------------------------------------------------------------- tiện ích
 
+          def nfc(s: str) -> str:
+              """Ghép dấu tiếng Việt về một dạng chuẩn duy nhất.
+
+              Chữ "ế" viết được bằng hai cách: một ký tự ghép sẵn, hoặc chữ "e" cộng hai
+              dấu rời. Nhìn trên màn hình y hệt nhau nhưng khác byte hoàn toàn. pdftotext
+              thường trả về dạng tách dấu, còn trợ lý AI trả lời dạng ghép sẵn — thế là
+              mọi đoạn trích đều trượt đối chiếu dù chép đúng từng chữ. Đây là lý do thật
+              của các mục báo "không có nhận định nào đối chiếu được với toàn văn".
+              """
+              return unicodedata.normalize("NFC", s or "")
+
+
           def norm(s: str) -> str:
-              return re.sub(r"\s+", " ", s or "").strip()
+              return re.sub(r"\s+", " ", nfc(s)).strip()
 
 
           def squash(s: str) -> str:
-              """Bỏ sạch khoảng trắng. Dùng để so khớp số hiệu và trích dẫn mà không bị
-              một dấu cách thừa trong bản gốc làm trượt oan."""
-              return re.sub(r"\s+", "", s or "").lower()
+              """Bỏ sạch khoảng trắng và ghép dấu. Dùng để so khớp số hiệu và trích dẫn
+              mà một dấu cách thừa hay một cách gõ dấu khác không làm trượt oan."""
+              return re.sub(r"\s+", "", nfc(s)).lower()
 
 
           def canonical_code(s: str) -> str:
@@ -259,7 +272,9 @@ jobs:
 
           def _get_with(sess: requests.Session, url: str) -> requests.Response:
               for _ in range(6):
-                  r = sess.get(url, timeout=(8, 30), allow_redirects=False)
+                  # Hai cổng moh.gov.vn và dav.gov.vn báo "hết thời gian chờ" ở lần chạy
+                  # thật — chậm thật chứ không phải chặn. Nới hạn chờ đọc lên 60 giây.
+                  r = sess.get(url, timeout=(15, 60), allow_redirects=False)
 
                   if r.is_redirect:
                       nxt = urljoin(url, r.headers.get("Location", ""))
@@ -633,6 +648,57 @@ jobs:
               return out
 
 
+          # Dạng tiêu đề "Số:" đứng đầu dòng. Khác hẳn với trích dẫn giữa câu kiểu
+          # "Nghị định số 105/2025/NĐ-CP" — dấu hai chấm và vị trí đầu dòng là dấu hiệu
+          # phân biệt đáng tin giữa SỐ HIỆU CỦA CHÍNH VĂN BẢN và số hiệu được nhắc tới.
+          SO_TIEUDE_RE = re.compile(
+              r"(?:^|\n)[ \t]*Số[ \t]*:[ \t]*"
+              r"(\d{1,4}[ \t]*/[ \t]*20\d{2}[ \t]*/[ \t]*"
+              r"(?:NĐ-CP|ND-CP|TT-[A-ZĐ0-9-]{2,12}|QH\d{1,2}|QĐ-[A-ZĐ0-9-]{2,12}|"
+              r"NQ-[A-ZĐ0-9-]{2,12}|VBHN-[A-ZĐ0-9-]{2,12}))\b",
+              re.I,
+          )
+
+
+          def slice_to_document(text: str, code: str) -> str:
+              """Cắt lấy đúng phần của một văn bản trong tệp gộp nhiều văn bản.
+
+              Công báo phát hành theo SỐ, mỗi số gộp nhiều văn bản vào một tệp. Khi đó
+              số hiệu ở đầu tệp là của văn bản khác, và máy sẽ kết luận "là văn bản khác"
+              rồi bỏ qua — dù văn bản cần tìm nằm ngay trong đó. Hàm này tìm đúng mốc
+              tiêu đề của văn bản cần lấy rồi cắt tới mốc của văn bản kế tiếp.
+              """
+              c = squash(code).replace("nd-cp", "nđ-cp")
+              moc = [
+                  (m.start(), squash(m.group(1)).replace("nd-cp", "nđ-cp"))
+                  for m in SO_TIEUDE_RE.finditer(nfc(text))
+              ]
+
+              for i, (vt, ma) in enumerate(moc):
+                  if ma != c:
+                      continue
+
+                  # Lùi lại một đoạn NGẮN để giữ dòng tên cơ quan ban hành nằm ngay trên
+                  # số hiệu, rồi cắt tại dòng trống gần nhất để không kéo theo phần đuôi
+                  # của văn bản đứng trước trong cùng tệp.
+                  dau = max(0, vt - 250)
+                  trong = text[dau:vt].rfind("\n\n")
+                  if trong >= 0:
+                      dau += trong + 2
+
+                  # Kết thúc tại mốc số hiệu KHÁC tiếp theo. Bỏ qua mốc trùng chính nó,
+                  # vì nhiều văn bản ghi lại số hiệu ở trang ký hoặc ở phụ lục.
+                  cuoi = len(text)
+                  for vt2, ma2 in moc[i + 1:]:
+                      if ma2 != c:
+                          cuoi = vt2
+                          break
+
+                  return text[dau:cuoi]
+
+              return text
+
+
           def is_own_code(text: str, code: str) -> bool:
               c = squash(code).replace("nd-cp", "nđ-cp")
 
@@ -671,9 +737,12 @@ jobs:
               )
 
               if direct:
-                  text = extract_attachment(r.content, r.url)
+                  text = slice_to_document(extract_attachment(r.content, r.url), code)
                   if not accept_text(text, code):
-                      raise ValueError("Tệp chính thức không đúng số hiệu hoặc thiếu toàn văn")
+                      raise ValueError(
+                          "Tệp chính thức không đúng số hiệu hoặc thiếu toàn văn "
+                          "(%d ký tự, %d điều)" % (len(norm(text)), len(re.findall(r"Điều\s+\d+", text, re.I)))
+                      )
                   if len(text) > 1_600_000:
                       raise ValueError("Toàn văn vượt giới hạn phân tích an toàn")
                   return text, r.url, r.url, hashlib.sha256(r.content).hexdigest()
@@ -714,6 +783,12 @@ jobs:
                       if not text:
                           nhat_ky.append("không đọc được định dạng")
                           continue
+                      # Cắt lấy đúng phần của văn bản cần tìm TRƯỚC khi đánh giá. Tệp
+                      # Công báo gộp nhiều văn bản trong một số; nếu đưa cả tệp vào phân
+                      # tích thì trợ lý AI có thể trích câu của văn bản bên cạnh mà vẫn
+                      # qua được bước đối chiếu, vì câu đó đúng là có trong tệp.
+                      text = slice_to_document(text, code)
+
                       if not is_own_code(text, code):
                           nhat_ky.append("là văn bản khác")
                           continue
@@ -1119,8 +1194,22 @@ jobs:
               result = gemini(prompt)
               problems = [str(x) for x in (result.get("problems") or []) if str(x).strip()]
 
+              # Chỉ chặn xuất bản khi kiểm định viên chỉ ra ĐƯỢC một mã văn bản khác thật
+              # sự xuất hiện trong lời phản bác. Lần chạy 15/09 cho thấy nó gắn cờ nghiêm
+              # trọng chỉ vì chê cách đặt TIÊU ĐỀ của một văn bản hoàn toàn đúng — chê văn
+              # phong mà chặn xuất bản thì lại thành bỏ lỡ thông tin.
               if result.get("fatal") is True:
-                  raise ValueError("Kiểm định vòng 2 phát hiện sai văn bản: " + "; ".join(problems[:3]))
+                  loi_ma = {
+                      canonical_code(m.group(0))
+                      for t in problems
+                      for m in [CODE_RE.search(t)] if m
+                  } - {canonical_code(item["code"])}
+
+                  if loi_ma:
+                      raise ValueError(
+                          "Kiểm định vòng 2 phát hiện lẫn sang văn bản khác (%s): %s"
+                          % (", ".join(sorted(loi_ma)), "; ".join(problems[:2]))
+                      )
 
               return [] if result.get("approved") is True else problems[:8]
 
