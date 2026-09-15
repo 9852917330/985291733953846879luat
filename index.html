@@ -1788,6 +1788,17 @@ function openSources(keepHistory=false, scrollTop=0){
   openModal("var(--brand)", I.src, "Nguồn chính thống",
     `<span style="font-size:12.5px;color:var(--ink3)">${SOURCES.length} nhóm nguồn pháp lý được theo dõi</span>`,
     `<p>Hệ thống tự động đọc các nguồn chính thức và chỉ đưa nội dung đủ căn cứ lên giao diện. Có thể mở trực tiếp nguồn tại đây.</p>
+     ${(()=>{ const s=SNAPSHOT; if(!s||!s.checkedAt) return "";
+        const xong=Number(s.catalogDone||0), tong=Number(s.catalogTotal||0);
+        const hong=Array.isArray(s.sourcesFailed)?s.sourcesFailed:[];
+        return `<div class="callout" data-t="3">
+          <b>Tình trạng máy đối chiếu</b><br>
+          Lần chạy gần nhất: ${esc(s.gio||"")}.<br>
+          ${tong?`Đã đối chiếu xong toàn văn ${xong}/${tong} văn bản nền tảng${xong<tong?", phần còn lại máy tiếp tục chạy mỗi giờ":""}.<br>`:""}
+          Đọc được ${esc(String(s.sourcesOk??"?"))}/${esc(String(s.sourcesTotal??"?"))} nguồn.
+          ${hong.length?`<br><span style="font-size:12.5px">Tạm thời chưa đọc được: ${hong.map(x=>esc(typeof x==="string"?x:(x.nguon+" ("+x.loi+")"))).join(", ")}.</span>`:""}
+          <br><span style="font-size:12.5px">Các thẻ đang hiển thị không phụ thuộc vào việc này — chúng vẫn giữ nguyên nội dung đã kiểm.</span>
+        </div>`; })()}
      <div class="rows">${SOURCES.map(s=>`<a class="srcrow" href="${s.u}" target="_blank" rel="noopener">
        <span style="color:var(--brand)">${svg(I.src,17)}</span>
        <span><span class="tt">${esc(s.n)}</span><br><span class="ss">${esc(s.d)}</span></span></a>`).join("")}</div>`, scrollTop);
@@ -1808,12 +1819,16 @@ async function refreshSnapshot(fromButton=false){
     return false;
   }
   SNAPSHOT=results[0].value || {};
-  const valid=SNAPSHOT.schemaVersion===3 && SNAPSHOT.checkedAt;
+  /* Chấp nhận mọi phiên bản dữ liệu từ 3 trở lên.
+     Bản trước so bằng đúng số 3, nên khi máy quét nâng lên số 4 thì điều kiện
+     này vĩnh viễn sai: web hiển thị "Đang đồng bộ" mãi mãi dù đồng bộ vẫn chạy
+     bình thường. Người dùng tưởng hệ thống treo trong khi nó đang chạy tốt. */
+  const valid=Number(SNAPSHOT.schemaVersion)>=3 && SNAPSHOT.checkedAt;
   $('#lastUpd').textContent=valid?(SNAPSHOT.gio||SNAPSHOT.checkedAt):'Đang đồng bộ';
   if(valid){
     const same = before && before===SNAPSHOT.checkedAt;
     showState(fromButton && same
-      ? 'Đã là dữ liệu mới nhất. Hệ thống tiếp tục tự động cập nhật nền.'
+      ? `Đã là dữ liệu mới nhất · ${SNAPSHOT.gio||''}`
       : `Đã đồng bộ dữ liệu mới nhất · ${SNAPSHOT.gio||''}`);
   }else{
     showState('Hệ thống đang hoàn tất lần đồng bộ đầu tiên.');
