@@ -1,10 +1,10 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-15T01:23:11.489656+00:00",
+  "checkedAt": "2026-09-15T01:24:38.473586+00:00",
   "ngay": "15/09/2026",
-  "gio": "08:23 15/09/2026",
+  "gio": "08:24 15/09/2026",
   "status": "degraded",
-  "published": 0,
+  "published": 1,
   "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
@@ -13,10 +13,10 @@
     "Cục Hạ tầng và Thiết bị y tế"
   ],
   "processed": 4,
-  "publishedNow": 0,
-  "pending": 48,
+  "publishedNow": 1,
+  "pending": 47,
   "catalogTotal": 40,
-  "catalogDone": 0,
+  "catalogDone": 1,
   "catalogBlocked": [
     {
       "code": "06/2011/TT-BYT",
@@ -40,19 +40,15 @@
     },
     {
       "code": "13/2025/TT-BYT",
-      "reason": "chưa tới lượt"
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "148/2025/NĐ-CP",
-      "reason": "chưa tới lượt"
+      "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức"
     },
     {
       "code": "15/2023/QH15",
-      "reason": "chưa tới lượt"
-    },
-    {
-      "code": "16/2012/QH13",
-      "reason": "chưa tới lượt"
+      "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức"
     },
     {
       "code": "16/2018/TT-BYT",
@@ -96,6 +92,10 @@
     },
     {
       "code": "342/2025/NĐ-CP",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "35/2024/TT-BYT",
       "reason": "chưa tới lượt"
     }
   ],

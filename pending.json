@@ -113,7 +113,9 @@
     "tier": 1,
     "url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=178219",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-15T01:24:38.473586+00:00"
   },
   {
     "code": "148/2025/NĐ-CP",
@@ -122,7 +124,9 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
+    "lastAttempt": "2026-09-15T01:24:38.473586+00:00"
   },
   {
     "code": "15/2023/QH15",
@@ -131,7 +135,9 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?docid=207396&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
+    "lastAttempt": "2026-09-15T01:24:38.473586+00:00"
   },
   {
     "code": "150/2026/TT-BCA",
@@ -148,15 +154,6 @@
     "origin": "discovery",
     "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
-  },
-  {
-    "code": "16/2012/QH13",
-    "title": "Luật Quảng cáo, sửa đổi bổ sung năm 2025",
-    "cat": "qc",
-    "tier": 2,
-    "url": "https://vanban.chinhphu.vn/?docid=163008&pageid=27160",
-    "origin": "catalog",
-    "recheck": false
   },
   {
     "code": "16/2018/TT-BYT",

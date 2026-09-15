@@ -1,1 +1,105 @@
-[]
+[
+  {
+    "verificationVersion": 3,
+    "verified": true,
+    "code": "16/2012/QH13",
+    "title": "Tuân thủ pháp luật về hoạt động quảng cáo cho bệnh viện thẩm mỹ tư nhân",
+    "cat": "qc",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-15T01:24:38.473586+00:00",
+    "sourcePage": "https://vanban.chinhphu.vn/?docid=163008&pageid=27160",
+    "sourceFile": "https://vanban.chinhphu.vn/?docid=163008&pageid=27160",
+    "sourceHash": "1a155b58efb510bf469ec0678b4a250a887058fa0edabe05bc4e3aec2b85bb06",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Hoạt động quảng cáo dịch vụ khám bệnh, chữa bệnh của bệnh viện tư nhân phải tuân thủ Luật Quảng cáo.",
+        "article": "Điều 1 khoản 1",
+        "quote": "Luật này quy định về hoạt động quảng cáo; quyền và nghĩa vụ của tổ chức, cá nhân tham gia hoạt động quảng cáo; quản lý nhà nước về hoạt động quảng cáo.",
+        "subject": "",
+        "behavior": "",
+        "conditions": ""
+      },
+      {
+        "kind": "duty",
+        "text": "Bệnh viện thẩm mỹ tư nhân khi quảng cáo dịch vụ khám bệnh, chữa bệnh bắt buộc phải có giấy chứng nhận đủ tiêu chuẩn hành nghề do ngành y tế cấp theo quy định của pháp luật.",
+        "article": "Điều 20 khoản 4 điểm e",
+        "quote": "Quảng cáo dịch vụ khám bệnh, chữa bệnh phải có giấy chứng nhận đủ tiêu chuẩn hành nghề do ngành y tế cấp theo quy định của pháp luật;",
+        "subject": "",
+        "behavior": "",
+        "conditions": ""
+      },
+      {
+        "kind": "risk",
+        "text": "Cấm sử dụng các từ ngữ tuyệt đối như 'nhất', 'duy nhất', 'tốt nhất', 'số một' trong quảng cáo dịch vụ nếu không có tài liệu hợp pháp chứng minh.",
+        "article": "Điều 8 khoản 11",
+        "quote": "Quảng cáo có sử dụng các từ ngữ “nhất”, “duy nhất”, “tốt nhất”, “số một” hoặc từ ngữ có ý nghĩa tương tự mà không có tài liệu hợp pháp chứng minh theo quy định của Bộ Văn hóa, Thể thao và Du lịch.",
+        "subject": "",
+        "behavior": "",
+        "conditions": ""
+      },
+      {
+        "kind": "duty",
+        "text": "Nội dung quảng cáo dịch vụ phải thể hiện bằng tiếng Việt; trường hợp dùng cả tiếng nước ngoài thì khổ chữ nước ngoài không quá ba phần tư khổ chữ tiếng Việt và đặt bên dưới.",
+        "article": "Điều 18 khoản 2",
+        "quote": "Trong trường hợp sử dụng cả tiếng Việt, tiếng nước ngoài trên cùng một sản phẩm quảng cáo thì khổ chữ nước ngoài không được quá ba phần tư khổ chữ tiếng Việt và phải đặt bên dưới chữ tiếng Việt; khi phát trên đài phát thanh, truyền hình hoặc trên các phương tiện nghe nhìn, phải đọc tiếng Việt trước tiếng nước ngoài.",
+        "subject": "",
+        "behavior": "",
+        "conditions": ""
+      },
+      {
+        "kind": "duty",
+        "text": "Tổ chức đoàn người thực hiện quảng cáo từ ba người trở lên phải thông báo bằng văn bản với cơ quan có thẩm quyền về quảng cáo của địa phương chậm nhất là 15 ngày trước ngày thực hiện.",
+        "article": "Điều 36 khoản 1 điểm c",
+        "quote": "Tổ chức, cá nhân tổ chức đoàn người thực hiện quảng cáo phải thông báo với cơ quan có thẩm quyền về quảng cáo của địa phương về nội dung, hình thức sản phẩm quảng cáo, số lượng người tham gia đoàn người thực hiện quảng cáo, thời gian và lộ trình thực hiện chậm nhất là 15 ngày trước ngày thực hiện quảng cáo.",
+        "subject": "",
+        "behavior": "",
+        "conditions": ""
+      }
+    ],
+    "steps": [
+      {
+        "action": "Kiểm tra và chuẩn bị đầy đủ giấy chứng nhận đủ tiêu chuẩn hành nghề do ngành y tế cấp trước khi tiến hành quảng cáo dịch vụ khám bệnh, chữa bệnh.",
+        "owner": "Bộ phận pháp lý / Vận hành Bệnh viện thẩm mỹ",
+        "evidence": "Giấy chứng nhận đủ tiêu chuẩn hành nghề",
+        "when": "Trước khi thiết kế và phát hành quảng cáo"
+      },
+      {
+        "action": "Rà soát nội dung quảng cáo đảm bảo không chứa từ ngữ so sánh tuyệt đối ('nhất', 'duy nhất', 'tốt nhất', 'số một') nếu không có tài liệu hợp pháp chứng minh.",
+        "owner": "Bộ phận Marketing / Truyền thông",
+        "evidence": "Tài liệu hợp pháp chứng minh theo quy định của Bộ Văn hóa, Thể thao và Du lịch",
+        "when": "Trong quá trình xây dựng nội dung quảng cáo"
+      },
+      {
+        "action": "Thực hiện thủ tục thông báo với cơ quan có thẩm quyền về quảng cáo của địa phương chậm nhất là 15 ngày trước ngày thực hiện nếu tổ chức đoàn người thực hiện quảng cáo từ ba người trở lên.",
+        "owner": "Bộ phận hành chính / Marketing",
+        "evidence": "Văn bản thông báo gửi cơ quan nhà nước có thẩm quyền",
+        "when": "Chậm nhất 15 ngày trước ngày thực hiện đoàn người quảng cáo"
+      }
+    ],
+    "cautions": [
+      "Chưa trích được căn cứ hiệu lực có căn cứ trực tiếp trong toàn văn"
+    ],
+    "tinCay": "vua",
+    "essence": "Hoạt động quảng cáo dịch vụ khám bệnh, chữa bệnh của bệnh viện tư nhân phải tuân thủ Luật Quảng cáo. (Điều 1 khoản 1)",
+    "duties": [
+      "Bệnh viện thẩm mỹ tư nhân khi quảng cáo dịch vụ khám bệnh, chữa bệnh bắt buộc phải có giấy chứng nhận đủ tiêu chuẩn hành nghề do ngành y tế cấp theo quy định của pháp luật. (Điều 20 khoản 4 điểm e)",
+      "Nội dung quảng cáo dịch vụ phải thể hiện bằng tiếng Việt; trường hợp dùng cả tiếng nước ngoài thì khổ chữ nước ngoài không quá ba phần tư khổ chữ tiếng Việt và đặt bên dưới. (Điều 18 khoản 2)",
+      "Tổ chức đoàn người thực hiện quảng cáo từ ba người trở lên phải thông báo bằng văn bản với cơ quan có thẩm quyền về quảng cáo của địa phương chậm nhất là 15 ngày trước ngày thực hiện. (Điều 36 khoản 1 điểm c)"
+    ],
+    "risks": [
+      "Cấm sử dụng các từ ngữ tuyệt đối như 'nhất', 'duy nhất', 'tốt nhất', 'số một' trong quảng cáo dịch vụ nếu không có tài liệu hợp pháp chứng minh. (Điều 8 khoản 11)"
+    ],
+    "eff": "Có hiệu lực · 01/01/2013",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [],
+    "suaDoi": [],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://vanban.chinhphu.vn/?docid=163008&pageid=27160",
+    "stale": false,
+    "ageDays": 0
+  }
+]
