@@ -43,7 +43,9 @@ jobs:
         run: |
           pip install requests beautifulsoup4 lxml
           sudo apt-get update -qq
-          sudo apt-get install -y poppler-utils
+          # poppler-utils đọc PDF; antiword và catdoc đọc .doc đời cũ — phần lớn
+          # luật và nghị định trước 2018 trên cổng Chính phủ vẫn đăng bằng .doc.
+          sudo apt-get install -y poppler-utils antiword catdoc
 
       - name: Đọc nguồn chính thức, phân tích và kiểm định
         env:
@@ -90,19 +92,23 @@ jobs:
           from pathlib import Path
           from urllib.parse import urljoin, urlparse
 
+          import ssl
+
           import requests
           from bs4 import BeautifulSoup
           from lxml import etree
+          from requests.adapters import HTTPAdapter
+          from urllib3.util.ssl_ import create_urllib3_context
 
           ROOT = Path(os.getenv("GITHUB_WORKSPACE", ".")).resolve()
           VN = dt.timezone(dt.timedelta(hours=7))
           KEY = os.getenv("GEMINI_API_KEY", "")
           MODEL_PIN = os.getenv("GEMINI_MODEL", "").strip()
 
-          # Số mục xử lý mỗi lần chạy. Chạy mỗi giờ nên 4 mục là 96 mục/ngày, thừa sức
+          # Số mục xử lý mỗi lần chạy. Chạy mỗi giờ nên 8 mục là 192 mục/ngày, thừa sức
           # cho danh mục 40 văn bản, mà vẫn nằm trong hạn mức miễn phí của Gemini
           # (mỗi mục tốn 2 lượt gọi: phân tích và kiểm định).
-          BATCH = int(os.getenv("BATCH", "4"))
+          BATCH = int(os.getenv("BATCH", "8"))
 
           # Số ký tự toàn văn gửi cho trợ lý AI. Đối chiếu trích dẫn vẫn chạy trên TOÀN
           # BỘ văn bản, phần cắt chỉ để tiết kiệm hạn mức và tăng tốc.
@@ -177,6 +183,42 @@ jobs:
               "Accept-Language": "vi-VN,vi;q=0.9,en;q=0.8",
           })
 
+          # Đường dẫn có thể là tệp toàn văn. Bản trước chỉ nhận .pdf và .docx nên bỏ sót
+          # hai loại phổ biến: tệp .doc đời cũ của các luật trước 2018, và đường dẫn tải
+          # kiểu download.aspx?fileid=... vốn không có đuôi tên nào. Nhận rộng ở đây rồi
+          # để bước đọc nội dung tự nhận dạng theo byte đầu tệp, an toàn hơn tin vào đuôi.
+          ATTACH_HINT = re.compile(
+              r"\.(?:pdf|docx?|rtf)(?:[?&#]|$)|download|attach|/file|fileid=|filename=|"
+              r"tai-ve|taive|van-ban-goc|vanbangoc|noidungvanban",
+              re.I,
+          )
+
+
+          class LegacyTLSAdapter(HTTPAdapter):
+              """Bắt tay được với các máy chủ chạy TLS đời cũ.
+
+              Ba cổng Bộ Y tế, Cục Quản lý Dược và Cục Hạ tầng & Thiết bị y tế đều báo
+              hỏng ở lần chạy thật. Triệu chứng quen thuộc: máy chủ của họ dùng bộ thuật
+              toán mã hóa cũ mà thư viện đời mới từ chối ngay từ bước bắt tay, trong khi
+              trình duyệt vẫn vào được vì chấp nhận mức thấp hơn.
+
+              Ở đây chỉ HẠ MỨC YÊU CẦU THUẬT TOÁN, vẫn kiểm tra chứng thư và tên miền của
+              máy chủ đầy đủ. Không bao giờ tắt xác thực — làm vậy là mở đường cho việc
+              bị giả mạo nguồn, mà nguồn giả thì cả bảng pháp lý thành vô giá trị.
+              """
+
+              def init_poolmanager(self, *args, **kwargs):
+                  ctx = create_urllib3_context(ciphers="DEFAULT:@SECLEVEL=1")
+                  ctx.verify_mode = ssl.CERT_REQUIRED
+                  ctx.check_hostname = True
+                  kwargs["ssl_context"] = ctx
+                  return super().init_poolmanager(*args, **kwargs)
+
+
+          LEGACY = requests.Session()
+          LEGACY.headers.update(SESSION.headers)
+          LEGACY.mount("https://", LegacyTLSAdapter())
+
           W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
 
@@ -215,12 +257,9 @@ jobs:
                   return False
 
 
-          def get(url: str) -> requests.Response:
-              if not official(url):
-                  raise ValueError("Nguồn không thuộc cổng chính thức")
-
+          def _get_with(sess: requests.Session, url: str) -> requests.Response:
               for _ in range(6):
-                  r = SESSION.get(url, timeout=(8, 30), allow_redirects=False)
+                  r = sess.get(url, timeout=(8, 30), allow_redirects=False)
 
                   if r.is_redirect:
                       nxt = urljoin(url, r.headers.get("Location", ""))
@@ -237,6 +276,22 @@ jobs:
                   return r
 
               raise ValueError("Quá nhiều chuyển hướng")
+
+
+          def get(url: str) -> requests.Response:
+              if not official(url):
+                  raise ValueError("Nguồn không thuộc cổng chính thức")
+
+              try:
+                  return _get_with(SESSION, url)
+              except requests.exceptions.SSLError:
+                  # Máy chủ dùng TLS đời cũ. Thử lại bằng phiên chấp nhận thuật toán cũ,
+                  # vẫn kiểm tra chứng thư đầy đủ.
+                  return _get_with(LEGACY, url)
+              except requests.ConnectionError as e:
+                  if "SSL" in str(e) or "handshake" in str(e).lower():
+                      return _get_with(LEGACY, url)
+                  raise
 
 
           def read_json(name: str, default):
@@ -470,18 +525,59 @@ jobs:
               return "\n".join(lines)
 
 
-          def extract_attachment(data: bytes, url: str) -> str:
-              if data[:2] == b"PK" or re.search(r"\.docx(?:[?&#]|$)", url, re.I):
-                  return docx_text(data)
+          def pdf_text(data: bytes) -> str:
+              with tempfile.NamedTemporaryFile(suffix=".pdf") as f:
+                  f.write(data)
+                  f.flush()
+                  out = subprocess.check_output(
+                      ["pdftotext", "-layout", "-enc", "UTF-8", f.name, "-"], timeout=50
+                  )
+                  return out.decode("utf-8", errors="replace")
 
-              if data[:4] == b"%PDF" or re.search(r"\.pdf(?:[?&#]|$)", url, re.I):
-                  with tempfile.NamedTemporaryFile(suffix=".pdf") as f:
-                      f.write(data)
-                      f.flush()
-                      out = subprocess.check_output(
-                          ["pdftotext", "-layout", "-enc", "UTF-8", f.name, "-"], timeout=50
-                      )
-                      return out.decode("utf-8", errors="replace")
+
+          def doc_text(data: bytes) -> str:
+              """Đọc định dạng .doc đời cũ.
+
+              Phần lớn luật và nghị định trước khoảng 2018 trên cổng Chính phủ vẫn đăng
+              bằng .doc chứ không phải .docx. Bản trước chỉ lọc đuôi .pdf và .docx nên
+              những tệp này bị bỏ qua hoàn toàn, máy đành quay sang đọc chữ trên trang
+              web vốn không có toàn văn, rồi báo "chưa lấy được toàn văn". Đây là nghi
+              can số một của 6 văn bản nền tảng đang tắc: Luật Khám bệnh chữa bệnh,
+              Bộ luật Hình sự, Luật Dược...
+              """
+              for lenh in (["antiword", "-m", "UTF-8.txt"], ["catdoc", "-d", "utf-8"]):
+                  try:
+                      with tempfile.NamedTemporaryFile(suffix=".doc") as f:
+                          f.write(data)
+                          f.flush()
+                          out = subprocess.check_output(
+                              lenh + [f.name], timeout=50, stderr=subprocess.DEVNULL
+                          )
+                      t = out.decode("utf-8", errors="replace").strip()
+                      if len(t) > 400:
+                          return t
+                  except (FileNotFoundError, subprocess.SubprocessError):
+                      continue
+              return ""
+
+
+          # Nhận dạng theo BỐN BYTE ĐẦU của tệp thay vì tin vào đuôi tên. Nhiều cổng
+          # phát tệp qua đường dẫn kiểu download.aspx?fileid=... không có đuôi nào cả.
+          def extract_attachment(data: bytes, url: str) -> str:
+              if data[:2] == b"PK":
+                  return docx_text(data)
+              if data[:4] == b"%PDF":
+                  return pdf_text(data)
+              if data[:4] == b"\xd0\xcf\x11\xe0":
+                  return doc_text(data)
+
+              # Không đoán được từ nội dung thì mới dựa vào đuôi tên tệp.
+              if re.search(r"\.docx(?:[?&#]|$)", url, re.I):
+                  return docx_text(data)
+              if re.search(r"\.pdf(?:[?&#]|$)", url, re.I):
+                  return pdf_text(data)
+              if re.search(r"\.doc(?:[?&#]|$)", url, re.I):
+                  return doc_text(data)
 
               return ""
 
@@ -594,25 +690,47 @@ jobs:
               attachments = []
               for u in links:
                   u = u.replace("&amp;", "&")
-                  if official(u) and re.search(r"\.(pdf|docx)(?:[?&#]|$)", u, re.I):
+                  if official(u) and ATTACH_HINT.search(u):
                       attachments.append(u)
 
               attachments = sorted(
                   set(attachments),
-                  key=lambda u: (not link_owns_code(u, code), ".docx" not in u.lower()),
+                  key=lambda u: (
+                      not link_owns_code(u, code),
+                      not re.search(r"\.docx?(?:[?&#]|$)", u, re.I),
+                      ".pdf" not in u.lower(),
+                  ),
               )
+
+              # Ghi lại vì sao TỪNG tệp trượt. Không có phần này thì mọi thất bại đều ra
+              # cùng một câu vô dụng và không bao giờ lần được về gốc.
+              nhat_ky = []
 
               for url in attachments[:10]:
                   try:
                       rr = get(url)
                       text = extract_attachment(rr.content, rr.url)
-                      if not accept_text(text, code):
+
+                      if not text:
+                          nhat_ky.append("không đọc được định dạng")
+                          continue
+                      if not is_own_code(text, code):
+                          nhat_ky.append("là văn bản khác")
+                          continue
+                      if len(norm(text)) < 1500:
+                          nhat_ky.append("chỉ %d ký tự" % len(norm(text)))
+                          continue
+                      if not has_articles(text):
+                          nhat_ky.append("không thấy điều khoản")
                           continue
                       if len(text) > 1_600_000:
                           raise ValueError("Toàn văn vượt giới hạn phân tích an toàn")
+
                       return text, rr.url, r.url, hashlib.sha256(rr.content).hexdigest()
+
                   except (requests.RequestException, KeyError, zipfile.BadZipFile,
-                          subprocess.SubprocessError, etree.XMLSyntaxError, ValueError):
+                          subprocess.SubprocessError, etree.XMLSyntaxError, ValueError) as e:
+                      nhat_ky.append(type(e).__name__)
                       continue
 
               # Không tải được tệp: dùng chính trang chi tiết nếu nó đã đăng toàn văn.
@@ -620,7 +738,15 @@ jobs:
                   data = page_text.encode("utf-8")
                   return page_text, r.url, r.url, hashlib.sha256(data).hexdigest()
 
-              raise ValueError("Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức")
+              raise ValueError(
+                  "Chưa lấy được toàn văn — trang chi tiết %d ký tự, %d điều, thử %d tệp (%s)"
+                  % (
+                      len(page_text),
+                      len(re.findall(r"Điều\s+\d+", page_text, re.I)),
+                      len(attachments),
+                      ", ".join(nhat_ky[:5]) or "không tìm thấy tệp nào",
+                  )
+              )
 
 
           def trim_for_ai(text: str, limit: int = AI_CHARS) -> tuple[str, bool]:
@@ -737,6 +863,7 @@ jobs:
 
               if not _models:
                   _models = load_models()
+                  print("Model sẽ thử lần lượt: " + ", ".join(_models))
 
               # Model đã chọn được thử trước, nhưng vẫn giữ nguyên cả danh sách phía sau
               # để nếu nó vừa chết thì lượt này tự chuyển sang model khác, không bỏ cuộc.
@@ -759,10 +886,14 @@ jobs:
                       continue
 
                   if status == 200:
+                      if _chosen != model:
+                          print("Model đang dùng: " + model)
                       _chosen = model
                       return body
 
-                  last = f"AI HTTP {status}"
+                  # Giữ nguyên câu trả lời của Google. Chỉ "AI HTTP 404" thì không bao giờ
+                  # biết là model nào chết hay khóa thiếu quyền gì.
+                  last = f"AI HTTP {status}: " + re.sub(r"\s+", " ", str(body))[:150]
 
                   # 404/400: model không tồn tại hoặc khóa không được phép dùng. Loại hẳn,
                   # không thử lại ở các lượt sau.
@@ -1144,7 +1275,10 @@ jobs:
                       v["stale"] = True
 
               ok = sum(s.get("trangThai") == "ok" for s in reports)
-              failed = [s["n"] for s in reports if s.get("trangThai") != "ok"]
+              failed = [
+                  {"nguon": s["n"], "loi": s.get("loi", "không rõ")}
+                  for s in reports if s.get("trangThai") != "ok"
+              ]
               local = now.astimezone(VN)
 
               blocked = sorted(
@@ -1182,7 +1316,9 @@ jobs:
               write_json("pending.json", sorted(pending.values(), key=lambda v: v.get("code", "")))
               write_json("capnhat.json", status)
 
-              print(f"Nguồn đọc được {ok}/{len(reports)}" + (f", hỏng: {', '.join(failed)}" if failed else ""))
+              print(f"Nguồn đọc được {ok}/{len(reports)}")
+              for f in failed:
+                  print(f"  HỎNG: {f['nguon']} — {f['loi']}")
               print(f"Xử lý {processed} mục, xuất bản mới {published_now}, tổng đang hiển thị {len(accepted)}")
               print(f"Danh mục lõi: {status['catalogDone']}/{status['catalogTotal']} đã lên web")
               if _quota_dead:
