@@ -52,8 +52,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=184569&pageid=27160&typegroupid=3",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
-    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3140 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "105/2025/NĐ-CP",
@@ -104,7 +104,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T01:24:38.473586+00:00"
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "148/2025/NĐ-CP",
@@ -114,8 +114,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
-    "lastAttempt": "2026-09-15T01:24:38.473586+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4369 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "15/2023/QH15",
@@ -125,8 +125,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=207396&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
-    "lastAttempt": "2026-09-15T01:24:38.473586+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4261 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "150/2026/TT-BCA",
@@ -152,8 +152,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214322&pageid=27160&typegroupid=4",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4305 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4498 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "169/2025/NĐ-CP",
@@ -180,7 +180,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Không có nhận định nào đối chiếu được với toàn văn",
-    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "19/2023/QH15",
@@ -190,8 +190,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=208363&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Kiểm định vòng 2 phát hiện sai văn bản: Tiêu đề của bản tóm tắt ('Tuân thủ Luật Bảo vệ quyền lợi người tiêu dùng tại bệnh viện thẩm mỹ') hoàn toàn sai lệch so với nội dung toàn văn của Luật Bảo vệ quyền lợi người tiêu dùng (mã văn bản 19/2023/QH15). Văn bản gốc là luật chung về bảo vệ quyền lợi người tiêu dùng chứ không phải là văn bản quy định riêng về bệnh viện thẩm mỹ, dẫn đến việc nói về MỘT VĂN BẢN KHÁC hoặc thu hẹp/bóp méo sai phạm vi nghiêm trọng.; Phần `amends` ghi nhầm là ['92/2015/QH13'] trong khi toàn văn Điều 78 thể hiện đây là việc sửa đổi, bổ sung một số điều của Bộ luật Tố tụng dân sự số 92/2015/QH13 (đã được sửa đổi, bổ sung bởi các luật khác), nhưng trong danh sách `amends` cần đối chiếu chính xác quan hệ thay thế hoặc sửa đổi.",
-    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
+    "reason": "Không có nhận định nào đối chiếu được với toàn văn",
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "20/2021/TT-BYT",
@@ -201,8 +201,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=204797&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4094 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4407 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T18:13:13.025155+00:00"
   },
   {
     "code": "254/2026/NĐ-CP",
