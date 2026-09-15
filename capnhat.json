@@ -1,22 +1,31 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-15T01:24:38.473586+00:00",
+  "checkedAt": "2026-09-15T01:42:34.422949+00:00",
   "ngay": "15/09/2026",
-  "gio": "08:24 15/09/2026",
+  "gio": "08:42 15/09/2026",
   "status": "degraded",
-  "published": 1,
+  "published": 3,
   "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
-    "Bộ Y tế",
-    "Cục Quản lý Dược",
-    "Cục Hạ tầng và Thiết bị y tế"
+    {
+      "nguon": "Bộ Y tế",
+      "loi": "hết thời gian chờ"
+    },
+    {
+      "nguon": "Cục Quản lý Dược",
+      "loi": "hết thời gian chờ"
+    },
+    {
+      "nguon": "Cục Hạ tầng và Thiết bị y tế",
+      "loi": "không kết nối được"
+    }
   ],
-  "processed": 4,
-  "publishedNow": 1,
-  "pending": 47,
+  "processed": 8,
+  "publishedNow": 2,
+  "pending": 45,
   "catalogTotal": 40,
-  "catalogDone": 1,
+  "catalogDone": 3,
   "catalogBlocked": [
     {
       "code": "06/2011/TT-BYT",
@@ -51,36 +60,28 @@
       "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức"
     },
     {
-      "code": "16/2018/TT-BYT",
-      "reason": "chưa tới lượt"
-    },
-    {
       "code": "163/2025/NĐ-CP",
-      "reason": "chưa tới lượt"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4305 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "18/2026/TT-BYT",
-      "reason": "chưa tới lượt"
+      "reason": "Không có nhận định nào đối chiếu được với toàn văn"
     },
     {
       "code": "19/2023/QH15",
-      "reason": "chưa tới lượt"
+      "reason": "Kiểm định vòng 2 phát hiện sai văn bản: Tiêu đề của bản tóm tắt ('Tuân thủ Luật Bảo vệ quyền lợi người tiêu dùng tại bệnh viện thẩm mỹ') hoàn toàn sai lệch so với nội dung toàn văn của Luật Bảo vệ quyền lợi người tiêu dùng (mã văn bản 19/2023/QH15). Văn bản gốc là luật chung về bảo vệ quyền lợi người tiêu dùng chứ không phải là văn bản quy định riêng về bệnh viện thẩm mỹ, dẫn đến việc nói về MỘT VĂN BẢN KHÁC hoặc thu hẹp/bóp méo sai phạm vi nghiêm trọng.; Phần `amends` ghi nhầm là ['92/2015/QH13'] trong khi toàn văn Điều 78 thể hiện đây là việc sửa đổi, bổ sung một số điều của Bộ luật Tố tụng dân sự số 92/2015/QH13 (đã được sửa đổi, bổ sung bởi các luật khác), nhưng trong danh sách `amends` cần đối chiếu chính xác quan hệ thay thế hoặc sửa đổi."
     },
     {
       "code": "20/2021/TT-BYT",
-      "reason": "chưa tới lượt"
-    },
-    {
-      "code": "23/2024/TT-BYT",
-      "reason": "chưa tới lượt"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4094 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "254/2026/NĐ-CP",
-      "reason": "chưa tới lượt"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4497 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "26/2025/TT-BYT",
-      "reason": "chưa tới lượt"
+      "reason": "Không có nhận định nào đối chiếu được với toàn văn"
     },
     {
       "code": "32/2023/TT-BYT",
@@ -96,6 +97,14 @@
     },
     {
       "code": "35/2024/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "356/2025/NĐ-CP",
+      "reason": "chưa tới lượt"
+    },
+    {
+      "code": "38/2024/TT-BYT",
       "reason": "chưa tới lượt"
     }
   ],

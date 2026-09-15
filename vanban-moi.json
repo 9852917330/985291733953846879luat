@@ -2,6 +2,186 @@
   {
     "verificationVersion": 3,
     "verified": true,
+    "code": "16/2018/TT-BYT",
+    "title": "Quy định kiểm soát nhiễm khuẩn trong cơ sở khám chữa bệnh",
+    "cat": "kcb",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-15T01:42:34.422949+00:00",
+    "sourcePage": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-16-2018-tt-byt-27152/23542.htm",
+    "sourceFile": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2018/7/27152/23542-1-2018889-89016-2018-tt-byt.pdf",
+    "sourceHash": "2389a754f8db547d198833db26b7a06439804ea3d7f51673c4dc3d3ab2ee7be5",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Thông tư quy định các biện pháp phòng ngừa, kiểm soát nhiễm khuẩn, hệ thống kiểm soát nhiễm khuẩn và trách nhiệm thực hiện kiểm soát nhiễm khuẩn trong cơ sở khám bệnh, chữa bệnh của Nhà nước và tư nhân.",
+        "article": "Điều 1",
+        "quote": "Thông tư này quy định các biện pháp phòng ngừa, kiểm soát nhiễm khuẩn, hệ thống kiểm soát nhiễm khuẩn và trách nhiệm thực hiện kiểm soát nhiễm khuẩn trong cơ sở khám bệnh, chữa bệnh của Nhà nước và tư nhân (sau đây gọi tắt là cơ sở khám bệnh, chữa bệnh)."
+      },
+      {
+        "kind": "duty",
+        "text": "Cơ sở khám bệnh, chữa bệnh có dưới 150 giường bệnh kế hoạch tối thiểu phải có bộ phận kiểm soát nhiễm khuẩn thuộc phòng kế hoạch tổng hợp, mạng lưới kiểm soát nhiễm khuẩn và có người phụ trách kiểm soát nhiễm khuẩn làm việc toàn thời gian, tốt nghiệp ngành học thuộc khối ngành sức khỏe, có chứng chỉ, giấy chứng nhận hoặc văn bằng về kiểm soát nhiễm khuẩn.",
+        "article": "Điều 16 khoản 3",
+        "quote": "Cơ sở khám bệnh, chữa bệnh có dưới 150 giường bệnh kế hoạch tối thiểu phải có bộ phận kiểm soát nhiễm khuẩn thuộc phòng kế hoạch tổng hợp, mạng lưới kiểm soát nhiễm khuẩn và có người phụ trách kiểm soát nhiễm khuẩn làm việc toàn thời gian, tốt nghiệp ngành học thuộc khối ngành sức khỏe, có chứng chỉ, giấy chứng nhận hoặc văn bằng về kiểm soát nhiễm khuẩn."
+      },
+      {
+        "kind": "duty",
+        "text": "Cơ sở khám bệnh, chữa bệnh không có giường bệnh nội trú tối thiểu phải phân công một người phụ trách kiểm soát nhiễm khuẩn.",
+        "article": "Điều 16 khoản 4",
+        "quote": "Cơ sở khám bệnh, chữa bệnh không có giường bệnh nội trú tối thiểu phải phân công một người phụ trách kiểm soát nhiễm khuẩn."
+      },
+      {
+        "kind": "effective",
+        "text": "Thông tư này có hiệu lực từ ngày 01 tháng 10 năm 2018.",
+        "article": "Điều 23 khoản 1",
+        "quote": "Thông tư này có hiệu lực từ ngày 01 tháng 10 năm 2018."
+      }
+    ],
+    "steps": [
+      {
+        "action": "Phân công người phụ trách kiểm soát nhiễm khuẩn (đối với cơ sở không có giường bệnh nội trú hoặc dưới 150 giường bệnh kế hoạch) đảm bảo có văn bằng, chứng chỉ phù hợp.",
+        "owner": "Giám đốc cơ sở khám bệnh, chữa bệnh",
+        "evidence": "Quyết định phân công / Chứng chỉ đào tạo kiểm soát nhiễm khuẩn",
+        "when": "Trước khi hoạt động khám chữa bệnh"
+      },
+      {
+        "action": "Thành lập Hội đồng kiểm soát nhiễm khuẩn, khoa/bộ phận kiểm soát nhiễm khuẩn và mạng lưới kiểm soát nhiễm khuẩn theo đúng quy mô giường bệnh.",
+        "owner": "Giám đốc cơ sở khám bệnh, chữa bệnh",
+        "evidence": "Quyết định thành lập hệ thống kiểm soát nhiễm khuẩn",
+        "when": "Theo quy mô giường bệnh kế hoạch"
+      },
+      {
+        "action": "Tổ chức đào tạo về kiểm soát nhiễm khuẩn cho các vị trí nhân sự theo lộ trình chuyển tiếp trước ngày 01/01/2021 hoặc 01/01/2022 tùy theo chức danh.",
+        "owner": "Giám đốc cơ sở khám bệnh, chữa bệnh",
+        "evidence": "Chứng chỉ/giấy chứng nhận hoàn thành chương trình đào tạo kiểm soát nhiễm khuẩn",
+        "when": "Trước các mốc thời gian quy định tại Điều 24"
+      }
+    ],
+    "cautions": [
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn"
+    ],
+    "tinCay": "vua",
+    "essence": "Thông tư quy định các biện pháp phòng ngừa, kiểm soát nhiễm khuẩn, hệ thống kiểm soát nhiễm khuẩn và trách nhiệm thực hiện kiểm soát nhiễm khuẩn trong cơ sở khám bệnh, chữa bệnh của Nhà nước và tư nhân. (Điều 1)",
+    "duties": [
+      "Cơ sở khám bệnh, chữa bệnh có dưới 150 giường bệnh kế hoạch tối thiểu phải có bộ phận kiểm soát nhiễm khuẩn thuộc phòng kế hoạch tổng hợp, mạng lưới kiểm soát nhiễm khuẩn và có người phụ trách kiểm soát nhiễm khuẩn làm việc toàn thời gian, tốt nghiệp ngành học thuộc khối ngành sức khỏe, có chứng chỉ, giấy chứng nhận hoặc văn bằng về kiểm soát nhiễm khuẩn. (Điều 16 khoản 3)",
+      "Cơ sở khám bệnh, chữa bệnh không có giường bệnh nội trú tối thiểu phải phân công một người phụ trách kiểm soát nhiễm khuẩn. (Điều 16 khoản 4)"
+    ],
+    "risks": [],
+    "eff": "Có hiệu lực · 01/10/2018",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [
+      "18/2009/TT-BYT"
+    ],
+    "suaDoi": [],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-16-2018-tt-byt-27152/23542.htm",
+    "stale": false,
+    "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
+    "code": "23/2024/TT-BYT",
+    "title": "Ban hành Danh mục kỹ thuật trong khám bệnh, chữa bệnh",
+    "cat": "kcb",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-15T01:42:34.422949+00:00",
+    "sourcePage": "https://vanban.chinhphu.vn/?classid=1&docid=211508&pageid=27160",
+    "sourceFile": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/10/23-byt.pdf",
+    "sourceHash": "6b8e945611dc2bfe1f2073b99384d74fdd83f5d258924d9bf81af40329ece561",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Ban hành danh mục kỹ thuật thực hiện đến ngày 30/6/2026 và danh mục kỹ thuật thực hiện từ ngày 01/7/2026 trong khám bệnh, chữa bệnh.",
+        "article": "Điều 1 khoản 1",
+        "quote": "Ban hành kèm theo Thông tư này: a) Danh mục kỹ thuật trong khám bệnh, chữa bệnh thực hiện đến ngày 30 tháng 6 năm 2026 quy định tại Phụ lục số 01 ban hành kèm theo Thông tư này; b) Danh mục kỹ thuật trong khám bệnh, chữa bệnh thực hiện từ ngày 01 tháng 7 năm 2026 quy định tại Phụ lục số 02 ban hành kèm theo Thông tư này."
+      },
+      {
+        "kind": "duty",
+        "text": "Cơ sở khám bệnh, chữa bệnh phải bảo đảm cơ sở vật chất, nhân lực, trang thiết bị thực hiện danh mục kỹ thuật đã được cấp có thẩm quyền phê duyệt và chuẩn bị các điều kiện để thực hiện danh mục kỹ thuật quy định tại Phụ lục số 02 từ ngày 01/7/2026.",
+        "article": "Điều 4 khoản 4",
+        "quote": "Các cơ sở khám bệnh, chữa bệnh có trách nhiệm: a) Bảo đảm cơ sở vật chất, nhân lực, trang thiết bị thực hiện danh mục kỹ thuật đã được cấp có thẩm quyền phê duyệt; b) Chuẩn bị các điều kiện để thực hiện danh mục kỹ thuật quy định tại Phụ lục số 02 ban hành kèm Thông tư này từ ngày 01 tháng 7 năm 2026."
+      },
+      {
+        "kind": "effective",
+        "text": "Thông tư này có hiệu lực thi hành từ ngày 18 tháng 10 năm 2024.",
+        "article": "Điều 3 khoản 1",
+        "quote": "Thông tư này có hiệu lực thi hành từ ngày 18 tháng 10 năm 2024."
+      },
+      {
+        "kind": "relation",
+        "text": "Thông tư số 43/2013/TT-BYT và Thông tư số 21/2017/TT-BYT hết hiệu lực thi hành kể từ ngày Thông tư này có hiệu lực.",
+        "article": "Điều 3 khoản 2",
+        "quote": "Các thông tư sau hết hiệu lực thi hành kể từ ngày Thông tư này có hiệu lực thi hành: a) Thông tư số 43/2013/TT-BYT ngày 11 tháng 12 năm 2013 của Bộ trưởng Bộ Y tế quy định chi tiết phân tuyến chuyên môn kỹ thuật đối với hệ thống cơ sở khám bệnh, chữa bệnh; b) Thông tư số 21/2017/TT-BYT ngày 10 tháng 5 năm 2017 của Bộ trưởng Bộ Y tế sửa đổi, bổ sung Danh mục kỹ thuật trong khám bệnh, chữa bệnh ban hành kèm theo Thông tư số 43/2021/TT-BYT ngày 11 tháng 12 năm 2013 của Bộ trưởng Bộ Y tế quy định chi tiết phân tuyến chuyên môn kỹ thuật đối với hệ thống cơ sở khám bệnh, chữa bệnh."
+      },
+      {
+        "kind": "relation",
+        "text": "Các kỹ thuật quy định tại Phụ lục số 01 đã được phân loại phẫu thuật, thủ thuật theo Thông tư số 50/2014/TT-BYT được tiếp tục áp dụng mức phân loại này.",
+        "article": "Điều 4 khoản 1",
+        "quote": "Các kỹ thuật quy định tại Phụ lục số 01 ban hành kèm theo Thông tư này đã được phân loại phẫu thuật, thủ thuật theo quy định tại Thông tư số 50/2014/TT-BYT ngày 26 tháng 12 năm 2014 của Bộ trưởng Bộ Y tế quy định việc phân loại phẫu thuật, thủ thuật và định mức nhân lực trong từng ca phẫu thuật, thủ thuật thì được tiếp tục áp dụng mức phân loại phẫu thuật, thủ thuật này."
+      },
+      {
+        "kind": "relation",
+        "text": "Người đã được cấp chứng chỉ hành nghề, giấy phép hành nghề trước ngày Thông tư có hiệu lực được tiếp tục thực hiện các kỹ thuật đã được phê duyệt theo Thông tư số 32/2023/TT-BYT và các kỹ thuật trong Danh mục ban hành kèm theo Thông tư này phù hợp với phạm vi hành nghề.",
+        "article": "Điều 4 khoản 2",
+        "quote": "Người đã được cấp chứng chỉ hành nghề, giấy phép hành nghề trước ngày Thông tư này có hiệu lực được tiếp tục thực hiện các kỹ thuật đã được phê duyệt theo quy định tại Thông tư số 32/2023/TT-BYT ngày 31 tháng 12 năm 2023 của Bộ trưởng Bộ Y tế quy định chi tiết một số điều của Luật Khám bệnh, chữa bệnh và các kỹ thuật trong Danh mục kỹ thuật ban hành kèm theo Thông tư này phù hợp với phạm vi hành nghề."
+      },
+      {
+        "kind": "relation",
+        "text": "Cơ sở khám bệnh, chữa bệnh đã được cấp giấy phép hoạt động trước ngày Thông tư này có hiệu lực được tiếp tục thực hiện các kỹ thuật đã được phê duyệt trong phạm vi hoạt động chuyên môn đến ngày 30 tháng 6 năm 2026 mà không phải thực hiện thủ tục điều chỉnh giấy phép hoạt động.",
+        "article": "Điều 4 khoản 3",
+        "quote": "Cơ sở khám bệnh, chữa bệnh đã được cơ quan nhà nước có thẩm quyền cấp giấy phép hoạt động trước ngày Thông tư này có hiệu lực được tiếp tục thực hiện các kỹ thuật đã được phê duyệt trong phạm vi hoạt động chuyên môn đến ngày 30 tháng 6 năm 2026 mà không phải thực hiện thủ tục điều chỉnh giấy phép hoạt động."
+      }
+    ],
+    "steps": [
+      {
+        "action": "Tiếp tục thực hiện các kỹ thuật đã được phê duyệt trong phạm vi hoạt động chuyên môn theo giấy phép hoạt động đã cấp đến hết ngày 30/6/2026 mà không phải làm thủ tục điều chỉnh giấy phép hoạt động.",
+        "owner": "Ban Giám đốc / Khoa chuyên môn bệnh viện thẩm mỹ",
+        "evidence": "Giấy phép hoạt động khám bệnh, chữa bệnh của bệnh viện",
+        "when": "Từ ngày 18/10/2024 đến ngày 30/06/2026"
+      },
+      {
+        "action": "Rà soát, bảo đảm cơ sở vật chất, nhân lực, trang thiết bị để thực hiện danh mục kỹ thuật đã được cấp có thẩm quyền phê duyệt.",
+        "owner": "Phòng Tổ chức cán bộ, Phòng Vật tư thiết bị, các Khoa phòng",
+        "evidence": "Báo cáo nhân sự, danh mục trang thiết bị, cơ sở vật chất thực tế",
+        "when": "Thường xuyên"
+      },
+      {
+        "action": "Chuẩn bị các điều kiện cần thiết để thực hiện danh mục kỹ thuật quy định tại Phụ lục số 02 ban hành kèm theo Thông tư 23/2024/TT-BYT.",
+        "owner": "Ban Giám đốc và các khoa phòng liên quan",
+        "evidence": "Kế hoạch chuẩn bị và tài liệu triển khai Phụ lục số 02",
+        "when": "Trước ngày 01/07/2026"
+      }
+    ],
+    "cautions": [
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn"
+    ],
+    "tinCay": "vua",
+    "essence": "Ban hành danh mục kỹ thuật thực hiện đến ngày 30/6/2026 và danh mục kỹ thuật thực hiện từ ngày 01/7/2026 trong khám bệnh, chữa bệnh. (Điều 1 khoản 1)",
+    "duties": [
+      "Cơ sở khám bệnh, chữa bệnh phải bảo đảm cơ sở vật chất, nhân lực, trang thiết bị thực hiện danh mục kỹ thuật đã được cấp có thẩm quyền phê duyệt và chuẩn bị các điều kiện để thực hiện danh mục kỹ thuật quy định tại Phụ lục số 02 từ ngày 01/7/2026. (Điều 4 khoản 4)"
+    ],
+    "risks": [],
+    "eff": "Có hiệu lực · 18/10/2024",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [
+      "43/2013/TT-BYT",
+      "21/2017/TT-BYT"
+    ],
+    "suaDoi": [],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=211508&pageid=27160",
+    "stale": false,
+    "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
     "code": "16/2012/QH13",
     "title": "Tuân thủ pháp luật về hoạt động quảng cáo cho bệnh viện thẩm mỹ tư nhân",
     "cat": "qc",

@@ -156,22 +156,15 @@
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
   },
   {
-    "code": "16/2018/TT-BYT",
-    "title": "Kiểm soát nhiễm khuẩn trong cơ sở khám chữa bệnh",
-    "cat": "kcb",
-    "tier": 1,
-    "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-16-2018-tt-byt-27152.htm",
-    "origin": "catalog",
-    "recheck": false
-  },
-  {
     "code": "163/2025/NĐ-CP",
     "title": "Quy định chi tiết thi hành Luật Dược",
     "cat": "duoc",
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214322&pageid=27160&typegroupid=4",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4305 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
   },
   {
     "code": "169/2025/NĐ-CP",
@@ -196,7 +189,9 @@
     "tier": 1,
     "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-18-2026-tt-byt-469674/65587.htm",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Không có nhận định nào đối chiếu được với toàn văn",
+    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
   },
   {
     "code": "19/2023/QH15",
@@ -205,7 +200,9 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=208363&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Kiểm định vòng 2 phát hiện sai văn bản: Tiêu đề của bản tóm tắt ('Tuân thủ Luật Bảo vệ quyền lợi người tiêu dùng tại bệnh viện thẩm mỹ') hoàn toàn sai lệch so với nội dung toàn văn của Luật Bảo vệ quyền lợi người tiêu dùng (mã văn bản 19/2023/QH15). Văn bản gốc là luật chung về bảo vệ quyền lợi người tiêu dùng chứ không phải là văn bản quy định riêng về bệnh viện thẩm mỹ, dẫn đến việc nói về MỘT VĂN BẢN KHÁC hoặc thu hẹp/bóp méo sai phạm vi nghiêm trọng.; Phần `amends` ghi nhầm là ['92/2015/QH13'] trong khi toàn văn Điều 78 thể hiện đây là việc sửa đổi, bổ sung một số điều của Bộ luật Tố tụng dân sự số 92/2015/QH13 (đã được sửa đổi, bổ sung bởi các luật khác), nhưng trong danh sách `amends` cần đối chiếu chính xác quan hệ thay thế hoặc sửa đổi.",
+    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
   },
   {
     "code": "20/2021/TT-BYT",
@@ -214,16 +211,9 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=204797&pageid=27160",
     "origin": "catalog",
-    "recheck": false
-  },
-  {
-    "code": "23/2024/TT-BYT",
-    "title": "Danh mục kỹ thuật trong khám bệnh, chữa bệnh",
-    "cat": "kcb",
-    "tier": 2,
-    "url": "https://vanban.chinhphu.vn/?classid=1&docid=211508&pageid=27160",
-    "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4094 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
   },
   {
     "code": "254/2026/NĐ-CP",
@@ -232,7 +222,9 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=218689&pageid=27160&typegroupid=4",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4497 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
   },
   {
     "code": "26/2025/TT-BYT",
@@ -241,7 +233,9 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214386&pageid=27160&typegroupid=6",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Không có nhận định nào đối chiếu được với toàn văn",
+    "lastAttempt": "2026-09-15T01:42:34.422949+00:00"
   },
   {
     "code": "282/2025/NĐ-CP",
