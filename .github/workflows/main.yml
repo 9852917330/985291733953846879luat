@@ -1,7 +1,1241 @@
-name: tam
-on: workflow_dispatch
+name: Cập nhật dữ liệu pháp luật
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'sw.js'
+      - 'manifest.json'
+      - 'legal-catalog.json'
+      - '.github/workflows/main.yml'
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: legal-refresh
+  cancel-in-progress: false
+
 jobs:
-  tam:
+  refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - run: echo tam
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Cài thư viện
+        run: |
+          pip install requests beautifulsoup4 lxml
+          sudo apt-get update -qq
+          sudo apt-get install -y poppler-utils
+
+      - name: Đọc nguồn chính thức, phân tích và kiểm định
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Để TRỐNG là đúng. Khi trống, máy tự dò danh sách model còn sống và thử
+          # lần lượt cho tới khi gọi được. Bản trước mặc định 'gemini-2.5-flash',
+          # mà Google đã ngừng cấp model này cho khóa mới nên mọi lượt gọi đều trả
+          # 404 và không có đường lui. Chỉ điền biến GEMINI_MODEL khi muốn ép dùng
+          # đúng một model cụ thể.
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+        run: |
+          cat > "$RUNNER_TEMP/legal_scan.py" <<'PY'
+          from __future__ import annotations
+
+          # ============================================================================
+          # MÁY QUÉT VĂN BẢN PHÁP LUẬT — bản 4
+          #
+          # Nguyên lý: web chỉ được hiển thị thứ đã đối chiếu được với bản gốc từ cổng
+          # chính thức. Mọi nhận định đều phải kèm một đoạn trích có thật trong toàn văn,
+          # và máy tự so khớp đoạn trích đó chứ không tin lời của trợ lý AI.
+          #
+          # Ba thay đổi lớn so với bản 3, đều xuất phát từ lỗi có thật đo được:
+          #   1. Đọc DOCX không còn chèn dấu cách giữa các đoạn chữ. Bản 3 dùng
+          #      get_text(" ") nên "96/2016/NĐ-CP" biến thành "96 /2016/ NĐ-CP", khiến
+          #      MỌI văn bản trượt kiểm tra số hiệu và MỌI trích dẫn trượt đối chiếu.
+          #      Đây là lý do 32 trong 48 mục bị treo và web không nhận được gì.
+          #   2. Trợ lý AI có danh sách model dự phòng. Bản 3 ghi cứng gemini-2.5-flash,
+          #      model này trả 404 với khóa mới nên 12 mục còn lại treo nốt.
+          #   3. Văn bản không bao giờ bị xóa khỏi web. Bản 3 xóa thẻ sau 45 ngày không
+          #      kiểm lại được, tức là một luật đang có hiệu lực có thể tự biến mất.
+          # ============================================================================
+
+          import concurrent.futures as cf
+          import datetime as dt
+          import hashlib
+          import io
+          import json
+          import os
+          import re
+          import subprocess
+          import tempfile
+          import time
+          import zipfile
+          from pathlib import Path
+          from urllib.parse import urljoin, urlparse
+
+          import requests
+          from bs4 import BeautifulSoup
+          from lxml import etree
+
+          ROOT = Path(os.getenv("GITHUB_WORKSPACE", ".")).resolve()
+          VN = dt.timezone(dt.timedelta(hours=7))
+          KEY = os.getenv("GEMINI_API_KEY", "")
+          MODEL_PIN = os.getenv("GEMINI_MODEL", "").strip()
+
+          # Số mục xử lý mỗi lần chạy. Chạy mỗi giờ nên 4 mục là 96 mục/ngày, thừa sức
+          # cho danh mục 40 văn bản, mà vẫn nằm trong hạn mức miễn phí của Gemini
+          # (mỗi mục tốn 2 lượt gọi: phân tích và kiểm định).
+          BATCH = int(os.getenv("BATCH", "4"))
+
+          # Số ký tự toàn văn gửi cho trợ lý AI. Đối chiếu trích dẫn vẫn chạy trên TOÀN
+          # BỘ văn bản, phần cắt chỉ để tiết kiệm hạn mức và tăng tốc.
+          AI_CHARS = 30000
+
+          SOURCES = [
+              ("Công báo Chính phủ — văn bản mới", "https://congbao.chinhphu.vn/cac-van-ban-moi-ban-hanh.rss"),
+              ("Công báo Chính phủ — số mới", "https://congbao.chinhphu.vn/cac-so-cong-bao-moi-dang.rss"),
+              ("Cổng văn bản Chính phủ", "https://vanban.chinhphu.vn/"),
+              ("Cục Quản lý Khám, chữa bệnh", "https://kcb.vn/van-ban/van-ban-phap-quy"),
+              ("Bộ Y tế", "https://moh.gov.vn/van-ban-phap-quy"),
+              ("Cục Quản lý Dược", "https://dav.gov.vn/van-ban-quan-ly.html"),
+              ("Cục Hạ tầng và Thiết bị y tế", "https://imda.moh.gov.vn/van-ban-phap-quy"),
+              ("Cơ sở dữ liệu quốc gia về pháp luật", "https://vbpl.vn/Pages/portal.aspx"),
+              ("Bộ Công an", "https://bocongan.gov.vn/"),
+          ]
+
+          CODE_RE = re.compile(
+              r"\b\d{1,4}/20\d{2}/(?:NĐ-CP|ND-CP|TT-[A-ZĐ0-9-]+|QH\d+|QĐ-[A-ZĐ0-9-]+|NQ-[A-ZĐ0-9-]+|VBHN-[A-ZĐ0-9-]+)\b",
+              re.I,
+          )
+
+          # Từ khóa nhận diện văn bản có thể chạm tới bệnh viện thẩm mỹ tư nhân.
+          # Bản 3 để "an ninh" và "thuế" trần nên kéo vào cả thông tư an ninh hàng không
+          # và thuế tài nguyên. Ở đây phải là cụm cụ thể.
+          RELEVANT_RE = re.compile(
+              r"y tế|bệnh viện|khám bệnh|chữa bệnh|người bệnh|bệnh án|hành nghề|"
+              r"dược|thuốc|mỹ phẩm|thẩm mỹ|thiết bị y tế|trang thiết bị|"
+              r"lao động|bảo hiểm|doanh nghiệp|dữ liệu cá nhân|quảng cáo|"
+              r"an ninh mạng|an toàn thông tin|bảo vệ dữ liệu|chữ ký số|"
+              r"phòng cháy|chữa cháy|cứu nạn|môi trường|chất thải|nước thải|"
+              r"hóa đơn|niêm yết giá|kê khai giá|giá dịch vụ|người tiêu dùng|"
+              r"an ninh, trật tự|an ninh trật tự|đủ điều kiện về an ninh",
+              re.I,
+          )
+
+          # Ngành khác hẳn hoặc thuộc khối công lập. Lọc sớm để khỏi đốt hạn mức AI.
+          EXCLUDE_RE = re.compile(
+              r"hàng không|hàng hải|đường sắt|đường thủy|đường bộ|viễn thông|"
+              r"trồng trọt|chăn nuôi|thủy sản|lâm nghiệp|bảo vệ thực vật|"
+              r"khoáng sản|dầu khí|điện lực|thủy lợi|đê điều|"
+              r"giáo dục|đại học|học sinh|sinh viên|"
+              r"ngân hàng|chứng khoán|bảo hiểm tiền gửi|hải quan|"
+              r"thuế tài nguyên|thuế xuất khẩu|thuế nhập khẩu|mã số hàng hóa|"
+              r"quốc phòng|biên phòng|công an nhân dân|cảnh sát cơ động|"
+              r"tôn giáo|thể thao|du lịch|di sản|"
+              r"trạm y tế|y tế xã|y tế cơ sở|tuyến xã|quân y|"
+              r"tài sản công|đầu tư công|ngân sách nhà nước|viên chức|công chức|"
+              r"định mức sử dụng máy móc",
+              re.I,
+          )
+
+          # Tiêu đề kiểu "Sửa đổi, bổ sung một số điều của Nghị định số X": mã X nằm
+          # trong tiêu đề nhưng KHÔNG phải là văn bản ở đường dẫn đó.
+          REFERENCE_RE = re.compile(
+              r"(sửa đổi|bổ sung|bãi bỏ|thay thế|hủy bỏ|đính chính|hợp nhất|của|theo|tại|căn cứ)",
+              re.I,
+          )
+
+          CATS = {"kcb", "antt", "dn", "pccc", "tb", "duoc", "mt", "ld", "dl", "ktd", "qc", "gia"}
+
+          OFFICIAL_HOSTS = {"kcb.vn", "baochinhphu.vn", "vbpl.vn"}
+
+          SESSION = requests.Session()
+          # Nhiều cổng .gov.vn chặn thẳng User-Agent lạ. Dùng chuỗi của trình duyệt thật.
+          SESSION.headers.update({
+              "User-Agent": (
+                  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+              ),
+              "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+              "Accept-Language": "vi-VN,vi;q=0.9,en;q=0.8",
+          })
+
+          W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+
+
+          # ---------------------------------------------------------------- tiện ích
+
+          def norm(s: str) -> str:
+              return re.sub(r"\s+", " ", s or "").strip()
+
+
+          def squash(s: str) -> str:
+              """Bỏ sạch khoảng trắng. Dùng để so khớp số hiệu và trích dẫn mà không bị
+              một dấu cách thừa trong bản gốc làm trượt oan."""
+              return re.sub(r"\s+", "", s or "").lower()
+
+
+          def canonical_code(s: str) -> str:
+              return (s or "").replace("ND-CP", "NĐ-CP").replace("nd-cp", "NĐ-CP").strip()
+
+
+          def code_key(code: str) -> str:
+              """Phần số/năm của mã, ví dụ 96/2016 — dùng để dò trong đường dẫn."""
+              parts = (code or "").split("/")
+              return "/".join(parts[:2]) if len(parts) >= 2 else ""
+
+
+          def official(url: str) -> bool:
+              try:
+                  p = urlparse(url)
+                  h = (p.hostname or "").lower()
+                  return (
+                      p.scheme == "https"
+                      and not p.username
+                      and (h.endswith(".gov.vn") or h.endswith(".chinhphu.vn") or h in OFFICIAL_HOSTS)
+                  )
+              except Exception:
+                  return False
+
+
+          def get(url: str) -> requests.Response:
+              if not official(url):
+                  raise ValueError("Nguồn không thuộc cổng chính thức")
+
+              for _ in range(6):
+                  r = SESSION.get(url, timeout=(8, 30), allow_redirects=False)
+
+                  if r.is_redirect:
+                      nxt = urljoin(url, r.headers.get("Location", ""))
+                      if not official(nxt):
+                          raise ValueError("Nguồn chuyển hướng ra ngoài cổng chính thức")
+                      url = nxt
+                      continue
+
+                  r.raise_for_status()
+
+                  if len(r.content) > 35_000_000:
+                      raise ValueError("Tệp vượt 35 MB")
+
+                  return r
+
+              raise ValueError("Quá nhiều chuyển hướng")
+
+
+          def read_json(name: str, default):
+              try:
+                  return json.loads((ROOT / name).read_text(encoding="utf-8"))
+              except (FileNotFoundError, json.JSONDecodeError):
+                  return default
+
+
+          def write_json(name: str, value) -> None:
+              path = ROOT / name
+              tmp = path.with_suffix(path.suffix + ".tmp")
+              tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
+              tmp.replace(path)
+
+
+          # ------------------------------------------------------------- quét nguồn
+
+          def link_owns_code(link: str, code: str) -> bool:
+              """Đường dẫn có chứa số/năm của mã không, ví dụ .../thong-tu-so-18-2026-tt-byt"""
+              key = code_key(code)
+              if not key:
+                  return False
+              slug = re.sub(r"[^0-9a-z]+", "-", (link or "").lower())
+              a, b = key.split("/")
+              return f"-{a}-{b}-" in slug or slug.endswith(f"-{a}-{b}") or f"/{a}-{b}-" in slug
+
+
+          def pair_codes_with_link(title: str, link: str, codes: list[str]) -> list[tuple[str, str]]:
+              """Ghép mã với đường dẫn cho ĐÚNG chủ thể.
+
+              Bản 3 gán chung một đường dẫn cho mọi mã tìm thấy trong tiêu đề. Với tiêu đề
+              "Sửa đổi, bổ sung một số điều của Nghị định số 105/2025/NĐ-CP..." thì 105/2025
+              bị gán vào trang của nghị định sửa đổi — sai chủ thể, dẫn tới nội dung sai.
+              Ở đây chỉ mã thực sự là chủ thể mới giữ đường dẫn; mã còn lại vào hàng đợi
+              với đường dẫn rỗng để tự đi tìm trang đúng của nó.
+              """
+              out: list[tuple[str, str]] = []
+              owned = [c for c in codes if link_owns_code(link, c)]
+
+              if owned:
+                  for c in codes:
+                      out.append((c, link if c in owned else ""))
+                  return out
+
+              if len(codes) == 1:
+                  return [(codes[0], link)]
+
+              # Nhiều mã, đường dẫn không nói rõ: mã đầu tiên được giữ đường dẫn chỉ khi
+              # phần chữ đứng trước nó không phải là lời dẫn chiếu tới văn bản khác.
+              first = codes[0]
+              pos = title.find(first)
+              before = title[:pos] if pos > 0 else ""
+              keep = not REFERENCE_RE.search(before)
+
+              for c in codes:
+                  out.append((c, link if (c == first and keep) else ""))
+              return out
+
+
+          def discover(source: tuple[str, str]) -> dict:
+              name, url = source
+              report = {"n": name, "u": url, "trangThai": "ok", "phatHien": []}
+
+              try:
+                  r = get(url)
+                  is_rss = ".rss" in url or "xml" in r.headers.get("content-type", "").lower()
+                  soup = BeautifulSoup(r.content, "xml" if is_rss else "html.parser")
+                  nodes = soup.find_all("item") if is_rss else soup.find_all("a", href=True)
+
+                  if not soup.get_text(strip=True):
+                      raise ValueError("Trang rỗng")
+
+                  seen = set()
+
+                  for node in nodes[:4000]:
+                      if is_rss:
+                          t = node.find("title")
+                          title = norm(t.get_text(" ", strip=True) if t else "")
+                          ln = node.find("link")
+                          link = norm(ln.get_text(strip=True) if ln else "")
+                      else:
+                          title = norm(node.get_text(" ", strip=True))
+                          link = node.get("href", "")
+
+                      if not title:
+                          continue
+
+                      codes = []
+                      for x in CODE_RE.findall(title + " " + link):
+                          c = canonical_code(x)
+                          if c not in codes:
+                              codes.append(c)
+
+                      if not codes:
+                          continue
+                      if not RELEVANT_RE.search(title):
+                          continue
+                      if EXCLUDE_RE.search(title):
+                          continue
+
+                      link = urljoin(r.url, link)
+                      if not official(link):
+                          link = ""
+
+                      for code, own in pair_codes_with_link(title, link, codes):
+                          if code in seen:
+                              continue
+                          seen.add(code)
+                          report["phatHien"].append({
+                              "code": code,
+                              "mota": title[:500],
+                              "url": own,
+                              "origin": "discovery",
+                          })
+
+              except Exception as e:
+                  # Bản 3 che hết lý do thật nên không bao giờ biết nguồn nào hỏng vì sao.
+                  detail = ""
+                  if isinstance(e, requests.HTTPError) and e.response is not None:
+                      detail = f"HTTP {e.response.status_code}"
+                  elif isinstance(e, requests.Timeout):
+                      detail = "hết thời gian chờ"
+                  elif isinstance(e, requests.ConnectionError):
+                      detail = "không kết nối được"
+                  elif isinstance(e, ValueError):
+                      detail = str(e)
+                  else:
+                      detail = type(e).__name__
+                  report.update(trangThai="loi", loi=detail)
+
+              return report
+
+
+          # ------------------------------------------------------- tìm trang chi tiết
+
+          def find_detail_on_page(r: requests.Response, code: str) -> str | None:
+              soup = BeautifulSoup(r.content, "html.parser")
+              key = code_key(code)
+              best = None
+
+              for a in soup.select("a[href]"):
+                  text = norm(a.get_text(" ", strip=True))
+                  href = urljoin(r.url, a.get("href", ""))
+
+                  if not official(href):
+                      continue
+
+                  hit = squash(code) in squash(text) or link_owns_code(href, code)
+                  if not hit:
+                      continue
+
+                  if re.search(r"\.(pdf|docx)(?:[?&#]|$)", href, re.I):
+                      return href
+                  if best is None:
+                      best = href
+
+              if best:
+                  return best
+
+              for m in re.finditer(r'https://[^\s<>"\']+', r.text):
+                  u = m.group(0).replace("&amp;", "&")
+                  if official(u) and key and link_owns_code(u, code):
+                      return u
+
+              return None
+
+
+          def resolve_detail(item: dict) -> str:
+              code = item["code"]
+              preferred = item.get("url", "")
+
+              if preferred and official(preferred):
+                  try:
+                      r = get(preferred)
+                      text = norm(BeautifulSoup(r.content, "html.parser").get_text(" ", strip=True))
+
+                      detail = find_detail_on_page(r, code)
+                      if detail and detail.rstrip("/") != r.url.rstrip("/"):
+                          return detail
+
+                      if squash(code) in squash(text) or re.search(r"\.(pdf|docx)(?:[?&#]|$)", r.url, re.I):
+                          return r.url
+                  except Exception:
+                      pass
+
+              for _, url in SOURCES:
+                  try:
+                      r = get(url)
+                      detail = find_detail_on_page(r, code)
+                      if detail:
+                          return detail
+                  except Exception:
+                      continue
+
+              raise ValueError("Chưa tìm được trang chi tiết trên nguồn chính thức")
+
+
+          # -------------------------------------------------------------- đọc toàn văn
+
+          def docx_text(data: bytes) -> str:
+              """Đọc DOCX giữ nguyên mạch chữ.
+
+              Word chia một dòng thành nhiều đoạn <w:t> mỗi khi định dạng đổi, nên
+              "Số: 96/2016/NĐ-CP" thường nằm ở bốn đoạn rời. Bản 3 dùng
+              BeautifulSoup.get_text(" ") nên chèn dấu cách vào giữa, ra
+              "96 /2016/ NĐ-CP" — số hiệu hỏng, trích dẫn hỏng, cả dây chuyền hỏng theo.
+              Ở đây nối các đoạn chữ trong cùng một khổ KHÔNG chèn gì, chỉ xuống dòng
+              giữa các khổ. Đây đúng là cách Word dựng lại văn bản.
+              """
+              with zipfile.ZipFile(io.BytesIO(data)) as z:
+                  xml = z.read("word/document.xml")
+
+              root = etree.fromstring(xml)
+              lines: list[str] = []
+
+              for p in root.iter(W + "p"):
+                  parts: list[str] = []
+                  for node in p.iter():
+                      tag = node.tag
+                      if tag == W + "t":
+                          parts.append(node.text or "")
+                      elif tag == W + "tab":
+                          parts.append("\t")
+                      elif tag in (W + "br", W + "cr"):
+                          parts.append("\n")
+                  line = "".join(parts).strip()
+                  if line:
+                      lines.append(line)
+
+              return "\n".join(lines)
+
+
+          def extract_attachment(data: bytes, url: str) -> str:
+              if data[:2] == b"PK" or re.search(r"\.docx(?:[?&#]|$)", url, re.I):
+                  return docx_text(data)
+
+              if data[:4] == b"%PDF" or re.search(r"\.pdf(?:[?&#]|$)", url, re.I):
+                  with tempfile.NamedTemporaryFile(suffix=".pdf") as f:
+                      f.write(data)
+                      f.flush()
+                      out = subprocess.check_output(
+                          ["pdftotext", "-layout", "-enc", "UTF-8", f.name, "-"], timeout=50
+                      )
+                      return out.decode("utf-8", errors="replace")
+
+              return ""
+
+
+          # Chữ đứng ngay trước một mã văn bản cho biết mã đó đang được DẪN CHIẾU tới văn
+          # bản khác chứ không phải số hiệu của chính văn bản đang đọc.
+          REF_CTX_RE = re.compile(
+              r"căn cứ|sửa đổi|bổ sung|bãi bỏ|thay thế|hủy bỏ|quy định tại|"
+              r"hướng dẫn|đính chính|hợp nhất|ban hành kèm",
+              re.I,
+          )
+
+          # Số hiệu nằm ngay sau chữ "Số:" ở khối đầu trang. Cho phép khoảng trắng xen
+          # giữa các thành phần để chịu được bản PDF bị pdftotext chèn dấu cách, nhưng
+          # KHÔNG bỏ hẳn khoảng trắng — bỏ hẳn thì "NĐ-CP" dính luôn vào chữ của dòng sau
+          # ("NĐ-CPHà Nội") và phần đuôi bị nuốt sai.
+          SO_HIEU_RE = re.compile(
+              r"Số\s*:?\s*(\d{1,4}\s*/\s*20\d{2}\s*/\s*"
+              r"(?:NĐ-CP|ND-CP|TT-[A-ZĐ0-9-]{2,12}|QH\d{1,2}|QĐ-[A-ZĐ0-9-]{2,12}|"
+              r"NQ-[A-ZĐ0-9-]{2,12}|VBHN-[A-ZĐ0-9-]{2,12}))\b",
+              re.I,
+          )
+
+
+          def code_pattern(code: str) -> re.Pattern:
+              """Dò một mã cụ thể mà chịu được khoảng trắng chèn bất kỳ đâu."""
+              return re.compile(r"\s*".join(re.escape(ch) for ch in squash(code)), re.I)
+
+
+          def own_codes(text: str) -> set[str]:
+              """Số hiệu CỦA CHÍNH văn bản, đọc từ khối đầu trang.
+
+              Đây là chốt chặn quan trọng nhất chống gắn nhầm nội dung. Nghị định
+              282/2025 sửa đổi Nghị định 105/2025, nên toàn văn của 282 có chứa chuỗi
+              "105/2025/NĐ-CP". Bản 3 chỉ kiểm tra "mã có nằm trong toàn văn không" nên
+              sẽ đem nguyên nội dung của 282 gắn vào thẻ 105: sai văn bản, và mọi thứ
+              hiển thị sau đó đều sai theo.
+
+              Văn bản quy phạm pháp luật Việt Nam luôn ghi số hiệu ở khối đầu trang ngay
+              sau chữ "Số:". Bỏ hết khoảng trắng trước khi dò để không phụ thuộc vào việc
+              Word hay PDF ngắt dòng ở đâu, rồi loại những chỗ mà chữ đứng trước cho thấy
+              đang dẫn chiếu văn bản khác.
+              """
+              head = norm(text[:8000])
+              out = set()
+
+              for m in SO_HIEU_RE.finditer(head):
+                  before = head[max(0, m.start() - 45):m.start()]
+                  if REF_CTX_RE.search(before):
+                      continue
+                  out.add(squash(m.group(1)).replace("nd-cp", "nđ-cp"))
+
+              return out
+
+
+          def is_own_code(text: str, code: str) -> bool:
+              c = squash(code).replace("nd-cp", "nđ-cp")
+
+              found = own_codes(text)
+              if found:
+                  return c in found
+
+              # Không tìm thấy khối "Số:" (bản PDF quét lệch, trang web dựng lạ). Chấp
+              # nhận mã nằm rất sớm trong văn bản, nhưng vẫn phải không nằm sau lời dẫn chiếu.
+              head = norm(text[:1200])
+              for alt in {code, code.replace("NĐ-CP", "ND-CP"), code.replace("ND-CP", "NĐ-CP")}:
+                  m = code_pattern(alt).search(head)
+                  if m and not REF_CTX_RE.search(head[max(0, m.start() - 45):m.start()]):
+                      return True
+              return False
+
+
+          def has_articles(text: str, least: int = 1) -> bool:
+              return len(re.findall(r"Điều\s+\d+", text, re.I)) >= least
+
+
+          def accept_text(text: str, code: str) -> bool:
+              t = norm(text)
+              return bool(t) and len(t) >= 1500 and is_own_code(text, code) and has_articles(text)
+
+
+          def fulltext(item: dict) -> tuple[str, str, str, str]:
+              code = item["code"]
+              detail = resolve_detail(item)
+              r = get(detail)
+
+              direct = (
+                  re.search(r"\.(pdf|docx)(?:[?&#]|$)", r.url, re.I)
+                  or r.content[:4] == b"%PDF"
+                  or r.content[:2] == b"PK"
+              )
+
+              if direct:
+                  text = extract_attachment(r.content, r.url)
+                  if not accept_text(text, code):
+                      raise ValueError("Tệp chính thức không đúng số hiệu hoặc thiếu toàn văn")
+                  if len(text) > 1_600_000:
+                      raise ValueError("Toàn văn vượt giới hạn phân tích an toàn")
+                  return text, r.url, r.url, hashlib.sha256(r.content).hexdigest()
+
+              soup = BeautifulSoup(r.content, "html.parser")
+              page_text = norm(soup.get_text(" ", strip=True))
+
+              if squash(code) not in squash(page_text):
+                  raise ValueError("Trang chi tiết không đúng số hiệu")
+
+              links = [urljoin(r.url, a.get("href", "")) for a in soup.select("a[href]")]
+              links += [m.group(0) for m in re.finditer(r'https://[^\s<>"\']+', r.text)]
+
+              attachments = []
+              for u in links:
+                  u = u.replace("&amp;", "&")
+                  if official(u) and re.search(r"\.(pdf|docx)(?:[?&#]|$)", u, re.I):
+                      attachments.append(u)
+
+              attachments = sorted(
+                  set(attachments),
+                  key=lambda u: (not link_owns_code(u, code), ".docx" not in u.lower()),
+              )
+
+              for url in attachments[:10]:
+                  try:
+                      rr = get(url)
+                      text = extract_attachment(rr.content, rr.url)
+                      if not accept_text(text, code):
+                          continue
+                      if len(text) > 1_600_000:
+                          raise ValueError("Toàn văn vượt giới hạn phân tích an toàn")
+                      return text, rr.url, r.url, hashlib.sha256(rr.content).hexdigest()
+                  except (requests.RequestException, KeyError, zipfile.BadZipFile,
+                          subprocess.SubprocessError, etree.XMLSyntaxError, ValueError):
+                      continue
+
+              # Không tải được tệp: dùng chính trang chi tiết nếu nó đã đăng toàn văn.
+              if len(page_text) > 6000 and has_articles(page_text, 3) and is_own_code(page_text, code):
+                  data = page_text.encode("utf-8")
+                  return page_text, r.url, r.url, hashlib.sha256(data).hexdigest()
+
+              raise ValueError("Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức")
+
+
+          def trim_for_ai(text: str, limit: int = AI_CHARS) -> tuple[str, bool]:
+              """Cắt có chủ đích: giữ đầu (căn cứ, phạm vi, đối tượng), giữ cuối (điều
+              khoản thi hành, hiệu lực, bãi bỏ) và nhặt các đoạn giữa có từ khóa liên quan.
+              Đối chiếu trích dẫn vẫn chạy trên TOÀN BỘ văn bản nên cắt ở đây không làm
+              giảm độ chính xác, chỉ tiết kiệm hạn mức."""
+              t = text.strip()
+              if len(t) <= limit:
+                  return t, False
+
+              head = t[: int(limit * 0.45)]
+              tail = t[-int(limit * 0.30):]
+              budget = limit - len(head) - len(tail)
+
+              middle = []
+              for para in t[len(head): len(t) - len(tail)].split("\n"):
+                  if budget <= 0:
+                      break
+                  if RELEVANT_RE.search(para) or re.search(r"phạt|hiệu lực|bãi bỏ|thay thế", para, re.I):
+                      middle.append(para[:budget])
+                      budget -= len(para)
+
+              return head + "\n[...]\n" + "\n".join(middle) + "\n[...]\n" + tail, True
+
+
+          # ---------------------------------------------------------------- trợ lý AI
+
+          API = "https://generativelanguage.googleapis.com/v1beta"
+
+          _models: list[str] = []
+          _chosen: str | None = None
+          _quota_dead = False
+
+
+          def model_score(name: str) -> int:
+              """Xếp thứ tự thử. Mục tiêu là CHẠY ĐƯỢC trong hạn mức miễn phí, không phải
+              dùng model mạnh nhất. Bản lite và flash rẻ nhất nên khả năng còn hạn mức
+              cao nhất; bản pro gần như chắc chắn ngoài gói miễn phí."""
+              s = 0
+              if "lite" in name:
+                  s += 60
+              if "flash" in name:
+                  s += 50
+              if "pro" in name or "ultra" in name:
+                  s -= 40
+              m = re.search(r"gemini-(\d+(?:\.\d+)?)", name)
+              if m:
+                  s += int(float(m.group(1)) * 3)
+              if "latest" in name:
+                  s += 5
+              if re.search(r"preview|exp|thinking", name):
+                  s -= 20
+              return s
+
+
+          def load_models() -> list[str]:
+              """Danh sách /models CHỈ dùng để xếp thứ tự ứng viên, không dùng để tin.
+              Google vẫn liệt kê gemini-2.5-flash trong khi gọi thật trả 404 'no longer
+              available to new users'. Chỉ lần gọi thật thành công mới quyết định."""
+              if MODEL_PIN:
+                  return [MODEL_PIN]
+
+              names = []
+              try:
+                  r = SESSION.get(f"{API}/models", headers={"x-goog-api-key": KEY}, timeout=(8, 30))
+                  if r.ok:
+                      for m in r.json().get("models", []):
+                          n = (m.get("name") or "").replace("models/", "")
+                          if not n or "generateContent" not in (m.get("supportedGenerationMethods") or []):
+                              continue
+                          if re.search(r"image|imagen|tts|audio|embedding|live|native|veo|vision|gemma", n, re.I):
+                              continue
+                          names.append(n)
+              except Exception:
+                  pass
+
+              names.sort(key=model_score, reverse=True)
+              if not names:
+                  names = ["gemini-flash-latest", "gemini-2.0-flash", "gemini-flash-lite-latest"]
+              return names[:14]
+
+
+          def call_model(model: str, prompt: str) -> tuple[int, dict | str]:
+              payload = {
+                  "contents": [{"parts": [{"text": prompt}]}],
+                  "generationConfig": {
+                      "temperature": 0,
+                      "responseMimeType": "application/json",
+                      "maxOutputTokens": 8192,
+                  },
+              }
+              r = SESSION.post(
+                  f"{API}/models/{model}:generateContent",
+                  headers={"x-goog-api-key": KEY},
+                  json=payload,
+                  timeout=(10, 180),
+              )
+              if r.status_code != 200:
+                  return r.status_code, r.text[:200]
+
+              data = r.json()
+              raw = "".join(p.get("text", "") for p in data["candidates"][0]["content"]["parts"])
+              return 200, json.loads(raw)
+
+
+          def gemini(prompt: str) -> dict:
+              global _models, _chosen, _quota_dead
+
+              if not KEY:
+                  raise ValueError("Thiếu GEMINI_API_KEY trong GitHub Secrets")
+              if _quota_dead:
+                  raise ValueError("Đã hết hạn mức AI trong lần chạy này")
+
+              if not _models:
+                  _models = load_models()
+
+              # Model đã chọn được thử trước, nhưng vẫn giữ nguyên cả danh sách phía sau
+              # để nếu nó vừa chết thì lượt này tự chuyển sang model khác, không bỏ cuộc.
+              if _chosen:
+                  candidates = [_chosen] + [m for m in _models if m != _chosen]
+              else:
+                  candidates = list(_models)
+
+              last = ""
+              n429 = 0
+              n_dead = 0
+              tried = 0
+
+              for model in candidates:
+                  tried += 1
+                  try:
+                      status, body = call_model(model, prompt)
+                  except (requests.RequestException, KeyError, IndexError, json.JSONDecodeError) as e:
+                      last = f"{type(e).__name__}"
+                      continue
+
+                  if status == 200:
+                      _chosen = model
+                      return body
+
+                  last = f"AI HTTP {status}"
+
+                  # 404/400: model không tồn tại hoặc khóa không được phép dùng. Loại hẳn,
+                  # không thử lại ở các lượt sau.
+                  if status in (400, 404):
+                      n_dead += 1
+                      _models = [m for m in _models if m != model]
+                      if _chosen == model:
+                          _chosen = None
+                      continue
+
+                  # 429: hết hạn mức của riêng model đó, không phải của cả tài khoản.
+                  # Không loại vĩnh viễn vì hạn mức hồi lại theo thời gian.
+                  if status == 429:
+                      n429 += 1
+                      if _chosen == model:
+                          _chosen = None
+                      time.sleep(1.5)
+                      continue
+
+                  break
+
+              # Mọi model còn sống đều 429 nghĩa là hết hạn mức ở mức TÀI KHOẢN.
+              # Dừng hẳn lượt chạy này thay vì đốt tiếp từng mục một.
+              if n429 and n429 >= (tried - n_dead):
+                  _quota_dead = True
+                  last += " — toàn bộ model đều hết hạn mức, dừng gọi để khỏi đốt thêm"
+
+              raise ValueError(last or "Không gọi được trợ lý AI")
+
+
+          # -------------------------------------------------------------- kiểm chứng
+
+          def quote_in(text_norm: str, text_squashed: str, quote: str) -> bool:
+              """Trích dẫn phải có thật trong toàn văn. Chỉ bỏ qua khác biệt khoảng trắng,
+              không bỏ qua khác biệt chữ — một câu được diễn đạt lại sẽ bị loại."""
+              q = norm(quote)
+              if len(q) < 25:
+                  return False
+              if q.lower() in text_norm.lower():
+                  return True
+              return squash(q) in text_squashed
+
+
+          def validate_candidate(result: dict, text: str) -> dict:
+              """Giữ lại phần có căn cứ, loại bỏ phần không có căn cứ.
+
+              Bản 3 vứt cả văn bản nếu còn một điểm chưa rõ. Hệ quả là một nghị định mức
+              1 có thể không bao giờ lên web chỉ vì một chi tiết phụ — đúng kiểu bỏ lỡ
+              thông tin quan trọng. Ở đây đổi nguyên tắc: nhận định nào không đối chiếu
+              được thì LOẠI nhận định đó, phần còn lại vẫn xuất bản, và những điểm chưa
+              chắc chắn được ghi rõ ra thẻ cho người đọc biết. Web không bao giờ hiển thị
+              nội dung chưa đối chiếu được, cũng không im lặng giấu văn bản đi.
+              """
+              if result.get("cat") not in CATS:
+                  raise ValueError("Sai nhóm")
+              if result.get("tier") not in (1, 2, 3):
+                  raise ValueError("Sai mức ưu tiên")
+              if result.get("lienQuan") is not True:
+                  raise ValueError("Không áp dụng trực tiếp cho bệnh viện thẩm mỹ tư nhân")
+
+              text_norm = norm(text)
+              text_sq = squash(text)
+              kinds = {"essence", "duty", "risk", "effective", "fine", "relation"}
+
+              kept, dropped = [], []
+
+              for c in result.get("claims") or []:
+                  if not isinstance(c, dict):
+                      continue
+                  if not all(isinstance(c.get(k), str) and c[k].strip()
+                             for k in ("kind", "text", "article", "quote")):
+                      dropped.append("một nhận định thiếu trường bắt buộc")
+                      continue
+                  if c["kind"] not in kinds:
+                      dropped.append(f"loại nhận định lạ: {c['kind']}")
+                      continue
+                  if not quote_in(text_norm, text_sq, c["quote"]):
+                      dropped.append(f"{c['article']}: trích dẫn không khớp nguyên văn, đã loại")
+                      continue
+
+                  refs = re.findall(r"Điều\s+\d+", c["article"], re.I)
+                  if not refs or any(squash(x) not in text_sq for x in refs):
+                      dropped.append(f"{c['article']}: điều khoản không có trong toàn văn, đã loại")
+                      continue
+
+                  if c["kind"] == "fine" and not all(
+                      norm(c.get(k, "")) for k in ("subject", "behavior", "conditions")
+                  ):
+                      dropped.append(f"{c['article']}: mức phạt thiếu đối tượng/hành vi/điều kiện, đã loại")
+                      continue
+
+                  kept.append(c)
+
+              have = {c["kind"] for c in kept}
+
+              # Không còn gì đối chiếu được thì không xuất bản — thà thiếu còn hơn sai.
+              if not kept or "essence" not in have:
+                  raise ValueError("Không có nhận định nào đối chiếu được với toàn văn")
+
+              cautions = [str(x) for x in (result.get("unknowns") or []) if str(x).strip()]
+              cautions += dropped
+
+              for k, nhan in (("duty", "việc phải làm"), ("risk", "rủi ro"), ("effective", "căn cứ hiệu lực")):
+                  if k not in have:
+                      cautions.append(f"Chưa trích được {nhan} có căn cứ trực tiếp trong toàn văn")
+
+              eff = norm(result.get("effectiveStatus", ""))
+              if not eff or re.search(r"chưa|không rõ|không xác định|cần kiểm tra", eff, re.I):
+                  cautions.append("Tình trạng hiệu lực chưa xác định chắc chắn từ toàn văn")
+                  result["effectiveStatus"] = ""
+
+              # Quan hệ thay thế/sửa đổi: sai ở đây nguy hiểm hơn thiếu, vì người đọc sẽ
+              # tưởng một văn bản còn hiệu lực đã chết. Mã nào không có trong toàn văn thì bỏ.
+              for field in ("replaces", "amends"):
+                  ok = []
+                  for x in result.get(field) or []:
+                      if not isinstance(x, str):
+                          continue
+                      m = CODE_RE.search(x)
+                      if not m:
+                          continue
+                      c = canonical_code(m.group(0))
+                      if squash(c) in text_sq and squash(c) != squash(result.get("code", "")):
+                          ok.append(c)
+                      else:
+                          cautions.append(f"Bỏ quan hệ {c} vì không xuất hiện trong toàn văn")
+                  result[field] = ok
+
+              steps = []
+              for s in result.get("steps") or []:
+                  if isinstance(s, dict) and all(
+                      isinstance(s.get(k), str) and s[k].strip()
+                      for k in ("action", "owner", "evidence", "when")
+                  ):
+                      steps.append(s)
+
+              result["claims"] = kept
+              result["steps"] = steps
+              result["cautions"] = cautions[:12]
+              return result
+
+
+          # ------------------------------------------------------------------ AI pass
+
+          ANALYZE_RULES = """
+          Vai trò: chuyên gia pháp lý vận hành bệnh viện thẩm mỹ tư nhân tại Hà Nội. Nội dung phải dùng được ngay, người đọc KHÔNG phải tự kiểm tra lại.
+
+          QUY TẮC CỨNG:
+          - Chỉ dùng TOÀN VĂN bên dưới. Không dùng trí nhớ, không thêm luật khác, không suy đoán.
+          - Mỗi nhận định phải có quote là đoạn trích NGUYÊN VĂN, sao y từng chữ từ toàn văn, và article ghi đúng Điều/khoản/điểm. Hệ thống sẽ so khớp từng đoạn trích với bản gốc bằng máy; đoạn nào không khớp sẽ bị loại bỏ.
+          - Phân biệt rõ cá nhân và tổ chức, bệnh viện tư nhân và công lập, điều kiện, ngoại lệ, chuyển tiếp, ngày ban hành và ngày hiệu lực.
+          - Không biến mức phạt tối đa của cả lĩnh vực thành mức phạt cho một hành vi cụ thể.
+          - Điểm nào chưa đủ căn cứ thì ghi vào unknowns, đừng đoán bừa.
+          - steps là khuyến nghị vận hành thực tế, không được bịa thời hạn luật định.
+          - replaces và amends chỉ ghi mã văn bản thực sự bị thay thế, bãi bỏ hoặc sửa đổi bởi chính văn bản này.
+          - Viết tiếng Việt tự nhiên, câu ngắn, dễ hiểu với người không học luật.
+          """
+
+          ANALYZE_SHAPE = """
+          Trả đúng JSON:
+          {
+           "title":"tên ngắn gọn, chính xác, dễ hiểu",
+           "cat":"kcb|antt|dn|pccc|tb|duoc|mt|ld|dl|ktd|qc|gia",
+           "tier":1,
+           "lienQuan":true,
+           "effectiveDate":"dd/mm/yyyy hoặc mô tả chính xác",
+           "effectiveStatus":"Có hiệu lực|Hết hiệu lực toàn bộ|Hiệu lực một phần|Sắp có hiệu lực",
+           "claims":[{"kind":"essence|duty|risk|effective|fine|relation","text":"...","article":"Điều ... khoản ...","quote":"...","subject":"chỉ với fine","behavior":"chỉ với fine","conditions":"chỉ với fine"}],
+           "steps":[{"action":"...","owner":"...","evidence":"...","when":"..."}],
+           "replaces":["mã văn bản"],
+           "amends":["mã văn bản"],
+           "unknowns":[]
+          }
+          """
+
+
+          def analyze(item: dict, text: str) -> dict:
+              body, trimmed = trim_for_ai(text)
+              note = ("\nLƯU Ý: toàn văn dưới đây đã bị cắt bớt phần giữa, chỗ cắt đánh dấu [...]. "
+                      "Chỉ kết luận trong phạm vi phần được cung cấp.\n" if trimmed else "")
+
+              prompt = (
+                  ANALYZE_RULES + ANALYZE_SHAPE
+                  + f"\nMã cần phân tích: {item['code']}"
+                  + f"\nTiêu đề gợi ý (chỉ để định hướng, không phải căn cứ): {item.get('title', '')}"
+                  + note + "\nTOÀN VĂN:\n" + body
+              )
+
+              result = gemini(prompt)
+              result["code"] = item["code"]
+              return validate_candidate(result, text)
+
+
+          def audit(item: dict, text: str, candidate: dict) -> list[str]:
+              """Vòng đối chiếu thứ hai: cố tình đi bác bỏ bản tóm tắt.
+
+              Khác bản 3 ở chỗ kết quả không còn là đỗ/trượt cả văn bản. Vấn đề nào kiểm
+              định viên nêu ra sẽ được ghi thẳng lên thẻ ở mục cần kiểm chứng, trừ khi
+              nghiêm trọng tới mức sai văn bản thì mới chặn xuất bản.
+              """
+              body, _ = trim_for_ai(text)
+              slim = {k: candidate.get(k) for k in ("title", "cat", "tier", "effectiveStatus",
+                                                    "effectiveDate", "claims", "replaces", "amends")}
+
+              prompt = f"""Bạn là kiểm định viên pháp lý độc lập. Hãy CỐ GẮNG BÁC BỎ bản tóm tắt dưới đây bằng cách đối chiếu với toàn văn.
+
+          Soát kỹ: sai đối tượng áp dụng, suy rộng phạm vi, nhầm mức phạt tối đa của lĩnh vực thành mức cho một hành vi, nhầm ngày ban hành với ngày hiệu lực, bỏ sót điều kiện hoặc điều khoản chuyển tiếp, và quan hệ thay thế hoặc sửa đổi ghi sai.
+
+          Trả đúng JSON:
+          {{"approved": true|false, "fatal": true|false, "problems": ["..."]}}
+
+          fatal chỉ đặt true khi bản tóm tắt nói về MỘT VĂN BẢN KHÁC, hoặc sai tới mức làm người đọc hành động sai nghiêm trọng.
+
+          Mã văn bản: {item['code']}
+
+          BẢN TÓM TẮT:
+          {json.dumps(slim, ensure_ascii=False)}
+
+          TOÀN VĂN:
+          {body}
+          """
+
+              result = gemini(prompt)
+              problems = [str(x) for x in (result.get("problems") or []) if str(x).strip()]
+
+              if result.get("fatal") is True:
+                  raise ValueError("Kiểm định vòng 2 phát hiện sai văn bản: " + "; ".join(problems[:3]))
+
+              return [] if result.get("approved") is True else problems[:8]
+
+
+          # ------------------------------------------------------------- bản ghi công khai
+
+          def public_record(item, result, text_url, page_url, digest, now) -> dict:
+              claims = result["claims"]
+              by = lambda k: [f"{c['text']} ({c['article']})" for c in claims if c["kind"] == k]
+
+              fines = [c for c in claims if c["kind"] == "fine"]
+              fine = ""
+              fine_note = ""
+              if fines:
+                  c = fines[0]
+                  fine = norm(c["text"])[:120]
+                  fine_note = f"{c['article']} · đối tượng: {c.get('subject', '')} · hành vi: {c.get('behavior', '')}"
+
+              eff = " · ".join(x for x in (result.get("effectiveStatus", ""),
+                                           result.get("effectiveDate", "")) if x)
+
+              cautions = result.get("cautions") or []
+
+              return {
+                  "verificationVersion": 3,
+                  "verified": True,
+                  "code": item["code"],
+                  "title": result["title"],
+                  "cat": result["cat"],
+                  "tier": result["tier"],
+                  "lienQuan": True,
+                  "checkedAt": now.isoformat(),
+                  "sourcePage": page_url,
+                  "sourceFile": text_url,
+                  "sourceHash": digest,
+                  "coToanVan": True,
+                  "claims": claims,
+                  "steps": result.get("steps") or [],
+                  "cautions": cautions,
+                  "tinCay": "cao" if not cautions else "vua",
+                  "essence": " ".join(by("essence")),
+                  "duties": by("duty"),
+                  "risks": by("risk"),
+                  "eff": eff or "Chưa xác định chắc từ toàn văn",
+                  "fine": fine,
+                  "fineNote": fine_note,
+                  "thayThe": result.get("replaces") or [],
+                  "suaDoi": result.get("amends") or [],
+                  "notes": ("Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn "
+                            "chính thức và kiểm tra trích dẫn nguyên văn bằng máy."),
+                  "url": page_url,
+              }
+
+
+          # -------------------------------------------------------------------- chạy
+
+          def main() -> None:
+              now = dt.datetime.now(dt.timezone.utc)
+
+              old = read_json("vanban-moi.json", [])
+              accepted = {
+                  v["code"]: v for v in old
+                  if isinstance(v, dict) and v.get("verified") is True and v.get("code")
+              }
+
+              pending = {
+                  v["code"]: v for v in read_json("pending.json", [])
+                  if isinstance(v, dict) and v.get("code")
+              }
+
+              catalog_codes = set()
+
+              for c in read_json("legal-catalog.json", []):
+                  code = canonical_code(c.get("code", ""))
+                  if not code:
+                      continue
+                  catalog_codes.add(code)
+                  c = {**c, "code": code, "origin": "catalog"}
+
+                  prev = accepted.get(code)
+                  recheck = True
+                  if prev and prev.get("checkedAt"):
+                      try:
+                          age = now - dt.datetime.fromisoformat(prev["checkedAt"].replace("Z", "+00:00"))
+                          recheck = age > dt.timedelta(days=7)
+                      except Exception:
+                          recheck = True
+
+                  if not prev or recheck:
+                      pending[code] = {**pending.get(code, {}), **c, "recheck": bool(prev)}
+
+              with cf.ThreadPoolExecutor(max_workers=5) as pool:
+                  reports = list(pool.map(discover, SOURCES))
+
+              for s in reports:
+                  for item in s.get("phatHien", []):
+                      code = canonical_code(item["code"])
+                      item["code"] = code
+                      if code not in accepted:
+                          pending[code] = {**pending.get(code, {}), **item}
+
+              def rank(x: dict):
+                  # Danh mục lõi trước, văn bản mới phát hiện sau, mục đang kiểm lại cuối.
+                  # Bản 3 để discovery lên trước nên rác từ cổng Bộ Công an chen chỗ của
+                  # 40 văn bản nền tảng, mà mỗi lần chạy chỉ xử lý được vài mục.
+                  return (
+                      2 if x.get("recheck") else 0,
+                      0 if x.get("origin") == "catalog" else 1,
+                      x.get("lastAttempt", ""),
+                  )
+
+              queue = sorted(pending.values(), key=rank)
+              deadline = time.monotonic() + 25 * 60
+              processed = 0
+              published_now = 0
+
+              for item in queue[:BATCH]:
+                  if time.monotonic() > deadline or _quota_dead:
+                      break
+
+                  code = item.get("code")
+                  if not code:
+                      continue
+
+                  try:
+                      text, file_url, page_url, digest = fulltext(item)
+                      result = analyze(item, text)
+                      problems = audit(item, text, result)
+                      if problems:
+                          result["cautions"] = (result.get("cautions") or []) + problems
+
+                      accepted[code] = public_record(item, result, file_url, page_url, digest, now)
+                      pending.pop(code, None)
+                      published_now += 1
+
+                  except Exception as e:
+                      item["reason"] = str(e) if isinstance(e, ValueError) else f"{type(e).__name__}"
+                      item["lastAttempt"] = now.isoformat()
+                      pending[code] = item
+
+                  processed += 1
+
+              # Bản 3 XÓA thẻ sau 45 ngày không kiểm lại được — một luật đang có hiệu lực
+              # có thể tự biến mất khỏi web mà không ai biết. Ở đây chỉ đánh dấu cũ, nội
+              # dung vẫn hiển thị kèm ngày đối chiếu gần nhất.
+              for code, v in accepted.items():
+                  try:
+                      age = now - dt.datetime.fromisoformat(v["checkedAt"].replace("Z", "+00:00"))
+                      v["stale"] = age > dt.timedelta(days=45)
+                      v["ageDays"] = age.days
+                  except Exception:
+                      v["stale"] = True
+
+              ok = sum(s.get("trangThai") == "ok" for s in reports)
+              failed = [s["n"] for s in reports if s.get("trangThai") != "ok"]
+              local = now.astimezone(VN)
+
+              blocked = sorted(
+                  (v for v in pending.values() if v.get("origin") == "catalog"),
+                  key=lambda v: v.get("code", ""),
+              )
+
+              status = {
+                  "schemaVersion": 4,
+                  "checkedAt": now.isoformat(),
+                  "ngay": local.strftime("%d/%m/%Y"),
+                  "gio": local.strftime("%H:%M %d/%m/%Y"),
+                  "status": "ready" if ok >= max(1, len(reports) - 2) else "degraded",
+                  "published": len(accepted),
+                  "sourcesOk": ok,
+                  "sourcesTotal": len(reports),
+                  "sourcesFailed": failed,
+                  "processed": processed,
+                  "publishedNow": published_now,
+                  "pending": len(pending),
+                  "catalogTotal": len(catalog_codes),
+                  "catalogDone": len([c for c in catalog_codes if c in accepted]),
+                  "catalogBlocked": [
+                      {"code": v.get("code"), "reason": v.get("reason", "chưa tới lượt")}
+                      for v in blocked[:20]
+                  ],
+                  "quotaExhausted": _quota_dead,
+                  "message": "Dữ liệu pháp lý đã được đồng bộ từ các nguồn chính thức.",
+              }
+
+              write_json("vanban-moi.json", sorted(
+                  accepted.values(),
+                  key=lambda v: (v.get("tier", 2), v.get("cat", ""), v.get("code", "")),
+              ))
+              write_json("pending.json", sorted(pending.values(), key=lambda v: v.get("code", "")))
+              write_json("capnhat.json", status)
+
+              print(f"Nguồn đọc được {ok}/{len(reports)}" + (f", hỏng: {', '.join(failed)}" if failed else ""))
+              print(f"Xử lý {processed} mục, xuất bản mới {published_now}, tổng đang hiển thị {len(accepted)}")
+              print(f"Danh mục lõi: {status['catalogDone']}/{status['catalogTotal']} đã lên web")
+              if _quota_dead:
+                  print("Đã hết hạn mức AI trong lần chạy này, sẽ tiếp tục ở lần sau.")
+              for b in status["catalogBlocked"][:10]:
+                  print(f"  còn treo: {b['code']} — {b['reason']}")
+
+
+          if __name__ == "__main__":
+              main()
+          PY
+
+          python "$RUNNER_TEMP/legal_scan.py"
+
+      # Không để bước lưu làm hỏng cả lần chạy: dữ liệu đã nằm trong thư mục làm
+      # việc nên web vẫn được cập nhật kể cả khi đẩy lên kho thất bại.
+      - name: Lưu dữ liệu đã kiểm định
+        continue-on-error: true
+        run: |
+          git config user.name 'legal-monitor[bot]'
+          git config user.email 'legal-monitor@users.noreply.github.com'
+
+          git add capnhat.json vanban-moi.json pending.json
+
+          if git diff --cached --quiet; then
+            echo "Không có thay đổi, không cần lưu."
+          else
+            git commit -m 'Cập nhật dữ liệu pháp lý đã kiểm định'
+            for i in 1 2 3; do
+              git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "Đã lưu."; break; fi
+              echo "Đẩy lần $i thất bại, thử lại…"; sleep 5
+            done
+          fi
+
+      - name: Chuẩn bị web
+        run: |
+          rm -rf public
+          mkdir -p public
+
+          cp index.html public/
+          cp sw.js public/
+          cp manifest.json public/
+          cp icon-180.png public/
+          cp icon-192.png public/
+          cp icon-512.png public/
+
+          cp capnhat.json public/
+          cp vanban-moi.json public/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - uses: actions/deploy-pages@v4
+        id: deployment
