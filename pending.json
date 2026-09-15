@@ -1,16 +1,5 @@
 [
   {
-    "code": "06/2011/TT-BYT",
-    "title": "Quản lý mỹ phẩm và ghi nhãn hàng hóa",
-    "cat": "tb",
-    "tier": 2,
-    "url": "https://vanban.chinhphu.vn/default.aspx?docid=99376&pageid=27160",
-    "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
-  },
-  {
     "code": "06/2025/TT-BTNMT",
     "title": "Quy chuẩn nước thải — quy chuẩn y tế cũ đã bị bãi bỏ",
     "cat": "mt",
@@ -19,7 +8,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
+    "lastAttempt": "2026-09-15T13:35:11.178128+00:00"
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -29,8 +18,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=205092&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
-    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4385 ký tự, 1 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
+    "lastAttempt": "2026-09-15T13:35:11.178128+00:00"
   },
   {
     "code": "08/2026/TT-BYT",
@@ -52,8 +41,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=183216&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
-    "lastAttempt": "2026-09-15T01:23:11.489656+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4245 ký tự, 1 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
+    "lastAttempt": "2026-09-15T13:35:11.178128+00:00"
   },
   {
     "code": "105/2016/QH13",
@@ -404,7 +393,9 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214590&orggroupid=1&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3342 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T13:35:11.178128+00:00"
   },
   {
     "code": "96/2016/NĐ-CP",
@@ -413,7 +404,9 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?docid=185935&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4496 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T13:35:11.178128+00:00"
   },
   {
     "code": "96/2023/NĐ-CP",
@@ -422,7 +415,9 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=209491&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4381 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T13:35:11.178128+00:00"
   },
   {
     "code": "98/2021/NĐ-CP",
@@ -431,6 +426,8 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=204442&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4289 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T13:35:11.178128+00:00"
   }
 ]
