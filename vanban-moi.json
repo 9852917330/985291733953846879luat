@@ -182,6 +182,142 @@
   {
     "verificationVersion": 3,
     "verified": true,
+    "code": "33/2025/TT-BYT",
+    "title": "Thời hạn lưu trữ hồ sơ, tài liệu ngành y tế theo Thông tư 33/2025/TT-BYT",
+    "cat": "kcb",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-15T07:46:22.282047+00:00",
+    "sourcePage": "https://vanban.chinhphu.vn/?classid=1&docid=214427&orggroupid=4&pageid=27160",
+    "sourceFile": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/33-byt.pdf",
+    "sourceHash": "c9903c2ede15db8238470efd1ffb363748bde190ca1f807cffd20fb23f669e93",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Thời hạn lưu trữ hồ sơ, tài liệu ngành y tế thực hiện theo quy định tại Phụ lục ban hành kèm theo Thông tư này.",
+        "article": "Điều 1 khoản 1",
+        "quote": "Thời hạn lưu trữ hồ sơ, tài liệu ngành y tế thực hiện theo quy định tại Phụ lục ban hành kèm theo Thông tư này."
+      },
+      {
+        "kind": "duty",
+        "text": "Thời hạn lưu trữ quy định tại Phụ lục áp dụng cho tài liệu giấy, tài liệu trên vật mang tin và các tài liệu điện tử.",
+        "article": "Điều 1 khoản 2 điểm a",
+        "quote": "Thời hạn lưu trữ quy định tại Phụ lục ban hành kèm theo Thông tư này áp dụng tài liệu giấy, tài liệu trên vật mang tin và các tài liệu điện tử"
+      },
+      {
+        "kind": "duty",
+        "text": "Đối với hồ sơ, tài liệu chưa được quy định, áp dụng thời hạn lưu trữ tương đương nhóm tương ứng và không được thấp hơn mức quy định tại Phụ lục.",
+        "article": "Điều 1 khoản 2 điểm b",
+        "quote": "Đối với hồ sơ, tài liệu hình thành trong hoạt động của cơ quan, tổ chức chưa được quy định tại Thông tư này, cơ quan, tổ chức áp dụng thời hạn lưu trữ tương đương với nhóm hồ sơ, tài liệu tương ứng có trong Thông tư này và các quy định của pháp luật khác có liên quan để xác định. Mức xác định thời hạn lưu trữ không được thấp hơn mức thời hạn lưu trữ được quy định tại Phụ lục kèm theo Thông tư này."
+      },
+      {
+        "kind": "effective",
+        "text": "Thông tư này có hiệu lực kể từ ngày 01 tháng 7 năm 2025.",
+        "article": "Điều 2 khoản 1",
+        "quote": "Thông tư này có hiệu lực kể từ ngày 01 tháng 7 năm 2025"
+      },
+      {
+        "kind": "relation",
+        "text": "Hồ sơ, tài liệu đã được xác định thời hạn lưu trữ trước thời điểm Thông tư này có hiệu lực thì không áp dụng Thông tư này để xác định lại.",
+        "article": "Điều 2 khoản 3",
+        "quote": "Thời hạn lưu trữ hồ sơ, tài liệu ngành y tế đã được xác định trước thời điểm Thông tư này có hiệu lực thì không áp dụng Thông tư này để xác định lại thời hạn lưu trữ."
+      }
+    ],
+    "steps": [
+      {
+        "action": "Kiểm tra danh mục hồ sơ, tài liệu đang lưu trữ tại bệnh viện thẩm mỹ để áp dụng thời hạn lưu trữ theo Phụ lục ban hành kèm theo Thông tư 33/2025/TT-BYT.",
+        "owner": "Bộ phận Hành chính / Quản lý chất lượng / Lưu trữ bệnh viện",
+        "evidence": "Danh mục hồ sơ tài liệu và Phụ lục của Thông tư 33/2025/TT-BYT",
+        "when": "Khi phát sinh hoặc lưu trữ hồ sơ, tài liệu tại đơn vị"
+      },
+      {
+        "action": "Đối với tài liệu chưa có tên trong Phụ lục, đối chiếu với nhóm tương ứng để xác định thời hạn lưu trữ không thấp hơn mức quy định.",
+        "owner": "Bộ phận pháp chế hoặc bộ phận lưu trữ bệnh viện",
+        "evidence": "Quy định tại Điều 1 khoản 2 điểm b Thông tư 33/2025/TT-BYT",
+        "when": "Khi xử lý các loại hồ sơ, tài liệu mới chưa được liệt kê cụ thể"
+      }
+    ],
+    "cautions": [
+      "Nội dung chi tiết của Phụ lục ban hành kèm theo Thông tư 33/2025/TT-BYT (vì văn bản cung cấp không bao gồm Phụ lục).",
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn"
+    ],
+    "tinCay": "vua",
+    "essence": "Thời hạn lưu trữ hồ sơ, tài liệu ngành y tế thực hiện theo quy định tại Phụ lục ban hành kèm theo Thông tư này. (Điều 1 khoản 1)",
+    "duties": [
+      "Thời hạn lưu trữ quy định tại Phụ lục áp dụng cho tài liệu giấy, tài liệu trên vật mang tin và các tài liệu điện tử. (Điều 1 khoản 2 điểm a)",
+      "Đối với hồ sơ, tài liệu chưa được quy định, áp dụng thời hạn lưu trữ tương đương nhóm tương ứng và không được thấp hơn mức quy định tại Phụ lục. (Điều 1 khoản 2 điểm b)"
+    ],
+    "risks": [],
+    "eff": "Có hiệu lực · 01/07/2025",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [
+      "53/2017/TT-BYT"
+    ],
+    "suaDoi": [],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214427&orggroupid=4&pageid=27160",
+    "stale": false,
+    "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
+    "code": "41/2024/QH15",
+    "title": "Luật Bảo hiểm xã hội 2024",
+    "cat": "ld",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-15T07:46:22.282047+00:00",
+    "sourcePage": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/9/41-2024-qh15.pdf",
+    "sourceFile": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/9/41-2024-qh15.pdf",
+    "sourceHash": "d46db2fcf0a62e8d788f99612071c881bbba0e00ec1992691f615fd1832ce8e8",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Luật này quy định về quyền, trách nhiệm của cơ quan, tổ chức, cá nhân đối với bảo hiểm xã hội và tổ chức thực hiện bảo hiểm xã hội; trợ cấp hưu trí xã hội; đăng ký tham gia và quản lý thu, đóng bảo hiểm xã hội; các chế độ, chính sách bảo hiểm xã hội bắt buộc, bảo hiểm xã hội tự nguyện; quỹ bảo hiểm xã hội; bảo hiểm hưu trí bổ sung; khiếu nại, tố cáo và xử lý vi phạm về bảo hiểm xã hội; quản lý nhà nước về bảo hiểm xã hội.",
+        "article": "Điều 1",
+        "quote": "Luật này quy định về quyền, trách nhiệm của cơ quan, tổ chức, cá nhân đối với bảo hiểm xã hội và tổ chức thực hiện bảo hiểm xã hội; trợ cấp hưu trí xã hội; đăng ký tham gia và quản lý thu, đóng bảo hiểm xã hội; các chế độ, chính sách bảo hiểm xã hội bắt buộc, bảo hiểm xã hội tự nguyện; quỹ bảo hiểm xã hội; bảo hiểm hưu trí bổ sung; khiếu nại, tố cáo và xử lý vi phạm về bảo hiểm xã hội; quản lý nhà nước về bảo hiểm xã hội."
+      }
+    ],
+    "steps": [
+      {
+        "action": "Thực hiện đăng ký tham gia và đóng bảo hiểm xã hội bắt buộc cho người lao động theo quy định của Luật Bảo hiểm xã hội.",
+        "owner": "Người sử dụng lao động",
+        "evidence": "Hồ sơ đăng ký tham gia bảo hiểm xã hội, chứng từ nộp tiền.",
+        "when": "Theo quy định pháp luật"
+      }
+    ],
+    "cautions": [
+      "Chưa trích được việc phải làm có căn cứ trực tiếp trong toàn văn",
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn",
+      "Chưa trích được căn cứ hiệu lực có căn cứ trực tiếp trong toàn văn"
+    ],
+    "tinCay": "vua",
+    "essence": "Luật này quy định về quyền, trách nhiệm của cơ quan, tổ chức, cá nhân đối với bảo hiểm xã hội và tổ chức thực hiện bảo hiểm xã hội; trợ cấp hưu trí xã hội; đăng ký tham gia và quản lý thu, đóng bảo hiểm xã hội; các chế độ, chính sách bảo hiểm xã hội bắt buộc, bảo hiểm xã hội tự nguyện; quỹ bảo hiểm xã hội; bảo hiểm hưu trí bổ sung; khiếu nại, tố cáo và xử lý vi phạm về bảo hiểm xã hội; quản lý nhà nước về bảo hiểm xã hội. (Điều 1)",
+    "duties": [],
+    "risks": [],
+    "eff": "Sắp có hiệu lực · 01/07/2025",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [
+      "58/2014/QH13"
+    ],
+    "suaDoi": [
+      "84/2015/QH13",
+      "38/2013/QH13",
+      "39/2009/QH12"
+    ],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/9/41-2024-qh15.pdf",
+    "stale": false,
+    "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
     "code": "16/2012/QH13",
     "title": "Tuân thủ pháp luật về hoạt động quảng cáo cho bệnh viện thẩm mỹ tư nhân",
     "cat": "qc",

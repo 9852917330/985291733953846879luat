@@ -252,7 +252,9 @@
     "tier": 2,
     "url": "https://vbpl.vn/TW/Pages/vbpq-thuoctinh.aspx?ItemID=167907",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
   },
   {
     "code": "327/2026/NĐ-CP",
@@ -264,22 +266,15 @@
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
   },
   {
-    "code": "33/2025/TT-BYT",
-    "title": "Thời hạn lưu trữ hồ sơ bệnh án và tài liệu y tế",
-    "cat": "kcb",
-    "tier": 3,
-    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214427&orggroupid=4&pageid=27160",
-    "origin": "catalog",
-    "recheck": false
-  },
-  {
     "code": "342/2025/NĐ-CP",
     "title": "Quy định chi tiết Luật Quảng cáo — nội dung bắt buộc",
     "cat": "qc",
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=216403&pageid=27160",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4003 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
   },
   {
     "code": "35/2024/TT-BYT",
@@ -288,7 +283,9 @@
     "tier": 2,
     "url": "https://vbpl.vn/TW/Pages/vbpq-thuoctinh.aspx?ItemID=171711",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
   },
   {
     "code": "356/2025/NĐ-CP",
@@ -297,7 +294,9 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=216387&pageid=27160&typegroupid=4",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4201 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
   },
   {
     "code": "38/2024/TT-BYT",
@@ -306,16 +305,9 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?docid=211878&pageid=27160",
     "origin": "catalog",
-    "recheck": false
-  },
-  {
-    "code": "41/2024/QH15",
-    "title": "Luật Bảo hiểm xã hội",
-    "cat": "ld",
-    "tier": 3,
-    "url": "https://vanban.chinhphu.vn/?docid=211199&pageid=27160",
-    "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4169 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
   },
   {
     "code": "43/2018/TT-BYT",
@@ -324,7 +316,9 @@
     "tier": 2,
     "url": "https://vbpl.vn/tw/Pages/vbpq-toanvan.aspx?ItemID=137205&Keyword=&dvid=13",
     "origin": "catalog",
-    "recheck": false
+    "recheck": false,
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-15T07:46:22.282047+00:00"
   },
   {
     "code": "45/2019/QH14",
