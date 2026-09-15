@@ -1,0 +1,7 @@
+name: tam
+on: workflow_dispatch
+jobs:
+  tam:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo tam
