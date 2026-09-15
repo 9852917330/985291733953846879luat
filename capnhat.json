@@ -1,10 +1,10 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-15T07:46:22.282047+00:00",
+  "checkedAt": "2026-09-15T08:11:00.942110+00:00",
   "ngay": "15/09/2026",
-  "gio": "14:46 15/09/2026",
+  "gio": "15:11 15/09/2026",
   "status": "degraded",
-  "published": 5,
+  "published": 6,
   "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
@@ -22,10 +22,10 @@
     }
   ],
   "processed": 8,
-  "publishedNow": 2,
-  "pending": 43,
+  "publishedNow": 1,
+  "pending": 42,
   "catalogTotal": 40,
-  "catalogDone": 5,
+  "catalogDone": 6,
   "catalogBlocked": [
     {
       "code": "06/2011/TT-BYT",

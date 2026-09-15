@@ -318,6 +318,73 @@
   {
     "verificationVersion": 3,
     "verified": true,
+    "code": "55/2024/QH15",
+    "title": "Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ năm 2024",
+    "cat": "pccc",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-15T08:11:00.942110+00:00",
+    "sourcePage": "https://vanban.chinhphu.vn/?classid=1&docid=212483&orggroupid=1&pageid=27160",
+    "sourceFile": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/01/luat55.pdf",
+    "sourceHash": "1b1942dbf11e912a28ac2004d1f3cca3b6e7356796507dda7450ccf27a250462",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Số điện thoại báo cháy, báo tình huống cứu nạn, cứu hộ được quy định thống nhất trong cả nước là 114.",
+        "article": "Điều 6 khoản 2",
+        "quote": "Số điện thoại báo cháy, báo tình huống cứu nạn, cứu hộ được quy định thống nhất trong cả nước là 114."
+      },
+      {
+        "kind": "duty",
+        "text": "Công dân từ đủ 18 tuổi trở lên, đủ sức khỏe có trách nhiệm tham gia vào Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ cơ sở, Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành hoặc Đội dân phòng khi có yêu cầu.",
+        "article": "Điều 8 khoản 2",
+        "quote": "Công dân từ đủ 18 tuổi trở lên, đủ sức khỏe có trách nhiệm tham gia vào Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ cơ sở, Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành hoặc Đội dân phòng khi có yêu cầu."
+      },
+      {
+        "kind": "effective",
+        "text": "Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025, trừ trường hợp quy định tại khoản 4 Điều này.",
+        "article": "Điều 54 khoản 1",
+        "quote": "Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025, trừ trường hợp quy định tại khoản 4 Điều này."
+      }
+    ],
+    "steps": [
+      {
+        "action": "Tuân thủ các quy định về phòng cháy, chữa cháy, cứu nạn, cứu hộ và duy trì các điều kiện an toàn tại cơ sở theo quy định của pháp luật.",
+        "owner": "Người đứng đầu cơ sở bệnh viện thẩm mỹ",
+        "evidence": "Hồ sơ, phương án và điều kiện an toàn phòng cháy, chữa cháy tại cơ sở",
+        "when": "Từ ngày Luật có hiệu lực"
+      }
+    ],
+    "cautions": [
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn"
+    ],
+    "tinCay": "vua",
+    "essence": "Số điện thoại báo cháy, báo tình huống cứu nạn, cứu hộ được quy định thống nhất trong cả nước là 114. (Điều 6 khoản 2)",
+    "duties": [
+      "Công dân từ đủ 18 tuổi trở lên, đủ sức khỏe có trách nhiệm tham gia vào Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ cơ sở, Đội phòng cháy, chữa cháy và cứu nạn, cứu hộ chuyên ngành hoặc Đội dân phòng khi có yêu cầu. (Điều 8 khoản 2)"
+    ],
+    "risks": [],
+    "eff": "Có hiệu lực · 01/07/2025",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [
+      "27/2001/QH10",
+      "99/2019/QH14"
+    ],
+    "suaDoi": [
+      "33/2013/QH13",
+      "50/2014/QH13",
+      "39/2024/QH15"
+    ],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=212483&orggroupid=1&pageid=27160",
+    "stale": false,
+    "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
     "code": "16/2012/QH13",
     "title": "Tuân thủ pháp luật về hoạt động quảng cáo cho bệnh viện thẩm mỹ tư nhân",
     "cat": "qc",
