@@ -1,11 +1,90 @@
 LUẬT VIỆT NAM — Bảng pháp lý cho giám đốc điều hành bệnh viện thẩm mỹ
 
 ────────────────────────────────────────────
+CẬP NHẬT LẦN NÀY — 15/09/2026 (SỬA MÁY QUÉT ĐANG CHẾT LÂM SÀNG)
+────────────────────────────────────────────
+
+Đổi tên mục "Rủi ro" thành "Rủi ro" trên toàn trang.
+
+Phần quan trọng hơn: máy quét tự động đang KHÔNG đưa được một văn bản nào
+lên web. Tệp capnhat.json ghi published = 0, trong khi hàng đợi có 48 văn
+bản. Bảng vẫn hiển thị đủ 43 thẻ viết tay nên nhìn bên ngoài không thấy gì
+bất thường, nhưng thực chất phần tự cập nhật đã ngừng hoạt động.
+
+BỐN LỖI GỐC, đều đã dựng lại được bằng thực nghiệm chứ không phải suy đoán:
+
+1. ĐỌC SAI FILE WORD — lỗi làm chết cả dây chuyền (32/48 văn bản treo).
+   Word chia một dòng thành nhiều đoạn chữ rời mỗi khi đổi định dạng, nên
+   "Số: 96/2016/NĐ-CP" thường nằm ở bốn đoạn khác nhau. Máy cũ nối các đoạn
+   này bằng dấu cách, cho ra "96 /2016/ NĐ-CP". Số hiệu hỏng nên bước kiểm
+   tra "đúng văn bản không" luôn trượt, và mọi đoạn trích dẫn cũng trượt
+   theo vì chữ trong bản gốc đã bị chèn dấu cách lung tung.
+   Đã sửa: nối các đoạn chữ trong cùng một khổ không chèn gì, đúng cách
+   Word dựng lại văn bản. Thêm cơ chế so khớp bỏ qua khác biệt khoảng trắng
+   để một dấu cách thừa không bao giờ làm trượt oan lần nữa.
+
+2. TRỢ LÝ AI GHIM CỨNG MỘT MODEL ĐÃ NGỪNG CẤP (12/48 văn bản treo).
+   Workflow đặt sẵn gemini-2.5-flash, mà Google không còn cấp model này cho
+   khóa mới nên mọi lượt gọi trả 404, không có đường lui.
+   Đã sửa: máy tự dò danh sách model còn sống, ưu tiên bản rẻ nhất để nằm
+   trong hạn mức miễn phí, model chết thì loại hẳn, model hết hạn mức thì
+   chuyển sang model khác. Hết sạch hạn mức thì dừng luôn để khỏi đốt thêm.
+
+3. VĂN BẢN CÓ THỂ TỰ BIẾN MẤT KHỎI WEB.
+   Máy cũ xóa hẳn một thẻ nếu 45 ngày không đối chiếu lại được. Một luật
+   đang có hiệu lực có thể lặng lẽ rời bảng mà không ai biết.
+   Đã sửa: không bao giờ xóa. Quá hạn thì thẻ hiện cảnh báo vàng kèm ngày
+   đối chiếu gần nhất, nội dung giữ nguyên.
+
+4. THẺ MÁY GHI ĐÈ THẺ VIẾT TAY.
+   Văn bản nào máy chạm tới mà bảng đã có thẻ viết tay thì thẻ tay bị thay
+   hẳn bằng bản máy, thường mỏng hơn nhiều. Mất nội dung mà không ai nhận ra.
+   Đã sửa: thẻ viết tay là nền, máy chỉ bồi thêm. Máy đóng góp thứ nó làm
+   tốt hơn người — tình trạng hiệu lực mới nhất, quan hệ thay thế/sửa đổi,
+   trích dẫn nguyên văn kèm số điều, ngày đối chiếu. Không trường nào bị xóa.
+   Bảng "Việc cần làm" cũng đã sửa để hiện cả việc viết tay lẫn khuyến nghị
+   của máy, trước đây hễ có khuyến nghị máy là bỏ hẳn danh sách viết tay.
+
+ĐỔI NGUYÊN TẮC XUẤT BẢN — để không bỏ lỡ thông tin quan trọng:
+Máy cũ vứt cả văn bản nếu còn một điểm chưa chắc chắn. Hệ quả là một nghị
+định mức 1 có thể không bao giờ lên web chỉ vì một chi tiết phụ. Nay đổi
+thành: nhận định nào không đối chiếu được thì loại riêng nhận định đó, phần
+còn lại vẫn xuất bản, và những điểm chưa tự xác nhận được hiện thành khối
+"Điểm máy chưa tự xác nhận được" ngay trên thẻ. Web không bao giờ hiển thị
+nội dung chưa đối chiếu, nhưng cũng không im lặng giấu văn bản đi.
+
+CHỐNG GẮN NHẦM NỘI DUNG — lỗi nguy hiểm nhất chưa từng bị phát hiện:
+Nghị định 282/2025 sửa đổi Nghị định 105/2025, nên toàn văn của 282 có chứa
+chuỗi "105/2025/NĐ-CP". Máy cũ chỉ kiểm tra "mã có nằm trong toàn văn không"
+nên sẽ đem nguyên nội dung của 282 gắn vào thẻ 105. Nay máy đọc số hiệu ở
+khối đầu trang, cạnh chữ "Số:", và bỏ qua những chỗ mã chỉ được dẫn chiếu
+(sau "Căn cứ", "Sửa đổi, bổ sung"...). Tương tự, một tiêu đề chứa nhiều mã
+không còn được gán chung một đường dẫn.
+
+LỌC RÁC: bỏ 5 văn bản không liên quan đang chiếm chỗ trong hàng đợi (an ninh
+hàng không, thuế tài nguyên, thiết bị nghiệp vụ công an...). Bổ sung nhóm từ
+khóa an ninh mạng và bảo vệ dữ liệu vì bệnh viện giữ hồ sơ bệnh nhân.
+
+CHẨN ĐOÁN: capnhat.json nay ghi rõ nguồn nào hỏng và vì sao, còn bao nhiêu
+văn bản trong danh mục lõi chưa lên web và đang vướng ở đâu. Trước đây mọi
+lỗi nguồn đều bị ghi chung một câu "không đọc được nguồn".
+
+ĐÃ CHẠY THỬ: 36 phép thử cho máy quét và 13 phép thử cho cơ chế đổi model,
+đạt hết. Trang web chạy thử trên trình duyệt thật, không lỗi JavaScript.
+
+CHƯA THỂ KIỂM CHỨNG TỪ ĐÂY: 3 trong 9 nguồn báo hỏng ở lần chạy trước, mà
+môi trường làm việc này bị chặn mạng ra các cổng .vn nên không thử trực tiếp
+được. Đã đổi User-Agent sang chuỗi trình duyệt thật (nhiều cổng .gov.vn chặn
+thẳng User-Agent lạ) và ghi lý do lỗi cụ thể. Chạy workflow một lần là biết
+chính xác nguồn nào hỏng vì sao.
+
+
+────────────────────────────────────────────
 CẬP NHẬT LẦN NÀY — 09/09/2026 (BỔ SUNG 12 VĂN BẢN CÒN THIẾU)
 ────────────────────────────────────────────
 
 ĐO ĐỘ PHỦ RỒI BỊT LỖ HỔNG. Bảng tăng từ 31 lên 43 văn bản, từ 11 lên 13
-nhóm, việc cần làm từ 13 lên 16, điểm dễ vỡ từ 13 lên 16.
+nhóm, việc cần làm từ 13 lên 16, rủi ro từ 13 lên 16.
 
 Cách đo: dựng danh mục nghĩa vụ pháp lý thật của một bệnh viện thẩm mỹ tư
 nhân rồi soi ngược lại bảng. Kết quả: bảng cũ phủ khoảng 70%, và thiếu ba
@@ -236,8 +315,8 @@ CẬP NHẬT TRƯỚC ĐÓ — 08/09/2026 (bản đêm)
        thuốc khởi mê nên nhiều cơ sở thẩm mỹ đang có sẵn.
 
    Kèm theo: 2 việc cần làm mới (kiểm kê thuốc kiểm soát đặc biệt hằng
-   tháng, kiểm tra đơn thuốc điện tử và nguồn gốc thuốc), 3 điểm dễ vỡ
-   mới. Việc cần làm tăng từ 11 lên 13, điểm dễ vỡ từ 10 lên 13.
+   tháng, kiểm tra đơn thuốc điện tử và nguồn gốc thuốc), 3 rủi ro
+   mới. Việc cần làm tăng từ 11 lên 13, rủi ro từ 10 lên 13.
 
    Máy quét cũng đã được cập nhật để nhận nhóm này: thêm từ khoá về dược
    vào bộ lọc, và thêm mã nhóm duoc vào danh sách để trợ lý AI xếp đúng

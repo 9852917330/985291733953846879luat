@@ -6,9 +6,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/default.aspx?docid=99376&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-12T05:29:12.763549+00:00"
+    "recheck": false
   },
   {
     "code": "06/2025/TT-BTNMT",
@@ -17,9 +15,7 @@
     "tier": 2,
     "url": "https://vbpl.vn/TW/Pages/ivbpq-van-ban-goc.aspx?ItemID=176985",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Trang chi tiết không khớp số hiệu",
-    "lastAttempt": "2026-09-12T05:38:50.584527+00:00"
+    "recheck": false
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -28,9 +24,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=205092&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T05:45:38.336758+00:00"
+    "recheck": false
   },
   {
     "code": "08/2026/TT-BYT",
@@ -40,9 +34,7 @@
     "url": "https://kcb.vn/van-ban/thong-tu-so-08-2026-tt-byt-huong-dan-ve-giam-dinh-tu-phap-trong-linh-vuc-chuyen-mon-thuoc-tham-quyen-quan-ly-cua-bo-y-te.html?categoryId=101795516",
     "origin": "discovery",
     "recheck": false,
-    "mota": "Thông tư số 08/2026/TT-BYT Hướng dẫn về giám định tư pháp trong lĩnh vực chuyên môn thuộc thẩm quyền quản lý của Bộ Y tế",
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "mota": "Thông tư số 08/2026/TT-BYT Hướng dẫn về giám định tư pháp trong lĩnh vực chuyên môn thuộc thẩm quyền quản lý của Bộ Y tế"
   },
   {
     "code": "100/2015/QH13",
@@ -51,9 +43,7 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=183216&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T05:50:37.433321+00:00"
+    "recheck": false
   },
   {
     "code": "105/2016/QH13",
@@ -62,9 +52,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=184569&pageid=27160&typegroupid=3",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T06:06:09.210239+00:00"
+    "recheck": false
   },
   {
     "code": "105/2025/NĐ-CP",
@@ -74,9 +62,7 @@
     "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
     "origin": "discovery",
     "recheck": false,
-    "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c"
   },
   {
     "code": "106/2025/NĐ-CP",
@@ -86,25 +72,7 @@
     "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
     "origin": "discovery",
     "recheck": false,
-    "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
-  },
-  {
-    "code": "110/2026/TT-BCA",
-    "mota": "Thông tư 110/2026/TT-BCA Thông tư quy định chi tiết Chương trình đào tạo, huấn luyện an ninh hàng không dân dụng Việt Nam",
-    "url": "https://vanban.bocongan.gov.vn/co-so-du-lieu-van-ban/thong-tu-quy-dinh-chi-tiet-chuong-trinh-dao-tao-huan-luyen-an-ninh-hang-khong-dan-dung-viet-nam-1788510662",
-    "origin": "discovery",
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
-  },
-  {
-    "code": "117/2026/TT-BCA",
-    "mota": "Thông tư 117/2026/TT-BCA Thông tư quy định chi tiết quy trình thu thập, cập nhật, điều chỉnh, tra cứu, khai thác, sử dụng, kết nối, chia sẻ, kiểm tra, phúc tra, giám sát và bảo đảm an ninh mạng, bảo vệ dữ liệu đối với thông tin trong Cơ sở dữ liệu quốc gia về dân cư, Cơ sở dữ liệu căn cước",
-    "url": "https://vanban.bocongan.gov.vn/co-so-du-lieu-van-ban/thong-tu-quy-dinh-chi-tiet-quy-trinh-thu-thap-cap-nhat-dieu-chinh-tra-cuu-khai-thac-su-dung-ket-noi-chia-se-kiem-tra-phuc-tra-giam-sat-va-bao-dam-an-ninh-mang-bao-ve-du-lieu-doi-voi-thong-tin-trong-co-so-du-lieu-quoc-gia-ve-dan-cu-co-so-du-lieu-can-cuoc-1784261498",
-    "origin": "discovery",
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c"
   },
   {
     "code": "13/2025/TT-BYT",
@@ -113,9 +81,7 @@
     "tier": 1,
     "url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=178219",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T06:13:40.827657+00:00"
+    "recheck": false
   },
   {
     "code": "148/2025/NĐ-CP",
@@ -124,9 +90,7 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T06:16:47.998961+00:00"
+    "recheck": false
   },
   {
     "code": "15/2023/QH15",
@@ -135,25 +99,7 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?docid=207396&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Trang chi tiết không khớp số hiệu",
-    "lastAttempt": "2026-09-12T06:21:09.366371+00:00"
-  },
-  {
-    "code": "150/2026/TT-BCA",
-    "mota": "Thông tư 150/2026/TT-BCA Thông tư quy định Danh mục phương tiện, thiết bị kỹ thuật nghiệp vụ để phát hiện vi phạm hành chính phải kiểm định, hiệu chuẩn, thử nghiệm, so sánh trước khi đưa vào sử dụng trong Công an nhân dân",
-    "url": "https://vanban.bocongan.gov.vn/co-so-du-lieu-van-ban/thong-tu-quy-dinh-danh-muc-phuong-tien-thiet-bi-ky-thuat-nghiep-vu-de-phat-hien-vi-pham-hanh-chinh-phai-kiem-dinh-hieu-chuan-thu-nghiem-so-sanh-truoc-khi-dua-vao-su-dung-trong-cong-an-nhan-dan-1788505841",
-    "origin": "discovery",
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
-  },
-  {
-    "code": "152/2015/TT-BTC",
-    "mota": "Sửa đổi, bổ sung một số điều của Thông tư số 152/2015/TT-BTC ngày 02 tháng 10 năm 2015 của Bộ trưởng Bộ Tài chính hướng dẫn về thuế tài nguyên được sửa đổi, bổ sung bởi Thông tư số 41/2024/TT-BТС",
-    "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219437",
-    "origin": "discovery",
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "recheck": false
   },
   {
     "code": "16/2012/QH13",
@@ -162,9 +108,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=163008&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-12T06:29:43.297632+00:00"
+    "recheck": false
   },
   {
     "code": "16/2018/TT-BYT",
@@ -173,9 +117,7 @@
     "tier": 1,
     "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-16-2018-tt-byt-27152.htm",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-12T06:33:06.350525+00:00"
+    "recheck": false
   },
   {
     "code": "163/2025/NĐ-CP",
@@ -184,25 +126,19 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214322&pageid=27160&typegroupid=4",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T07:12:00.386304+00:00"
+    "recheck": false
   },
   {
     "code": "169/2025/NĐ-CP",
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
     "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
-    "origin": "discovery",
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "origin": "discovery"
   },
   {
     "code": "174/2026/NĐ-CP",
     "mota": "Công an TP Đà Nẵng: Doanh nghiệp, hộ kinh doanh cần chủ động Thực hiện nghị định 174/2026/NĐ-CP để hạn chế rủi ro pháp lý trên môi trường số",
     "url": "https://bocongan.gov.vn/chinh-sach-phap-luat/bai-viet/doanh-nghiep-ho-kinh-doanh-can-chu-dong-thuc-hien-nghi-dinh-174-2026-nd-cp-1789028385",
-    "origin": "discovery",
-    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "origin": "discovery"
   },
   {
     "code": "18/2026/TT-BYT",
@@ -211,9 +147,7 @@
     "tier": 1,
     "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-18-2026-tt-byt-469674/65587.htm",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-12T07:24:02.248207+00:00"
+    "recheck": false
   },
   {
     "code": "19/2023/QH15",
@@ -222,9 +156,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=208363&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-12T07:31:07.669884+00:00"
+    "recheck": false
   },
   {
     "code": "20/2021/TT-BYT",
@@ -233,9 +165,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=204797&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T07:37:54.930324+00:00"
+    "recheck": false
   },
   {
     "code": "23/2024/TT-BYT",
@@ -244,9 +174,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=211508&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T07:47:47.439124+00:00"
+    "recheck": false
   },
   {
     "code": "254/2026/NĐ-CP",
@@ -255,9 +183,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=218689&pageid=27160&typegroupid=4",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T07:54:45.302010+00:00"
+    "recheck": false
   },
   {
     "code": "26/2025/TT-BYT",
@@ -266,17 +192,13 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214386&pageid=27160&typegroupid=6",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T08:05:54.599582+00:00"
+    "recheck": false
   },
   {
     "code": "282/2025/NĐ-CP",
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
     "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=219411",
-    "origin": "discovery",
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "origin": "discovery"
   },
   {
     "code": "32/2023/TT-BYT",
@@ -285,17 +207,14 @@
     "tier": 2,
     "url": "https://vbpl.vn/TW/Pages/vbpq-thuoctinh.aspx?ItemID=167907",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T08:09:09.016981+00:00"
+    "recheck": false
   },
   {
     "code": "327/2026/NĐ-CP",
-    "mota": "Nghị định số 327/2026/NĐ-CP: Tăng cường phòng ngừa, xử lý thông tin vi phạm và bảo đảm an ninh mạng toàn diện",
-    "url": "https://bocongan.gov.vn/chinh-sach-phap-luat/bai-viet/nghi-dinh-so-327-2026-nd-cp-tang-cuong-phong-ngua-xu-ly-thong-tin-vi-pham-va-bao-dam-an-ninh-mang-toan-dien-1788941316",
+    "mota": "Nghị định số 327/2026/NĐ-CP về phòng ngừa, xử lý thông tin vi phạm và bảo đảm an ninh mạng",
+    "url": "",
     "origin": "discovery",
-    "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "recheck": false
   },
   {
     "code": "33/2025/TT-BYT",
@@ -304,9 +223,7 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214427&orggroupid=4&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T08:14:38.304784+00:00"
+    "recheck": false
   },
   {
     "code": "342/2025/NĐ-CP",
@@ -315,9 +232,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=216403&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T08:20:11.407874+00:00"
+    "recheck": false
   },
   {
     "code": "35/2024/TT-BYT",
@@ -326,9 +241,7 @@
     "tier": 2,
     "url": "https://vbpl.vn/TW/Pages/vbpq-thuoctinh.aspx?ItemID=171711",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T10:51:14.394319+00:00"
+    "recheck": false
   },
   {
     "code": "356/2025/NĐ-CP",
@@ -337,9 +250,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=216387&pageid=27160&typegroupid=4",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T14:10:48.805705+00:00"
+    "recheck": false
   },
   {
     "code": "38/2024/TT-BYT",
@@ -348,9 +259,7 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?docid=211878&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T17:13:28.408916+00:00"
+    "recheck": false
   },
   {
     "code": "41/2024/QH15",
@@ -359,9 +268,7 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?docid=211199&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-12T19:25:38.623218+00:00"
+    "recheck": false
   },
   {
     "code": "43/2018/TT-BYT",
@@ -370,9 +277,7 @@
     "tier": 2,
     "url": "https://vbpl.vn/tw/Pages/vbpq-toanvan.aspx?ItemID=137205&Keyword=&dvid=13",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T22:20:55.121948+00:00"
+    "recheck": false
   },
   {
     "code": "45/2019/QH14",
@@ -381,9 +286,7 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=198540&pageid=27160&typegroupid=3",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-13T01:03:19.209422+00:00"
+    "recheck": false
   },
   {
     "code": "55/2024/QH15",
@@ -392,9 +295,7 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=212483&orggroupid=1&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-13T06:14:04.623953+00:00"
+    "recheck": false
   },
   {
     "code": "59/2020/QH14",
@@ -403,9 +304,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=200447&pageid=27160&typegroupid=3",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-13T11:59:07.082963+00:00"
+    "recheck": false
   },
   {
     "code": "61/2020/QH14",
@@ -414,9 +313,7 @@
     "tier": 3,
     "url": "https://vanban.chinhphu.vn/?docid=200449&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-13T16:21:07.408149+00:00"
+    "recheck": false
   },
   {
     "code": "72/2020/QH14",
@@ -425,9 +322,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=202613&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-13T19:29:28.232709+00:00"
+    "recheck": false
   },
   {
     "code": "84/2015/QH13",
@@ -436,9 +331,7 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?docid=180606&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-13T22:26:40.060077+00:00"
+    "recheck": false
   },
   {
     "code": "87/2026/NĐ-CP",
@@ -447,9 +340,7 @@
     "tier": 2,
     "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359/64268.htm",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "AI HTTP 404",
-    "lastAttempt": "2026-09-14T01:09:08.848613+00:00"
+    "recheck": false
   },
   {
     "code": "90/2026/NĐ-CP",
@@ -458,9 +349,7 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=217386&pageid=27160&typegroupid=4",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T06:21:29.934617+00:00"
+    "recheck": false
   },
   {
     "code": "91/2025/QH15",
@@ -469,9 +358,7 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214590&orggroupid=1&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T14:07:26.110473+00:00"
+    "recheck": false
   },
   {
     "code": "96/2016/NĐ-CP",
@@ -480,9 +367,7 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?docid=185935&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-12T05:20:39.825816+00:00"
+    "recheck": false
   },
   {
     "code": "96/2023/NĐ-CP",
@@ -491,9 +376,7 @@
     "tier": 1,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=209491&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T19:24:59.199307+00:00"
+    "recheck": false
   },
   {
     "code": "98/2021/NĐ-CP",
@@ -502,8 +385,6 @@
     "tier": 2,
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=204442&pageid=27160",
     "origin": "catalog",
-    "recheck": false,
-    "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
-    "lastAttempt": "2026-09-14T23:09:47.805776+00:00"
+    "recheck": false
   }
 ]

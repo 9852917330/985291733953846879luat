@@ -342,7 +342,7 @@ nav.side .tog{display:none}nav.side .nb{flex:0 0 72px;width:72px;display:flex;fl
     <p class="statusline" id="syncStatus" role="status" aria-live="polite">Đang đồng bộ dữ liệu pháp lý mới nhất…</p>
     <div class="hnav">
       <button class="hbtn" data-open="actions"><span class="bi" style="background:#10B981"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>Việc cần làm</button>
-      <button class="hbtn" data-open="risks"><span class="bi" style="background:#DC2626"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>Điểm dễ vỡ</button>
+      <button class="hbtn" data-open="risks"><span class="bi" style="background:#DC2626"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>Rủi ro</button>
       <button class="hbtn" data-open="sources"><span class="bi" style="background:#0EA5E9"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span>Nguồn chính thống</button>
     </div>
   </div>
@@ -1189,7 +1189,7 @@ const ACTIONS = [
  who:"Giám đốc điều hành phối hợp kế toán trưởng và bộ phận pháp chế."}
 ];
 
-/* ---- ĐIỂM DỄ VỠ ---- */
+/* ---- RỦI RO ---- */
 const RISKS = [
  ["Làm kỹ thuật ngoài phạm vi chuyên môn được duyệt","kcb","Gốc rễ của phần lớn vụ đình chỉ. Thường bắt đầu từ một bác sĩ giỏi làm thêm một kỹ thuật mà bệnh viện chưa xin bổ sung."],
  ["Thiếu giấy chứng nhận đủ điều kiện an ninh trật tự","antt","Giấy này do công an cấp, độc lập với giấy phép của Sở Y tế, và rất hay bị bỏ sót vì tưởng giấy phép hoạt động là đủ. Nghị định 58/2026 vừa mở rộng phạm vi từ 15/3/2026."],
@@ -1342,6 +1342,16 @@ DOCS.forEach(d=>{
 });
 
 const maGoc = code => (String(code).match(/\d{1,4}\/20\d{2}\/[A-ZĐ0-9-]+/g) || []);
+
+/* Nhãn thời gian máy ghi theo chuẩn quốc tế, đọc khó. Đổi sang giờ Việt Nam. */
+function ngayVN(iso){
+  try{
+    const t = new Date(iso); if(isNaN(t)) return "";
+    const v = new Date(t.getTime() + 7*3600*1000);
+    const p = n => String(n).padStart(2,"0");
+    return `${p(v.getUTCDate())}/${p(v.getUTCMonth()+1)}/${v.getUTCFullYear()}`;
+  }catch(e){ return ""; }
+}
 const OFFICIAL_HOSTS = [
   "vanban.chinhphu.vn","congbao.chinhphu.vn","datafiles.chinhphu.vn","xaydungchinhsach.chinhphu.vn","baochinhphu.vn",
   "vbpl.vn","moh.gov.vn","adminmoh.moh.gov.vn","kcb.vn","imda.moh.gov.vn","benhandientu.moh.gov.vn","bocongan.gov.vn","dangkykinhdoanh.gov.vn"
@@ -1389,9 +1399,55 @@ function officialSourcesFor(d){
 function officialSourceFor(d){ return officialSourcesFor(d)[0] || ""; }
 
 let AUTO = [];
+/* Gộp thẻ viết tay với dữ liệu máy quét.
+
+   Bản trước cho thẻ tự động THAY THẾ thẳng thẻ viết tay cùng số hiệu. Thẻ viết
+   tay được soạn từ việc đọc kỹ toàn văn nên thường đầy đủ hơn hẳn, nên mỗi lần
+   máy quét chạm tới một văn bản đã có thẻ tay là nội dung công phu bị ghi đè
+   bằng bản máy mỏng hơn — mất thông tin mà không ai biết.
+
+   Nguyên tắc mới: thẻ viết tay là nền, dữ liệu máy chỉ BỒI THÊM. Máy đóng góp
+   thứ nó làm tốt hơn người: tình trạng hiệu lực mới nhất, quan hệ thay thế và
+   sửa đổi, trích dẫn nguyên văn kèm số điều, ngày đối chiếu gần nhất. Không có
+   trường nào của thẻ tay bị xóa. */
+function hopNhat(tay, may){
+  const coHieuLuc = may.eff && !/chưa xác định/i.test(may.eff);
+  return {
+    ...tay,
+    eff: coHieuLuc ? may.eff : tay.eff,
+    essence: (tay.essence||"").length >= (may.essence||"").length ? tay.essence : may.essence,
+    duties: (tay.duties||[]).length ? tay.duties : (may.duties||[]),
+    risks:  (tay.risks ||[]).length ? tay.risks  : (may.risks ||[]),
+    fine:     tay.fine     || may.fine     || "",
+    fineNote: tay.fineNote || may.fineNote || "",
+    claims:   may.claims   || [],
+    steps:    may.steps    || [],
+    cautions: may.cautions || [],
+    thayThe:  may.thayThe  || [],
+    suaDoi:   may.suaDoi   || [],
+    checkedAt: may.checkedAt || "",
+    stale: !!may.stale,
+    sourcePage: may.sourcePage || "",
+    sourceFile: may.sourceFile || "",
+    doiChieu: true
+  };
+}
+
 function allDocs(){
-  const autoCodes = new Set(AUTO.flatMap(v=>maGoc(v.code)));
-  return DOCS.filter(d=>!maGoc(d.code).some(c=>autoCodes.has(c))).concat(AUTO);
+  const may = new Map();
+  AUTO.forEach(v => maGoc(v.code).forEach(c => may.set(c, v)));
+
+  const daDung = new Set();
+  const ra = DOCS.map(d => {
+    const m = maGoc(d.code).map(c => may.get(c)).find(Boolean);
+    if(!m) return d;
+    maGoc(d.code).forEach(c => daDung.add(c));
+    maGoc(m.code).forEach(c => daDung.add(c));
+    return hopNhat(d, m);
+  });
+
+  /* Văn bản máy tìm được mà bảng chưa có thẻ nào: đứng riêng thành thẻ mới. */
+  return ra.concat(AUTO.filter(v => !maGoc(v.code).some(c => daDung.has(c))));
 }
 let SNAPSHOT = null;
 const safeUrl = u => {try{const p=new URL(u);return p.protocol==="https:"?esc(p.href):"#";}catch{return "#";}};
@@ -1430,6 +1486,7 @@ async function napTuDong(){
              
              .map(v => ({
       claims:v.claims||[], steps:v.steps||[], unknowns:v.unknowns||[], checkedAt:v.checkedAt, sourceFile:v.sourceFile, sourcePage:v.sourcePage,
+      cautions: Array.isArray(v.cautions) ? v.cautions : [], stale: !!v.stale,
       id: "auto-" + v.code.replace(/[^0-9A-Za-z]/g,""),
       cat: v.cat,
       tier: [1,2,3].includes(v.tier) ? v.tier : 2,
@@ -1574,7 +1631,7 @@ function closeModal(){
 }
 
 function closeCurrentModal(){
-  // Nếu đang xem chi tiết văn bản được mở từ “Việc cần làm” hoặc “Điểm dễ vỡ”,
+  // Nếu đang xem chi tiết văn bản được mở từ “Việc cần làm” hoặc “Rủi ro”,
   // nút X chỉ đóng lớp chi tiết và quay về đúng danh sách trước đó.
   if(currentModalView && currentModalView.type === "doc" && modalHistory.length){
     for(let i = modalHistory.length - 1; i >= 0; i--){
@@ -1632,10 +1689,11 @@ function openDoc(id, keepHistory=false, scrollTop=0){
             : `<b>Văn bản này đã được sửa đổi, bổ sung.</b> Văn bản sửa đổi là <b>${esc(q.boi)}</b>; phần sửa đổi được ưu tiên áp dụng theo văn bản mới.`}
           <br><button data-goto="${q.id}">Mở văn bản mới: ${esc(q.ten||q.boi)}</button>
         </div>`; })()}
-     ${d.auto?'<div class="callout" data-t="3">Đã đối chiếu toàn văn từ nguồn chính thức và kiểm tra lại từng trích dẫn trước khi xuất bản.</div>':''}
-     ${d.auto?`<h4>Căn cứ theo từng nhận định</h4>${d.claims.map(x=>`<div class="evidence"><b>${esc(x.article)} · ${esc(x.kind==='fine'?'Mức phạt':x.kind==='effective'?'Hiệu lực':'Nội dung áp dụng')}</b><p>${esc(x.text)}</p>${x.subject?`<p>Đối tượng: ${esc(x.subject)} · Hành vi: ${esc(x.behavior)} · Điều kiện: ${esc(x.conditions)}</p>`:''}<blockquote>${esc(x.quote)}</blockquote></div>`).join('')}
-     ${officialSourceFor(d)?`<a href="${safeUrl(officialSourceFor(d))}" target="_blank" rel="noopener">Mở bản gốc chính thức</a>`:''}<p>Cập nhật: ${esc(d.checkedAt||'')}</p>
-     <h4>Khuyến nghị vận hành</h4>${d.steps.map(x=>`<div class="evidence"><b>${esc(x.action)}</b><p>Phụ trách: ${esc(x.owner)}</p><p>Hồ sơ cần lưu: ${esc(x.evidence)}</p><p>Khi nào: ${esc(x.when)}</p></div>`).join('')}` : ''}
+     ${(d.auto||d.doiChieu)?`<div class="callout" data-t="3">Đã đối chiếu với toàn văn từ nguồn chính thức và kiểm tra lại từng trích dẫn bằng máy${d.checkedAt?`, lần gần nhất ${esc(ngayVN(d.checkedAt))}`:""}.</div>`:''}
+     ${d.stale?'<div class="callout" data-t="2"><b>Đã quá 45 ngày chưa đối chiếu lại được với bản gốc.</b> Nội dung vẫn giữ nguyên để không bỏ sót, nhưng nên mở nguồn chính thức xác nhận trước khi dùng làm căn cứ.</div>':''}
+     ${(d.cautions&&d.cautions.length)?`<div class="callout" data-t="2"><b>Điểm máy chưa tự xác nhận được (${d.cautions.length}):</b><ul style="margin:6px 0 0;padding-left:18px">${d.cautions.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:''}
+     ${(d.claims&&d.claims.length)?`<h4>Căn cứ theo từng nhận định</h4>${d.claims.map(x=>`<div class="evidence"><b>${esc(x.article)} · ${esc(x.kind==='fine'?'Mức phạt':x.kind==='effective'?'Hiệu lực':x.kind==='relation'?'Quan hệ văn bản':'Nội dung áp dụng')}</b><p>${esc(x.text)}</p>${x.subject?`<p>Đối tượng: ${esc(x.subject)} · Hành vi: ${esc(x.behavior)} · Điều kiện: ${esc(x.conditions)}</p>`:''}<blockquote>${esc(x.quote)}</blockquote></div>`).join('')}`:''}
+     ${(d.steps&&d.steps.length)?`<h4>Khuyến nghị vận hành</h4>${d.steps.map(x=>`<div class="evidence"><b>${esc(x.action)}</b><p>Phụ trách: ${esc(x.owner)}</p><p>Hồ sơ cần lưu: ${esc(x.evidence)}</p><p>Khi nào: ${esc(x.when)}</p></div>`).join('')}`:''}
      ${d.fine?`<div class="fine"><span class="fi">${svg(I.risk,20)}</span><div><div class="n">${esc(d.fine)}</div><div class="l">${esc(d.fineNote||"")}</div></div></div>`:""}
      <h4>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',15)} Bản chất</h4>
      <p>${esc(d.essence)}</p>
@@ -1661,18 +1719,28 @@ function openDoc(id, keepHistory=false, scrollTop=0){
 
 function openActions(keepHistory=false, scrollTop=0){
   if(!keepHistory) modalHistory = [];
+  /* Gộp cả khuyến nghị có cấu trúc của máy lẫn việc phải làm viết tay.
+     Bản trước: hễ có khuyến nghị của máy là BỎ HẲN danh sách viết tay. Từ khi
+     thẻ viết tay được máy đối chiếu bổ sung, luật nào cũng có khuyến nghị máy,
+     nên 5 việc soạn tay có thể bị thay bằng 1 dòng máy — mất việc phải làm mà
+     không ai nhận ra. Giờ hiển thị cả hai, chỉ bỏ dòng trùng chữ. */
   const items = allDocs().flatMap(d => {
-    const steps = Array.isArray(d.steps) ? d.steps.filter(x=>x && x.action) : [];
-    if(steps.length){
-      return steps.map((x,i)=>({
+    const steps = (Array.isArray(d.steps) ? d.steps : []).filter(x=>x && x.action);
+    const daCo = new Set(steps.map(x=>String(x.action).trim().toLowerCase()));
+    const duties = (d.duties||[]).filter(Boolean)
+      .filter(x=>!daCo.has(String(x).trim().toLowerCase()));
+
+    const chung = { id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier };
+    return [
+      ...steps.map((x,i)=>({
         action:x.action, owner:x.owner||"", evidence:x.evidence||"", when:x.when||"",
-        id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i, structured:true
-      }));
-    }
-    return (d.duties||[]).filter(Boolean).map((action,i)=>({
-      action, owner:"", evidence:"", when:"",
-      id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i, structured:false
-    }));
+        ...chung, n:i, structured:true
+      })),
+      ...duties.map((action,i)=>({
+        action, owner:"", evidence:"", when:"",
+        ...chung, n:steps.length+i, structured:false
+      }))
+    ];
   }).sort((a,b)=>a.tier-b.tier || (CAT_ORDER[a.cat]??999)-(CAT_ORDER[b.cat]??999) || a.code.localeCompare(b.code));
 
   openModal("var(--brand)", I.act, "Việc cần làm",
@@ -1697,7 +1765,7 @@ function openRisks(keepHistory=false, scrollTop=0){
   const items = allDocs().flatMap(d => (d.risks||[]).map((text,i)=>({
     text, id:d.id, code:d.code, title:d.title, cat:d.cat, tier:d.tier, n:i
   }))).sort((a,b)=>a.tier-b.tier || (CAT_ORDER[a.cat]??999)-(CAT_ORDER[b.cat]??999) || a.code.localeCompare(b.code));
-  openModal("var(--t1)", I.risk, "Điểm dễ vỡ",
+  openModal("var(--t1)", I.risk, "Rủi ro",
     `<span style="font-size:12.5px;color:var(--ink3)">${items.length} rủi ro có căn cứ từ các văn bản đã kiểm định</span>`,
     items.length ? `<div class="rows">${items.map((r,i)=>{const c=CAT(r.cat);
       return `<button class="rowc" data-goto="${r.id}" style="--nc:${c.c}">
