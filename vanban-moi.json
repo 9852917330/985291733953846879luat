@@ -649,5 +649,85 @@
     "url": "https://vanban.chinhphu.vn/?docid=163008&pageid=27160",
     "stale": false,
     "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
+    "code": "87/2026/NĐ-CP",
+    "title": "Xử phạt vi phạm hành chính trong lĩnh vực văn hóa và quảng cáo đối với bệnh viện thẩm mỹ tư nhân",
+    "cat": "qc",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-16T00:22:32.255620+00:00",
+    "sourcePage": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359/64268.htm",
+    "sourceFile": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/23/469359-1776912733_v1_1776913093_signed.pdf",
+    "sourceHash": "89d3ba1f60b2e1382173c0e3a995b68725c797f7b476bd0906b6e7f06554ce2a",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "effective",
+        "text": "Nghị định này có hiệu lực thi hành từ ngày 15 tháng 5 năm 2026.",
+        "article": "Điều 93 khoản 1",
+        "quote": "Nghị định này có hiệu lực thi hành từ ngày 15 tháng 5 năm 2026."
+      },
+      {
+        "kind": "essence",
+        "text": "Mức phạt tiền tối đa đối với một hành vi vi phạm hành chính trong lĩnh vực văn hóa là 50.000.000 đồng đối với cá nhân và 100.000.000 đồng đối với tổ chức. Mức phạt tiền tối đa đối với một hành vi vi phạm hành chính trong lĩnh vực quảng cáo là 100.000.000 đồng đối với cá nhân và 200.000.000 đồng đối với tổ chức.",
+        "article": "Điều 6 khoản 1",
+        "quote": "Mức phạt tiền tối đa đối với một hành vi vi phạm hành chính trong lĩnh vực văn hóa là 50.000.000 đồng đối với cá nhân và 100.000.000 đồng đối với tổ chức. Mức phạt tiền tối đa đối với một hành vi vi phạm hành chính trong lĩnh vực quảng cáo là 100.000.000 đồng đối với cá nhân và 200.000.000 đồng đối với tổ chức."
+      },
+      {
+        "kind": "essence",
+        "text": "Đối với cùng một hành vi vi phạm hành chính mức phạt tiền đối với tổ chức gấp 02 lần mức phạt tiền đối với cá nhân.",
+        "article": "Điều 6 khoản 3",
+        "quote": "Đối với cùng một hành vi vi phạm hành chính mức phạt tiền đối với tổ chức gấp 02 lần mức phạt tiền đối với cá nhân."
+      },
+      {
+        "kind": "essence",
+        "text": "Thời hiệu xử phạt vi phạm hành chính trong lĩnh vực văn hóa và quảng cáo là 01 năm.",
+        "article": "Điều 4 khoản 1",
+        "quote": "Thời hiệu xử phạt vi phạm hành chính trong lĩnh vực văn hóa và quảng cáo là 01 năm."
+      }
+    ],
+    "steps": [
+      {
+        "action": "Tuân thủ các quy định về hoạt động quảng cáo và văn hóa theo Nghị định 87/2026/NĐ-CP, đặc biệt khi thực hiện các hoạt động quảng cáo dịch vụ khám bệnh, chữa bệnh.",
+        "owner": "Ban Giám đốc Bệnh viện thẩm mỹ tư nhân",
+        "evidence": "Hồ sơ tuân thủ pháp luật quảng cáo, giấy xác nhận nội dung quảng cáo",
+        "when": "Thường xuyên từ ngày 15/05/2026"
+      },
+      {
+        "action": "Rà soát lại toàn bộ biển hiệu, nội dung quảng cáo trên môi trường mạng và các ấn phẩm truyền thông để đảm bảo không vi phạm các quy định pháp luật về quảng cáo và y tế.",
+        "owner": "Bộ phận Marketing và Pháp chế Bệnh viện",
+        "evidence": "Báo cáo rà soát, biên bản kiểm tra nội bộ",
+        "when": "Trước ngày 15/05/2026"
+      }
+    ],
+    "cautions": [
+      "Mức phạt tiền cụ thể cho từng hành vi vi phạm cụ thể của bệnh viện thẩm mỹ tư nhân về quảng cáo y tế do phần giữa của nghị định bị cắt bớt trong văn bản cung cấp.",
+      "Chưa trích được việc phải làm có căn cứ trực tiếp trong toàn văn",
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn",
+      "Sai tiêu đề và phạm vi: Bản tóm tắt giới hạn tiêu đề là 'đối với bệnh viện thẩm mỹ tư nhân' trong khi toàn văn Nghị định 87/2026/NĐ-CP quy định chung về xử phạt vi phạm hành chính trong lĩnh vực văn hóa và quảng cáo cho mọi đối tượng.",
+      "Quan hệ thay thế và sửa đổi ghi sai: Bản tóm tắt liệt kê Nghị định 129/2021/NĐ-CP vào mục 'amends' (sửa đổi), trong khi theo Điều 93 khoản 2 điểm b, Điều 4 của Nghị định 129/2021/NĐ-CP thực tế bị HẾT HIỆU LỰC (nằm trong mục thay thế/bãi bỏ), và Nghị định 128/2022/NĐ-CP cũng bị hết hiệu lực chứ không phải chỉ thay thế thông thường theo danh sách tách biệt mà thực tế là bị bãi bỏ cùng Nghị định 38/2021/NĐ-CP.",
+      "Bỏ sót điều kiện hoặc điều khoản chuyển tiếp và các nội dung quan trọng khác của văn bản."
+    ],
+    "tinCay": "vua",
+    "essence": "Mức phạt tiền tối đa đối với một hành vi vi phạm hành chính trong lĩnh vực văn hóa là 50.000.000 đồng đối với cá nhân và 100.000.000 đồng đối với tổ chức. Mức phạt tiền tối đa đối với một hành vi vi phạm hành chính trong lĩnh vực quảng cáo là 100.000.000 đồng đối với cá nhân và 200.000.000 đồng đối với tổ chức. (Điều 6 khoản 1) Đối với cùng một hành vi vi phạm hành chính mức phạt tiền đối với tổ chức gấp 02 lần mức phạt tiền đối với cá nhân. (Điều 6 khoản 3) Thời hiệu xử phạt vi phạm hành chính trong lĩnh vực văn hóa và quảng cáo là 01 năm. (Điều 4 khoản 1)",
+    "duties": [],
+    "risks": [],
+    "eff": "Có hiệu lực · 15/05/2026",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [
+      "38/2021/NĐ-CP",
+      "128/2022/NĐ-CP"
+    ],
+    "suaDoi": [
+      "129/2021/NĐ-CP"
+    ],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359/64268.htm",
+    "stale": false,
+    "ageDays": 0
   }
 ]

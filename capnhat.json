@@ -1,10 +1,10 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-15T21:24:07.482179+00:00",
+  "checkedAt": "2026-09-16T00:22:32.255620+00:00",
   "ngay": "16/09/2026",
-  "gio": "04:24 16/09/2026",
+  "gio": "07:22 16/09/2026",
   "status": "degraded",
-  "published": 8,
+  "published": 9,
   "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
@@ -23,9 +23,9 @@
   ],
   "processed": 8,
   "publishedNow": 1,
-  "pending": 40,
+  "pending": 39,
   "catalogTotal": 40,
-  "catalogDone": 8,
+  "catalogDone": 9,
   "catalogBlocked": [
     {
       "code": "06/2025/TT-BTNMT",
@@ -101,11 +101,11 @@
     },
     {
       "code": "45/2019/QH14",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 2988 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3157 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "59/2020/QH14",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3002 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3171 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     }
   ],
   "quotaExhausted": false,
