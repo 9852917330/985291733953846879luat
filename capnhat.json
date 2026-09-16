@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-16T06:03:42.508346+00:00",
+  "checkedAt": "2026-09-16T11:37:07.451177+00:00",
   "ngay": "16/09/2026",
-  "gio": "13:03 16/09/2026",
+  "gio": "18:37 16/09/2026",
   "status": "degraded",
   "published": 9,
   "sourcesOk": 6,
@@ -44,16 +44,24 @@
       "reason": "Chưa lấy được toàn văn — trang chi tiết 3140 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
+      "code": "105/2025/NĐ-CP",
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4448 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+    },
+    {
+      "code": "106/2025/NĐ-CP",
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+    },
+    {
       "code": "13/2025/TT-BYT",
       "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "148/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4369 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4261 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "163/2025/NĐ-CP",
@@ -65,11 +73,11 @@
     },
     {
       "code": "19/2023/QH15",
-      "reason": "Không có nhận định nào đối chiếu được với toàn văn"
+      "reason": "Trang chi tiết không đúng số hiệu"
     },
     {
       "code": "20/2021/TT-BYT",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4407 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4351 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "254/2026/NĐ-CP",
@@ -98,14 +106,6 @@
     {
       "code": "43/2018/TT-BYT",
       "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
-    },
-    {
-      "code": "45/2019/QH14",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3157 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
-    },
-    {
-      "code": "59/2020/QH14",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3171 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     }
   ],
   "quotaExhausted": false,
