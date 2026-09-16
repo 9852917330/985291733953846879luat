@@ -8,7 +8,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-16T00:22:32.255620+00:00"
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -213,7 +213,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 4690 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "282/2025/NĐ-CP",
@@ -232,7 +232,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "327/2026/NĐ-CP",
@@ -251,8 +251,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=216403&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4355 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
+    "reason": "Trang chi tiết không đúng số hiệu",
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "35/2024/TT-BYT",
@@ -263,7 +263,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "356/2025/NĐ-CP",
@@ -274,7 +274,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 4489 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "38/2024/TT-BYT",
@@ -284,8 +284,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=211878&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4521 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4465 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "43/2018/TT-BYT",
@@ -296,7 +296,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-15T21:24:07.482179+00:00"
+    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
   },
   {
     "code": "45/2019/QH14",
