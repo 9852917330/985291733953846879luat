@@ -1,11 +1,11 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-17T18:15:36.011270+00:00",
+  "checkedAt": "2026-09-17T21:28:00.954871+00:00",
   "ngay": "18/09/2026",
-  "gio": "01:15 18/09/2026",
+  "gio": "04:28 18/09/2026",
   "status": "degraded",
   "published": 9,
-  "sourcesOk": 5,
+  "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
     {
@@ -19,10 +19,6 @@
     {
       "nguon": "Cục Hạ tầng và Thiết bị y tế",
       "loi": "không kết nối được"
-    },
-    {
-      "nguon": "Cơ sở dữ liệu quốc gia về pháp luật",
-      "loi": "HTTP 403"
     }
   ],
   "processed": 8,
@@ -37,11 +33,11 @@
     },
     {
       "code": "08/2022/NĐ-CP",
-      "reason": "Trang chi tiết không đúng số hiệu"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4161 ký tự, 1 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "100/2015/QH13",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4067 ký tự, 1 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4021 ký tự, 1 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "105/2016/QH13",
@@ -65,11 +61,11 @@
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4205 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4037 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "163/2025/NĐ-CP",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3879 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "18/2026/TT-BYT",
@@ -77,15 +73,15 @@
     },
     {
       "code": "19/2023/QH15",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Kiểm định vòng 2 phát hiện lẫn sang văn bản khác (92/2015/QH13): Tiêu đề bản tóm tắt viết sai hoàn toàn tên và phạm vi của văn bản ('Luật Bảo vệ quyền lợi người tiêu dùng đối với hoạt động bệnh viện thẩm mỹ' trong khi toàn văn là 'Luật Bảo vệ quyền lợi người tiêu dùng').; Phần amends ghi nhầm số hiệu văn bản được sửa đổi (ghi 92/2015/QH13 là Bộ luật Tố tụng dân sự nhưng thực tế Điều 78 sửa đổi Bộ luật Tố tụng dân sự số 92/2015/QH13 đã được sửa đổi theo nhiều luật khác, trong khi phần amends lại liệt kê mã số không khớp với quan hệ sửa đổi thực tế)."
     },
     {
       "code": "20/2021/TT-BYT",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4351 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4183 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "254/2026/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4690 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4071 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "32/2023/TT-BYT",
