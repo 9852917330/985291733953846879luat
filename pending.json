@@ -8,7 +8,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -114,8 +114,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-16T11:37:07.451177+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4313 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "15/2023/QH15",
@@ -125,8 +125,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=207396&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-16T11:37:07.451177+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4205 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "150/2026/TT-BCA",
@@ -152,8 +152,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214322&pageid=27160&typegroupid=4",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4498 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-16T11:37:07.451177+00:00"
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "169/2025/NĐ-CP",
@@ -180,7 +180,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Không có nhận định nào đối chiếu được với toàn văn",
-    "lastAttempt": "2026-09-16T11:37:07.451177+00:00"
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "19/2023/QH15",
@@ -190,8 +190,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=208363&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Trang chi tiết không đúng số hiệu",
-    "lastAttempt": "2026-09-16T11:37:07.451177+00:00"
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "20/2021/TT-BYT",
@@ -202,7 +202,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 4351 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-16T11:37:07.451177+00:00"
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "254/2026/NĐ-CP",
@@ -213,7 +213,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 4690 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-16T16:58:05.766833+00:00"
+    "lastAttempt": "2026-09-17T01:27:11.286737+00:00"
   },
   {
     "code": "282/2025/NĐ-CP",
