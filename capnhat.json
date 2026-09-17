@@ -1,11 +1,11 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-17T13:29:41.025756+00:00",
-  "ngay": "17/09/2026",
-  "gio": "20:29 17/09/2026",
+  "checkedAt": "2026-09-17T18:15:36.011270+00:00",
+  "ngay": "18/09/2026",
+  "gio": "01:15 18/09/2026",
   "status": "degraded",
   "published": 9,
-  "sourcesOk": 6,
+  "sourcesOk": 5,
   "sourcesTotal": 9,
   "sourcesFailed": [
     {
@@ -19,6 +19,10 @@
     {
       "nguon": "Cục Hạ tầng và Thiết bị y tế",
       "loi": "không kết nối được"
+    },
+    {
+      "nguon": "Cơ sở dữ liệu quốc gia về pháp luật",
+      "loi": "HTTP 403"
     }
   ],
   "processed": 8,
@@ -49,7 +53,7 @@
     },
     {
       "code": "106/2025/NĐ-CP",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4262 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "13/2025/TT-BYT",
@@ -57,7 +61,7 @@
     },
     {
       "code": "148/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4313 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4145 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "15/2023/QH15",
