@@ -1,10 +1,10 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-18T11:17:44.929864+00:00",
+  "checkedAt": "2026-09-18T16:25:41.254666+00:00",
   "ngay": "18/09/2026",
-  "gio": "18:17 18/09/2026",
+  "gio": "23:25 18/09/2026",
   "status": "degraded",
-  "published": 9,
+  "published": 10,
   "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
@@ -22,10 +22,10 @@
     }
   ],
   "processed": 8,
-  "publishedNow": 0,
-  "pending": 39,
+  "publishedNow": 1,
+  "pending": 38,
   "catalogTotal": 40,
-  "catalogDone": 9,
+  "catalogDone": 10,
   "catalogBlocked": [
     {
       "code": "06/2025/TT-BTNMT",
@@ -45,7 +45,7 @@
     },
     {
       "code": "105/2025/NĐ-CP",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4097 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "106/2025/NĐ-CP",
@@ -61,27 +61,23 @@
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4037 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3854 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "163/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3879 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3889 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "18/2026/TT-BYT",
       "reason": "Không có nhận định nào đối chiếu được với toàn văn"
     },
     {
-      "code": "19/2023/QH15",
-      "reason": "Kiểm định vòng 2 phát hiện lẫn sang văn bản khác (92/2015/QH13): Tiêu đề bản tóm tắt viết sai hoàn toàn tên và phạm vi của văn bản ('Luật Bảo vệ quyền lợi người tiêu dùng đối với hoạt động bệnh viện thẩm mỹ' trong khi toàn văn là 'Luật Bảo vệ quyền lợi người tiêu dùng').; Phần amends ghi nhầm số hiệu văn bản được sửa đổi (ghi 92/2015/QH13 là Bộ luật Tố tụng dân sự nhưng thực tế Điều 78 sửa đổi Bộ luật Tố tụng dân sự số 92/2015/QH13 đã được sửa đổi theo nhiều luật khác, trong khi phần amends lại liệt kê mã số không khớp với quan hệ sửa đổi thực tế)."
-    },
-    {
       "code": "20/2021/TT-BYT",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4183 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4000 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "254/2026/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4071 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4081 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "32/2023/TT-BYT",
@@ -106,6 +102,10 @@
     {
       "code": "43/2018/TT-BYT",
       "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+    },
+    {
+      "code": "45/2019/QH14",
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3157 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     }
   ],
   "quotaExhausted": false,

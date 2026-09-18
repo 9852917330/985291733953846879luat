@@ -74,7 +74,7 @@
     "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
     "url": "https://vanban.chinhphu.vn/default.aspx?docid=99376&pageid=27160",
     "stale": false,
-    "ageDays": 2
+    "ageDays": 3
   },
   {
     "verificationVersion": 3,
@@ -156,6 +156,85 @@
     "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-16-2018-tt-byt-27152/23542.htm",
     "stale": false,
     "ageDays": 3
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
+    "code": "19/2023/QH15",
+    "title": "Tuân thủ Luật Bảo vệ quyền lợi người tiêu dùng tại bệnh viện thẩm mỹ tư nhân",
+    "cat": "kcb",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-09-18T16:25:41.254666+00:00",
+    "sourcePage": "https://vanban.chinhphu.vn/?docid=208363&pageid=27160",
+    "sourceFile": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2023/7/luat19_2023.pdf",
+    "sourceHash": "d9d8d76b585eaf81c5e59f51f2c309a7c1e3797ee2b165d4c2fd38d83ad50a19",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Người tiêu dùng được bảo đảm an toàn tính mạng, sức khỏe, tài sản và các quyền lợi hợp pháp khi sử dụng dịch vụ.",
+        "article": "Điều 4 khoản 1",
+        "quote": "Được bảo đảm an toàn tính mạng, sức khỏe, danh dự, nhân phẩm, uy tín, tài sản, bảo vệ thông tin, quyền, lợi ích hợp pháp khác khi tham gia giao dịch, sử dụng sản phẩm, hàng hóa, dịch vụ do tổ chức, cá nhân kinh doanh cung cấp."
+      },
+      {
+        "kind": "duty",
+        "text": "Bệnh viện phải ưu tiên tiếp nhận và xử lý yêu cầu bảo vệ quyền lợi khi khách hàng thuộc nhóm người tiêu dùng dễ bị tổn thương kèm theo chứng cứ chứng minh.",
+        "article": "Điều 8 khoản 2 điểm c",
+        "quote": "Khi người tiêu dùng dễ bị tổn thương có yêu cầu được bảo vệ kèm theo chứng cứ, tài liệu chứng minh mình là người tiêu dùng dễ bị tổn thương và về việc quyền lợi của mình bị xâm phạm, tổ chức, cá nhân kinh doanh phải ưu tiên tiếp nhận, xử lý và không chuyển yêu cầu của người tiêu dùng cho bên thứ ba giải quyết, trừ trường hợp bên thứ ba đó có nghĩa vụ liên quan."
+      },
+      {
+        "kind": "effective",
+        "text": "Luật Bảo vệ quyền lợi người tiêu dùng số 19/2023/QH15 có hiệu lực thi hành từ ngày 01 tháng 7 năm 2024.",
+        "article": "Điều 79 khoản 1",
+        "quote": "Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2024."
+      }
+    ],
+    "steps": [
+      {
+        "action": "Rà soát và cập nhật thông tin thu thập dữ liệu khách hàng, đảm bảo thông báo rõ mục đích, phạm vi, thời hạn lưu trữ và lấy sự đồng ý trước khi thu thập.",
+        "owner": "Bộ phận Chăm sóc khách hàng / Công nghệ thông tin",
+        "evidence": "Biểu mẫu thông báo và xác nhận đồng ý của khách hàng",
+        "when": "Trước khi thu thập thông tin khách hàng"
+      },
+      {
+        "action": "Thiết lập quy trình ưu tiên tiếp nhận, xử lý khiếu nại riêng cho khách hàng thuộc nhóm dễ bị tổn thương theo đúng quy định pháp luật.",
+        "owner": "Bộ phận Pháp chế / Chăm sóc khách hàng",
+        "evidence": "Sổ tiếp nhận khiếu nại và quy trình nội bộ",
+        "when": "Khi phát sinh yêu cầu bảo vệ quyền lợi từ khách hàng thuộc diện dễ bị tổn thương"
+      },
+      {
+        "action": "Kiểm tra và hoàn thành việc sửa đổi, bổ sung nội dung, hình thức hợp đồng theo mẫu, điều kiện giao dịch chung (nếu có) để phù hợp với Luật mới trước thời hạn quy định.",
+        "owner": "Bộ phận Pháp chế / Quản lý vận hành",
+        "evidence": "Hợp đồng theo mẫu đã được cập nhật",
+        "when": "Trước ngày 31/12/2024"
+      }
+    ],
+    "cautions": [
+      "Điều 15 khoản 1: trích dẫn không khớp nguyên văn, đã loại",
+      "Điều 17: trích dẫn không khớp nguyên văn, đã loại",
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn",
+      "Quan hệ thay thế hoặc sửa đổi ghi sai: Tóm tắt ghi replaces: ['59/2010/QH12'] nhưng theo Điều 79 khoản 2 đây là văn bản bị hết hiệu lực (thay thế), còn replaces trong cấu trúc thường dùng cho văn bản thay thế; đồng thời amends ghi ['92/2015/QH13'] nhưng thực tế Điều 78 là sửa đổi, bổ sung một số điều của Bộ luật Tố tụng dân sự số 92/2015/QH13 (đã được sửa đổi, bổ sung theo các luật khác)."
+    ],
+    "tinCay": "vua",
+    "essence": "Người tiêu dùng được bảo đảm an toàn tính mạng, sức khỏe, tài sản và các quyền lợi hợp pháp khi sử dụng dịch vụ. (Điều 4 khoản 1)",
+    "duties": [
+      "Bệnh viện phải ưu tiên tiếp nhận và xử lý yêu cầu bảo vệ quyền lợi khi khách hàng thuộc nhóm người tiêu dùng dễ bị tổn thương kèm theo chứng cứ chứng minh. (Điều 8 khoản 2 điểm c)"
+    ],
+    "risks": [],
+    "eff": "Có hiệu lực · 01/07/2024",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [
+      "59/2010/QH12"
+    ],
+    "suaDoi": [
+      "92/2015/QH13"
+    ],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://vanban.chinhphu.vn/?docid=208363&pageid=27160",
+    "stale": false,
+    "ageDays": 0
   },
   {
     "verificationVersion": 3,
