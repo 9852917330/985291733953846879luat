@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-21T19:29:23.068418+00:00",
+  "checkedAt": "2026-09-21T23:18:16.054700+00:00",
   "ngay": "22/09/2026",
-  "gio": "02:29 22/09/2026",
+  "gio": "06:18 22/09/2026",
   "status": "degraded",
   "published": 10,
   "sourcesOk": 6,
@@ -33,11 +33,11 @@
     },
     {
       "code": "08/2022/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4040 ký tự, 1 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3815 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "100/2015/QH13",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3900 ký tự, 1 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3675 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "105/2016/QH13",
@@ -61,7 +61,7 @@
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3916 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3691 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "163/2025/NĐ-CP",
@@ -73,11 +73,11 @@
     },
     {
       "code": "20/2021/TT-BYT",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4000 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3837 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "254/2026/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4081 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4313 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "32/2023/TT-BYT",
@@ -85,7 +85,7 @@
     },
     {
       "code": "342/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3948 ký tự, 1 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3785 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "35/2024/TT-BYT",
