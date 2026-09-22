@@ -8,7 +8,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-21T19:29:23.068418+00:00"
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -76,8 +76,8 @@
     "origin": "catalog",
     "recheck": false,
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3916 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-21T19:29:23.068418+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4058 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "110/2026/TT-BCA",
@@ -114,8 +114,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3799 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-21T19:29:23.068418+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3941 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "15/2023/QH15",
@@ -260,6 +260,15 @@
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
   },
   {
+    "code": "33/2025/TT-BYT",
+    "title": "Thời hạn lưu trữ hồ sơ bệnh án và tài liệu y tế",
+    "cat": "kcb",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=214427&orggroupid=4&pageid=27160",
+    "origin": "catalog",
+    "recheck": true
+  },
+  {
     "code": "342/2025/NĐ-CP",
     "title": "Quy định chi tiết Luật Quảng cáo — nội dung bắt buộc",
     "cat": "qc",
@@ -304,6 +313,15 @@
     "lastAttempt": "2026-09-22T04:58:51.036933+00:00"
   },
   {
+    "code": "41/2024/QH15",
+    "title": "Luật Bảo hiểm xã hội",
+    "cat": "ld",
+    "tier": 3,
+    "url": "https://vanban.chinhphu.vn/?docid=211199&pageid=27160",
+    "origin": "catalog",
+    "recheck": true
+  },
+  {
     "code": "43/2018/TT-BYT",
     "title": "Phòng ngừa sự cố y khoa và an toàn người bệnh",
     "cat": "kcb",
@@ -326,6 +344,15 @@
     "lastAttempt": "2026-09-22T04:58:51.036933+00:00"
   },
   {
+    "code": "55/2024/QH15",
+    "title": "Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ",
+    "cat": "pccc",
+    "tier": 1,
+    "url": "https://vanban.chinhphu.vn/?classid=1&docid=212483&orggroupid=1&pageid=27160",
+    "origin": "catalog",
+    "recheck": true
+  },
+  {
     "code": "59/2020/QH14",
     "title": "Luật Doanh nghiệp, sửa đổi bổ sung năm 2025",
     "cat": "dn",
@@ -334,7 +361,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3171 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-21T14:10:54.176180+00:00"
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "61/2020/QH14",
@@ -344,8 +371,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=200449&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3659 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-21T14:10:54.176180+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3801 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "72/2020/QH14",
@@ -355,8 +382,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=202613&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3683 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-21T14:10:54.176180+00:00"
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "84/2015/QH13",
@@ -366,8 +393,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=180606&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3704 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-21T14:10:54.176180+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3846 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "90/2026/NĐ-CP",
@@ -378,7 +405,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 4036 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-21T14:10:54.176180+00:00"
+    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
   },
   {
     "code": "91/2025/QH15",
