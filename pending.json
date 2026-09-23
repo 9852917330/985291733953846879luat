@@ -28,7 +28,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3800 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-22T14:56:07.732249+00:00"
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
   },
   {
     "code": "08/2026/TT-BYT",
@@ -51,7 +51,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3660 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-22T14:56:07.732249+00:00"
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
   },
   {
     "code": "105/2016/QH13",
@@ -135,7 +135,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3676 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-22T14:56:07.732249+00:00"
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
   },
   {
     "code": "150/2026/TT-BCA",
@@ -379,7 +379,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3171 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
   },
   {
     "code": "61/2020/QH14",
@@ -389,8 +389,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=200449&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3801 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3644 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
   },
   {
     "code": "72/2020/QH14",
@@ -400,8 +400,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=202613&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3668 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
   },
   {
     "code": "84/2015/QH13",
@@ -411,8 +411,17 @@
     "url": "https://vanban.chinhphu.vn/?docid=180606&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3846 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3689 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
+  },
+  {
+    "code": "87/2026/NĐ-CP",
+    "title": "Xử phạt vi phạm hành chính lĩnh vực văn hóa và quảng cáo",
+    "cat": "qc",
+    "tier": 2,
+    "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-87-2026-nd-cp-469359/64268.htm",
+    "origin": "catalog",
+    "recheck": true
   },
   {
     "code": "90/2026/NĐ-CP",
@@ -423,7 +432,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 4036 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-22T09:58:55.213808+00:00"
+    "lastAttempt": "2026-09-23T00:34:56.795151+00:00"
   },
   {
     "code": "91/2025/QH15",
