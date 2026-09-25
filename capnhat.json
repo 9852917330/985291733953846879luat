@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-09-25T13:49:31.889586+00:00",
-  "ngay": "25/09/2026",
-  "gio": "20:49 25/09/2026",
+  "checkedAt": "2026-09-25T18:38:09.359994+00:00",
+  "ngay": "26/09/2026",
+  "gio": "01:38 26/09/2026",
   "status": "degraded",
   "published": 10,
   "sourcesOk": 6,
@@ -23,7 +23,7 @@
   ],
   "processed": 8,
   "publishedNow": 0,
-  "pending": 48,
+  "pending": 49,
   "catalogTotal": 40,
   "catalogDone": 10,
   "catalogBlocked": [
@@ -53,7 +53,7 @@
     },
     {
       "code": "106/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4211 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4174 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "13/2025/TT-BYT",
@@ -61,7 +61,7 @@
     },
     {
       "code": "148/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4094 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4057 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "15/2023/QH15",
@@ -84,8 +84,12 @@
       "reason": "Không có nhận định nào đối chiếu được với toàn văn"
     },
     {
+      "code": "19/2023/QH15",
+      "reason": "chưa tới lượt"
+    },
+    {
       "code": "20/2021/TT-BYT",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4132 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4095 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "23/2024/TT-BYT",
@@ -93,7 +97,7 @@
     },
     {
       "code": "254/2026/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4364 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3987 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "26/2025/TT-BYT",
@@ -102,10 +106,6 @@
     {
       "code": "32/2023/TT-BYT",
       "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
-    },
-    {
-      "code": "33/2025/TT-BYT",
-      "reason": "chưa tới lượt"
     }
   ],
   "quotaExhausted": false,
