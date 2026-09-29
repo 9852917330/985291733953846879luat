@@ -1,5 +1,11 @@
 [
   {
+    "code": "03/2020/TT-BLĐTBXH",
+    "mota": "Sửa đổi, bổ sung một số điều của Thông tư số 03/2020/TT-BLĐTBXH ngày 25 tháng 02 năm 2020 của Bộ trưởng Bộ Lao động - Thương binh và Xã hội hướng dẫn thực hiện chế độ, chính sách đối với cựu chiến binh theo quy định tại Nghị định số 157/2016/NĐ-CP ngày 24 tháng 11 năm 2016 của Chính phủ sửa đổi, bổ sung Nghị định số 150/2006/NĐ-CP ngày 12 tháng 12 năm 2006 quy định chi tiết và hướng dẫn thi hành một số điều Pháp lệnh Cựu chiến binh và Thông tư số 24/2009/TT-BLĐTBXH ngày 10 tháng 7 năm 2009 của B",
+    "url": "",
+    "origin": "discovery"
+  },
+  {
     "code": "06/2011/TT-BYT",
     "title": "Quản lý mỹ phẩm và ghi nhãn hàng hóa",
     "cat": "tb",
@@ -17,7 +23,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-28T15:30:17.861928+00:00"
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -85,8 +91,8 @@
     "origin": "catalog",
     "recheck": false,
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4137 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-28T15:30:17.861928+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3934 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "110/2026/TT-BCA",
@@ -123,8 +129,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4020 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-28T15:30:17.861928+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3817 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "15/2023/QH15",
@@ -136,6 +142,12 @@
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3912 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
     "lastAttempt": "2026-09-28T22:02:30.538173+00:00"
+  },
+  {
+    "code": "150/2006/NĐ-CP",
+    "mota": "Sửa đổi, bổ sung một số điều của Thông tư số 03/2020/TT-BLĐTBXH ngày 25 tháng 02 năm 2020 của Bộ trưởng Bộ Lao động - Thương binh và Xã hội hướng dẫn thực hiện chế độ, chính sách đối với cựu chiến binh theo quy định tại Nghị định số 157/2016/NĐ-CP ngày 24 tháng 11 năm 2016 của Chính phủ sửa đổi, bổ sung Nghị định số 150/2006/NĐ-CP ngày 12 tháng 12 năm 2006 quy định chi tiết và hướng dẫn thi hành một số điều Pháp lệnh Cựu chiến binh và Thông tư số 24/2009/TT-BLĐTBXH ngày 10 tháng 7 năm 2009 của B",
+    "url": "",
+    "origin": "discovery"
   },
   {
     "code": "150/2026/TT-BCA",
@@ -152,6 +164,12 @@
     "origin": "discovery",
     "reason": "Tệp chính thức không khớp số hiệu hoặc thiếu toàn văn",
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
+  },
+  {
+    "code": "157/2016/NĐ-CP",
+    "mota": "Sửa đổi, bổ sung một số điều của Thông tư số 03/2020/TT-BLĐTBXH ngày 25 tháng 02 năm 2020 của Bộ trưởng Bộ Lao động - Thương binh và Xã hội hướng dẫn thực hiện chế độ, chính sách đối với cựu chiến binh theo quy định tại Nghị định số 157/2016/NĐ-CP ngày 24 tháng 11 năm 2016 của Chính phủ sửa đổi, bổ sung Nghị định số 150/2006/NĐ-CP ngày 12 tháng 12 năm 2006 quy định chi tiết và hướng dẫn thi hành một số điều Pháp lệnh Cựu chiến binh và Thông tư số 24/2009/TT-BLĐTBXH ngày 10 tháng 7 năm 2009 của B",
+    "url": "",
+    "origin": "discovery"
   },
   {
     "code": "16/2012/QH13",
@@ -189,6 +207,12 @@
     "origin": "discovery",
     "reason": "AI HTTP 404",
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
+  },
+  {
+    "code": "170/2008/QĐ-TTg",
+    "mota": "Sửa đổi, bổ sung một số điều của Thông tư số 03/2020/TT-BLĐTBXH ngày 25 tháng 02 năm 2020 của Bộ trưởng Bộ Lao động - Thương binh và Xã hội hướng dẫn thực hiện chế độ, chính sách đối với cựu chiến binh theo quy định tại Nghị định số 157/2016/NĐ-CP ngày 24 tháng 11 năm 2016 của Chính phủ sửa đổi, bổ sung Nghị định số 150/2006/NĐ-CP ngày 12 tháng 12 năm 2006 quy định chi tiết và hướng dẫn thi hành một số điều Pháp lệnh Cựu chiến binh và Thông tư số 24/2009/TT-BLĐTBXH ngày 10 tháng 7 năm 2009 của B",
+    "url": "",
+    "origin": "discovery"
   },
   {
     "code": "174/2026/NĐ-CP",
@@ -243,6 +267,12 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=211508&pageid=27160",
     "origin": "catalog",
     "recheck": true
+  },
+  {
+    "code": "24/2009/TT-BLĐTBXH",
+    "mota": "Sửa đổi, bổ sung một số điều của Thông tư số 03/2020/TT-BLĐTBXH ngày 25 tháng 02 năm 2020 của Bộ trưởng Bộ Lao động - Thương binh và Xã hội hướng dẫn thực hiện chế độ, chính sách đối với cựu chiến binh theo quy định tại Nghị định số 157/2016/NĐ-CP ngày 24 tháng 11 năm 2016 của Chính phủ sửa đổi, bổ sung Nghị định số 150/2006/NĐ-CP ngày 12 tháng 12 năm 2006 quy định chi tiết và hướng dẫn thi hành một số điều Pháp lệnh Cựu chiến binh và Thông tư số 24/2009/TT-BLĐTBXH ngày 10 tháng 7 năm 2009 của B",
+    "url": "",
+    "origin": "discovery"
   },
   {
     "code": "254/2026/NĐ-CP",
@@ -400,7 +430,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3171 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-28T06:56:18.243580+00:00"
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "61/2020/QH14",
@@ -410,8 +440,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=200449&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3747 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-28T06:56:18.243580+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3677 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "72/2020/QH14",
@@ -421,8 +451,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=202613&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3771 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-28T06:56:18.243580+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3701 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "84/2015/QH13",
@@ -432,8 +462,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=180606&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3792 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-28T06:56:18.243580+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3722 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "87/2026/NĐ-CP",
@@ -452,8 +482,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=217386&pageid=27160&typegroupid=4",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3710 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-28T06:56:18.243580+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4071 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-09-29T08:32:53.353029+00:00"
   },
   {
     "code": "91/2025/QH15",
