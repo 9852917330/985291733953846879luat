@@ -33,8 +33,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=205092&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3530 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-30T23:51:58.999336+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4349 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "08/2026/TT-BYT",
@@ -56,8 +56,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=183216&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3390 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-09-30T23:51:58.999336+00:00"
+    "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "105/2016/QH13",
@@ -146,8 +146,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=207396&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3406 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-30T23:51:58.999336+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4225 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "150/2006/NĐ-CP",
@@ -237,7 +237,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Không có nhận định nào đối chiếu được với toàn văn",
-    "lastAttempt": "2026-09-30T19:22:06.172973+00:00"
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "19/2023/QH15",
@@ -256,8 +256,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=204797&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3552 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-30T19:22:06.172973+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4371 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "200/2026/NĐ-CP",
@@ -288,8 +288,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=218689&pageid=27160&typegroupid=4",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4310 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-30T19:22:06.172973+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4435 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "26/2025/TT-BYT",
@@ -323,7 +323,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-09-30T19:22:06.172973+00:00"
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "327/2026/NĐ-CP",
@@ -351,8 +351,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=216403&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3500 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-09-30T19:22:06.172973+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4319 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-01T19:32:54.258291+00:00"
   },
   {
     "code": "35/2024/TT-BYT",
