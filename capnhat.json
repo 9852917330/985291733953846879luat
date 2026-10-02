@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-10-02T05:39:51.920765+00:00",
+  "checkedAt": "2026-10-02T12:37:41.150974+00:00",
   "ngay": "02/10/2026",
-  "gio": "12:39 02/10/2026",
+  "gio": "19:37 02/10/2026",
   "status": "degraded",
   "published": 10,
   "sourcesOk": 6,
@@ -37,11 +37,11 @@
     },
     {
       "code": "08/2022/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4349 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3949 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "100/2015/QH13",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3809 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "105/2016/QH13",
@@ -65,7 +65,7 @@
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4225 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3825 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "16/2012/QH13",
@@ -77,7 +77,7 @@
     },
     {
       "code": "163/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4243 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3943 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "18/2026/TT-BYT",
