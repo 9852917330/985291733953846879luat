@@ -34,7 +34,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3949 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-10-04T06:50:29.080097+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   },
   {
     "code": "08/2026/TT-BYT",
@@ -57,7 +57,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3809 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-10-04T06:50:29.080097+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   },
   {
     "code": "105/2016/QH13",
@@ -147,7 +147,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3825 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-04T06:50:29.080097+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   },
   {
     "code": "150/2006/NĐ-CP",
@@ -204,7 +204,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3943 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-04T00:39:25.881601+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   },
   {
     "code": "169/2025/NĐ-CP",
@@ -506,7 +506,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3342 ký tự, 1 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-04T00:39:25.881601+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   },
   {
     "code": "96/2016/NĐ-CP",
@@ -517,7 +517,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 4060 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-04T00:39:25.881601+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   },
   {
     "code": "96/2023/NĐ-CP",
@@ -528,7 +528,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3945 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-04T00:39:25.881601+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   },
   {
     "code": "98/2021/NĐ-CP",
@@ -539,6 +539,6 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3853 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-04T00:39:25.881601+00:00"
+    "lastAttempt": "2026-10-04T21:27:20.896005+00:00"
   }
 ]
