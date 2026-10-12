@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-10-11T20:18:36.591176+00:00",
+  "checkedAt": "2026-10-12T00:33:50.001448+00:00",
   "ngay": "12/10/2026",
-  "gio": "03:18 12/10/2026",
+  "gio": "07:33 12/10/2026",
   "status": "degraded",
   "published": 10,
   "sourcesOk": 6,
@@ -37,7 +37,7 @@
     },
     {
       "code": "08/2022/NĐ-CP",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4002 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "100/2015/QH13",
