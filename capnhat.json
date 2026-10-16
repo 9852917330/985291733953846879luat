@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-10-16T21:11:14.912987+00:00",
+  "checkedAt": "2026-10-16T23:37:11.493879+00:00",
   "ngay": "17/10/2026",
-  "gio": "04:11 17/10/2026",
+  "gio": "06:37 17/10/2026",
   "status": "degraded",
   "published": 10,
   "sourcesOk": 6,
@@ -89,7 +89,7 @@
     },
     {
       "code": "20/2021/TT-BYT",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3792 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3825 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "23/2024/TT-BYT",
