@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-10-20T20:36:45.260442+00:00",
+  "checkedAt": "2026-10-20T23:54:20.623351+00:00",
   "ngay": "21/10/2026",
-  "gio": "03:36 21/10/2026",
+  "gio": "06:54 21/10/2026",
   "status": "degraded",
   "published": 10,
   "sourcesOk": 6,
@@ -77,7 +77,7 @@
     },
     {
       "code": "163/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3935 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "18/2026/TT-BYT",
