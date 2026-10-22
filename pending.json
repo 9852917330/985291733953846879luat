@@ -23,7 +23,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức",
-    "lastAttempt": "2026-10-21T19:21:50.850755+00:00"
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "08/2022/NĐ-CP",
@@ -91,8 +91,8 @@
     "origin": "catalog",
     "recheck": false,
     "mota": "Sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và c",
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3934 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-21T19:21:50.850755+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4391 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "110/2026/TT-BCA",
@@ -135,8 +135,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=0&docid=213932&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3817 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-21T19:21:50.850755+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4274 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "15/2023/QH15",
@@ -227,6 +227,12 @@
     "origin": "discovery",
     "reason": "Chưa lấy được toàn văn đúng số hiệu từ nguồn chính thức",
     "lastAttempt": "2026-09-15T01:18:22.905685+00:00"
+  },
+  {
+    "code": "179/2025/NĐ-CP",
+    "mota": "Hướng dẫn xác định vị trí việc làm về chuyển đổi số được hưởng mức hỗ trợ theo quy định tại Nghị định số 179/2025/NĐ-CP ngày 01 tháng 7 năm 2025 của Chính phủ quy định về mức hỗ trợ đối với người làm công tác chuyên trách về chuyển đổi số, an toàn thông tin mạng, an ninh mạng thuộc chức năng quản lý nhà nước của Bộ Khoa học và Công nghệ",
+    "url": "https://vanban.chinhphu.vn/?pageid=27160&docid=220067",
+    "origin": "discovery"
   },
   {
     "code": "18/2026/TT-BYT",
@@ -448,7 +454,7 @@
     "origin": "catalog",
     "recheck": false,
     "reason": "Chưa lấy được toàn văn — trang chi tiết 3171 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-10-21T15:16:49.841663+00:00"
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "61/2020/QH14",
@@ -458,8 +464,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=200449&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3677 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
-    "lastAttempt": "2026-10-21T15:16:49.841663+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4134 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)",
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "72/2020/QH14",
@@ -469,8 +475,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=202613&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3701 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-21T15:16:49.841663+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4158 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "84/2015/QH13",
@@ -480,8 +486,8 @@
     "url": "https://vanban.chinhphu.vn/?docid=180606&pageid=27160",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 3722 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-21T15:16:49.841663+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 4179 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "87/2026/NĐ-CP",
@@ -500,8 +506,8 @@
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=217386&pageid=27160&typegroupid=4",
     "origin": "catalog",
     "recheck": false,
-    "reason": "Chưa lấy được toàn văn — trang chi tiết 4282 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
-    "lastAttempt": "2026-10-21T15:16:49.841663+00:00"
+    "reason": "Chưa lấy được toàn văn — trang chi tiết 3745 ký tự, 0 điều, thử 1 tệp (là văn bản khác)",
+    "lastAttempt": "2026-10-22T10:12:56.349121+00:00"
   },
   {
     "code": "91/2025/QH15",
