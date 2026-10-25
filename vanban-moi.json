@@ -160,6 +160,86 @@
   {
     "verificationVersion": 3,
     "verified": true,
+    "code": "18/2026/TT-BYT",
+    "title": "Quy định về thuốc và nguyên liệu làm thuốc phải kiểm soát đặc biệt",
+    "cat": "kcb",
+    "tier": 1,
+    "lienQuan": true,
+    "checkedAt": "2026-10-25T11:43:39.491576+00:00",
+    "sourcePage": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-18-2026-tt-byt-469674/65587.htm",
+    "sourceFile": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/6/12/469674-1781254593_v1_1781258925_signed.pdf",
+    "sourceHash": "754c244801353c00007b55e16209fe8655c6a6dc489f3cebd3b5ed9d85ee3f04",
+    "coToanVan": true,
+    "claims": [
+      {
+        "kind": "essence",
+        "text": "Cơ sở có hoạt động dược không vì mục đích thương mại phải bảo quản thuốc gây nghiện, hướng thần, tiền chất tại kho, tủ riêng có khóa chắc chắn.",
+        "article": "Điều 3 khoản 1 điểm a",
+        "quote": "Thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc phải được bảo quản tại kho, tủ riêng có khóa chắc chắn và không được để cùng các thuốc, nguyên liệu làm thuốc khác.",
+        "subject": "Cơ sở có hoạt động dược không vì mục đích thương mại",
+        "behavior": "Bảo quản thuốc",
+        "conditions": "Thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc"
+      },
+      {
+        "kind": "duty",
+        "text": "Người quản lý thuốc phải ghi chép đầy đủ số lượng xuất, nhập, tồn kho vào sổ theo mẫu quy định.",
+        "article": "Điều 3 khoản 1 điểm e",
+        "quote": "Người quản lý thuốc phải kiểm soát đặc biệt tại các bộ phận của cơ sở có hoạt động dược không vì mục đích thương mại có trách nhiệm quản lý, cấp phát, ghi chép đầy đủ số lượng xuất, nhập, tồn kho thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc vào sổ theo mẫu quy định tại Phụ lục VIII kèm theo Thông tư này.",
+        "subject": "Người quản lý thuốc",
+        "behavior": "Ghi chép sổ sách",
+        "conditions": "Cơ sở có hoạt động dược không vì mục đích thương mại"
+      },
+      {
+        "kind": "duty",
+        "text": "Khi đổi ca trực, người giữ thuốc phải bàn giao số lượng thuốc và sổ theo dõi, ký nhận đầy đủ.",
+        "article": "Điều 3 khoản 1 điểm đ",
+        "quote": "Khi đổi ca trực, người giữ thuốc của ca trực trước phải bàn giao số lượng thuốc và sổ theo dõi thuốc cho người giữ thuốc của ca trực sau. Khi bàn giao, người giao và người nhận phải ký nhận đầy đủ trên sổ theo dõi thuốc",
+        "subject": "Người giữ thuốc",
+        "behavior": "Bàn giao thuốc",
+        "conditions": "Tủ thuốc trực, tủ thuốc cấp cứu"
+      }
+    ],
+    "steps": [
+      {
+        "action": "Lập báo cáo xuất, nhập, tồn kho, sử dụng thuốc kiểm soát đặc biệt hàng năm",
+        "owner": "Cơ sở có hoạt động dược không vì mục đích thương mại",
+        "evidence": "Báo cáo theo mẫu tại Phụ lục X",
+        "when": "Trước ngày 15 tháng 01 hàng năm"
+      },
+      {
+        "action": "Lập biên bản nhận lại thuốc khi người bệnh không sử dụng hết hoặc tử vong",
+        "owner": "Cơ sở khám bệnh, chữa bệnh",
+        "evidence": "Biên bản nhận lại thuốc (Phụ lục XVIII)",
+        "when": "Khi phát sinh việc nhận lại thuốc"
+      }
+    ],
+    "cautions": [
+      "Chưa trích được rủi ro có căn cứ trực tiếp trong toàn văn",
+      "Chưa trích được căn cứ hiệu lực có căn cứ trực tiếp trong toàn văn",
+      "Sai lệch ngày ban hành: Bản tóm tắt ghi ngày hiệu lực là 14/06/2026, trong khi toàn văn ghi ngày ban hành là 01/06/2026 (ngày 14/06/2026 là ngày đăng Công báo).",
+      "Suy rộng phạm vi đối tượng: Tại Điều 3 khoản 1 điểm đ, quy định về bàn giao thuốc khi đổi ca trực áp dụng cụ thể cho 'Tủ thuốc trực, tủ thuốc cấp cứu', nhưng bản tóm tắt ghi chung chung là 'Người giữ thuốc' mà không nêu rõ điều kiện về tủ thuốc trực/cấp cứu, dẫn đến hiểu lầm là áp dụng cho mọi trường hợp giữ thuốc.",
+      "Thiếu sót điều kiện: Tại Điều 3 khoản 1 điểm a, bản tóm tắt bỏ sót quy định về các trường hợp ngoại lệ (như việc để chung thuốc gây nghiện với thuốc hướng thần, thuốc tiền chất trong cùng tủ nếu không có kho riêng) và các quy định đặc thù cho trạm y tế cấp xã."
+    ],
+    "tinCay": "vua",
+    "essence": "Cơ sở có hoạt động dược không vì mục đích thương mại phải bảo quản thuốc gây nghiện, hướng thần, tiền chất tại kho, tủ riêng có khóa chắc chắn. (Điều 3 khoản 1 điểm a)",
+    "duties": [
+      "Người quản lý thuốc phải ghi chép đầy đủ số lượng xuất, nhập, tồn kho vào sổ theo mẫu quy định. (Điều 3 khoản 1 điểm e)",
+      "Khi đổi ca trực, người giữ thuốc phải bàn giao số lượng thuốc và sổ theo dõi, ký nhận đầy đủ. (Điều 3 khoản 1 điểm đ)"
+    ],
+    "risks": [],
+    "eff": "Có hiệu lực · 14/06/2026",
+    "fine": "",
+    "fineNote": "",
+    "thayThe": [],
+    "suaDoi": [],
+    "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
+    "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-18-2026-tt-byt-469674/65587.htm",
+    "stale": false,
+    "ageDays": 0
+  },
+  {
+    "verificationVersion": 3,
+    "verified": true,
     "code": "19/2023/QH15",
     "title": "Tuân thủ Luật Bảo vệ quyền lợi người tiêu dùng tại bệnh viện thẩm mỹ tư nhân",
     "cat": "kcb",
@@ -503,7 +583,7 @@
     "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=214427&orggroupid=4&pageid=27160",
     "stale": false,
-    "ageDays": 39
+    "ageDays": 40
   },
   {
     "verificationVersion": 3,
@@ -557,7 +637,7 @@
     "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
     "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/9/41-2024-qh15.pdf",
     "stale": false,
-    "ageDays": 39
+    "ageDays": 40
   },
   {
     "verificationVersion": 3,
@@ -624,7 +704,7 @@
     "notes": "Nội dung đã qua hai vòng đối chiếu tự động trên toàn văn từ nguồn chính thức và kiểm tra trích dẫn nguyên văn bằng máy.",
     "url": "https://vanban.chinhphu.vn/?classid=1&docid=212483&orggroupid=1&pageid=27160",
     "stale": false,
-    "ageDays": 39
+    "ageDays": 40
   },
   {
     "verificationVersion": 3,
