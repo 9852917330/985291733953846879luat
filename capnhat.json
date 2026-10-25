@@ -1,11 +1,11 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-10-24T23:17:05.168232+00:00",
+  "checkedAt": "2026-10-25T01:17:21.556909+00:00",
   "ngay": "25/10/2026",
-  "gio": "06:17 25/10/2026",
+  "gio": "08:17 25/10/2026",
   "status": "degraded",
   "published": 10,
-  "sourcesOk": 5,
+  "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
     {
@@ -19,10 +19,6 @@
     {
       "nguon": "Cục Hạ tầng và Thiết bị y tế",
       "loi": "không kết nối được"
-    },
-    {
-      "nguon": "Cơ sở dữ liệu quốc gia về pháp luật",
-      "loi": "HTTP 403"
     }
   ],
   "processed": 8,
@@ -69,7 +65,7 @@
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 4260 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "16/2012/QH13",
