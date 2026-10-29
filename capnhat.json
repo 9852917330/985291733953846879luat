@@ -1,13 +1,17 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-10-29T00:58:54.821835+00:00",
+  "checkedAt": "2026-10-29T07:07:53.645277+00:00",
   "ngay": "29/10/2026",
-  "gio": "07:58 29/10/2026",
+  "gio": "14:07 29/10/2026",
   "status": "degraded",
   "published": 11,
-  "sourcesOk": 6,
+  "sourcesOk": 5,
   "sourcesTotal": 9,
   "sourcesFailed": [
+    {
+      "nguon": "Cổng văn bản Chính phủ",
+      "loi": "hết thời gian chờ"
+    },
     {
       "nguon": "Bộ Y tế",
       "loi": "hết thời gian chờ"
@@ -77,7 +81,7 @@
     },
     {
       "code": "163/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4041 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "19/2023/QH15",
