@@ -1,17 +1,13 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-10-29T07:07:53.645277+00:00",
+  "checkedAt": "2026-10-29T14:22:17.872369+00:00",
   "ngay": "29/10/2026",
-  "gio": "14:07 29/10/2026",
+  "gio": "21:22 29/10/2026",
   "status": "degraded",
   "published": 11,
-  "sourcesOk": 5,
+  "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
-    {
-      "nguon": "Cổng văn bản Chính phủ",
-      "loi": "hết thời gian chờ"
-    },
     {
       "nguon": "Bộ Y tế",
       "loi": "hết thời gian chờ"
@@ -27,7 +23,7 @@
   ],
   "processed": 8,
   "publishedNow": 0,
-  "pending": 58,
+  "pending": 59,
   "catalogTotal": 40,
   "catalogDone": 11,
   "catalogBlocked": [
@@ -41,11 +37,11 @@
     },
     {
       "code": "08/2022/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4128 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3949 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "100/2015/QH13",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3988 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3809 ký tự, 0 điều, thử 2 tệp (là văn bản khác, là văn bản khác)"
     },
     {
       "code": "105/2016/QH13",
@@ -69,7 +65,7 @@
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4004 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3825 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "16/2012/QH13",
@@ -89,7 +85,7 @@
     },
     {
       "code": "20/2021/TT-BYT",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4150 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3971 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "23/2024/TT-BYT",
