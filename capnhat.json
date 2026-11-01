@@ -1,11 +1,11 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-01T19:41:50.821746+00:00",
+  "checkedAt": "2026-11-01T23:37:07.280799+00:00",
   "ngay": "02/11/2026",
-  "gio": "02:41 02/11/2026",
+  "gio": "06:37 02/11/2026",
   "status": "degraded",
   "published": 11,
-  "sourcesOk": 5,
+  "sourcesOk": 6,
   "sourcesTotal": 9,
   "sourcesFailed": [
     {
@@ -19,10 +19,6 @@
     {
       "nguon": "Cục Hạ tầng và Thiết bị y tế",
       "loi": "không kết nối được"
-    },
-    {
-      "nguon": "Cơ sở dữ liệu quốc gia về pháp luật",
-      "loi": "HTTP 403"
     }
   ],
   "processed": 8,
