@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-01T07:34:12.563675+00:00",
+  "checkedAt": "2026-11-01T15:11:24.464984+00:00",
   "ngay": "01/11/2026",
-  "gio": "14:34 01/11/2026",
+  "gio": "22:11 01/11/2026",
   "status": "degraded",
   "published": 11,
   "sourcesOk": 6,
@@ -23,7 +23,7 @@
   ],
   "processed": 8,
   "publishedNow": 0,
-  "pending": 59,
+  "pending": 60,
   "catalogTotal": 40,
   "catalogDone": 11,
   "catalogBlocked": [
@@ -80,6 +80,10 @@
       "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
+      "code": "18/2026/TT-BYT",
+      "reason": "chưa tới lượt"
+    },
+    {
       "code": "19/2023/QH15",
       "reason": "chưa tới lượt"
     },
@@ -102,10 +106,6 @@
     {
       "code": "32/2023/TT-BYT",
       "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
-    },
-    {
-      "code": "33/2025/TT-BYT",
-      "reason": "chưa tới lượt"
     }
   ],
   "quotaExhausted": false,
