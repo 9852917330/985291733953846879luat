@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-01T23:37:07.280799+00:00",
+  "checkedAt": "2026-11-02T06:07:05.690806+00:00",
   "ngay": "02/11/2026",
-  "gio": "06:37 02/11/2026",
+  "gio": "13:07 02/11/2026",
   "status": "degraded",
   "published": 11,
   "sourcesOk": 6,
@@ -23,7 +23,7 @@
   ],
   "processed": 8,
   "publishedNow": 0,
-  "pending": 60,
+  "pending": 61,
   "catalogTotal": 40,
   "catalogDone": 11,
   "catalogBlocked": [
@@ -49,7 +49,7 @@
     },
     {
       "code": "105/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 4166 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3936 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "106/2025/NĐ-CP",
