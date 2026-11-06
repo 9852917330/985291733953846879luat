@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-05T21:59:53.683215+00:00",
+  "checkedAt": "2026-11-06T02:29:38.966416+00:00",
   "ngay": "06/11/2026",
-  "gio": "04:59 06/11/2026",
+  "gio": "09:29 06/11/2026",
   "status": "degraded",
   "published": 11,
   "sourcesOk": 6,
@@ -53,7 +53,7 @@
     },
     {
       "code": "106/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3703 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Trang chi tiết không đúng số hiệu"
     },
     {
       "code": "13/2025/TT-BYT",
@@ -61,7 +61,7 @@
     },
     {
       "code": "148/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3586 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3621 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "15/2023/QH15",
