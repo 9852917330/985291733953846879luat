@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-07T16:28:43.517542+00:00",
-  "ngay": "07/11/2026",
-  "gio": "23:28 07/11/2026",
+  "checkedAt": "2026-11-07T20:53:59.143464+00:00",
+  "ngay": "08/11/2026",
+  "gio": "03:53 08/11/2026",
   "status": "degraded",
   "published": 11,
   "sourcesOk": 6,
@@ -65,7 +65,7 @@
     },
     {
       "code": "15/2023/QH15",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3579 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "16/2012/QH13",
