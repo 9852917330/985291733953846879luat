@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-08T19:43:38.352412+00:00",
+  "checkedAt": "2026-11-08T23:44:01.649888+00:00",
   "ngay": "09/11/2026",
-  "gio": "02:43 09/11/2026",
+  "gio": "06:44 09/11/2026",
   "status": "degraded",
   "published": 11,
   "sourcesOk": 6,
@@ -61,7 +61,7 @@
     },
     {
       "code": "148/2025/NĐ-CP",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3687 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "15/2023/QH15",
