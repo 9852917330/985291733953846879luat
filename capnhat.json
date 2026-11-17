@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-17T14:26:31.409603+00:00",
-  "ngay": "17/11/2026",
-  "gio": "21:26 17/11/2026",
+  "checkedAt": "2026-11-17T22:53:23.255663+00:00",
+  "ngay": "18/11/2026",
+  "gio": "05:53 18/11/2026",
   "status": "degraded",
   "published": 11,
   "sourcesOk": 5,
@@ -49,11 +49,11 @@
     },
     {
       "code": "105/2016/QH13",
-      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3140 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "105/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3888 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "106/2025/NĐ-CP",
@@ -101,7 +101,7 @@
     },
     {
       "code": "254/2026/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3868 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa lấy được toàn văn — trang chi tiết 3879 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
     },
     {
       "code": "26/2025/TT-BYT",
