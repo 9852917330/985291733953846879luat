@@ -1,8 +1,8 @@
 {
   "schemaVersion": 4,
-  "checkedAt": "2026-11-19T13:11:27.689652+00:00",
-  "ngay": "19/11/2026",
-  "gio": "20:11 19/11/2026",
+  "checkedAt": "2026-11-19T21:36:53.259621+00:00",
+  "ngay": "20/11/2026",
+  "gio": "04:36 20/11/2026",
   "status": "degraded",
   "published": 11,
   "sourcesOk": 5,
@@ -53,7 +53,7 @@
     },
     {
       "code": "105/2025/NĐ-CP",
-      "reason": "Chưa lấy được toàn văn — trang chi tiết 3831 ký tự, 0 điều, thử 1 tệp (là văn bản khác)"
+      "reason": "Chưa tìm được trang chi tiết trên nguồn chính thức"
     },
     {
       "code": "106/2025/NĐ-CP",
